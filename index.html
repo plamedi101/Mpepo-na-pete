@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mpepo na Pete — Assistance à l'enregistrement de vol</title>
+<meta name="description" content="Mpepo na Pete : service d'assistance personnalisée à l'enregistrement en ligne pour vos vols internationaux. Envoyez vos informations, recevez votre carte d'embarquement.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%233B9EE8'/%3E%3Cpath d='M20 70 L80 30 L74 24 L14 60 Z' fill='%23CE1021' stroke='%23F0B92E' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky:#3B9EE8; --sky-deep:#0B3D66; --sky-mid:#12578F;
+    --red:#CE1021; --gold:#F0B92E; --gold-deep:#C79415;
+    --white:#FFFFFF; --offwhite:#F5F9FC; --ink:#10202E;
+    --line-l:rgba(16,32,46,0.1); --line-d:rgba(255,255,255,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--offwhite);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.01em;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
+  button{font-family:inherit;}
+  img,svg{display:block;}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  header{position:sticky;top:0;z-index:60;background:var(--sky-deep);border-bottom:3px solid var(--gold);}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:1100px;margin:0 auto;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:#fff;}
+  .logo-mark{width:34px;height:34px;border-radius:9px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .nav-links{display:flex;gap:26px;font-size:14px;font-weight:600;color:#cfe0f0;}
+  .nav-links a:hover{color:var(--gold);}
+  .wa-btn{display:flex;align-items:center;gap:6px;background:var(--gold);color:var(--sky-deep);border-radius:100px;padding:9px 18px;font-size:13px;font-weight:700;}
+  .wa-btn:hover{background:#fff;}
+
+  /* HERO — animated wing + clouds */
+  .hero{position:relative;background:linear-gradient(180deg,#1E6FB5 0%,var(--sky) 55%,#8FC7EE 100%);overflow:hidden;padding-bottom:0;}
+  .sky-scene{position:relative;height:340px;overflow:hidden;}
+  .cloud-layer{position:absolute;top:0;left:0;width:200%;height:100%;display:flex;}
+  .cloud-layer svg{flex-shrink:0;}
+  .layer1{animation:driftSlow 55s linear infinite;opacity:0.85;}
+  .layer2{animation:driftFast 32s linear infinite;opacity:0.95;top:60px;}
+  @keyframes driftSlow{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @keyframes driftFast{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .wing-wrap{position:absolute;bottom:-10px;left:0;width:100%;z-index:3;}
+  .hero-copy{position:relative;z-index:4;text-align:center;padding:54px 32px 0;color:#fff;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.4);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:600;margin-bottom:18px;}
+  .hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.1;margin-bottom:14px;text-shadow:0 2px 12px rgba(0,0,0,0.15);}
+  .hero h1 span{color:var(--gold);}
+  .hero p{font-size:15px;max-width:540px;margin:0 auto 26px;color:rgba(255,255,255,0.94);}
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:4;padding-bottom:40px;}
+  .btn-gold{background:var(--gold);color:var(--sky-deep);padding:15px 30px;border-radius:100px;font-size:14px;font-weight:700;border:none;cursor:pointer;}
+  .btn-gold:hover{background:#fff;}
+  .btn-outline-w{border:2px solid #fff;color:#fff;padding:15px 30px;border-radius:100px;font-size:14px;font-weight:700;background:transparent;}
+  .flag-stripe{height:6px;background:linear-gradient(90deg, var(--gold) 0 33%, var(--red) 33% 66%, var(--gold) 66% 100%);}
+
+  section{padding:64px 0;}
+  .section-head{text-align:center;max-width:600px;margin:0 auto 40px;}
+  .section-head h2{font-size:clamp(24px,3vw,32px);color:var(--sky-deep);margin-bottom:10px;}
+  .section-head p{font-size:14px;color:#4d5c68;}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .step{background:#fff;border:1px solid var(--line-l);border-top:3px solid var(--gold);border-radius:10px;padding:22px;}
+  .step .n{font-family:'JetBrains Mono',monospace;color:var(--red);font-size:13px;font-weight:700;margin-bottom:10px;}
+  .step h3{font-size:15px;margin-bottom:8px;color:var(--sky-deep);}
+  .step p{font-size:13px;color:#4d5c68;}
+
+  .cutoff-banner{background:var(--sky-deep);color:#fff;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:18px;margin:40px 0;}
+  .cutoff-banner .ic{font-size:28px;flex-shrink:0;}
+  .cutoff-banner strong{color:var(--gold);}
+  .cutoff-banner p{font-size:14px;color:#dbe8f4;}
+
+  /* FORM */
+  .form-band{background:#fff;border:1px solid var(--line-l);border-radius:16px;padding:44px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .form-grid.full{grid-template-columns:1fr;}
+  label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--sky-deep);display:block;margin-bottom:6px;}
+  input, select{width:100%;padding:12px 14px;border:1.5px solid var(--line-l);border-radius:8px;font-family:inherit;font-size:14px;background:var(--offwhite);margin-bottom:16px;}
+  input:focus, select:focus{outline:none;border-color:var(--sky);}
+  .price-tag{display:flex;align-items:center;justify-content:space-between;background:var(--offwhite);border-radius:10px;padding:16px 20px;margin:20px 0;}
+  .price-tag .amount{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--red);}
+  .disclaimer-box{background:#FFF8E8;border:1px solid var(--gold);border-radius:10px;padding:18px 20px;font-size:12.5px;color:#5c4a12;line-height:1.6;margin:20px 0;}
+  .disclaimer-box strong{color:var(--sky-deep);}
+  .consent-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#334;margin:18px 0 24px;cursor:pointer;}
+  .consent-row input{width:auto;margin:3px 0 0;flex-shrink:0;}
+  .submit-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:100px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;}
+  .submit-btn:hover{background:#a70d1a;}
+
+  .pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+  .pay-card{background:var(--offwhite);border-radius:10px;padding:16px;text-align:center;font-size:13px;}
+  .pay-card .badge{width:38px;height:38px;border-radius:50%;background:var(--sky-deep);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-weight:700;font-size:13px;}
+
+  .faq-item{border-bottom:1px solid var(--line-l);}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;font-weight:700;color:var(--sky-deep);font-size:15px;}
+  .faq-q .plus{color:var(--red);font-family:'JetBrains Mono',monospace;transition:transform .25s;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;color:#4d5c68;}
+  .faq-item.open .faq-a{max-height:200px;padding-bottom:20px;}
+
+  footer{background:var(--sky-deep);color:#fff;padding:40px 0 26px;}
+  .foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;margin-bottom:34px;}
+  .foot-col h4{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;color:var(--gold);}
+  .foot-col a, .foot-col p{display:block;font-size:13.5px;color:#cfe0f0;margin-bottom:8px;}
+  .foot-bottom{border-top:1px solid var(--line-d);padding-top:18px;font-size:11.5px;color:#8fa8bc;text-align:center;}
+
+  #toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--sky-deep);color:#fff;padding:13px 22px;border-radius:100px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;z-index:100;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+  @media(max-width:860px){
+    .steps{grid-template-columns:1fr 1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .pay-methods{grid-template-columns:1fr;}
+    .foot-top{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .sky-scene{height:260px;}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><div class="logo-mark">✈</div>Mpepo na Pete</div>
+    <div class="nav-links">
+      <a href="#comment">Comment ça marche</a>
+      <a href="#enregistrer">Enregistrer un vol</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="https://wa.me/201282226808" target="_blank" rel="noopener" class="wa-btn">WhatsApp</a>
+  </div>
+</header>
+<div class="flag-stripe"></div>
+
+<div class="hero">
+  <div class="sky-scene">
+    <div class="cloud-layer layer1">
+      <svg width="900" height="340" viewBox="0 0 900 340"><g fill="#fff">
+        <ellipse cx="90" cy="90" rx="70" ry="26"/><ellipse cx="140" cy="75" rx="46" ry="20"/>
+        <ellipse cx="420" cy="140" rx="90" ry="30"/><ellipse cx="480" cy="120" rx="50" ry="22"/>
+        <ellipse cx="740" cy="60" rx="60" ry="22"/><ellipse cx="790" cy="80" rx="40" ry="18"/>
+      </g></svg>
+      <svg width="900" height="340" viewBox="0 0 900 340"><g fill="#fff">
+        <ellipse cx="90" cy="90" rx="70" ry="26"/><ellipse cx="140" cy="75" rx="46" ry="20"/>
+        <ellipse cx="420" cy="140" rx="90" ry="30"/><ellipse cx="480" cy="120" rx="50" ry="22"/>
+        <ellipse cx="740" cy="60" rx="60" ry="22"/><ellipse cx="790" cy="80" rx="40" ry="18"/>
+      </g></svg>
+    </div>
+    <div class="cloud-layer layer2">
+      <svg width="900" height="200" viewBox="0 0 900 200"><g fill="#fff" opacity="0.8">
+        <ellipse cx="200" cy="60" rx="50" ry="16"/><ellipse cx="240" cy="48" rx="30" ry="12"/>
+        <ellipse cx="600" cy="100" rx="60" ry="18"/><ellipse cx="650" cy="85" rx="34" ry="14"/>
+      </g></svg>
+      <svg width="900" height="200" viewBox="0 0 900 200"><g fill="#fff" opacity="0.8">
+        <ellipse cx="200" cy="60" rx="50" ry="16"/><ellipse cx="240" cy="48" rx="30" ry="12"/>
+        <ellipse cx="600" cy="100" rx="60" ry="18"/><ellipse cx="650" cy="85" rx="34" ry="14"/>
+      </g></svg>
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">🇨🇩 Un service pensé pour vous</div>
+      <h1>Votre vol, <span>enregistré</span><br>sans stress.</h1>
+      <p>Envoyez-nous vos informations de vol, on s'occupe de votre enregistrement en ligne — vous recevez votre carte d'embarquement directement sur WhatsApp.</p>
+    </div>
+    <div class="wing-wrap">
+      <svg width="100%" height="140" viewBox="0 0 1000 140" preserveAspectRatio="none">
+        <path d="M0 140 L0 90 Q300 40 620 60 L1000 20 L1000 55 L640 95 Q320 100 0 140 Z" fill="#D9E4EC"/>
+        <path d="M0 140 L0 100 Q300 60 620 75 L1000 40 L1000 60 L640 100 Q320 105 0 140 Z" fill="#B9C9D6"/>
+        <ellipse cx="230" cy="86" rx="34" ry="12" fill="#8FA1AF"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-ctas">
+    <a href="#enregistrer" class="btn-gold">Enregistrer mon vol — 3 USD</a>
+    <a href="#comment" class="btn-outline-w">Comment ça marche</a>
+  </div>
+</div>
+
+<div class="wrap">
+<section id="comment">
+  <div class="section-head reveal">
+    <h2>Comment ça marche</h2>
+    <p>Un processus simple, honnête, avec des limites claires.</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><div class="n">01</div><h3>Vous envoyez vos infos</h3><p>PNR, nom complet, passeport, vol — via le formulaire ci-dessous.</p></div>
+    <div class="step"><div class="n">02</div><h3>Vous payez 3 USD</h3><p>Par WhatsApp, M-Pesa ou Orange Money.</p></div>
+    <div class="step"><div class="n">03</div><h3>On enregistre votre vol</h3><p>Manuellement, sur le site officiel de votre compagnie.</p></div>
+    <div class="step"><div class="n">04</div><h3>Vous recevez votre carte</h3><p>Directement sur WhatsApp, prête à imprimer ou présenter.</p></div>
+  </div>
+
+  <div class="cutoff-banner reveal">
+    <div class="ic">⏱️</div>
+    <p><strong>Important :</strong> votre demande doit être envoyée au plus tard <strong>10 heures avant le décollage</strong>. Passé ce délai, nous ne pouvons pas garantir l'enregistrement à temps — rendez-vous alors directement au comptoir de votre compagnie à l'aéroport.</p>
+  </div>
+</section>
+</div>
+
+<div class="wrap">
+<section id="enregistrer">
+  <div class="section-head reveal">
+    <h2>Enregistrer votre vol</h2>
+    <p>Remplissez ce formulaire avec précision — ces informations sont utilisées uniquement pour votre enregistrement.</p>
+  </div>
+
+  <div class="form-band reveal">
+    <div class="form-grid">
+      <div>
+        <label>Nom complet (comme sur le passeport)</label>
+        <input type="text" id="f-name" placeholder="Ex: DUPONT Jean">
+      </div>
+      <div>
+        <label>Numéro de passeport</label>
+        <input type="text" id="f-passport" placeholder="Ex: AB1234567">
+      </div>
+      <div>
+        <label>Nationalité</label>
+        <input type="text" id="f-nationality" placeholder="Ex: Congolaise (RDC)">
+      </div>
+      <div>
+        <label>Date de naissance</label>
+        <input type="date" id="f-dob">
+      </div>
+      <div>
+        <label>Compagnie aérienne</label>
+        <input type="text" id="f-airline" placeholder="Ex: Ethiopian Airlines">
+      </div>
+      <div>
+        <label>Numéro de vol</label>
+        <input type="text" id="f-flightnum" placeholder="Ex: ET 704">
+      </div>
+      <div>
+        <label>Référence de réservation (PNR)</label>
+        <input type="text" id="f-pnr" placeholder="Ex: X7YQ2P">
+      </div>
+      <div>
+        <label>Date et heure du vol</label>
+        <input type="text" id="f-datetime" placeholder="Ex: 24/08/2026 — 14h20">
+      </div>
+    </div>
+    <div class="form-grid full">
+      <div>
+        <label>Votre numéro WhatsApp (pour vous envoyer la carte)</label>
+        <input type="text" id="f-contact" placeholder="Ex: +243 8xx xxx xxx">
+      </div>
+    </div>
+
+    <div class="price-tag">
+      <span>Frais du service</span>
+      <span class="amount">3,00 USD</span>
+    </div>
+
+    <div class="disclaimer-box">
+      <strong>À lire avant d'envoyer :</strong> Mpepo na Pete est un service d'assistance indépendant, non affilié à votre compagnie aérienne. Nous effectuons votre enregistrement manuellement sur le site officiel de la compagnie. Nous ne pouvons garantir l'enregistrement en cas de refus par la compagnie, de vol modifié, de document invalide, ou si votre demande est reçue à moins de 10h du départ. Vos informations ne sont utilisées que pour cet enregistrement et ne sont pas conservées au-delà.
+    </div>
+
+    <label class="consent-row">
+      <input type="checkbox" id="f-consent">
+      <span>J'accepte que Mpepo na Pete utilise mes informations personnelles et de voyage uniquement dans le but de réaliser mon enregistrement, et j'ai lu les conditions ci-dessus.</span>
+    </label>
+
+    <button class="submit-btn" id="submit-btn">Envoyer ma demande sur WhatsApp</button>
+  </div>
+
+  <div class="section-head reveal" style="margin-top:50px;">
+    <h2 style="font-size:20px;">Moyens de paiement</h2>
+  </div>
+  <div class="pay-methods reveal">
+    <div class="pay-card"><div class="badge">M</div>M-Pesa<br><span class="mono" style="font-size:12px;">0821801279</span></div>
+    <div class="pay-card"><div class="badge">OM</div>Orange Money<br><span class="mono" style="font-size:12px;">0891247689</span></div>
+    <div class="pay-card"><div class="badge">W</div>WhatsApp direct<br><span style="font-size:12px;">À convenir</span></div>
+  </div>
+</section>
+</div>
+
+<div class="wrap">
+<section id="faq">
+  <div class="section-head reveal">
+    <h2>Questions fréquentes</h2>
+  </div>
+  <div id="faq-list" class="reveal"></div>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-col">
+        <h4>Mpepo na Pete</h4>
+        <p style="max-width:260px;">Service d'assistance indépendant à l'enregistrement de vol, non affilié aux compagnies aériennes.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Liens</h4>
+        <a href="#comment">Comment ça marche</a>
+        <a href="#enregistrer">Enregistrer un vol</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp : +20 128 222 6808</a>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Mpepo na Pete — Service d'assistance indépendant, non affilié aux compagnies aériennes</div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+const WHATSAPP_NUMBER = "201282226808";
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+  const name = document.getElementById('f-name').value.trim();
+  const passport = document.getElementById('f-passport').value.trim();
+  const nationality = document.getElementById('f-nationality').value.trim();
+  const dob = document.getElementById('f-dob').value;
+  const airline = document.getElementById('f-airline').value.trim();
+  const flightnum = document.getElementById('f-flightnum').value.trim();
+  const pnr = document.getElementById('f-pnr').value.trim();
+  const datetime = document.getElementById('f-datetime').value.trim();
+  const contact = document.getElementById('f-contact').value.trim();
+  const consent = document.getElementById('f-consent').checked;
+
+  if(!name || !passport || !pnr || !airline || !flightnum || !datetime || !contact){
+    toast('Merci de remplir tous les champs obligatoires');
+    return;
+  }
+  if(!consent){
+    toast('Merci de cocher la case de consentement pour continuer');
+    return;
+  }
+
+  const lines = [
+    "Bonjour Mpepo na Pete, voici ma demande d'enregistrement :",
+    `Nom : ${name}`,
+    `Passeport : ${passport}`,
+    `Nationalité : ${nationality}`,
+    `Date de naissance : ${dob}`,
+    `Compagnie : ${airline}`,
+    `Vol : ${flightnum}`,
+    `PNR : ${pnr}`,
+    `Date/heure du vol : ${datetime}`,
+    `Mon WhatsApp : ${contact}`,
+    "Je confirme avoir lu et accepté les conditions du service."
+  ];
+  const msg = encodeURIComponent(lines.join('\n'));
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+});
+
+const faqs = [
+  {q:"Que se passe-t-il si j'envoie ma demande à moins de 10h du vol ?", a:"Nous ne pouvons pas garantir l'enregistrement à temps. Dans ce cas, présentez-vous directement au comptoir d'enregistrement de votre compagnie à l'aéroport."},
+  {q:"Ce service est-il affilié à ma compagnie aérienne ?", a:"Non. Mpepo na Pete est un service d'assistance indépendant. Nous utilisons le site officiel de votre compagnie pour effectuer votre enregistrement, comme le ferait un passager."},
+  {q:"Mes données (passeport, etc.) sont-elles en sécurité ?", a:"Vos informations sont utilisées uniquement pour réaliser votre enregistrement et ne sont pas conservées au-delà de cette utilisation."},
+  {q:"Que se passe-t-il si la compagnie refuse l'enregistrement ?", a:"Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Le service ne peut garantir l'issue de l'enregistrement, seulement la démarche effectuée en votre nom."},
+  {q:"Comment je paie les 3 USD ?", a:"Par WhatsApp, M-Pesa ou Orange Money — les détails vous sont envoyés après réception de votre demande."}
+];
+const faqList = document.getElementById('faq-list');
+faqs.forEach(f => {
+  const item = document.createElement('div');
+  item.className = 'faq-item';
+  item.innerHTML = `<div class="faq-q"><span>${f.q}</span><span class="plus">+</span></div><div class="faq-a">${f.a}</div>`;
+  item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
+  faqList.appendChild(item);
+});
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(()=> t.classList.remove('show'), 2600);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('in'); observer.unobserve(entry.target); } });
+}, {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
