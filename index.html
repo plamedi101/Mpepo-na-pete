@@ -47,7 +47,12 @@
   .layer2{animation:driftFast 32s linear infinite;opacity:0.95;top:60px;}
   @keyframes driftSlow{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   @keyframes driftFast{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .wing-wrap{position:absolute;bottom:-10px;left:0;width:100%;z-index:3;}
+  .plane-wrap{position:absolute;top:0;left:0;width:320px;z-index:3;animation:flyAcross 24s ease-in-out infinite;}
+  @keyframes flyAcross{
+    0%{transform:translate(-25vw,220px) rotate(-4deg) scale(0.85);}
+    50%{transform:translate(45vw,60px) rotate(3deg) scale(1);}
+    100%{transform:translate(120vw,140px) rotate(-2deg) scale(0.9);}
+  }
   .hero-copy{position:relative;z-index:4;text-align:center;padding:54px 32px 0;color:#fff;}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.4);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:600;margin-bottom:18px;}
   .hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.1;margin-bottom:14px;text-shadow:0 2px 12px rgba(0,0,0,0.15);}
@@ -118,6 +123,12 @@
     .foot-top{grid-template-columns:1fr;}
     .nav-links{display:none;}
     .sky-scene{height:260px;}
+    .plane-wrap{width:220px;animation:flyAcrossMobile 22s ease-in-out infinite;}
+  }
+  @keyframes flyAcrossMobile{
+    0%{transform:translate(-25vw,150px) rotate(-4deg) scale(0.7);}
+    50%{transform:translate(45vw,25px) rotate(3deg) scale(0.75);}
+    100%{transform:translate(120vw,95px) rotate(-2deg) scale(0.7);}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
 </style>
@@ -203,34 +214,38 @@
       <h1>Votre vol, <span>enregistré</span><br>sans stress.</h1>
       <p>Envoyez-nous vos informations de vol, on s'occupe de votre enregistrement en ligne — vous recevez votre carte d'embarquement directement sur WhatsApp.</p>
     </div>
-    <div class="wing-wrap">
-      <svg width="100%" height="180" viewBox="0 0 1000 180" preserveAspectRatio="none">
-        <!-- fuselage sliver -->
-        <path d="M0 180 L0 130 Q120 118 260 122 L260 155 Q120 152 0 165 Z" fill="#9FB0BB"/>
-        <!-- main wing top surface -->
-        <path d="M60 180 L40 100 Q340 40 640 58 L980 8 L995 34 L660 92 Q360 96 100 180 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.5"/>
-        <!-- wing underside shade -->
-        <path d="M60 180 L40 100 Q340 40 640 58 L640 78 Q340 62 90 128 L110 180 Z" fill="url(#wingUnder)" opacity="0.55"/>
-        <!-- panel lines -->
-        <path d="M120 150 Q400 88 900 30" fill="none" stroke="#8FA1AF" stroke-width="1" opacity="0.6"/>
-        <path d="M160 168 Q420 108 920 46" fill="none" stroke="#8FA1AF" stroke-width="1" opacity="0.5"/>
-        <path d="M250 160 L290 90" stroke="#8FA1AF" stroke-width="1" opacity="0.5"/>
-        <path d="M480 130 L510 68" stroke="#8FA1AF" stroke-width="1" opacity="0.5"/>
-        <!-- flap track fairings -->
-        <ellipse cx="300" cy="128" rx="16" ry="6" fill="#7C8D98" opacity="0.6"/>
-        <ellipse cx="520" cy="98" rx="16" ry="6" fill="#7C8D98" opacity="0.6"/>
-        <!-- winglet -->
-        <path d="M960 14 L995 34 L985 -6 Q972 2 960 14 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.5"/>
-        <!-- engine pylon -->
-        <path d="M330 118 L345 78 L365 78 L358 122 Z" fill="#8FA1AF"/>
-        <!-- engine nacelle -->
-        <g>
-          <ellipse cx="300" cy="118" rx="76" ry="46" fill="url(#engineGrad)" stroke="#5E6E78" stroke-width="2"/>
-          <ellipse cx="278" cy="118" rx="48" ry="40" fill="url(#intakeGrad)"/>
-          <circle cx="278" cy="118" r="30" fill="none" stroke="#7C8D98" stroke-width="1.5" opacity="0.7"/>
-          <circle cx="278" cy="118" r="18" fill="none" stroke="#7C8D98" stroke-width="1" opacity="0.6"/>
-          <ellipse cx="352" cy="118" rx="22" ry="40" fill="#B7C3CC" opacity="0.7"/>
+    <div class="plane-wrap">
+      <svg width="320" height="130" viewBox="0 0 320 130">
+        <!-- contrail -->
+        <path d="M0 92 Q60 90 100 88 L100 96 Q60 98 0 100 Z" fill="#fff" opacity="0.5"/>
+        <path d="M0 100 Q55 99 95 97 L95 103 Q55 105 0 108 Z" fill="#fff" opacity="0.35"/>
+
+        <!-- horizontal stabilizer (rear) -->
+        <path d="M108 78 L70 96 L82 100 L118 86 Z" fill="url(#wingUnder)" stroke="#7C8D98" stroke-width="1"/>
+        <!-- vertical tail fin -->
+        <path d="M112 40 Q100 60 106 84 L128 84 Q120 60 132 42 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.2"/>
+
+        <!-- fuselage -->
+        <path d="M300 82 Q305 86 300 90 L120 96 Q95 92 90 86 Q95 80 120 78 L300 82 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.3"/>
+        <!-- livery stripe -->
+        <path d="M110 87 L295 84.5 L295 86.5 L110 89 Z" fill="var(--red)" opacity="0.9"/>
+        <!-- cockpit window -->
+        <ellipse cx="292" cy="85" rx="7" ry="4" fill="#1A2226" opacity="0.85"/>
+        <!-- cabin windows strip -->
+        <g fill="#1A2226" opacity="0.35">
+          <rect x="140" y="82" width="4" height="3" rx="1"/><rect x="152" y="81.6" width="4" height="3" rx="1"/>
+          <rect x="164" y="81.2" width="4" height="3" rx="1"/><rect x="176" y="80.8" width="4" height="3" rx="1"/>
+          <rect x="188" y="80.4" width="4" height="3" rx="1"/><rect x="200" y="80" width="4" height="3" rx="1"/>
+          <rect x="212" y="79.6" width="4" height="3" rx="1"/><rect x="224" y="79.2" width="4" height="3" rx="1"/>
+          <rect x="236" y="78.8" width="4" height="3" rx="1"/><rect x="248" y="78.4" width="4" height="3" rx="1"/>
         </g>
+
+        <!-- main wing -->
+        <path d="M210 88 L130 128 L148 130 L232 94 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.2"/>
+        <!-- engine pylon + nacelle -->
+        <path d="M186 92 L180 108 L192 108 L194 94 Z" fill="#8FA1AF"/>
+        <ellipse cx="178" cy="112" rx="24" ry="12" fill="url(#engineGrad)" stroke="#5E6E78" stroke-width="1.5"/>
+        <ellipse cx="168" cy="112" rx="14" ry="10" fill="url(#intakeGrad)"/>
       </svg>
     </div>
   </div>
