@@ -40,7 +40,7 @@
 
   /* HERO — animated wing + clouds */
   .hero{position:relative;background:linear-gradient(180deg,#1E6FB5 0%,var(--sky) 55%,#8FC7EE 100%);overflow:hidden;padding-bottom:0;}
-  .sky-scene{position:relative;height:340px;overflow:hidden;}
+  .sky-scene{position:relative;height:380px;overflow:hidden;}
   .cloud-layer{position:absolute;top:0;left:0;width:200%;height:100%;display:flex;}
   .cloud-layer svg{flex-shrink:0;}
   .layer1{animation:driftSlow 55s linear infinite;opacity:0.85;}
@@ -139,38 +139,98 @@
 
 <div class="hero">
   <div class="sky-scene">
+    <svg width="0" height="0" style="position:absolute;">
+      <defs>
+        <radialGradient id="cloudGrad" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+          <stop offset="70%" stop-color="#ffffff" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="wingMetal" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#EEF3F7"/>
+          <stop offset="45%" stop-color="#C9D5DE"/>
+          <stop offset="100%" stop-color="#8FA1AF"/>
+        </linearGradient>
+        <linearGradient id="wingUnder" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#AAB9C4"/>
+          <stop offset="100%" stop-color="#71838F"/>
+        </linearGradient>
+        <radialGradient id="engineGrad" cx="35%" cy="30%" r="75%">
+          <stop offset="0%" stop-color="#F2F5F7"/>
+          <stop offset="55%" stop-color="#B7C3CC"/>
+          <stop offset="100%" stop-color="#5E6E78"/>
+        </radialGradient>
+        <radialGradient id="intakeGrad" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#1A2226"/>
+          <stop offset="80%" stop-color="#3A4750"/>
+          <stop offset="100%" stop-color="#5E6E78"/>
+        </radialGradient>
+      </defs>
+    </svg>
+
     <div class="cloud-layer layer1">
-      <svg width="900" height="340" viewBox="0 0 900 340"><g fill="#fff">
-        <ellipse cx="90" cy="90" rx="70" ry="26"/><ellipse cx="140" cy="75" rx="46" ry="20"/>
-        <ellipse cx="420" cy="140" rx="90" ry="30"/><ellipse cx="480" cy="120" rx="50" ry="22"/>
-        <ellipse cx="740" cy="60" rx="60" ry="22"/><ellipse cx="790" cy="80" rx="40" ry="18"/>
-      </g></svg>
-      <svg width="900" height="340" viewBox="0 0 900 340"><g fill="#fff">
-        <ellipse cx="90" cy="90" rx="70" ry="26"/><ellipse cx="140" cy="75" rx="46" ry="20"/>
-        <ellipse cx="420" cy="140" rx="90" ry="30"/><ellipse cx="480" cy="120" rx="50" ry="22"/>
-        <ellipse cx="740" cy="60" rx="60" ry="22"/><ellipse cx="790" cy="80" rx="40" ry="18"/>
-      </g></svg>
+      <svg width="900" height="340" viewBox="0 0 900 340">
+        <g fill="url(#cloudGrad)">
+          <ellipse cx="95" cy="95" rx="80" ry="34"/><ellipse cx="150" cy="75" rx="55" ry="26"/><ellipse cx="50" cy="105" rx="45" ry="22"/>
+          <ellipse cx="430" cy="150" rx="100" ry="38"/><ellipse cx="500" cy="125" rx="60" ry="28"/><ellipse cx="370" cy="160" rx="50" ry="24"/>
+          <ellipse cx="750" cy="65" rx="68" ry="28"/><ellipse cx="805" cy="85" rx="46" ry="22"/>
+        </g>
+      </svg>
+      <svg width="900" height="340" viewBox="0 0 900 340">
+        <g fill="url(#cloudGrad)">
+          <ellipse cx="95" cy="95" rx="80" ry="34"/><ellipse cx="150" cy="75" rx="55" ry="26"/><ellipse cx="50" cy="105" rx="45" ry="22"/>
+          <ellipse cx="430" cy="150" rx="100" ry="38"/><ellipse cx="500" cy="125" rx="60" ry="28"/><ellipse cx="370" cy="160" rx="50" ry="24"/>
+          <ellipse cx="750" cy="65" rx="68" ry="28"/><ellipse cx="805" cy="85" rx="46" ry="22"/>
+        </g>
+      </svg>
     </div>
     <div class="cloud-layer layer2">
-      <svg width="900" height="200" viewBox="0 0 900 200"><g fill="#fff" opacity="0.8">
-        <ellipse cx="200" cy="60" rx="50" ry="16"/><ellipse cx="240" cy="48" rx="30" ry="12"/>
-        <ellipse cx="600" cy="100" rx="60" ry="18"/><ellipse cx="650" cy="85" rx="34" ry="14"/>
-      </g></svg>
-      <svg width="900" height="200" viewBox="0 0 900 200"><g fill="#fff" opacity="0.8">
-        <ellipse cx="200" cy="60" rx="50" ry="16"/><ellipse cx="240" cy="48" rx="30" ry="12"/>
-        <ellipse cx="600" cy="100" rx="60" ry="18"/><ellipse cx="650" cy="85" rx="34" ry="14"/>
-      </g></svg>
+      <svg width="900" height="200" viewBox="0 0 900 200">
+        <g fill="url(#cloudGrad)" opacity="0.85">
+          <ellipse cx="210" cy="65" rx="58" ry="20"/><ellipse cx="255" cy="50" rx="34" ry="15"/>
+          <ellipse cx="615" cy="105" rx="68" ry="22"/><ellipse cx="670" cy="88" rx="38" ry="16"/>
+        </g>
+      </svg>
+      <svg width="900" height="200" viewBox="0 0 900 200">
+        <g fill="url(#cloudGrad)" opacity="0.85">
+          <ellipse cx="210" cy="65" rx="58" ry="20"/><ellipse cx="255" cy="50" rx="34" ry="15"/>
+          <ellipse cx="615" cy="105" rx="68" ry="22"/><ellipse cx="670" cy="88" rx="38" ry="16"/>
+        </g>
+      </svg>
     </div>
     <div class="hero-copy">
-      <div class="eyebrow">🇨🇩 Un service pensé pour vous</div>
+      <div class="eyebrow">Un service pensé pour vous</div>
       <h1>Votre vol, <span>enregistré</span><br>sans stress.</h1>
       <p>Envoyez-nous vos informations de vol, on s'occupe de votre enregistrement en ligne — vous recevez votre carte d'embarquement directement sur WhatsApp.</p>
     </div>
     <div class="wing-wrap">
-      <svg width="100%" height="140" viewBox="0 0 1000 140" preserveAspectRatio="none">
-        <path d="M0 140 L0 90 Q300 40 620 60 L1000 20 L1000 55 L640 95 Q320 100 0 140 Z" fill="#D9E4EC"/>
-        <path d="M0 140 L0 100 Q300 60 620 75 L1000 40 L1000 60 L640 100 Q320 105 0 140 Z" fill="#B9C9D6"/>
-        <ellipse cx="230" cy="86" rx="34" ry="12" fill="#8FA1AF"/>
+      <svg width="100%" height="180" viewBox="0 0 1000 180" preserveAspectRatio="none">
+        <!-- fuselage sliver -->
+        <path d="M0 180 L0 130 Q120 118 260 122 L260 155 Q120 152 0 165 Z" fill="#9FB0BB"/>
+        <!-- main wing top surface -->
+        <path d="M60 180 L40 100 Q340 40 640 58 L980 8 L995 34 L660 92 Q360 96 100 180 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.5"/>
+        <!-- wing underside shade -->
+        <path d="M60 180 L40 100 Q340 40 640 58 L640 78 Q340 62 90 128 L110 180 Z" fill="url(#wingUnder)" opacity="0.55"/>
+        <!-- panel lines -->
+        <path d="M120 150 Q400 88 900 30" fill="none" stroke="#8FA1AF" stroke-width="1" opacity="0.6"/>
+        <path d="M160 168 Q420 108 920 46" fill="none" stroke="#8FA1AF" stroke-width="1" opacity="0.5"/>
+        <path d="M250 160 L290 90" stroke="#8FA1AF" stroke-width="1" opacity="0.5"/>
+        <path d="M480 130 L510 68" stroke="#8FA1AF" stroke-width="1" opacity="0.5"/>
+        <!-- flap track fairings -->
+        <ellipse cx="300" cy="128" rx="16" ry="6" fill="#7C8D98" opacity="0.6"/>
+        <ellipse cx="520" cy="98" rx="16" ry="6" fill="#7C8D98" opacity="0.6"/>
+        <!-- winglet -->
+        <path d="M960 14 L995 34 L985 -6 Q972 2 960 14 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.5"/>
+        <!-- engine pylon -->
+        <path d="M330 118 L345 78 L365 78 L358 122 Z" fill="#8FA1AF"/>
+        <!-- engine nacelle -->
+        <g>
+          <ellipse cx="300" cy="118" rx="76" ry="46" fill="url(#engineGrad)" stroke="#5E6E78" stroke-width="2"/>
+          <ellipse cx="278" cy="118" rx="48" ry="40" fill="url(#intakeGrad)"/>
+          <circle cx="278" cy="118" r="30" fill="none" stroke="#7C8D98" stroke-width="1.5" opacity="0.7"/>
+          <circle cx="278" cy="118" r="18" fill="none" stroke="#7C8D98" stroke-width="1" opacity="0.6"/>
+          <ellipse cx="352" cy="118" rx="22" ry="40" fill="#B7C3CC" opacity="0.7"/>
+        </g>
       </svg>
     </div>
   </div>
@@ -236,6 +296,10 @@
       <div>
         <label>Référence de réservation (PNR)</label>
         <input type="text" id="f-pnr" placeholder="Ex: X7YQ2P">
+      </div>
+      <div>
+        <label>Numéro de billet (e-ticket)</label>
+        <input type="text" id="f-ticket" placeholder="Ex: 071-1234567890">
       </div>
       <div>
         <label>Date et heure du vol</label>
@@ -321,6 +385,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
   const airline = document.getElementById('f-airline').value.trim();
   const flightnum = document.getElementById('f-flightnum').value.trim();
   const pnr = document.getElementById('f-pnr').value.trim();
+  const ticket = document.getElementById('f-ticket').value.trim();
   const datetime = document.getElementById('f-datetime').value.trim();
   const contact = document.getElementById('f-contact').value.trim();
   const consent = document.getElementById('f-consent').checked;
@@ -343,6 +408,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     `Compagnie : ${airline}`,
     `Vol : ${flightnum}`,
     `PNR : ${pnr}`,
+    ...(ticket ? [`Numéro de billet : ${ticket}`] : []),
     `Date/heure du vol : ${datetime}`,
     `Mon WhatsApp : ${contact}`,
     "Je confirme avoir lu et accepté les conditions du service."
