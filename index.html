@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mpepo na Pete — Assistance à l'enregistrement de vol</title>
-<meta name="description" content="Mpepo na Pete : service d'assistance personnalisée à l'enregistrement en ligne pour vos vols internationaux. Envoyez vos informations, recevez votre carte d'embarquement.">
+<title>FlyFast — Assistance à l'enregistrement de vol</title>
+<meta name="description" content="FlyFast : service d'assistance personnalisée à l'enregistrement en ligne pour vos vols internationaux. Envoyez vos informations, recevez votre carte d'embarquement.">
 <meta name="robots" content="index, follow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%233B9EE8'/%3E%3Cpath d='M20 70 L80 30 L74 24 L14 60 Z' fill='%23CE1021' stroke='%23F0B92E' stroke-width='3'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,7 +126,7 @@
 
 <header>
   <div class="nav">
-    <div class="logo"><div class="logo-mark">✈</div>Mpepo na Pete</div>
+    <div class="logo"><div class="logo-mark">✈</div>FlyFast</div>
     <div class="nav-links">
       <a href="#comment">Comment ça marche</a>
       <a href="#enregistrer">Enregistrer un vol</a>
@@ -319,12 +319,12 @@
     </div>
 
     <div class="disclaimer-box">
-      <strong>À lire avant d'envoyer :</strong> Mpepo na Pete est un service d'assistance indépendant, non affilié à votre compagnie aérienne. Nous effectuons votre enregistrement manuellement sur le site officiel de la compagnie. Nous ne pouvons garantir l'enregistrement en cas de refus par la compagnie, de vol modifié, de document invalide, ou si votre demande est reçue à moins de 10h du départ. Vos informations ne sont utilisées que pour cet enregistrement et ne sont pas conservées au-delà.
+      <strong>À lire avant d'envoyer :</strong> FlyFast est un service d'assistance indépendant, non affilié à votre compagnie aérienne. Nous effectuons votre enregistrement manuellement sur le site officiel de la compagnie. Nous ne pouvons garantir l'enregistrement en cas de refus par la compagnie, de vol modifié, de document invalide, ou si votre demande est reçue à moins de 10h du départ. Vos informations ne sont utilisées que pour cet enregistrement et ne sont pas conservées au-delà.
     </div>
 
     <label class="consent-row">
       <input type="checkbox" id="f-consent">
-      <span>J'accepte que Mpepo na Pete utilise mes informations personnelles et de voyage uniquement dans le but de réaliser mon enregistrement, et j'ai lu les conditions ci-dessus.</span>
+      <span>J'accepte que FlyFast utilise mes informations personnelles et de voyage uniquement dans le but de réaliser mon enregistrement, et j'ai lu les conditions ci-dessus.</span>
     </label>
 
     <button class="submit-btn" id="submit-btn">Envoyer ma demande sur WhatsApp</button>
@@ -354,7 +354,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-col">
-        <h4>Mpepo na Pete</h4>
+        <h4>FlyFast</h4>
         <p style="max-width:260px;">Service d'assistance indépendant à l'enregistrement de vol, non affilié aux compagnies aériennes.</p>
       </div>
       <div class="foot-col">
@@ -368,7 +368,7 @@
         <a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp : +20 128 222 6808</a>
       </div>
     </div>
-    <div class="foot-bottom">© 2026 Mpepo na Pete — Service d'assistance indépendant, non affilié aux compagnies aériennes</div>
+    <div class="foot-bottom">© 2026 FlyFast — Service d'assistance indépendant, non affilié aux compagnies aériennes</div>
   </div>
 </footer>
 
@@ -390,7 +390,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
   const contact = document.getElementById('f-contact').value.trim();
   const consent = document.getElementById('f-consent').checked;
 
-  if(!name || !passport || !pnr || !airline || !flightnum || !datetime || !contact){
+  if(!name || !passport || !pnr || !ticket || !airline || !flightnum || !datetime || !contact){
     toast('Merci de remplir tous les champs obligatoires');
     return;
   }
@@ -400,7 +400,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
   }
 
   const lines = [
-    "Bonjour Mpepo na Pete, voici ma demande d'enregistrement :",
+    "Bonjour FlyFast, voici ma demande d'enregistrement :",
     `Nom : ${name}`,
     `Passeport : ${passport}`,
     `Nationalité : ${nationality}`,
@@ -408,7 +408,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     `Compagnie : ${airline}`,
     `Vol : ${flightnum}`,
     `PNR : ${pnr}`,
-    ...(ticket ? [`Numéro de billet : ${ticket}`] : []),
+    `Numéro de billet : ${ticket}`,
     `Date/heure du vol : ${datetime}`,
     `Mon WhatsApp : ${contact}`,
     "Je confirme avoir lu et accepté les conditions du service."
@@ -419,7 +419,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 
 const faqs = [
   {q:"Que se passe-t-il si j'envoie ma demande à moins de 10h du vol ?", a:"Nous ne pouvons pas garantir l'enregistrement à temps. Dans ce cas, présentez-vous directement au comptoir d'enregistrement de votre compagnie à l'aéroport."},
-  {q:"Ce service est-il affilié à ma compagnie aérienne ?", a:"Non. Mpepo na Pete est un service d'assistance indépendant. Nous utilisons le site officiel de votre compagnie pour effectuer votre enregistrement, comme le ferait un passager."},
+  {q:"Ce service est-il affilié à ma compagnie aérienne ?", a:"Non. FlyFast est un service d'assistance indépendant. Nous utilisons le site officiel de votre compagnie pour effectuer votre enregistrement, comme le ferait un passager."},
   {q:"Mes données (passeport, etc.) sont-elles en sécurité ?", a:"Vos informations sont utilisées uniquement pour réaliser votre enregistrement et ne sont pas conservées au-delà de cette utilisation."},
   {q:"Que se passe-t-il si la compagnie refuse l'enregistrement ?", a:"Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Le service ne peut garantir l'issue de l'enregistrement, seulement la démarche effectuée en votre nom."},
   {q:"Comment je paie les 3 USD ?", a:"Par WhatsApp, M-Pesa ou Orange Money — les détails vous sont envoyés après réception de votre demande."}
