@@ -95,6 +95,9 @@
   .consent-row input{width:auto;margin:3px 0 0;flex-shrink:0;}
   .submit-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:100px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;}
   .submit-btn:hover{background:#a70d1a;}
+  .photo-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:transparent;color:var(--sky-deep);border:1.5px solid var(--sky);border-radius:100px;padding:13px;font-size:13.5px;font-weight:700;margin-top:12px;text-decoration:none;}
+  .photo-btn:hover{background:var(--sky);color:#fff;}
+  .photo-hint{font-size:11.5px;color:#6b7885;text-align:center;margin-top:8px;}
 
   .pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
   .pay-card{background:var(--offwhite);border-radius:10px;padding:16px;text-align:center;font-size:13px;}
@@ -141,6 +144,7 @@
     <div class="nav-links">
       <a href="#comment">Comment ça marche</a>
       <a href="#enregistrer">Enregistrer un vol</a>
+      <a href="flyfast-blog/index.html">Blog</a>
       <a href="#faq">FAQ</a>
     </div>
     <a href="https://wa.me/201282226808" target="_blank" rel="noopener" class="wa-btn">WhatsApp</a>
@@ -343,6 +347,11 @@
     </label>
 
     <button class="submit-btn" id="submit-btn">Envoyer ma demande sur WhatsApp</button>
+
+    <a href="https://wa.me/201282226808?text=Bonjour%20FlyFast%2C%20je%20vous%20envoie%20une%20photo%20de%20mon%20passeport%2Fbillet%20pour%20mon%20enregistrement%20%3A" target="_blank" rel="noopener" class="photo-btn">
+      📎 Envoyer une photo (passeport, billet...) sur WhatsApp
+    </a>
+    <p class="photo-hint">Utile si une information est difficile à retranscrire — une fois la conversation ouverte, joignez votre photo directement dans WhatsApp.</p>
   </div>
 
   <div class="section-head reveal" style="margin-top:50px;">
@@ -376,6 +385,7 @@
         <h4>Liens</h4>
         <a href="#comment">Comment ça marche</a>
         <a href="#enregistrer">Enregistrer un vol</a>
+        <a href="flyfast-blog/index.html">Blog</a>
         <a href="#faq">FAQ</a>
       </div>
       <div class="foot-col">
