@@ -180,6 +180,21 @@
           <stop offset="80%" stop-color="#3A4750"/>
           <stop offset="100%" stop-color="#5E6E78"/>
         </radialGradient>
+        <linearGradient id="fuselageGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#FFFFFF"/>
+          <stop offset="20%" stop-color="#F3F8FA"/>
+          <stop offset="48%" stop-color="#D3DEE6"/>
+          <stop offset="78%" stop-color="#A6B7C3"/>
+          <stop offset="100%" stop-color="#748493"/>
+        </linearGradient>
+        <linearGradient id="contrailGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+          <stop offset="55%" stop-color="#ffffff" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0.85"/>
+        </linearGradient>
+        <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="1.6"/>
+        </filter>
       </defs>
     </svg>
 
@@ -220,21 +235,32 @@
     </div>
     <div class="plane-wrap">
       <svg width="320" height="130" viewBox="0 0 320 130">
-        <!-- contrail -->
-        <path d="M0 92 Q60 90 100 88 L100 96 Q60 98 0 100 Z" fill="#fff" opacity="0.5"/>
-        <path d="M0 100 Q55 99 95 97 L95 103 Q55 105 0 108 Z" fill="#fff" opacity="0.35"/>
+        <!-- contrail (smooth tapering gradient) -->
+        <path d="M-10 91 Q50 89 100 87 L100 97 Q50 99 -10 102 Z" fill="url(#contrailGrad)"/>
 
-        <!-- horizontal stabilizer (rear) -->
+        <!-- far-side horizontal stabilizer peek (depth) -->
+        <path d="M116 62 L134 74 L128 78 L112 66 Z" fill="url(#wingUnder)" opacity="0.7"/>
+        <!-- near horizontal stabilizer -->
         <path d="M108 78 L70 96 L82 100 L118 86 Z" fill="url(#wingUnder)" stroke="#7C8D98" stroke-width="1"/>
         <!-- vertical tail fin -->
         <path d="M112 40 Q100 60 106 84 L128 84 Q120 60 132 42 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.2"/>
+        <path d="M117 46 Q109 60 113 78 L120 78 Q116 60 123 47 Z" fill="var(--gold)" opacity="0.85"/>
+
+        <!-- far-side engine peek (twin-engine depth cue) -->
+        <ellipse cx="196" cy="98" rx="14" ry="7" fill="url(#engineGrad)" opacity="0.55"/>
 
         <!-- fuselage -->
-        <path d="M300 82 Q305 86 300 90 L120 96 Q95 92 90 86 Q95 80 120 78 L300 82 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.3"/>
-        <!-- livery stripe -->
-        <path d="M110 87 L295 84.5 L295 86.5 L110 89 Z" fill="var(--red)" opacity="0.9"/>
-        <!-- cockpit window -->
-        <ellipse cx="292" cy="85" rx="7" ry="4" fill="#1A2226" opacity="0.85"/>
+        <path d="M300 82 Q306 86 300 90.5 L120 96 Q94 92 89 86 Q94 80 120 78 L300 82 Z" fill="url(#fuselageGrad)" stroke="#7C8D98" stroke-width="1.3"/>
+        <!-- nose radome tint -->
+        <path d="M300 82 Q306 86 300 90.5 L286 89.5 L286 80.5 Z" fill="#E4ECF1" opacity="0.7"/>
+        <!-- belly shade line -->
+        <path d="M120 93 Q200 97 296 89" fill="none" stroke="#8FA1AF" stroke-width="1.4" opacity="0.55"/>
+        <!-- livery stripe (red + thin gold pinstripe) -->
+        <path d="M110 87 L295 84.5 L295 86.6 L110 89.1 Z" fill="var(--red)" opacity="0.92"/>
+        <path d="M110 89.3 L295 86.8 L295 87.5 L110 90 Z" fill="var(--gold)" opacity="0.9"/>
+        <!-- cockpit windshield (angled panels) -->
+        <path d="M283 80.5 L294 81.5 L293.5 85.5 L282.5 84.8 Z" fill="#1A2226" opacity="0.85"/>
+        <path d="M283 80.5 L288 80.9 L287.7 84.9 L282.5 84.8 Z" fill="#354350" opacity="0.6"/>
         <!-- cabin windows strip -->
         <g fill="#1A2226" opacity="0.35">
           <rect x="140" y="82" width="4" height="3" rx="1"/><rect x="152" y="81.6" width="4" height="3" rx="1"/>
@@ -243,13 +269,30 @@
           <rect x="212" y="79.6" width="4" height="3" rx="1"/><rect x="224" y="79.2" width="4" height="3" rx="1"/>
           <rect x="236" y="78.8" width="4" height="3" rx="1"/><rect x="248" y="78.4" width="4" height="3" rx="1"/>
         </g>
+        <!-- fuselage specular highlight -->
+        <ellipse cx="230" cy="80.5" rx="34" ry="2.2" fill="#ffffff" opacity="0.8" filter="url(#softGlow)"/>
+        <ellipse cx="150" cy="81.5" rx="20" ry="1.6" fill="#ffffff" opacity="0.6" filter="url(#softGlow)"/>
 
         <!-- main wing -->
         <path d="M210 88 L130 128 L148 130 L232 94 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.2"/>
+        <!-- winglet -->
+        <path d="M131 127 L124 130 L128 118 L140 121 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1"/>
+        <!-- wingtip position light -->
+        <circle cx="126" cy="126" r="1.8" fill="#E23B3B" filter="url(#softGlow)"/>
+        <!-- wing top glint -->
+        <path d="M205 90 L155 116" stroke="#ffffff" stroke-width="1.5" opacity="0.35" filter="url(#softGlow)"/>
         <!-- engine pylon + nacelle -->
         <path d="M186 92 L180 108 L192 108 L194 94 Z" fill="#8FA1AF"/>
         <ellipse cx="178" cy="112" rx="24" ry="12" fill="url(#engineGrad)" stroke="#5E6E78" stroke-width="1.5"/>
+        <ellipse cx="178" cy="106" rx="18" ry="3" fill="#ffffff" opacity="0.5" filter="url(#softGlow)"/>
+        <!-- exhaust warm glow -->
+        <ellipse cx="197" cy="112" rx="7" ry="6" fill="#F2A93B" opacity="0.35" filter="url(#softGlow)"/>
         <ellipse cx="168" cy="112" rx="14" ry="10" fill="url(#intakeGrad)"/>
+        <g stroke="#5E6E78" stroke-width="0.8" opacity="0.6">
+          <line x1="168" y1="103" x2="168" y2="121"/>
+          <line x1="159" y1="107" x2="177" y2="117"/>
+          <line x1="159" y1="117" x2="177" y2="107"/>
+        </g>
       </svg>
     </div>
   </div>
