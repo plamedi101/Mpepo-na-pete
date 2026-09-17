@@ -80,6 +80,14 @@
   .cutoff-banner strong{color:var(--gold);}
   .cutoff-banner p{font-size:14px;color:#dbe8f4;}
 
+  .moments-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .moment-card{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 14px 30px rgba(11,61,102,0.16);}
+  .moment-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .moment-card:hover img{transform:scale(1.05);}
+  .moment-cap{position:absolute;bottom:0;left:0;right:0;padding:22px 20px 18px;background:linear-gradient(0deg,rgba(11,61,102,0.92) 0%,rgba(11,61,102,0.55) 55%,transparent 100%);color:#fff;}
+  .moment-cap strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;margin-bottom:4px;}
+  .moment-cap span{font-size:12.5px;color:#dbe8f4;}
+
   /* FORM */
   .form-band{background:#fff;border:1px solid var(--line-l);border-radius:16px;padding:44px;}
   .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
@@ -127,6 +135,7 @@
     .nav-links{display:none;}
     .sky-scene{height:260px;}
     .plane-wrap{width:220px;animation:flyAcrossMobile 22s ease-in-out infinite;}
+    .moments-grid{grid-template-columns:1fr;}
   }
   @keyframes flyAcrossMobile{
     0%{transform:translate(-25vw,150px) rotate(-4deg) scale(0.7);}
@@ -318,6 +327,31 @@
   <div class="cutoff-banner reveal">
     <div class="ic">⏱️</div>
     <p><strong>Important :</strong> votre demande doit être envoyée au plus tard <strong>10 heures avant le décollage</strong>. Passé ce délai, nous ne pouvons pas garantir l'enregistrement à temps — rendez-vous alors directement au comptoir de votre compagnie à l'aéroport.</p>
+  </div>
+</section>
+</div>
+
+<div class="wrap">
+<section id="moments">
+  <div class="section-head reveal">
+    <h2>Ce moment où tout est réglé</h2>
+    <p>Ce sentiment, juste avant de franchir la porte d'embarquement.</p>
+  </div>
+  <div class="moments-grid reveal">
+    <div class="moment-card">
+      <img src="flyfast-images/checkin-1.jpg" alt="Voyageurs vérifiant leur carte d'embarquement, enregistrement confirmé">
+      <div class="moment-cap">
+        <strong>Le sourire d'un enregistrement réussi.</strong>
+        <span>Confirmé avant même d'arriver à l'aéroport.</span>
+      </div>
+    </div>
+    <div class="moment-card">
+      <img src="flyfast-images/checkin-2.jpg" alt="Voyageurs se dirigeant vers l'embarquement, cartes d'embarquement en main">
+      <div class="moment-cap">
+        <strong>Direction l'embarquement, l'esprit léger.</strong>
+        <span>Plus de doute, plus de stress — juste voyager.</span>
+      </div>
+    </div>
   </div>
 </section>
 </div>
