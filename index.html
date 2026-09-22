@@ -40,19 +40,10 @@
 
   /* HERO — animated wing + clouds */
   .hero{position:relative;background:linear-gradient(180deg,#1E6FB5 0%,var(--sky) 55%,#8FC7EE 100%);overflow:hidden;padding-bottom:0;}
-  .sky-scene{position:relative;height:380px;overflow:hidden;}
-  .cloud-layer{position:absolute;top:0;left:0;width:200%;height:100%;display:flex;}
-  .cloud-layer svg{flex-shrink:0;}
-  .layer1{animation:driftSlow 55s linear infinite;opacity:0.85;}
-  .layer2{animation:driftFast 32s linear infinite;opacity:0.95;top:60px;}
-  @keyframes driftSlow{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  @keyframes driftFast{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-  .plane-wrap{position:absolute;top:0;left:0;width:320px;z-index:3;animation:flyAcross 24s ease-in-out infinite;}
-  @keyframes flyAcross{
-    0%{transform:translate(-25vw,220px) rotate(-4deg) scale(0.85);}
-    50%{transform:translate(45vw,60px) rotate(3deg) scale(1);}
-    100%{transform:translate(120vw,140px) rotate(-2deg) scale(0.9);}
-  }
+  .sky-scene{position:relative;height:440px;overflow:hidden;}
+  .hero-photo-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;animation:slowZoom 28s ease-in-out infinite alternate;}
+  @keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.14);}}
+  .hero-photo-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(11,40,66,0.55) 0%,rgba(11,40,66,0.25) 45%,rgba(11,40,66,0.6) 100%);}
   .hero-copy{position:relative;z-index:4;text-align:center;padding:54px 32px 0;color:#fff;}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.4);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:600;margin-bottom:18px;}
   .hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.1;margin-bottom:14px;text-shadow:0 2px 12px rgba(0,0,0,0.15);}
@@ -133,14 +124,8 @@
     .pay-methods{grid-template-columns:1fr;}
     .foot-top{grid-template-columns:1fr;}
     .nav-links{display:none;}
-    .sky-scene{height:260px;}
-    .plane-wrap{width:220px;animation:flyAcrossMobile 22s ease-in-out infinite;}
+    .sky-scene{height:320px;}
     .moments-grid{grid-template-columns:1fr;}
-  }
-  @keyframes flyAcrossMobile{
-    0%{transform:translate(-25vw,150px) rotate(-4deg) scale(0.7);}
-    50%{transform:translate(45vw,25px) rotate(3deg) scale(0.75);}
-    100%{transform:translate(120vw,95px) rotate(-2deg) scale(0.7);}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
 </style>
@@ -163,146 +148,12 @@
 
 <div class="hero">
   <div class="sky-scene">
-    <svg width="0" height="0" style="position:absolute;">
-      <defs>
-        <radialGradient id="cloudGrad" cx="40%" cy="35%" r="65%">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
-          <stop offset="70%" stop-color="#ffffff" stop-opacity="0.9"/>
-          <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="wingMetal" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#EEF3F7"/>
-          <stop offset="45%" stop-color="#C9D5DE"/>
-          <stop offset="100%" stop-color="#8FA1AF"/>
-        </linearGradient>
-        <linearGradient id="wingUnder" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#AAB9C4"/>
-          <stop offset="100%" stop-color="#71838F"/>
-        </linearGradient>
-        <radialGradient id="engineGrad" cx="35%" cy="30%" r="75%">
-          <stop offset="0%" stop-color="#F2F5F7"/>
-          <stop offset="55%" stop-color="#B7C3CC"/>
-          <stop offset="100%" stop-color="#5E6E78"/>
-        </radialGradient>
-        <radialGradient id="intakeGrad" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stop-color="#1A2226"/>
-          <stop offset="80%" stop-color="#3A4750"/>
-          <stop offset="100%" stop-color="#5E6E78"/>
-        </radialGradient>
-        <linearGradient id="fuselageGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#FFFFFF"/>
-          <stop offset="20%" stop-color="#F3F8FA"/>
-          <stop offset="48%" stop-color="#D3DEE6"/>
-          <stop offset="78%" stop-color="#A6B7C3"/>
-          <stop offset="100%" stop-color="#748493"/>
-        </linearGradient>
-        <linearGradient id="contrailGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-          <stop offset="55%" stop-color="#ffffff" stop-opacity="0.45"/>
-          <stop offset="100%" stop-color="#ffffff" stop-opacity="0.85"/>
-        </linearGradient>
-        <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
-          <feGaussianBlur stdDeviation="1.6"/>
-        </filter>
-      </defs>
-    </svg>
-
-    <div class="cloud-layer layer1">
-      <svg width="900" height="340" viewBox="0 0 900 340">
-        <g fill="url(#cloudGrad)">
-          <ellipse cx="95" cy="95" rx="80" ry="34"/><ellipse cx="150" cy="75" rx="55" ry="26"/><ellipse cx="50" cy="105" rx="45" ry="22"/>
-          <ellipse cx="430" cy="150" rx="100" ry="38"/><ellipse cx="500" cy="125" rx="60" ry="28"/><ellipse cx="370" cy="160" rx="50" ry="24"/>
-          <ellipse cx="750" cy="65" rx="68" ry="28"/><ellipse cx="805" cy="85" rx="46" ry="22"/>
-        </g>
-      </svg>
-      <svg width="900" height="340" viewBox="0 0 900 340">
-        <g fill="url(#cloudGrad)">
-          <ellipse cx="95" cy="95" rx="80" ry="34"/><ellipse cx="150" cy="75" rx="55" ry="26"/><ellipse cx="50" cy="105" rx="45" ry="22"/>
-          <ellipse cx="430" cy="150" rx="100" ry="38"/><ellipse cx="500" cy="125" rx="60" ry="28"/><ellipse cx="370" cy="160" rx="50" ry="24"/>
-          <ellipse cx="750" cy="65" rx="68" ry="28"/><ellipse cx="805" cy="85" rx="46" ry="22"/>
-        </g>
-      </svg>
-    </div>
-    <div class="cloud-layer layer2">
-      <svg width="900" height="200" viewBox="0 0 900 200">
-        <g fill="url(#cloudGrad)" opacity="0.85">
-          <ellipse cx="210" cy="65" rx="58" ry="20"/><ellipse cx="255" cy="50" rx="34" ry="15"/>
-          <ellipse cx="615" cy="105" rx="68" ry="22"/><ellipse cx="670" cy="88" rx="38" ry="16"/>
-        </g>
-      </svg>
-      <svg width="900" height="200" viewBox="0 0 900 200">
-        <g fill="url(#cloudGrad)" opacity="0.85">
-          <ellipse cx="210" cy="65" rx="58" ry="20"/><ellipse cx="255" cy="50" rx="34" ry="15"/>
-          <ellipse cx="615" cy="105" rx="68" ry="22"/><ellipse cx="670" cy="88" rx="38" ry="16"/>
-        </g>
-      </svg>
-    </div>
+    <img class="hero-photo-bg" src="flyfast-images/hero-plane-sunset.jpg" alt="Avion de ligne survolant les nuages au coucher du soleil">
+    <div class="hero-photo-overlay"></div>
     <div class="hero-copy">
       <div class="eyebrow">Un service pensé pour vous</div>
       <h1>Votre vol, <span>enregistré</span><br>sans stress.</h1>
       <p>Envoyez-nous vos informations de vol, on s'occupe de votre enregistrement en ligne — vous recevez votre carte d'embarquement directement sur WhatsApp.</p>
-    </div>
-    <div class="plane-wrap">
-      <svg width="320" height="130" viewBox="0 0 320 130">
-        <!-- contrail (smooth tapering gradient) -->
-        <path d="M-10 91 Q50 89 100 87 L100 97 Q50 99 -10 102 Z" fill="url(#contrailGrad)"/>
-
-        <!-- far-side horizontal stabilizer peek (depth) -->
-        <path d="M116 62 L134 74 L128 78 L112 66 Z" fill="url(#wingUnder)" opacity="0.7"/>
-        <!-- near horizontal stabilizer -->
-        <path d="M108 78 L70 96 L82 100 L118 86 Z" fill="url(#wingUnder)" stroke="#7C8D98" stroke-width="1"/>
-        <!-- vertical tail fin -->
-        <path d="M112 40 Q100 60 106 84 L128 84 Q120 60 132 42 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.2"/>
-        <path d="M117 46 Q109 60 113 78 L120 78 Q116 60 123 47 Z" fill="var(--gold)" opacity="0.85"/>
-
-        <!-- far-side engine peek (twin-engine depth cue) -->
-        <ellipse cx="196" cy="98" rx="14" ry="7" fill="url(#engineGrad)" opacity="0.55"/>
-
-        <!-- fuselage -->
-        <path d="M300 82 Q306 86 300 90.5 L120 96 Q94 92 89 86 Q94 80 120 78 L300 82 Z" fill="url(#fuselageGrad)" stroke="#7C8D98" stroke-width="1.3"/>
-        <!-- nose radome tint -->
-        <path d="M300 82 Q306 86 300 90.5 L286 89.5 L286 80.5 Z" fill="#E4ECF1" opacity="0.7"/>
-        <!-- belly shade line -->
-        <path d="M120 93 Q200 97 296 89" fill="none" stroke="#8FA1AF" stroke-width="1.4" opacity="0.55"/>
-        <!-- livery stripe (red + thin gold pinstripe) -->
-        <path d="M110 87 L295 84.5 L295 86.6 L110 89.1 Z" fill="var(--red)" opacity="0.92"/>
-        <path d="M110 89.3 L295 86.8 L295 87.5 L110 90 Z" fill="var(--gold)" opacity="0.9"/>
-        <!-- cockpit windshield (angled panels) -->
-        <path d="M283 80.5 L294 81.5 L293.5 85.5 L282.5 84.8 Z" fill="#1A2226" opacity="0.85"/>
-        <path d="M283 80.5 L288 80.9 L287.7 84.9 L282.5 84.8 Z" fill="#354350" opacity="0.6"/>
-        <!-- cabin windows strip -->
-        <g fill="#1A2226" opacity="0.35">
-          <rect x="140" y="82" width="4" height="3" rx="1"/><rect x="152" y="81.6" width="4" height="3" rx="1"/>
-          <rect x="164" y="81.2" width="4" height="3" rx="1"/><rect x="176" y="80.8" width="4" height="3" rx="1"/>
-          <rect x="188" y="80.4" width="4" height="3" rx="1"/><rect x="200" y="80" width="4" height="3" rx="1"/>
-          <rect x="212" y="79.6" width="4" height="3" rx="1"/><rect x="224" y="79.2" width="4" height="3" rx="1"/>
-          <rect x="236" y="78.8" width="4" height="3" rx="1"/><rect x="248" y="78.4" width="4" height="3" rx="1"/>
-        </g>
-        <!-- fuselage specular highlight -->
-        <ellipse cx="230" cy="80.5" rx="34" ry="2.2" fill="#ffffff" opacity="0.8" filter="url(#softGlow)"/>
-        <ellipse cx="150" cy="81.5" rx="20" ry="1.6" fill="#ffffff" opacity="0.6" filter="url(#softGlow)"/>
-
-        <!-- main wing -->
-        <path d="M210 88 L130 128 L148 130 L232 94 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1.2"/>
-        <!-- winglet -->
-        <path d="M131 127 L124 130 L128 118 L140 121 Z" fill="url(#wingMetal)" stroke="#7C8D98" stroke-width="1"/>
-        <!-- wingtip position light -->
-        <circle cx="126" cy="126" r="1.8" fill="#E23B3B" filter="url(#softGlow)"/>
-        <!-- wing top glint -->
-        <path d="M205 90 L155 116" stroke="#ffffff" stroke-width="1.5" opacity="0.35" filter="url(#softGlow)"/>
-        <!-- engine pylon + nacelle -->
-        <path d="M186 92 L180 108 L192 108 L194 94 Z" fill="#8FA1AF"/>
-        <ellipse cx="178" cy="112" rx="24" ry="12" fill="url(#engineGrad)" stroke="#5E6E78" stroke-width="1.5"/>
-        <ellipse cx="178" cy="106" rx="18" ry="3" fill="#ffffff" opacity="0.5" filter="url(#softGlow)"/>
-        <!-- exhaust warm glow -->
-        <ellipse cx="197" cy="112" rx="7" ry="6" fill="#F2A93B" opacity="0.35" filter="url(#softGlow)"/>
-        <ellipse cx="168" cy="112" rx="14" ry="10" fill="url(#intakeGrad)"/>
-        <g stroke="#5E6E78" stroke-width="0.8" opacity="0.6">
-          <line x1="168" y1="103" x2="168" y2="121"/>
-          <line x1="159" y1="107" x2="177" y2="117"/>
-          <line x1="159" y1="117" x2="177" y2="107"/>
-        </g>
-      </svg>
     </div>
   </div>
   <div class="hero-ctas">
