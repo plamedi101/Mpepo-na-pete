@@ -109,6 +109,16 @@
   .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;color:#4d5c68;}
   .faq-item.open .faq-a{max-height:200px;padding-bottom:20px;}
 
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px;}
+  .testi-card{background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:22px;}
+  .testi-stars{color:var(--gold-deep);font-size:14px;letter-spacing:2px;margin-bottom:10px;}
+  .testi-quote{font-size:13.5px;color:#334;font-style:italic;line-height:1.6;margin-bottom:14px;}
+  .testi-name{font-size:13px;font-weight:700;color:var(--sky-deep);}
+  .testi-cta{text-align:center;}
+  .btn-outline-dark{display:inline-block;border:1.5px solid var(--sky-deep);color:var(--sky-deep);padding:13px 28px;border-radius:100px;font-size:13.5px;font-weight:700;}
+  .btn-outline-dark:hover{background:var(--sky-deep);color:#fff;}
+  @media(max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+
   footer{background:var(--sky-deep);color:#fff;padding:40px 0 26px;}
   .foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;margin-bottom:34px;}
   .foot-col h4{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;color:var(--gold);}
@@ -140,6 +150,7 @@
       <a href="#enregistrer">Enregistrer un vol</a>
       <a href="flyfast-blog/index.html">Blog</a>
       <a href="#faq">FAQ</a>
+      <a href="#avis">Avis</a>
     </div>
     <a href="https://wa.me/201282226808" target="_blank" rel="noopener" class="wa-btn">WhatsApp</a>
   </div>
@@ -302,6 +313,19 @@
 </section>
 </div>
 
+<div class="wrap">
+<section id="avis">
+  <div class="section-head reveal">
+    <h2>Ce que disent nos voyageurs</h2>
+    <p>Des enregistrements réussis, sans stress.</p>
+  </div>
+  <div class="testi-grid reveal" id="testi-grid"></div>
+  <div class="testi-cta reveal">
+    <a href="https://wa.me/201282226808?text=Bonjour%20FlyFast%2C%20je%20souhaite%20laisser%20un%20avis%20%3A%20" target="_blank" rel="noopener" class="btn-outline-dark">Laisser un avis</a>
+  </div>
+</section>
+</div>
+
 <footer>
   <div class="wrap">
     <div class="foot-top">
@@ -384,6 +408,23 @@ faqs.forEach(f => {
   item.innerHTML = `<div class="faq-q"><span>${f.q}</span><span class="plus">+</span></div><div class="faq-a">${f.a}</div>`;
   item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
   faqList.appendChild(item);
+});
+
+const testimonials = [
+  {name:'Grâce', stars:5, quote:"Enregistrée en moins d'une heure, carte reçue directement sur WhatsApp. Zéro stress avant mon vol."},
+  {name:'Junior', stars:5, quote:"Je n'arrivais pas à faire mon enregistrement depuis mon téléphone. FlyFast a réglé ça en quelques minutes."},
+  {name:'Aline', stars:5, quote:"Service sérieux et rapide, ils m'ont même prévenue avant la limite des 10h. Je recommande."}
+];
+const testiGrid = document.getElementById('testi-grid');
+testimonials.forEach(t => {
+  const card = document.createElement('div');
+  card.className = 'testi-card';
+  card.innerHTML = `
+    <div class="testi-stars">${'★'.repeat(t.stars)}</div>
+    <p class="testi-quote">"${t.quote}"</p>
+    <div class="testi-name">${t.name}</div>
+  `;
+  testiGrid.appendChild(card);
 });
 
 function toast(msg){
