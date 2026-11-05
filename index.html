@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FlyFast | Enregistrement en ligne de votre vol</title>
-<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. 3 USD, à demander au moins 10 heures avant le vol.">
+<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. 2 € par réservation, à demander au moins 10 heures avant le vol.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0C2E4E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="FlyFast">
 <meta property="og:title" content="FlyFast | Enregistrement en ligne de votre vol">
-<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. 3 USD par enregistrement.">
+<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. 2 € par réservation.">
 <meta property="og:image" content="https://plamedi101.github.io/Mpepo-na-pete/flyfast-images/hero-plane-sunset.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233B9EE8'/%3E%3Cg transform='translate(4 4)'%3E%3Cpath transform='rotate(45 12 12)' fill='%23fff' d='M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z'/%3E%3C/g%3E%3C/svg%3E">
@@ -131,8 +131,7 @@
   .pay-list{border-top:1px solid var(--line);}
   .pay-list li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);}
   .pay-badge{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font:700 .9375rem/1 var(--font-head);}
-  .pay-badge.mpesa{background:#00803F;color:#fff;}
-  .pay-badge.orange{background:#FF7900;color:var(--navy);}
+  .pay-badge.card{background:var(--navy);color:#fff;}
   .pay-badge.wa{background:#25D366;color:var(--navy);}
   .pay-name{display:block;font-weight:600;}
   .pay-num{display:block;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
@@ -203,9 +202,6 @@
   .foot a{text-decoration:none;}
   .foot a:hover{color:#fff;text-decoration:underline;}
   .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:.875rem;color:#9FB6CC;}
-
-  .toast{position:fixed;left:50%;bottom:24px;z-index:100;max-width:calc(100% - 32px);padding:12px 18px;border-radius:var(--radius);background:var(--navy);color:#fff;font-size:.9375rem;opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .2s,transform .2s;}
-  .toast.show{opacity:1;transform:translate(-50%,0);}
 
   @media (min-width:1700px){
     .hero-photo{object-position:50% 66%;}
@@ -302,7 +298,7 @@
 
   <div class="facts">
     <ul class="container facts-list">
-      <li><strong>3&nbsp;USD</strong> par enregistrement, à régler par <span class="nb">M-Pesa</span>, Orange Money ou WhatsApp</li>
+      <li><strong>2&nbsp;€</strong> par réservation, quel que soit le nombre de passagers</li>
       <li><strong>10&nbsp;heures</strong> avant le décollage, au plus tard, pour nous envoyer votre demande</li>
       <li><strong>Carte d’embarquement</strong> envoyée directement sur WhatsApp</li>
     </ul>
@@ -319,8 +315,8 @@
             <p>Référence de réservation (PNR), nom complet, passeport et détails du vol, via le formulaire ci-dessous.</p>
           </li>
           <li>
-            <h3>Vous réglez 3&nbsp;USD</h3>
-            <p>Par WhatsApp, <span class="nb">M-Pesa</span> ou Orange Money.</p>
+            <h3>Vous réglez 2&nbsp;€ par&nbsp;réservation</h3>
+            <p>Les modalités vous sont confirmées sur WhatsApp. Le&nbsp;paiement par carte bancaire, avec Stripe, sera bientôt&nbsp;disponible.</p>
           </li>
           <li>
             <h3>Nous enregistrons votre vol</h3>
@@ -355,19 +351,13 @@
           <h3>Moyens de paiement</h3>
           <ul class="pay-list">
             <li>
-              <span class="pay-badge mpesa" aria-hidden="true">M</span>
-              <span><span class="pay-name">M-Pesa</span><span class="pay-num">0821801279</span></span>
-              <button class="pay-action" type="button" data-copy="0821801279" aria-label="Copier le numéro M-Pesa">Copier</button>
-            </li>
-            <li>
-              <span class="pay-badge orange" aria-hidden="true">OM</span>
-              <span><span class="pay-name">Orange Money</span><span class="pay-num">0891247689</span></span>
-              <button class="pay-action" type="button" data-copy="0891247689" aria-label="Copier le numéro Orange Money">Copier</button>
-            </li>
-            <li>
               <span class="pay-badge wa" aria-hidden="true">W</span>
               <span><span class="pay-name">WhatsApp</span><span class="pay-num">Modalités à convenir par message</span></span>
               <a class="pay-action" href="https://wa.me/201282226808" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp pour convenir du paiement">Écrire</a>
+            </li>
+            <li>
+              <span class="pay-badge card" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg></span>
+              <span><span class="pay-name">Carte bancaire</span><span class="pay-num">Bientôt disponible, avec&nbsp;Stripe</span></span>
             </li>
           </ul>
           <p class="pay-note">Les modalités vous sont confirmées après réception de votre demande.</p>
@@ -394,7 +384,7 @@
             </div>
             <div class="field">
               <label for="f-nationality">Nationalité</label>
-              <input id="f-nationality" name="nationality" type="text" autocomplete="off" placeholder="Ex. : Congolaise (RDC)" required aria-describedby="e-nationality">
+              <input id="f-nationality" name="nationality" type="text" autocomplete="off" placeholder="Ex. : Française" required aria-describedby="e-nationality">
               <p class="error" id="e-nationality" hidden></p>
             </div>
             <div class="field">
@@ -404,7 +394,7 @@
             </div>
             <div class="field">
               <label for="f-contact">Numéro WhatsApp</label>
-              <input id="f-contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. : +243 8xx xxx xxx" required aria-describedby="h-contact e-contact">
+              <input id="f-contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. : +33 6 12 34 56 78" required aria-describedby="h-contact e-contact">
               <p class="hint" id="h-contact">Pour vous envoyer la carte d’embarquement.</p>
               <p class="error" id="e-contact" hidden></p>
             </div>
@@ -446,8 +436,8 @@
         </fieldset>
 
         <div class="price">
-          <span class="price-label">Frais du service</span>
-          <span class="price-amount">3,00&nbsp;USD</span>
+          <span class="price-label">Frais du service par&nbsp;réservation</span>
+          <span class="price-amount">2,00&nbsp;€</span>
         </div>
 
         <div class="terms">
@@ -504,8 +494,12 @@
           <p>Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Le service ne peut garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom.</p>
         </details>
         <details>
-          <summary>Comment régler les 3&nbsp;USD&nbsp;?</summary>
-          <p>Par WhatsApp, <span class="nb">M-Pesa</span> ou Orange Money. Les numéros figurent dans la section «&nbsp;Enregistrer votre vol&nbsp;», et les modalités vous sont confirmées après réception de votre demande.</p>
+          <summary>Comment régler les 2&nbsp;€&nbsp;?</summary>
+          <p>2&nbsp;€ par réservation, quel que soit le nombre de passagers. Pour le moment, les modalités de règlement vous sont confirmées sur WhatsApp après réception de votre demande. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible.</p>
+        </details>
+        <details>
+          <summary>Nous sommes plusieurs sur la même réservation&nbsp;: que dois-je faire&nbsp;?</summary>
+          <p>Remplissez le formulaire une fois pour chaque passager, avec la même référence de réservation (PNR). Vous ne réglez que 2&nbsp;€ pour l’ensemble de la réservation.</p>
         </details>
       </div>
     </div>
@@ -558,8 +552,6 @@
   </div>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
 <script>
 (function () {
   'use strict';
@@ -583,43 +575,6 @@
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && nav.classList.contains('open')) { closeMenu(); toggle.focus(); }
-  });
-
-  var toastTimer;
-  function toast(message) {
-    var el = document.getElementById('toast');
-    el.textContent = message;
-    el.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { el.classList.remove('show'); }, 2800);
-  }
-
-  function legacyCopy(text) {
-    var area = document.createElement('textarea');
-    area.value = text;
-    area.setAttribute('readonly', '');
-    area.style.position = 'fixed';
-    area.style.opacity = '0';
-    document.body.appendChild(area);
-    area.select();
-    var ok = false;
-    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
-    document.body.removeChild(area);
-    return ok;
-  }
-  function copyText(text) {
-    if (navigator.clipboard && window.isSecureContext) {
-      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
-    }
-    return Promise.resolve(legacyCopy(text));
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
-    btn.addEventListener('click', function () {
-      var value = btn.getAttribute('data-copy');
-      copyText(value).then(function (ok) {
-        toast(ok ? 'Numéro copié : ' + value : 'Copie impossible. Numéro : ' + value);
-      });
-    });
   });
 
   var form = document.getElementById('request-form');
