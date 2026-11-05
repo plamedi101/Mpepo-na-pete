@@ -2,66 +2,168 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GDS, PNR, e-ticket : le jargon du voyage expliqué — Blog FlyFast</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GDS, PNR, e-ticket : le jargon du voyage expliqué | Blog FlyFast</title>
 <meta name="description" content="PNR, GDS, e-ticket... ces mots du voyage aérien enfin expliqués simplement.">
 <meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0C2E4E">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="FlyFast">
+<meta property="og:title" content="GDS, PNR, e-ticket : le jargon du voyage expliqué | Blog FlyFast">
+<meta property="og:description" content="PNR, GDS, e-ticket... ces mots du voyage aérien enfin expliqués simplement.">
+<meta property="og:image" content="https://plamedi101.github.io/Mpepo-na-pete/flyfast-images/hero-plane-sunset.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233B9EE8'/%3E%3Cg transform='translate(4 4)'%3E%3Cpath transform='rotate(45 12 12)' fill='%23fff' d='M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--sky:#3B9EE8;--sky-deep:#0B3D66;--red:#CE1021;--gold:#F0B92E;--ink:#10202E;--offwhite:#F5F9FC;--line-l:rgba(16,32,46,0.1);--line-d:rgba(255,255,255,0.22);}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--offwhite);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.75;font-size:16px;}
-h1,h2{font-family:'Space Grotesk',sans-serif;}
-a{color:var(--sky-deep);}
-.wrap{max-width:720px;margin:0 auto;padding:0 32px;}
-header{background:var(--sky-deep);padding:18px 32px;border-bottom:3px solid var(--gold);}
-.nav{display:flex;justify-content:space-between;align-items:center;max-width:720px;margin:0 auto;}
-.logo{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:#fff;text-decoration:none;}
-.back-link{font-size:13px;font-weight:600;border:1px solid var(--line-d);border-radius:100px;padding:8px 16px;color:#fff;text-decoration:none;}
-article{padding:46px 0 64px;}
-.tag{font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);font-weight:700;margin-bottom:12px;}
-h1{font-size:clamp(26px,4vw,36px);margin-bottom:18px;line-height:1.2;color:var(--sky-deep);}
-p{margin-bottom:18px;color:#33414d;}
-h2{font-size:20px;margin:30px 0 12px;color:var(--sky-deep);}
-ul{margin:0 0 18px 20px;color:#33414d;}
-li{margin-bottom:8px;}
-.cta{background:var(--sky-deep);color:#fff;border-radius:10px;padding:26px;text-align:center;margin-top:36px;}
-.cta a{display:inline-block;margin-top:12px;background:var(--gold);color:var(--sky-deep);padding:11px 24px;border-radius:100px;font-weight:700;font-size:13.5px;text-decoration:none;}
-footer{background:var(--sky-deep);color:#cfe0f0;padding:26px 0;text-align:center;font-size:12.5px;}
+  :root{
+    --navy:#0C2E4E; --navy-2:#154670; --ink:#13222F; --muted:#4A5B6C;
+    --sky:#3B9EE8; --sky-text:#0F5A93; --gold:#F0B92E; --gold-hover:#F7CB55;
+    --red:#CE1021; --mist:#F2F6FA; --line:#D5DFEA; --radius:6px;
+    --font-head:'Barlow Semi Condensed','Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    --font-body:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-padding-top:88px;-webkit-text-size-adjust:100%;}
+  body{margin:0;background:#fff;color:var(--ink);font:400 1.0625rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased;}
+  h1,h2,p,ul{margin:0;}
+  ul{padding:0;list-style:none;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid #1D6FB8;outline-offset:3px;}
+  .site-footer :focus-visible,.cta :focus-visible{outline-color:#FFD36B;}
+  .skip{position:absolute;left:16px;top:-80px;z-index:200;background:var(--navy);color:#fff;padding:12px 18px;border-radius:var(--radius);text-decoration:none;font-weight:600;}
+  .skip:focus{top:12px;}
+  .container{width:100%;max-width:1140px;margin:0 auto;padding-inline:24px;}
+  .narrow{max-width:792px;}
+
+  .nb{white-space:nowrap;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid transparent;border-radius:var(--radius);font-weight:600;font-size:1rem;line-height:1.2;text-align:center;text-decoration:none;transition:background-color .15s;}
+  .btn-sm{min-height:42px;padding:0 18px;font-size:.9375rem;}
+  .btn-gold{background:var(--gold);color:var(--navy);}
+  .btn-gold:hover{background:var(--gold-hover);}
+
+  .site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);}
+  .site-header::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--sky) 0 58%,var(--gold) 58% 60.5%,var(--red) 60.5% 67.5%,var(--gold) 67.5% 70%,var(--sky) 70% 100%);}
+  .bar{display:flex;align-items:center;gap:24px;min-height:68px;}
+  .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:700 1.5rem/1 var(--font-head);letter-spacing:-0.01em;color:var(--navy);}
+  .brand-mark{width:34px;height:34px;flex:none;}
+  .nav{display:flex;gap:30px;margin-left:auto;}
+  .nav a{padding:8px 0;border-bottom:2px solid transparent;font-weight:500;text-decoration:none;}
+  .nav a:hover,.nav a[aria-current]{border-bottom-color:var(--sky);}
+
+  .blog-head{padding-block:clamp(48px,7vw,88px) clamp(28px,4vw,44px);}
+  .blog-head h1{max-width:18ch;color:var(--navy);font:700 clamp(2.25rem,5.4vw,3.75rem)/1.04 var(--font-head);letter-spacing:-0.012em;text-wrap:balance;}
+  .lead{margin-top:18px;max-width:56ch;color:var(--muted);font-size:1.1875rem;}
+  .post-list{margin-bottom:clamp(56px,8vw,96px);border-top:1px solid var(--line);}
+  .post-link{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 32px;padding:28px 0;border-bottom:1px solid var(--line);text-decoration:none;}
+  .post-cat{padding-top:7px;color:var(--sky-text);font-weight:600;font-size:.9375rem;}
+  .post-link h2{color:var(--navy);font:600 clamp(1.5rem,2.6vw,1.875rem)/1.18 var(--font-head);}
+  .post-link p{margin-top:8px;max-width:60ch;color:var(--muted);}
+  .post-link:hover h2{text-decoration:underline;text-decoration-color:var(--sky);text-decoration-thickness:2px;text-underline-offset:5px;}
+
+  .post{padding-block:clamp(36px,6vw,72px) clamp(56px,8vw,96px);}
+  .crumb{display:flex;align-items:center;gap:10px;font-size:.9375rem;color:var(--muted);}
+  .crumb a{color:var(--sky-text);text-underline-offset:3px;}
+  .post h1{margin-top:20px;color:var(--navy);font:700 clamp(2rem,5vw,3.25rem)/1.08 var(--font-head);letter-spacing:-0.012em;text-wrap:balance;}
+  .post-body{margin-top:32px;font-size:1.1875rem;line-height:1.72;}
+  .post-body > :first-child{margin-top:0;}
+  .post-body p{margin-top:1.1em;max-width:68ch;}
+  .post-body h2{margin-top:2em;color:var(--navy);font:600 1.75rem/1.2 var(--font-head);}
+  .post-body h2 + p{margin-top:.6em;}
+  .post-body ul{max-width:68ch;margin-top:1em;padding-left:1.3em;list-style:disc;}
+  .post-body li{margin-top:.5em;padding-left:.2em;}
+  .post-body li::marker{color:var(--sky);}
+  .cta{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;margin-top:56px;padding:28px;border-radius:8px;background:var(--navy);color:#fff;}
+  .cta-title{max-width:26ch;font:600 1.5rem/1.2 var(--font-head);}
+
+  .site-footer{padding:48px 0 28px;background:var(--navy);color:#C9D9E8;}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;}
+  .site-footer .brand{color:#fff;}
+  .foot-text{margin-top:16px;max-width:36ch;font-size:.9375rem;}
+  .foot ul li + li{margin-top:10px;}
+  .foot ul a{text-decoration:none;}
+  .foot ul a:hover{color:#fff;text-decoration:underline;}
+  .foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:.875rem;color:#9FB6CC;}
+
+  @media (max-width:760px){
+    .nav{display:none;}
+    .bar .btn-sm{margin-left:auto;}
+    .post-link{grid-template-columns:minmax(0,1fr);}
+    .post-cat{padding-top:0;}
+  }
+  @media (max-width:560px){
+    .container{padding-inline:20px;}
+    .brand{font-size:1.375rem;}
+    .cta .btn{width:100%;}
+  }
 </style>
 </head>
 <body>
-<header><div class="nav"><a href="../index.html" class="logo">FlyFast</a><a href="index.html" class="back-link">← Le blog</a></div></header>
-<div class="wrap">
-<article>
-  <div class="tag">Décryptage</div>
-  <h1>GDS, PNR, e-ticket : le jargon du voyage expliqué simplement</h1>
-
-  <p>Réserver un vol, c'est aussi se retrouver face à des sigles qu'on ne nous explique jamais vraiment. Voici ce qu'ils veulent dire, en clair.</p>
-
-  <h2>Le PNR (Passenger Name Record)</h2>
-  <p>C'est le code de 5 ou 6 lettres/chiffres qui identifie votre réservation — un peu comme un numéro de dossier. Il rassemble toutes les informations de votre voyage : vol, siège, bagages, contact. C'est ce code qu'on vous demande pour vous enregistrer ou consulter votre réservation.</p>
-
-  <h2>Le GDS (Global Distribution System)</h2>
-  <p>C'est le système informatique utilisé par les agences de voyage et les compagnies aériennes pour rechercher, réserver et gérer des billets d'avion à l'échelle mondiale — les plus connus sont Amadeus, Sabre et Travelport. En tant que voyageur, vous ne l'utilisez jamais directement, mais c'est ce qui fonctionne en coulisses derrière chaque réservation.</p>
-
-  <h2>Le e-ticket (billet électronique)</h2>
-  <p>Depuis que le billet papier a disparu, votre "billet" est en réalité un enregistrement électronique associé à un numéro unique à 13 chiffres. C'est ce numéro qui prouve que vous avez bien payé un vol précis, même sans PNR.</p>
-
-  <h2>La carte d'embarquement</h2>
-  <p>Document final délivré après l'enregistrement, indiquant votre siège, votre porte d'embarquement, et l'heure de départ. C'est ce document (papier ou numérique) qu'on vous demandera de présenter à la porte.</p>
-
-  <h2>Pourquoi c'est utile de connaître ces termes</h2>
-  <p>Comprendre ce vocabulaire vous permet de mieux dialoguer avec une compagnie aérienne en cas de problème, de repérer une erreur sur votre réservation, et de ne plus vous sentir perdu face à un email de confirmation.</p>
-
-  <div class="cta">
-    <strong>Un PNR en main ? On s'occupe du reste.</strong>
-    <br>
-    <a href="../index.html#enregistrer">Enregistrer mon vol</a>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="../index.html" aria-label="FlyFast, accueil">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+      <span>FlyFast</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html">Blog</a>
+      <a href="../index.html#comment">Comment ça marche</a>
+      <a href="../index.html#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold btn-sm" href="../index.html#enregistrer">Enregistrer un vol</a>
   </div>
-</article>
-</div>
-<footer>© 2026 FlyFast — Le blog</footer>
+</header>
+
+<main id="contenu">
+  <article class="post container narrow">
+    <nav class="crumb" aria-label="Fil d’Ariane"><a href="index.html">Blog</a><span aria-hidden="true">/</span><span>Décryptage</span></nav>
+    <h1>GDS, PNR, <span class="nb">e-ticket</span>&nbsp;: le jargon du voyage expliqué simplement</h1>
+    <div class="post-body">
+    <p>Réserver un vol, c’est aussi se retrouver face à des sigles qu’on ne nous explique jamais vraiment. Voici ce qu’ils veulent dire, en clair.</p>
+    <h2>Le PNR (Passenger Name Record)</h2>
+    <p>C’est le code de 5 ou 6 lettres/chiffres qui identifie votre réservation, un peu comme un numéro de dossier. Il rassemble toutes les informations de votre voyage&nbsp;: vol, siège, bagages, contact. C’est ce code qu’on vous demande pour vous enregistrer ou consulter votre réservation.</p>
+    <h2>Le GDS (Global Distribution System)</h2>
+    <p>C’est le système informatique utilisé par les agences de voyage et les compagnies aériennes pour rechercher, réserver et gérer des billets d’avion à l’échelle mondiale. Les plus connus sont Amadeus, Sabre et Travelport. En tant que voyageur, vous ne l’utilisez jamais directement, mais c’est ce qui fonctionne en coulisses derrière chaque réservation.</p>
+    <h2>Le <span class="nb">e-ticket</span> (billet électronique)</h2>
+    <p>Depuis que le billet papier a disparu, votre «&nbsp;billet&nbsp;» est en réalité un enregistrement électronique associé à un numéro unique à 13 chiffres. C’est ce numéro qui prouve que vous avez bien payé un vol précis, même sans PNR.</p>
+    <h2>La carte d’embarquement</h2>
+    <p>Document final délivré après l’enregistrement, indiquant votre siège, votre porte d’embarquement, et l’heure de départ. C’est ce document (papier ou numérique) qu’on vous demandera de présenter à la porte.</p>
+    <h2>Pourquoi c’est utile de connaître ces termes</h2>
+    <p>Comprendre ce vocabulaire vous permet de mieux dialoguer avec une compagnie aérienne en cas de problème, de repérer une erreur sur votre réservation, et de ne plus vous sentir perdu face à un email de confirmation.</p>
+    </div>
+    <aside class="cta" aria-label="Enregistrement de vol">
+      <p class="cta-title">Un PNR en main&nbsp;? On s’occupe du reste.</p>
+      <a class="btn btn-gold" href="../index.html#enregistrer">Enregistrer mon vol</a>
+    </aside>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a class="brand" href="../index.html" aria-label="FlyFast, accueil">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+          <span>FlyFast</span>
+        </a>
+        <p class="foot-text">Service d’assistance indépendant à l’enregistrement de vol, non affilié aux compagnies aériennes.</p>
+      </div>
+      <nav aria-label="Liens du pied de page">
+        <ul>
+          <li><a href="index.html">Blog</a></li>
+          <li><a href="../index.html#enregistrer">Enregistrer un vol</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+          <li><a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;128&nbsp;222&nbsp;6808</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="foot-bottom">© 2026 FlyFast. Tous droits réservés.</p>
+  </div>
+</footer>
 </body>
 </html>

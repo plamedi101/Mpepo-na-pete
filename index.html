@@ -2,443 +2,739 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlyFast — Assistance à l'enregistrement de vol</title>
-<meta name="description" content="FlyFast : service d'assistance personnalisée à l'enregistrement en ligne pour vos vols internationaux. Envoyez vos informations, recevez votre carte d'embarquement.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlyFast | Enregistrement en ligne de votre vol</title>
+<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. 3 USD, à demander au moins 10 heures avant le vol.">
 <meta name="robots" content="index, follow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%233B9EE8'/%3E%3Cpath d='M20 70 L80 30 L74 24 L14 60 Z' fill='%23CE1021' stroke='%23F0B92E' stroke-width='3'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0C2E4E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="FlyFast">
+<meta property="og:title" content="FlyFast | Enregistrement en ligne de votre vol">
+<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. 3 USD par enregistrement.">
+<meta property="og:image" content="https://plamedi101.github.io/Mpepo-na-pete/flyfast-images/hero-plane-sunset.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233B9EE8'/%3E%3Cg transform='translate(4 4)'%3E%3Cpath transform='rotate(45 12 12)' fill='%23fff' d='M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --sky:#3B9EE8; --sky-deep:#0B3D66; --sky-mid:#12578F;
-    --red:#CE1021; --gold:#F0B92E; --gold-deep:#C79415;
-    --white:#FFFFFF; --offwhite:#F5F9FC; --ink:#10202E;
-    --line-l:rgba(16,32,46,0.1); --line-d:rgba(255,255,255,0.22);
+    --navy:#0C2E4E;
+    --navy-2:#154670;
+    --ink:#13222F;
+    --muted:#4A5B6C;
+    --sky:#3B9EE8;
+    --sky-text:#0F5A93;
+    --gold:#F0B92E;
+    --gold-hover:#F7CB55;
+    --gold-soft:#FFF6DC;
+    --red:#CE1021;
+    --mist:#F2F6FA;
+    --line:#D5DFEA;
+    --field:#8094A8;
+    --radius:6px;
+    --font-head:'Barlow Semi Condensed','Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    --font-body:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--offwhite);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden;}
-  h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.01em;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 32px;}
-  button{font-family:inherit;}
-  img,svg{display:block;}
 
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease, transform .5s ease;}
-  .reveal.in{opacity:1;transform:translateY(0);}
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%;}
+  body{margin:0;background:#fff;color:var(--ink);font:400 1.0625rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;font-family:var(--font-head);color:var(--navy);line-height:1.12;}
+  h2{font-weight:600;font-size:clamp(1.875rem,3.6vw,2.625rem);letter-spacing:-0.01em;}
+  h3{font-weight:600;font-size:1.25rem;}
+  p{margin:0;}
+  ul,ol{margin:0;padding:0;list-style:none;}
+  img,svg{display:block;max-width:100%;}
+  img{height:auto;}
+  a{color:inherit;}
+  button,input{font:inherit;color:inherit;}
 
-  header{position:sticky;top:0;z-index:60;background:var(--sky-deep);border-bottom:3px solid var(--gold);}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:1100px;margin:0 auto;}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:#fff;}
-  .logo-mark{width:34px;height:34px;border-radius:9px;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .nav-links{display:flex;gap:26px;font-size:14px;font-weight:600;color:#cfe0f0;}
-  .nav-links a:hover{color:var(--gold);}
-  .wa-btn{display:flex;align-items:center;gap:6px;background:var(--gold);color:var(--sky-deep);border-radius:100px;padding:9px 18px;font-size:13px;font-weight:700;}
-  .wa-btn:hover{background:#fff;}
+  :focus-visible{outline:3px solid #1D6FB8;outline-offset:3px;}
+  .hero :focus-visible,.facts :focus-visible,.site-footer :focus-visible{outline-color:#FFD36B;}
 
-  /* HERO — animated wing + clouds */
-  .hero{position:relative;background:linear-gradient(180deg,#1E6FB5 0%,var(--sky) 55%,#8FC7EE 100%);overflow:hidden;padding-bottom:0;}
-  .sky-scene{position:relative;height:440px;overflow:hidden;}
-  .hero-photo-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;animation:slowZoom 28s ease-in-out infinite alternate;}
+  .skip{position:absolute;left:16px;top:-80px;z-index:200;background:var(--navy);color:#fff;padding:12px 18px;border-radius:var(--radius);text-decoration:none;font-weight:600;}
+  .skip:focus{top:12px;}
+
+  .container{width:100%;max-width:1140px;margin:0 auto;padding-inline:24px;}
+  .band{padding:clamp(56px,8vw,96px) 0;}
+  .band-mist{background:var(--mist);}
+  .section-intro{margin-top:12px;color:var(--muted);max-width:52ch;}
+  .link{color:var(--sky-text);text-decoration:underline;text-underline-offset:3px;}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid transparent;border-radius:var(--radius);font-weight:600;font-size:1rem;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;}
+  .btn-sm{min-height:42px;padding:0 18px;font-size:.9375rem;}
+  .btn-gold{background:var(--gold);color:var(--navy);}
+  .btn-gold:hover{background:var(--gold-hover);}
+  .btn-ghost{border-color:rgba(255,255,255,.75);color:#fff;background:transparent;}
+  .btn-ghost:hover{background:rgba(255,255,255,.14);}
+  .btn-navy{background:var(--navy);color:#fff;}
+  .btn-navy:hover{background:var(--navy-2);}
+  .btn-outline{border-color:var(--navy);color:var(--navy);background:#fff;}
+  .btn-outline:hover{background:var(--mist);}
+
+  .site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);}
+  .site-header::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--sky) 0 58%,var(--gold) 58% 60.5%,var(--red) 60.5% 67.5%,var(--gold) 67.5% 70%,var(--sky) 70% 100%);}
+  .bar{display:flex;align-items:center;gap:24px;min-height:68px;}
+  .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:700 1.5rem/1 var(--font-head);letter-spacing:-0.01em;color:var(--navy);}
+  .brand-mark{width:34px;height:34px;flex:none;}
+  .nav{display:flex;gap:30px;margin-left:auto;}
+  .nav a{padding:8px 0;border-bottom:2px solid transparent;font-weight:500;text-decoration:none;}
+  .nav a:hover{border-bottom-color:var(--sky);}
+  .menu-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--navy);cursor:pointer;}
+  .menu-toggle svg{width:22px;height:22px;}
+
+  .hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;height:clamp(580px,46vw,700px);background:#16507F;color:#fff;}
+  .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden;}
+  .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 88%;transform-origin:60% 34%;animation:slowZoom 28s ease-in-out infinite alternate;will-change:transform;}
   @keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.14);}}
-  .hero-photo-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,rgba(11,40,66,0.55) 0%,rgba(11,40,66,0.25) 45%,rgba(11,40,66,0.6) 100%);}
-  .hero-copy{position:relative;z-index:4;text-align:center;padding:54px 32px 0;color:#fff;}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.4);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:600;margin-bottom:18px;}
-  .hero h1{font-size:clamp(30px,4.6vw,48px);line-height:1.1;margin-bottom:14px;text-shadow:0 2px 12px rgba(0,0,0,0.15);}
-  .hero h1 span{color:var(--gold);}
-  .hero p{font-size:15px;max-width:540px;margin:0 auto 26px;color:rgba(255,255,255,0.94);}
-  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:4;padding-bottom:40px;}
-  .btn-gold{background:var(--gold);color:var(--sky-deep);padding:15px 30px;border-radius:100px;font-size:14px;font-weight:700;border:none;cursor:pointer;}
-  .btn-gold:hover{background:#fff;}
-  .btn-outline-w{border:2px solid #fff;color:#fff;padding:15px 30px;border-radius:100px;font-size:14px;font-weight:700;background:transparent;}
-  .flag-stripe{height:6px;background:linear-gradient(90deg, var(--gold) 0 33%, var(--red) 33% 66%, var(--gold) 66% 100%);}
+  .hero-shade{position:absolute;inset:0;background:
+    linear-gradient(0deg,rgba(8,30,52,.94) 0%,rgba(8,30,52,.7) 30%,rgba(8,30,52,.14) 58%,rgba(8,30,52,.22) 100%),
+    linear-gradient(90deg,rgba(8,30,52,.4) 0%,rgba(8,30,52,0) 55%);}
+  .hero-inner{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:end;padding-block:0 56px;}
+  .hero h1{color:#fff;font-weight:700;font-size:clamp(2.25rem,5.6vw,4rem);line-height:1.03;letter-spacing:-0.012em;text-wrap:balance;}
+  .hero .lead{max-width:48ch;font-size:1.0625rem;line-height:1.55;color:rgba(255,255,255,.93);}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+  .hero-actions .btn{padding:0 22px;}
+  .nb{white-space:nowrap;}
 
-  section{padding:64px 0;}
-  .section-head{text-align:center;max-width:600px;margin:0 auto 40px;}
-  .section-head h2{font-size:clamp(24px,3vw,32px);color:var(--sky-deep);margin-bottom:10px;}
-  .section-head p{font-size:14px;color:#4d5c68;}
+  .facts{background:var(--navy);color:#C9D9E8;}
+  .facts-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+  .facts-list li{padding:22px 28px 22px 0;line-height:1.45;}
+  .facts-list li + li{padding-left:28px;border-left:1px solid rgba(255,255,255,.18);}
+  .facts-list strong{color:#fff;font-weight:600;}
 
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
-  .step{background:#fff;border:1px solid var(--line-l);border-top:3px solid var(--gold);border-radius:10px;padding:22px;}
-  .step .n{font-family:'JetBrains Mono',monospace;color:var(--red);font-size:13px;font-weight:700;margin-bottom:10px;}
-  .step h3{font-size:15px;margin-bottom:8px;color:var(--sky-deep);}
-  .step p{font-size:13px;color:#4d5c68;}
+  .how{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,88px);align-items:start;}
+  .route{margin-top:36px;counter-reset:step;}
+  .route li{position:relative;padding:0 0 32px 68px;counter-increment:step;}
+  .route li::before{content:counter(step);position:absolute;left:0;top:0;width:44px;height:44px;border:2px solid var(--navy);border-radius:50%;background:#fff;color:var(--navy);font:600 1.25rem/40px var(--font-head);text-align:center;}
+  .route li::after{content:"";position:absolute;left:21px;top:54px;bottom:8px;border-left:2px dashed var(--sky);}
+  .route li:last-child{padding-bottom:0;}
+  .route li:last-child::after{display:none;}
+  .route h3{padding-top:9px;}
+  .route p{margin-top:4px;max-width:46ch;color:var(--muted);}
+  .photo{margin:0;overflow:hidden;border-radius:var(--radius);background:var(--mist);}
+  .photo img{width:100%;height:100%;object-fit:cover;}
+  .photo-how{aspect-ratio:3/4;}
+  .photo-how img{object-position:50% 12%;}
+  .photo-avis{aspect-ratio:508/436;}
+  .photo-avis img{width:110.8%;max-width:none;height:auto;object-fit:fill;}
 
-  .cutoff-banner{background:var(--sky-deep);color:#fff;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:18px;margin:40px 0;}
-  .cutoff-banner .ic{font-size:28px;flex-shrink:0;}
-  .cutoff-banner strong{color:var(--gold);}
-  .cutoff-banner p{font-size:14px;color:#dbe8f4;}
+  .notice{display:flex;gap:16px;align-items:flex-start;margin-top:clamp(40px,6vw,64px);padding:20px 24px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft);}
+  .notice svg{flex:none;width:24px;height:24px;margin-top:2px;color:#8A5A00;}
+  .notice p{max-width:80ch;}
 
-  .moments-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-  .moment-card{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 14px 30px rgba(11,61,102,0.16);}
-  .moment-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-  .moment-card:hover img{transform:scale(1.05);}
-  .moment-cap{position:absolute;bottom:0;left:0;right:0;padding:22px 20px 18px;background:linear-gradient(0deg,rgba(11,61,102,0.92) 0%,rgba(11,61,102,0.55) 55%,transparent 100%);color:#fff;}
-  .moment-cap strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:16px;margin-bottom:4px;}
-  .moment-cap span{font-size:12.5px;color:#dbe8f4;}
+  .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,72px);align-items:start;}
+  .split-aside > * + *{margin-top:32px;}
+  .pay h3{margin-bottom:12px;}
+  .pay-list{border-top:1px solid var(--line);}
+  .pay-list li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);}
+  .pay-badge{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font:700 .9375rem/1 var(--font-head);}
+  .pay-badge.mpesa{background:#00803F;color:#fff;}
+  .pay-badge.orange{background:#FF7900;color:var(--navy);}
+  .pay-badge.wa{background:#25D366;color:var(--navy);}
+  .pay-name{display:block;font-weight:600;}
+  .pay-num{display:block;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+  .pay-action{min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--sky-text);font-weight:600;font-size:.9375rem;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer;}
+  .pay-action:hover{border-color:var(--sky);}
+  .pay-note{margin-top:12px;font-size:.9375rem;color:var(--muted);}
 
-  /* FORM */
-  .form-band{background:#fff;border:1px solid var(--line-l);border-radius:16px;padding:44px;}
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .form-grid.full{grid-template-columns:1fr;}
-  label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--sky-deep);display:block;margin-bottom:6px;}
-  input, select{width:100%;padding:12px 14px;border:1.5px solid var(--line-l);border-radius:8px;font-family:inherit;font-size:14px;background:var(--offwhite);margin-bottom:16px;}
-  input:focus, select:focus{outline:none;border-color:var(--sky);}
-  .price-tag{display:flex;align-items:center;justify-content:space-between;background:var(--offwhite);border-radius:10px;padding:16px 20px;margin:20px 0;}
-  .price-tag .amount{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--red);}
-  .disclaimer-box{background:#FFF8E8;border:1px solid var(--gold);border-radius:10px;padding:18px 20px;font-size:12.5px;color:#5c4a12;line-height:1.6;margin:20px 0;}
-  .disclaimer-box strong{color:var(--sky-deep);}
-  .consent-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#334;margin:18px 0 24px;cursor:pointer;}
-  .consent-row input{width:auto;margin:3px 0 0;flex-shrink:0;}
-  .submit-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:100px;padding:16px;font-size:15px;font-weight:700;cursor:pointer;}
-  .submit-btn:hover{background:#a70d1a;}
-  .photo-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:transparent;color:var(--sky-deep);border:1.5px solid var(--sky);border-radius:100px;padding:13px;font-size:13.5px;font-weight:700;margin-top:12px;text-decoration:none;}
-  .photo-btn:hover{background:var(--sky);color:#fff;}
-  .photo-hint{font-size:11.5px;color:#6b7885;text-align:center;margin-top:8px;}
+  .form{padding:clamp(20px,4vw,40px);border:1px solid var(--line);border-radius:8px;background:#fff;}
+  .form-lead{margin-bottom:24px;color:var(--muted);font-size:.9375rem;}
+  .fieldset{min-width:0;margin:0 0 32px;padding:0;border:0;}
+  .fieldset legend{width:100%;margin:0 0 20px;padding:0 0 12px;border-bottom:1px solid var(--line);font:600 1.375rem/1.2 var(--font-head);color:var(--navy);}
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start;}
+  .span-2{grid-column:1 / -1;}
+  .field label{display:block;margin-bottom:6px;font-weight:600;font-size:.9375rem;}
+  .field input{display:block;width:100%;min-height:48px;padding:0 14px;border:1px solid var(--field);border-radius:var(--radius);background:#fff;font-size:1rem;line-height:1.2;}
+  .field input::placeholder{color:#5F7184;opacity:1;}
+  .field input:hover{border-color:#5E7690;}
+  .field input:focus{outline:3px solid rgba(59,158,232,.38);outline-offset:0;border-color:var(--sky-text);}
+  .field input[aria-invalid="true"]{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red);}
+  .hint{margin-top:6px;font-size:.875rem;color:var(--muted);}
+  .error{margin-top:6px;font-size:.875rem;font-weight:500;color:var(--red);}
+  .error[hidden]{display:none;}
 
-  .pay-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
-  .pay-card{background:var(--offwhite);border-radius:10px;padding:16px;text-align:center;font-size:13px;}
-  .pay-card .badge{width:38px;height:38px;border-radius:50%;background:var(--sky-deep);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-weight:700;font-size:13px;}
+  .price{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .price-label{font-weight:500;}
+  .price-amount{font:600 1.875rem/1 var(--font-head);color:var(--navy);font-variant-numeric:tabular-nums;}
+  .terms{padding:18px 20px;border-left:4px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;background:var(--mist);font-size:.9375rem;line-height:1.6;}
+  .terms h3{margin-bottom:8px;font-size:1.125rem;}
+  .terms p + p{margin-top:8px;}
+  .consent{display:flex;gap:12px;align-items:flex-start;margin-top:24px;cursor:pointer;}
+  .consent input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--navy);}
+  .consent-wrap .error{margin-left:34px;}
+  .submit{width:100%;min-height:56px;margin-top:20px;font-size:1.0625rem;}
+  .form-status{margin-top:14px;font-size:.9375rem;font-weight:500;}
+  .form-status.is-error{color:var(--red);}
+  .form-note{margin-top:10px;font-size:.875rem;color:var(--muted);}
+  .alt{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);}
+  .alt .btn{width:100%;gap:10px;}
+  .alt .btn svg{width:20px;height:20px;flex:none;}
+  .alt p{margin-top:10px;font-size:.875rem;color:var(--muted);}
+  .noscript{margin-bottom:20px;padding:14px 16px;border-radius:var(--radius);background:var(--gold-soft);}
 
-  .faq-item{border-bottom:1px solid var(--line-l);}
-  .faq-q{display:flex;justify-content:space-between;align-items:center;padding:20px 0;cursor:pointer;font-weight:700;color:var(--sky-deep);font-size:15px;}
-  .faq-q .plus{color:var(--red);font-family:'JetBrains Mono',monospace;transition:transform .25s;}
-  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;color:#4d5c68;}
-  .faq-item.open .faq-a{max-height:200px;padding-bottom:20px;}
+  .faq{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,88px);align-items:start;}
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-list details{border-bottom:1px solid var(--line);}
+  .faq-list summary{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;cursor:pointer;list-style:none;font:600 1.25rem/1.3 var(--font-head);color:var(--navy);}
+  .faq-list summary::-webkit-details-marker{display:none;}
+  .faq-list summary::after{content:"";flex:none;width:18px;height:18px;background:linear-gradient(var(--navy),var(--navy)) center/100% 2px no-repeat,linear-gradient(var(--navy),var(--navy)) center/2px 100% no-repeat;}
+  .faq-list details[open] summary::after{background:linear-gradient(var(--navy),var(--navy)) center/100% 2px no-repeat;}
+  .faq-list details p{max-width:62ch;padding:0 42px 24px 0;color:var(--muted);}
 
-  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px;}
-  .testi-card{background:#fff;border:1px solid var(--line-l);border-radius:12px;padding:22px;}
-  .testi-stars{color:var(--gold-deep);font-size:14px;letter-spacing:2px;margin-bottom:10px;}
-  .testi-quote{font-size:13.5px;color:#334;font-style:italic;line-height:1.6;margin-bottom:14px;}
-  .testi-name{font-size:13px;font-weight:700;color:var(--sky-deep);}
-  .testi-cta{text-align:center;}
-  .btn-outline-dark{display:inline-block;border:1.5px solid var(--sky-deep);color:var(--sky-deep);padding:13px 28px;border-radius:100px;font-size:13.5px;font-weight:700;}
-  .btn-outline-dark:hover{background:var(--sky-deep);color:#fff;}
-  @media(max-width:860px){.testi-grid{grid-template-columns:1fr;}}
+  .reviews{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,88px);align-items:center;}
+  .reviews-body > * + *{margin-top:20px;}
+  .reviews-body .section-intro{margin-top:12px;}
+  .reviews-body .btn{margin-top:28px;}
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;}
+  .reviews-grid[hidden]{display:none;}
+  .review{margin:0;padding-top:16px;border-top:2px solid var(--navy);}
+  .review blockquote{margin:0 0 10px;}
+  .review figcaption{font-weight:600;}
 
-  footer{background:var(--sky-deep);color:#fff;padding:40px 0 26px;}
-  .foot-top{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;margin-bottom:34px;}
-  .foot-col h4{font-size:12px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;color:var(--gold);}
-  .foot-col a, .foot-col p{display:block;font-size:13.5px;color:#cfe0f0;margin-bottom:8px;}
-  .foot-bottom{border-top:1px solid var(--line-d);padding-top:18px;font-size:11.5px;color:#8fa8bc;text-align:center;}
+  .site-footer{padding:56px 0 28px;background:var(--navy);color:#C9D9E8;}
+  .foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:40px;}
+  .foot .brand{color:#fff;}
+  .foot-text{margin-top:16px;max-width:36ch;font-size:.9375rem;}
+  .foot-title{margin:7px 0 14px;font:600 1.0625rem/1.2 var(--font-head);color:#fff;}
+  .foot li + li{margin-top:10px;}
+  .foot a{text-decoration:none;}
+  .foot a:hover{color:#fff;text-decoration:underline;}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:.875rem;color:#9FB6CC;}
 
-  #toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--sky-deep);color:#fff;padding:13px 22px;border-radius:100px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;z-index:100;}
-  #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast{position:fixed;left:50%;bottom:24px;z-index:100;max-width:calc(100% - 32px);padding:12px 18px;border-radius:var(--radius);background:var(--navy);color:#fff;font-size:.9375rem;opacity:0;transform:translate(-50%,12px);pointer-events:none;transition:opacity .2s,transform .2s;}
+  .toast.show{opacity:1;transform:translate(-50%,0);}
 
-  @media(max-width:860px){
-    .steps{grid-template-columns:1fr 1fr;}
-    .form-grid{grid-template-columns:1fr;}
-    .pay-methods{grid-template-columns:1fr;}
-    .foot-top{grid-template-columns:1fr;}
-    .nav-links{display:none;}
-    .sky-scene{height:320px;}
-    .moments-grid{grid-template-columns:1fr;}
+  @media (min-width:1700px){
+    .hero-photo{object-position:50% 66%;}
   }
-  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
+  @media (min-width:901px) and (min-height:640px){
+    .split-aside{position:sticky;top:96px;}
+  }
+  @media (max-width:1100px){
+    .hero{display:block;height:auto;background:var(--navy);}
+    .hero-media{position:relative;inset:auto;z-index:auto;aspect-ratio:21/9;}
+    .hero-photo{object-position:50% 45%;}
+    .hero-shade{background:linear-gradient(0deg,rgba(12,46,78,.6) 0%,rgba(12,46,78,0) 40%);}
+    .hero-inner{align-items:start;padding-block:36px 44px;}
+    .facts{border-top:1px solid rgba(255,255,255,.14);}
+  }
+  @media (max-width:900px){
+    .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;margin:0;padding:4px 24px 12px;background:#fff;border-bottom:1px solid var(--line);}
+    .nav.open{display:flex;}
+    .nav a{padding:15px 0;border-bottom:1px solid var(--line);}
+    .nav a:last-child{border-bottom:0;}
+    .bar .btn-sm{margin-left:auto;}
+    .menu-toggle{display:inline-flex;}
+    .how,.split,.faq,.reviews{grid-template-columns:minmax(0,1fr);}
+    .split{gap:32px;}
+    .split-aside{display:contents;}
+    .split-aside > * + *{margin-top:0;}
+    .split-aside > .pay{order:2;}
+    .split .form{order:1;}
+    .photo-how{aspect-ratio:4/3;}
+    .photo-how img{object-position:50% 8%;}
+    .foot{grid-template-columns:minmax(0,1fr);gap:32px;}
+  }
+  @media (max-width:760px){
+    .facts-list{grid-template-columns:minmax(0,1fr);}
+    .facts-list li,.facts-list li + li{padding:16px 0;border-left:0;}
+    .facts-list li + li{border-top:1px solid rgba(255,255,255,.18);}
+    .hero-media{aspect-ratio:16/10;}
+    .hero-inner{display:block;padding-block:28px 40px;}
+    .hero .lead{margin-top:16px;max-width:60ch;}
+    .hero-actions .btn{flex:1 1 100%;}
+  }
+  @media (max-width:560px){
+    .container{padding-inline:20px;}
+    .nav{padding-inline:20px;}
+    .grid-2{grid-template-columns:minmax(0,1fr);}
+    .brand{font-size:1.375rem;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+  }
 </style>
 </head>
-<body>
+<body id="top">
+<a class="skip" href="#contenu">Aller au contenu</a>
 
-<header>
-  <div class="nav">
-    <div class="logo"><div class="logo-mark">✈</div>FlyFast</div>
-    <div class="nav-links">
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="#top" aria-label="FlyFast, retour en haut de page">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+      <span>FlyFast</span>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Navigation principale">
       <a href="#comment">Comment ça marche</a>
       <a href="#enregistrer">Enregistrer un vol</a>
       <a href="flyfast-blog/index.html">Blog</a>
       <a href="#faq">FAQ</a>
-      <a href="#avis">Avis</a>
-    </div>
-    <a href="https://wa.me/201282226808" target="_blank" rel="noopener" class="wa-btn">WhatsApp</a>
+    </nav>
+    <a class="btn btn-gold btn-sm" href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Ouvrir le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
 </header>
-<div class="flag-stripe"></div>
 
-<div class="hero">
-  <div class="sky-scene">
-    <img class="hero-photo-bg" src="flyfast-images/hero-plane-sunset.jpg" alt="Avion de ligne survolant les nuages au coucher du soleil">
-    <div class="hero-photo-overlay"></div>
-    <div class="hero-copy">
-      <div class="eyebrow">Un service pensé pour vous</div>
-      <h1>Votre vol, <span>enregistré</span><br>sans stress.</h1>
-      <p>Envoyez-nous vos informations de vol, on s'occupe de votre enregistrement en ligne — vous recevez votre carte d'embarquement directement sur WhatsApp.</p>
+<main id="contenu">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-media">
+      <img class="hero-photo" src="flyfast-images/hero-plane-sunset.jpg" width="1600" height="900" alt="Avion de ligne en vol au-dessus des nuages, au coucher du soleil" fetchpriority="high" decoding="async">
+      <div class="hero-shade"></div>
     </div>
-  </div>
-  <div class="hero-ctas">
-    <a href="#enregistrer" class="btn-gold">Enregistrer mon vol — 3 USD</a>
-    <a href="#comment" class="btn-outline-w">Comment ça marche</a>
-  </div>
-</div>
-
-<div class="wrap">
-<section id="comment">
-  <div class="section-head reveal">
-    <h2>Comment ça marche</h2>
-    <p>Un processus simple, honnête, avec des limites claires.</p>
-  </div>
-  <div class="steps reveal">
-    <div class="step"><div class="n">01</div><h3>Vous envoyez vos infos</h3><p>PNR, nom complet, passeport, vol — via le formulaire ci-dessous.</p></div>
-    <div class="step"><div class="n">02</div><h3>Vous payez 3 USD</h3><p>Par WhatsApp, M-Pesa ou Orange Money.</p></div>
-    <div class="step"><div class="n">03</div><h3>On enregistre votre vol</h3><p>Par notre équipe, sur le site officiel de votre compagnie.</p></div>
-    <div class="step"><div class="n">04</div><h3>Vous recevez votre carte</h3><p>Directement sur WhatsApp, prête à imprimer ou présenter.</p></div>
-  </div>
-
-  <div class="cutoff-banner reveal">
-    <div class="ic">⏱️</div>
-    <p><strong>Important :</strong> votre demande doit être envoyée au plus tard <strong>10 heures avant le décollage</strong>. Passé ce délai, nous ne pouvons pas garantir l'enregistrement à temps — rendez-vous alors directement au comptoir de votre compagnie à l'aéroport.</p>
-  </div>
-</section>
-</div>
-
-<div class="wrap">
-<section id="moments">
-  <div class="section-head reveal">
-    <h2>Ce moment où tout est réglé</h2>
-    <p>Ce sentiment, juste avant de franchir la porte d'embarquement.</p>
-  </div>
-  <div class="moments-grid reveal">
-    <div class="moment-card">
-      <img src="flyfast-images/checkin-1.jpg" alt="Voyageurs vérifiant leur carte d'embarquement, enregistrement confirmé">
-      <div class="moment-cap">
-        <strong>Le sourire d'un enregistrement réussi.</strong>
-        <span>Confirmé avant même d'arriver à l'aéroport.</span>
+    <div class="container hero-inner">
+      <h1 id="hero-title">Votre vol, enregistré sans stress.</h1>
+      <div class="hero-side">
+        <p class="lead">Transmettez les informations de votre réservation. Nous effectuons l’enregistrement en ligne sur le site de la compagnie et vous envoyons votre carte d’embarquement sur WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#enregistrer">Enregistrer mon vol</a>
+          <a class="btn btn-ghost" href="#comment">Comment ça marche</a>
+        </div>
       </div>
     </div>
-    <div class="moment-card">
-      <img src="flyfast-images/checkin-2.jpg" alt="Voyageurs se dirigeant vers l'embarquement, cartes d'embarquement en main">
-      <div class="moment-cap">
-        <strong>Direction l'embarquement, l'esprit léger.</strong>
-        <span>Plus de doute, plus de stress — juste voyager.</span>
+  </section>
+
+  <div class="facts">
+    <ul class="container facts-list">
+      <li><strong>3&nbsp;USD</strong> par enregistrement, à régler par <span class="nb">M-Pesa</span>, Orange Money ou WhatsApp</li>
+      <li><strong>10&nbsp;heures</strong> avant le décollage, au plus tard, pour nous envoyer votre demande</li>
+      <li><strong>Carte d’embarquement</strong> envoyée directement sur WhatsApp</li>
+    </ul>
+  </div>
+
+  <section class="band" id="comment" aria-labelledby="comment-title">
+    <div class="container how">
+      <div>
+        <h2 id="comment-title">Comment ça marche</h2>
+        <p class="section-intro">Un processus simple, avec des conditions claires.</p>
+        <ol class="route">
+          <li>
+            <h3>Vous envoyez vos informations</h3>
+            <p>Référence de réservation (PNR), nom complet, passeport et détails du vol, via le formulaire ci-dessous.</p>
+          </li>
+          <li>
+            <h3>Vous réglez 3&nbsp;USD</h3>
+            <p>Par WhatsApp, <span class="nb">M-Pesa</span> ou Orange Money.</p>
+          </li>
+          <li>
+            <h3>Nous enregistrons votre vol</h3>
+            <p>Notre équipe effectue la démarche sur le site officiel de votre compagnie.</p>
+          </li>
+          <li>
+            <h3>Vous recevez votre carte d’embarquement</h3>
+            <p>Directement sur WhatsApp, prête à imprimer ou à présenter.</p>
+          </li>
+        </ol>
+      </div>
+      <figure class="photo photo-how">
+        <img src="flyfast-images/checkin-2.jpg" width="445" height="900" loading="lazy" decoding="async" alt="Deux voyageurs souriants dans un aéroport, carte d’embarquement en main">
+      </figure>
+    </div>
+    <div class="container">
+      <aside class="notice" aria-label="Délai à respecter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <p><strong>Important&nbsp;:</strong> votre demande doit nous parvenir au plus tard <strong>10&nbsp;heures avant le décollage</strong>. Passé ce délai, nous ne pouvons pas garantir l’enregistrement à temps&nbsp;: présentez-vous alors directement au comptoir de votre compagnie, à l’aéroport.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band band-mist" id="enregistrer" aria-labelledby="form-title">
+    <div class="container split">
+      <div class="split-aside">
+        <div>
+          <h2 id="form-title">Enregistrer votre vol</h2>
+          <p class="section-intro">Remplissez ce formulaire avec précision. Ces informations servent uniquement à réaliser votre enregistrement.</p>
+        </div>
+        <div class="pay">
+          <h3>Moyens de paiement</h3>
+          <ul class="pay-list">
+            <li>
+              <span class="pay-badge mpesa" aria-hidden="true">M</span>
+              <span><span class="pay-name">M-Pesa</span><span class="pay-num">0821801279</span></span>
+              <button class="pay-action" type="button" data-copy="0821801279" aria-label="Copier le numéro M-Pesa">Copier</button>
+            </li>
+            <li>
+              <span class="pay-badge orange" aria-hidden="true">OM</span>
+              <span><span class="pay-name">Orange Money</span><span class="pay-num">0891247689</span></span>
+              <button class="pay-action" type="button" data-copy="0891247689" aria-label="Copier le numéro Orange Money">Copier</button>
+            </li>
+            <li>
+              <span class="pay-badge wa" aria-hidden="true">W</span>
+              <span><span class="pay-name">WhatsApp</span><span class="pay-num">Modalités à convenir par message</span></span>
+              <a class="pay-action" href="https://wa.me/201282226808" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp pour convenir du paiement">Écrire</a>
+            </li>
+          </ul>
+          <p class="pay-note">Les modalités vous sont confirmées après réception de votre demande.</p>
+        </div>
+      </div>
+
+      <form class="form" id="request-form" novalidate autocomplete="on">
+        <noscript><p class="noscript">Ce formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement sur <a class="link" href="https://wa.me/201282226808">WhatsApp</a>.</p></noscript>
+        <p class="form-lead">Tous les champs sont obligatoires.</p>
+
+        <fieldset class="fieldset">
+          <legend>Le passager</legend>
+          <div class="grid-2">
+            <div class="field span-2">
+              <label for="f-name">Nom complet</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Ex. : DUPONT Jean" required aria-describedby="h-name e-name">
+              <p class="hint" id="h-name">Comme sur le passeport.</p>
+              <p class="error" id="e-name" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-passport">Numéro de passeport</label>
+              <input id="f-passport" name="passport" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex. : AB1234567" required aria-describedby="e-passport">
+              <p class="error" id="e-passport" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-nationality">Nationalité</label>
+              <input id="f-nationality" name="nationality" type="text" autocomplete="off" placeholder="Ex. : Congolaise (RDC)" required aria-describedby="e-nationality">
+              <p class="error" id="e-nationality" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-dob">Date de naissance</label>
+              <input id="f-dob" name="dob" type="date" autocomplete="bday" required aria-describedby="e-dob">
+              <p class="error" id="e-dob" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-contact">Numéro WhatsApp</label>
+              <input id="f-contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. : +243 8xx xxx xxx" required aria-describedby="h-contact e-contact">
+              <p class="hint" id="h-contact">Pour vous envoyer la carte d’embarquement.</p>
+              <p class="error" id="e-contact" hidden></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend>Le vol</legend>
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-airline">Compagnie aérienne</label>
+              <input id="f-airline" name="airline" type="text" autocomplete="off" placeholder="Ex. : Ethiopian Airlines" required aria-describedby="e-airline">
+              <p class="error" id="e-airline" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-flightnum">Numéro de vol</label>
+              <input id="f-flightnum" name="flight" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex. : ET 704" required aria-describedby="e-flightnum">
+              <p class="error" id="e-flightnum" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-pnr">Référence de réservation (PNR)</label>
+              <input id="f-pnr" name="pnr" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex. : X7YQ2P" required aria-describedby="h-pnr e-pnr">
+              <p class="hint" id="h-pnr">Code de 5 ou 6 caractères.</p>
+              <p class="error" id="e-pnr" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-ticket">Numéro de billet (e-ticket)</label>
+              <input id="f-ticket" name="ticket" type="text" autocomplete="off" spellcheck="false" placeholder="Ex. : 071-1234567890" required aria-describedby="h-ticket e-ticket">
+              <p class="hint" id="h-ticket">Indiqué sur votre confirmation de réservation.</p>
+              <p class="error" id="e-ticket" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label for="f-datetime">Date et heure du vol</label>
+              <input id="f-datetime" name="datetime" type="text" autocomplete="off" placeholder="Ex. : 24/08/2026 à 14h20" required aria-describedby="h-datetime e-datetime">
+              <p class="hint" id="h-datetime">Heure locale de départ.</p>
+              <p class="error" id="e-datetime" hidden></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="price">
+          <span class="price-label">Frais du service</span>
+          <span class="price-amount">3,00&nbsp;USD</span>
+        </div>
+
+        <div class="terms">
+          <h3>À lire avant d’envoyer</h3>
+          <p>FlyFast est un service d’assistance indépendant, non affilié à votre compagnie aérienne. Notre équipe effectue votre enregistrement directement sur le site officiel de la compagnie.</p>
+          <p>Nous ne pouvons pas garantir l’enregistrement en cas de refus par la compagnie, de modification du vol, de document invalide, ou si votre demande nous parvient moins de 10&nbsp;heures avant le départ.</p>
+          <p>Vos informations ne servent qu’à cet enregistrement et ne sont pas conservées au-delà.</p>
+        </div>
+
+        <div class="consent-wrap">
+          <label class="consent" for="f-consent">
+            <input id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
+            <span>J’accepte que FlyFast utilise mes informations personnelles et de voyage uniquement dans le but de réaliser mon enregistrement, et j’ai lu les conditions <span class="nb">ci-dessus</span>.</span>
+          </label>
+          <p class="error" id="e-consent" hidden></p>
+        </div>
+
+        <button class="btn btn-gold submit" id="submit-btn" type="submit">Envoyer ma demande sur WhatsApp</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">WhatsApp s’ouvre avec votre message déjà rédigé. Vous le relisez avant de l’envoyer&nbsp;: ce site ne conserve aucune donnée.</p>
+
+        <div class="alt">
+          <a class="btn btn-outline" href="https://wa.me/201282226808?text=Bonjour%20FlyFast%2C%20je%20vous%20envoie%20une%20photo%20de%20mon%20passeport%2Fbillet%20pour%20mon%20enregistrement%20%3A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.8 1.8 0 0 1-2.6-2.6l8.3-8.3"/></svg>
+            Envoyer une photo du passeport ou du billet
+          </a>
+          <p>Utile si une information est difficile à recopier. Joignez la photo directement dans la conversation WhatsApp.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band" id="faq" aria-labelledby="faq-title">
+    <div class="container faq">
+      <div>
+        <h2 id="faq-title">Questions fréquentes</h2>
+        <p class="section-intro">Une autre question&nbsp;? <a class="link" href="https://wa.me/201282226808" target="_blank" rel="noopener">Écrivez-nous sur WhatsApp</a>.</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Que se passe-t-il si j’envoie ma demande à moins de 10&nbsp;heures du vol&nbsp;?</summary>
+          <p>Nous ne pouvons pas garantir l’enregistrement à temps. Dans ce cas, présentez-vous directement au comptoir d’enregistrement de votre compagnie, à l’aéroport.</p>
+        </details>
+        <details>
+          <summary>Ce service est-il affilié à ma compagnie aérienne&nbsp;?</summary>
+          <p>Non. FlyFast est un service d’assistance indépendant. Nous utilisons le site officiel de votre compagnie pour effectuer votre enregistrement, comme le ferait n’importe quel passager.</p>
+        </details>
+        <details>
+          <summary>Mes données (passeport, etc.) sont-elles en sécurité&nbsp;?</summary>
+          <p>Vos informations sont utilisées uniquement pour réaliser votre enregistrement et ne sont pas conservées au-delà de cette utilisation. Ce site n’enregistre aucune donnée&nbsp;: le formulaire prépare un message WhatsApp que vous relisez et envoyez vous-même.</p>
+        </details>
+        <details>
+          <summary>Que se passe-t-il si la compagnie refuse l’enregistrement&nbsp;?</summary>
+          <p>Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Le service ne peut garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom.</p>
+        </details>
+        <details>
+          <summary>Comment régler les 3&nbsp;USD&nbsp;?</summary>
+          <p>Par WhatsApp, <span class="nb">M-Pesa</span> ou Orange Money. Les numéros figurent dans la section «&nbsp;Enregistrer votre vol&nbsp;», et les modalités vous sont confirmées après réception de votre demande.</p>
+        </details>
       </div>
     </div>
-  </div>
-</section>
-</div>
+  </section>
 
-<div class="wrap">
-<section id="enregistrer">
-  <div class="section-head reveal">
-    <h2>Enregistrer votre vol</h2>
-    <p>Remplissez ce formulaire avec précision — ces informations sont utilisées uniquement pour votre enregistrement.</p>
-  </div>
+  <section class="band band-mist" id="avis" aria-labelledby="avis-title">
+    <div class="container reviews">
+      <div class="reviews-body">
+        <h2 id="avis-title">Votre avis</h2>
+        <div class="reviews-grid" id="reviews-list" hidden></div>
+        <p class="section-intro">Vous avez utilisé FlyFast&nbsp;? Racontez-nous votre expérience sur WhatsApp.</p>
+        <a class="btn btn-navy" href="https://wa.me/201282226808?text=Bonjour%20FlyFast%2C%20je%20souhaite%20laisser%20un%20avis%20%3A%20" target="_blank" rel="noopener">Laisser un avis</a>
+      </div>
+      <figure class="photo photo-avis">
+        <img src="flyfast-images/checkin-1.jpg" width="563" height="573" loading="lazy" decoding="async" alt="Deux voyageurs consultant leur carte d’embarquement dans un aéroport">
+      </figure>
+    </div>
+  </section>
 
-  <div class="form-band reveal">
-    <div class="form-grid">
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
       <div>
-        <label>Nom complet (comme sur le passeport)</label>
-        <input type="text" id="f-name" placeholder="Ex: DUPONT Jean">
+        <a class="brand" href="#top" aria-label="FlyFast, retour en haut de page">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+          <span>FlyFast</span>
+        </a>
+        <p class="foot-text">Service d’assistance indépendant à l’enregistrement de vol, non affilié aux compagnies aériennes.</p>
       </div>
+      <nav aria-label="Liens du pied de page">
+        <p class="foot-title">Navigation</p>
+        <ul>
+          <li><a href="#comment">Comment ça marche</a></li>
+          <li><a href="#enregistrer">Enregistrer un vol</a></li>
+          <li><a href="flyfast-blog/index.html">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#avis">Laisser un avis</a></li>
+        </ul>
+      </nav>
       <div>
-        <label>Numéro de passeport</label>
-        <input type="text" id="f-passport" placeholder="Ex: AB1234567">
-      </div>
-      <div>
-        <label>Nationalité</label>
-        <input type="text" id="f-nationality" placeholder="Ex: Congolaise (RDC)">
-      </div>
-      <div>
-        <label>Date de naissance</label>
-        <input type="date" id="f-dob">
-      </div>
-      <div>
-        <label>Compagnie aérienne</label>
-        <input type="text" id="f-airline" placeholder="Ex: Ethiopian Airlines">
-      </div>
-      <div>
-        <label>Numéro de vol</label>
-        <input type="text" id="f-flightnum" placeholder="Ex: ET 704">
-      </div>
-      <div>
-        <label>Référence de réservation (PNR)</label>
-        <input type="text" id="f-pnr" placeholder="Ex: X7YQ2P">
-      </div>
-      <div>
-        <label>Numéro de billet (e-ticket)</label>
-        <input type="text" id="f-ticket" placeholder="Ex: 071-1234567890">
-      </div>
-      <div>
-        <label>Date et heure du vol</label>
-        <input type="text" id="f-datetime" placeholder="Ex: 24/08/2026 — 14h20">
+        <p class="foot-title">Contact</p>
+        <ul>
+          <li><a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;128&nbsp;222&nbsp;6808</a></li>
+        </ul>
       </div>
     </div>
-    <div class="form-grid full">
-      <div>
-        <label>Votre numéro WhatsApp (pour vous envoyer la carte)</label>
-        <input type="text" id="f-contact" placeholder="Ex: +243 8xx xxx xxx">
-      </div>
-    </div>
-
-    <div class="price-tag">
-      <span>Frais du service</span>
-      <span class="amount">3,00 USD</span>
-    </div>
-
-    <div class="disclaimer-box">
-      <strong>À lire avant d'envoyer :</strong> FlyFast est un service d'assistance indépendant, non affilié à votre compagnie aérienne. Notre équipe effectue votre enregistrement directement sur le site officiel de la compagnie. Nous ne pouvons garantir l'enregistrement en cas de refus par la compagnie, de vol modifié, de document invalide, ou si votre demande est reçue à moins de 10h du départ. Vos informations ne sont utilisées que pour cet enregistrement et ne sont pas conservées au-delà.
-    </div>
-
-    <label class="consent-row">
-      <input type="checkbox" id="f-consent">
-      <span>J'accepte que FlyFast utilise mes informations personnelles et de voyage uniquement dans le but de réaliser mon enregistrement, et j'ai lu les conditions ci-dessus.</span>
-    </label>
-
-    <button class="submit-btn" id="submit-btn">Envoyer ma demande sur WhatsApp</button>
-
-    <a href="https://wa.me/201282226808?text=Bonjour%20FlyFast%2C%20je%20vous%20envoie%20une%20photo%20de%20mon%20passeport%2Fbillet%20pour%20mon%20enregistrement%20%3A" target="_blank" rel="noopener" class="photo-btn">
-      📎 Envoyer une photo (passeport, billet...) sur WhatsApp
-    </a>
-    <p class="photo-hint">Utile si une information est difficile à retranscrire — une fois la conversation ouverte, joignez votre photo directement dans WhatsApp.</p>
-  </div>
-
-  <div class="section-head reveal" style="margin-top:50px;">
-    <h2 style="font-size:20px;">Moyens de paiement</h2>
-  </div>
-  <div class="pay-methods reveal">
-    <div class="pay-card"><div class="badge" style="background:#00A650;color:#fff;">M</div>M-Pesa<br><span class="mono" style="font-size:12px;">0821801279</span></div>
-    <div class="pay-card"><div class="badge" style="background:#FF7900;color:#fff;">OM</div>Orange Money<br><span class="mono" style="font-size:12px;">0891247689</span></div>
-    <div class="pay-card"><div class="badge">W</div>WhatsApp direct<br><span style="font-size:12px;">À convenir</span></div>
-  </div>
-</section>
-</div>
-
-<div class="wrap">
-<section id="faq">
-  <div class="section-head reveal">
-    <h2>Questions fréquentes</h2>
-  </div>
-  <div id="faq-list" class="reveal"></div>
-</section>
-</div>
-
-<div class="wrap">
-<section id="avis">
-  <div class="section-head reveal">
-    <h2>Ce que disent nos voyageurs</h2>
-    <p>Des enregistrements réussis, sans stress.</p>
-  </div>
-  <div class="testi-grid reveal" id="testi-grid"></div>
-  <div class="testi-cta reveal">
-    <a href="https://wa.me/201282226808?text=Bonjour%20FlyFast%2C%20je%20souhaite%20laisser%20un%20avis%20%3A%20" target="_blank" rel="noopener" class="btn-outline-dark">Laisser un avis</a>
-  </div>
-</section>
-</div>
-
-<footer>
-  <div class="wrap">
-    <div class="foot-top">
-      <div class="foot-col">
-        <h4>FlyFast</h4>
-        <p style="max-width:260px;">Service d'assistance indépendant à l'enregistrement de vol, non affilié aux compagnies aériennes.</p>
-      </div>
-      <div class="foot-col">
-        <h4>Liens</h4>
-        <a href="#comment">Comment ça marche</a>
-        <a href="#enregistrer">Enregistrer un vol</a>
-        <a href="flyfast-blog/index.html">Blog</a>
-        <a href="#faq">FAQ</a>
-      </div>
-      <div class="foot-col">
-        <h4>Contact</h4>
-        <a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp : +20 128 222 6808</a>
-      </div>
-    </div>
-    <div class="foot-bottom">© 2026 FlyFast — Service d'assistance indépendant, non affilié aux compagnies aériennes</div>
+    <p class="foot-bottom">© <span id="year">2026</span> FlyFast. Tous droits réservés.</p>
   </div>
 </footer>
 
-<div id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-const WHATSAPP_NUMBER = "201282226808";
+(function () {
+  'use strict';
 
-document.getElementById('submit-btn').addEventListener('click', () => {
-  const name = document.getElementById('f-name').value.trim();
-  const passport = document.getElementById('f-passport').value.trim();
-  const nationality = document.getElementById('f-nationality').value.trim();
-  const dob = document.getElementById('f-dob').value;
-  const airline = document.getElementById('f-airline').value.trim();
-  const flightnum = document.getElementById('f-flightnum').value.trim();
-  const pnr = document.getElementById('f-pnr').value.trim();
-  const ticket = document.getElementById('f-ticket').value.trim();
-  const datetime = document.getElementById('f-datetime').value.trim();
-  const contact = document.getElementById('f-contact').value.trim();
-  const consent = document.getElementById('f-consent').checked;
+  var WHATSAPP_NUMBER = '201282226808';
 
-  if(!name || !passport || !pnr || !ticket || !airline || !flightnum || !datetime || !contact){
-    toast('Merci de remplir tous les champs obligatoires');
-    return;
+  var toggle = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('site-nav');
+  function closeMenu() {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Ouvrir le menu');
   }
-  if(!consent){
-    toast('Merci de cocher la case de consentement pour continuer');
-    return;
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { closeMenu(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { closeMenu(); toggle.focus(); }
+  });
+
+  var toastTimer;
+  function toast(message) {
+    var el = document.getElementById('toast');
+    el.textContent = message;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { el.classList.remove('show'); }, 2800);
   }
 
-  const lines = [
-    "Bonjour FlyFast, voici ma demande d'enregistrement :",
-    `Nom : ${name}`,
-    `Passeport : ${passport}`,
-    `Nationalité : ${nationality}`,
-    `Date de naissance : ${dob}`,
-    `Compagnie : ${airline}`,
-    `Vol : ${flightnum}`,
-    `PNR : ${pnr}`,
-    `Numéro de billet : ${ticket}`,
-    `Date/heure du vol : ${datetime}`,
-    `Mon WhatsApp : ${contact}`,
-    "Je confirme avoir lu et accepté les conditions du service."
+  function legacyCopy(text) {
+    var area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+    document.body.removeChild(area);
+    return ok;
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
+    btn.addEventListener('click', function () {
+      var value = btn.getAttribute('data-copy');
+      copyText(value).then(function (ok) {
+        toast(ok ? 'Numéro copié : ' + value : 'Copie impossible. Numéro : ' + value);
+      });
+    });
+  });
+
+  var form = document.getElementById('request-form');
+  var status = document.getElementById('form-status');
+  var required = [
+    ['f-name', 'Indiquez votre nom complet, comme sur le passeport.'],
+    ['f-passport', 'Indiquez votre numéro de passeport.'],
+    ['f-nationality', 'Indiquez votre nationalité.'],
+    ['f-dob', 'Indiquez votre date de naissance.'],
+    ['f-contact', 'Indiquez votre numéro WhatsApp.'],
+    ['f-airline', 'Indiquez la compagnie aérienne.'],
+    ['f-flightnum', 'Indiquez le numéro de vol.'],
+    ['f-pnr', 'Indiquez la référence de réservation (PNR).'],
+    ['f-ticket', 'Indiquez le numéro de billet.'],
+    ['f-datetime', 'Indiquez la date et l’heure du vol.']
   ];
-  const msg = encodeURIComponent(lines.join('\n'));
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
-});
 
-const faqs = [
-  {q:"Que se passe-t-il si j'envoie ma demande à moins de 10h du vol ?", a:"Nous ne pouvons pas garantir l'enregistrement à temps. Dans ce cas, présentez-vous directement au comptoir d'enregistrement de votre compagnie à l'aéroport."},
-  {q:"Ce service est-il affilié à ma compagnie aérienne ?", a:"Non. FlyFast est un service d'assistance indépendant. Nous utilisons le site officiel de votre compagnie pour effectuer votre enregistrement, comme le ferait un passager."},
-  {q:"Mes données (passeport, etc.) sont-elles en sécurité ?", a:"Vos informations sont utilisées uniquement pour réaliser votre enregistrement et ne sont pas conservées au-delà de cette utilisation."},
-  {q:"Que se passe-t-il si la compagnie refuse l'enregistrement ?", a:"Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Le service ne peut garantir l'issue de l'enregistrement, seulement la démarche effectuée en votre nom."},
-  {q:"Comment je paie les 3 USD ?", a:"Par WhatsApp, M-Pesa ou Orange Money — les détails vous sont envoyés après réception de votre demande."}
-];
-const faqList = document.getElementById('faq-list');
-faqs.forEach(f => {
-  const item = document.createElement('div');
-  item.className = 'faq-item';
-  item.innerHTML = `<div class="faq-q"><span>${f.q}</span><span class="plus">+</span></div><div class="faq-a">${f.a}</div>`;
-  item.querySelector('.faq-q').addEventListener('click', () => item.classList.toggle('open'));
-  faqList.appendChild(item);
-});
+  function errorBox(el) { return document.getElementById('e-' + el.id.slice(2)); }
+  function setError(el, message) {
+    var box = errorBox(el);
+    el.setAttribute('aria-invalid', 'true');
+    box.textContent = message;
+    box.hidden = false;
+  }
+  function clearError(el) {
+    var box = errorBox(el);
+    el.removeAttribute('aria-invalid');
+    box.textContent = '';
+    box.hidden = true;
+  }
+  function setStatus(message, isError) {
+    status.textContent = message;
+    status.className = 'form-status' + (isError ? ' is-error' : '');
+  }
 
-const testimonials = [
-  {name:'Grâce', stars:5, quote:"Enregistrée en moins d'une heure, carte reçue directement sur WhatsApp. Zéro stress avant mon vol."},
-  {name:'Junior', stars:5, quote:"Je n'arrivais pas à faire mon enregistrement depuis mon téléphone. FlyFast a réglé ça en quelques minutes."},
-  {name:'Aline', stars:5, quote:"Service sérieux et rapide, ils m'ont même prévenue avant la limite des 10h. Je recommande."}
-];
-const testiGrid = document.getElementById('testi-grid');
-testimonials.forEach(t => {
-  const card = document.createElement('div');
-  card.className = 'testi-card';
-  card.innerHTML = `
-    <div class="testi-stars">${'★'.repeat(t.stars)}</div>
-    <p class="testi-quote">"${t.quote}"</p>
-    <div class="testi-name">${t.name}</div>
-  `;
-  testiGrid.appendChild(card);
-});
+  required.concat([['f-consent', '']]).forEach(function (item) {
+    var el = document.getElementById(item[0]);
+    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', function () {
+      var filled = el.type === 'checkbox' ? el.checked : el.value.trim() !== '';
+      if (filled && el.getAttribute('aria-invalid') === 'true') { clearError(el); }
+    });
+  });
 
-function toast(msg){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(()=> t.classList.remove('show'), 2600);
-}
+  function frenchDate(value) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : value;
+  }
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('in'); observer.unobserve(entry.target); } });
-}, {threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var values = {};
+    var firstInvalid = null;
+
+    required.forEach(function (item) {
+      var el = document.getElementById(item[0]);
+      values[item[0]] = el.value.trim();
+      if (!values[item[0]]) {
+        setError(el, item[1]);
+        if (!firstInvalid) { firstInvalid = el; }
+      } else {
+        clearError(el);
+      }
+    });
+
+    var consent = document.getElementById('f-consent');
+    if (!consent.checked) {
+      setError(consent, 'Cochez la case pour accepter les conditions.');
+      if (!firstInvalid) { firstInvalid = consent; }
+    } else {
+      clearError(consent);
+    }
+
+    if (firstInvalid) {
+      setStatus('Complétez les champs signalés pour continuer.', true);
+      firstInvalid.focus();
+      return;
+    }
+
+    var lines = [
+      "Bonjour FlyFast, voici ma demande d'enregistrement :",
+      'Nom : ' + values['f-name'],
+      'Passeport : ' + values['f-passport'],
+      'Nationalité : ' + values['f-nationality'],
+      'Date de naissance : ' + frenchDate(values['f-dob']),
+      'Compagnie : ' + values['f-airline'],
+      'Vol : ' + values['f-flightnum'],
+      'PNR : ' + values['f-pnr'],
+      'Numéro de billet : ' + values['f-ticket'],
+      'Date/heure du vol : ' + values['f-datetime'],
+      'Mon WhatsApp : ' + values['f-contact'],
+      'Je confirme avoir lu et accepté les conditions du service.'
+    ];
+    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(lines.join('\n'));
+    var opened = window.open(url, '_blank');
+    if (!opened) { window.location.href = url; }
+    setStatus('WhatsApp s’ouvre avec votre demande. Appuyez sur Envoyer dans WhatsApp pour la transmettre.', false);
+  });
+
+  var testimonials = [];
+  var reviewsList = document.getElementById('reviews-list');
+  testimonials.forEach(function (t) {
+    var fig = document.createElement('figure');
+    var quote = document.createElement('blockquote');
+    var cap = document.createElement('figcaption');
+    fig.className = 'review';
+    quote.textContent = t.quote;
+    cap.textContent = t.name;
+    fig.appendChild(quote);
+    fig.appendChild(cap);
+    reviewsList.appendChild(fig);
+  });
+  if (testimonials.length) { reviewsList.hidden = false; }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
 </script>
 </body>
 </html>
