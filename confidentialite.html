@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Confidentialité | FlyFast</title>
+<meta name="description" content="Ce que FlyFast recueille, comment c’est protégé et quand c’est effacé : vos informations de voyage sont chiffrées, puis supprimées au plus tard 14 jours après votre demande.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://plamedi101.github.io/Mpepo-na-pete/confidentialite.html">
+<meta name="theme-color" content="#0C2E4E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="FlyFast">
+<meta property="og:title" content="Confidentialité | FlyFast">
+<meta property="og:description" content="Vos informations de voyage sont chiffrées, utilisées uniquement pour votre enregistrement, puis effacées.">
+<meta property="og:image" content="https://plamedi101.github.io/Mpepo-na-pete/flyfast-images/hero-plane-sunset.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233B9EE8'/%3E%3Cg transform='translate(4 4)'%3E%3Cpath transform='rotate(45 12 12)' fill='%23fff' d='M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C2E4E; --navy-2:#154670; --ink:#13222F; --muted:#4A5B6C;
+    --sky:#3B9EE8; --sky-text:#0F5A93; --gold:#F0B92E; --gold-hover:#F7CB55;
+    --red:#CE1021; --mist:#F2F6FA; --line:#D5DFEA; --radius:6px;
+    --font-head:'Barlow Semi Condensed','Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    --font-body:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-padding-top:88px;-webkit-text-size-adjust:100%;}
+  body{margin:0;background:#fff;color:var(--ink);font:400 1.0625rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased;}
+  h1,h2,p,ul,dl,dd{margin:0;}
+  ul{padding:0;list-style:none;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid #1D6FB8;outline-offset:3px;}
+  .site-footer :focus-visible{outline-color:#FFD36B;}
+  .skip{position:absolute;left:16px;top:-80px;z-index:200;background:var(--navy);color:#fff;padding:12px 18px;border-radius:var(--radius);text-decoration:none;font-weight:600;}
+  .skip:focus{top:12px;}
+  .container{width:100%;max-width:1140px;margin:0 auto;padding-inline:24px;}
+  .narrow{max-width:792px;}
+
+  .nb{white-space:nowrap;}
+  .link{color:var(--sky-text);text-decoration:underline;text-underline-offset:3px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid transparent;border-radius:var(--radius);font-weight:600;font-size:1rem;line-height:1.2;text-align:center;text-decoration:none;transition:background-color .15s;}
+  .btn-sm{min-height:42px;padding:0 18px;font-size:.9375rem;}
+  .btn-gold{background:var(--gold);color:var(--navy);}
+  .btn-gold:hover{background:var(--gold-hover);}
+
+  .site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);}
+  .site-header::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--sky) 0 58%,var(--gold) 58% 60.5%,var(--red) 60.5% 67.5%,var(--gold) 67.5% 70%,var(--sky) 70% 100%);}
+  .bar{display:flex;align-items:center;gap:24px;min-height:68px;}
+  .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:700 1.5rem/1 var(--font-head);letter-spacing:-0.01em;color:var(--navy);}
+  .brand-mark{width:34px;height:34px;flex:none;}
+  .nav{display:flex;gap:30px;margin-left:auto;}
+  .nav a{padding:8px 0;border-bottom:2px solid transparent;font-weight:500;text-decoration:none;}
+  .nav a:hover{border-bottom-color:var(--sky);}
+
+  .post{padding-block:clamp(36px,6vw,72px) clamp(56px,8vw,96px);}
+  .crumb{display:flex;align-items:center;gap:10px;font-size:.9375rem;color:var(--muted);}
+  .crumb a{color:var(--sky-text);text-underline-offset:3px;}
+  .post h1{margin-top:20px;color:var(--navy);font:700 clamp(2rem,5vw,3.25rem)/1.08 var(--font-head);letter-spacing:-0.012em;text-wrap:balance;}
+  .lead{margin-top:18px;max-width:60ch;color:var(--muted);font-size:1.1875rem;}
+
+  .summary{margin-top:32px;padding:20px 24px;border-left:4px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;background:var(--mist);}
+  .summary h2{margin:0 0 10px;color:var(--navy);font:600 1.375rem/1.2 var(--font-head);}
+  .summary ul{padding-left:1.2em;list-style:disc;}
+  .summary li{margin-top:.4em;padding-left:.2em;}
+  .summary li::marker{color:var(--sky);}
+
+  .post-body{margin-top:8px;font-size:1.125rem;line-height:1.7;}
+  .post-body p{margin-top:1em;max-width:68ch;}
+  .post-body h2{margin-top:2em;color:var(--navy);font:600 1.75rem/1.2 var(--font-head);}
+  .post-body h2 + p{margin-top:.6em;}
+
+  .keep{margin-top:20px;border-top:1px solid var(--line);}
+  .keep > div{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:6px 32px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .keep dt{font-weight:600;color:var(--navy);}
+  .updated{margin-top:40px;color:var(--muted);font-size:.9375rem;}
+
+  .site-footer{padding:48px 0 28px;background:var(--navy);color:#C9D9E8;}
+  .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;}
+  .site-footer .brand{color:#fff;}
+  .foot-text{margin-top:16px;max-width:36ch;font-size:.9375rem;}
+  .foot ul li + li{margin-top:10px;}
+  .foot ul a{text-decoration:none;}
+  .foot ul a:hover{color:#fff;text-decoration:underline;}
+  .foot-bottom{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:.875rem;color:#9FB6CC;}
+
+  @media (max-width:760px){
+    .nav{display:none;}
+    .bar .btn-sm{margin-left:auto;}
+  }
+  @media (max-width:560px){
+    .container{padding-inline:20px;}
+    .brand{font-size:1.375rem;}
+    .summary{padding:18px 18px 18px 20px;}
+    .keep > div{grid-template-columns:minmax(0,1fr);gap:4px;}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="index.html" aria-label="FlyFast, accueil">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+      <span>FlyFast</span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html#comment">Comment ça marche</a>
+      <a href="index.html#enregistrer">Enregistrer un vol</a>
+      <a href="flyfast-blog/index.html">Blog</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold btn-sm" href="index.html#enregistrer">Enregistrer un vol</a>
+  </div>
+</header>
+
+<main id="contenu">
+  <article class="post container narrow">
+    <nav class="crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">/</span><span>Confidentialité</span></nav>
+    <h1>Confidentialité&nbsp;: ce que nous faisons de vos informations</h1>
+    <p class="lead">Vos informations de voyage servent à une seule chose&nbsp;: réaliser votre enregistrement. Voici ce que nous recueillons, comment c’est protégé et quand tout est effacé.</p>
+
+    <aside class="summary" aria-labelledby="bref">
+      <h2 id="bref">En bref</h2>
+      <ul>
+        <li>Vos informations sont chiffrées dès leur envoi.</li>
+        <li>Elles servent uniquement à réaliser votre enregistrement.</li>
+        <li>Elles sont effacées dès que l’enregistrement est fait ou annulé, et au plus tard 14&nbsp;jours après votre demande.</li>
+        <li>Seul un dossier vide, sans donnée personnelle, reste 12&nbsp;mois.</li>
+        <li>Les avis restent affichés sur le site, avec le prénom seulement.</li>
+      </ul>
+    </aside>
+
+    <div class="post-body">
+      <h2>Ce que nous recueillons</h2>
+      <p>Pour une demande d’enregistrement&nbsp;: votre nom complet, votre numéro de passeport, votre nationalité, votre date de naissance et votre numéro WhatsApp, ainsi que la compagnie, le numéro de vol, la référence de réservation (PNR), le numéro de billet, et la date et l’heure du vol. Nous y ajoutons un numéro de dossier, par exemple FF-AB12CD, que vous voyez à l’écran après l’envoi.</p>
+      <p>Pour un avis&nbsp;: votre prénom, votre note, le texte de votre avis et, si vous le souhaitez, votre numéro de dossier.</p>
+
+      <h2>Comment c’est protégé</h2>
+      <p>Les informations de votre demande sont chiffrées (AES-256) avant d’être enregistrées. La clé de déchiffrement est conservée séparément de la base de données. Nous seuls pouvons lire une demande, depuis un espace d’administration protégé par un code secret. Les échanges avec le site sont chiffrés (HTTPS).</p>
+      <p>La base de données est hébergée chez Cloudflare, dans l’Union européenne. Le service qui reçoit votre demande s’exécute sur le réseau de Cloudflare, au plus près de vous.</p>
+
+      <h2>Combien de temps nous les gardons</h2>
+      <dl class="keep">
+        <div><dt>Votre demande</dt><dd>Effacée dès que l’enregistrement est fait ou annulé, et au plus tard 14&nbsp;jours après votre demande. L’effacement est automatique.</dd></div>
+        <div><dt>Dossier vide</dt><dd>Après l’effacement, il reste une ligne sans donnée personnelle&nbsp;: numéro de dossier, date et statut. Elle permet de vérifier les avis des clients et disparaît au bout de 12&nbsp;mois.</dd></div>
+        <div><dt>Sauvegardes techniques</dt><dd>Cloudflare garde pendant 7&nbsp;jours un historique de la base. Il ne contient que la version chiffrée de vos informations.</dd></div>
+        <div><dt>Votre avis</dt><dd>Il reste affiché sur le site, avec votre prénom, jusqu’à ce que vous demandiez son retrait.</dd></div>
+        <div><dt>Photos envoyées sur WhatsApp</dt><dd>Si vous nous envoyez une photo (passeport, billet), nous la supprimons de notre côté une fois votre enregistrement effectué.</dd></div>
+        <div><dt>Contrôle anti-abus</dt><dd>Pour limiter les envois répétés, nous gardons une empreinte non réversible de votre adresse IP, pas l’adresse elle-même, pendant 3&nbsp;jours au plus.</dd></div>
+      </dl>
+
+      <h2>Qui y a accès</h2>
+      <p>Pour réaliser votre enregistrement, nous saisissons vos informations sur le site officiel de votre compagnie aérienne. Nous ne les vendons pas et ne les utilisons pour rien d’autre.</p>
+      <p>Nous faisons appel à des prestataires techniques&nbsp;: GitHub héberge les pages du site, Cloudflare fait fonctionner le formulaire, la base de données et le contrôle anti-robot, Google fournit les polices de caractères, et WhatsApp transmet nos messages. Chacun peut voir des données de connexion, comme votre adresse IP, selon ses propres règles.</p>
+
+      <h2>Cookies et mesure d’audience</h2>
+      <p>Ce site n’utilise ni cookie publicitaire, ni outil de mesure d’audience. Le contrôle anti-robot de Cloudflare ne se charge que lorsque vous commencez à remplir un formulaire.</p>
+
+      <h2>Vos droits</h2>
+      <p>Vous pouvez nous demander à tout moment de consulter, corriger ou effacer vos informations, y compris avant la fin des 14&nbsp;jours, ou de retirer votre avis. Écrivez-nous sur WhatsApp en indiquant votre numéro de dossier. Vous pouvez aussi vous adresser à l’autorité de protection des données de votre pays.</p>
+
+      <h2>Nous contacter</h2>
+      <p>FlyFast, service d’assistance indépendant. <a class="link" href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;128&nbsp;222&nbsp;6808</a></p>
+    </div>
+    <p class="updated">Dernière mise à jour&nbsp;: 8 novembre 2026.</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a class="brand" href="index.html" aria-label="FlyFast, accueil">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+          <span>FlyFast</span>
+        </a>
+        <p class="foot-text">Service d’assistance indépendant à l’enregistrement de vol, non affilié aux compagnies aériennes.</p>
+      </div>
+      <nav aria-label="Liens du pied de page">
+        <ul>
+          <li><a href="flyfast-blog/index.html">Blog</a></li>
+          <li><a href="index.html#enregistrer">Enregistrer un vol</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="confidentialite.html" aria-current="page">Confidentialité</a></li>
+          <li><a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;128&nbsp;222&nbsp;6808</a></li>
+        </ul>
+      </nav>
+    </div>
+    <p class="foot-bottom">© <span id="year">2026</span> FlyFast. Tous droits réservés.</p>
+  </div>
+</footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
