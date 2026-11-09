@@ -236,7 +236,7 @@
   .rating-text{margin-left:10px;font-size:.9375rem;color:var(--muted);}
 
   .site-footer{padding:56px 0 28px;background:var(--navy);color:#C9D9E8;}
-  .foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:40px;}
+  .foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr) minmax(0,4fr);gap:40px;}
   .foot .brand{color:#fff;}
   .foot-text{margin-top:16px;max-width:36ch;font-size:.9375rem;}
   .foot-title{margin:7px 0 14px;font:600 1.0625rem/1.2 var(--font-head);color:#fff;}
@@ -274,7 +274,8 @@
     .split .form{order:1;}
     .photo-how{aspect-ratio:4/3;}
     .photo-how img{object-position:50% 8%;}
-    .foot{grid-template-columns:minmax(0,1fr);gap:32px;}
+    .foot{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;}
+    .foot > div:first-child{grid-column:1 / -1;}
   }
   @media (max-width:760px){
     .facts-list{grid-template-columns:minmax(0,1fr);}
@@ -290,6 +291,7 @@
     .nav{padding-inline:20px;}
     .grid-2{grid-template-columns:minmax(0,1fr);}
     .brand{font-size:1.375rem;}
+    .foot{grid-template-columns:minmax(0,1fr);}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -488,12 +490,13 @@
           <p>FlyFast est un service d’assistance indépendant, non affilié à votre compagnie aérienne. Notre équipe effectue votre enregistrement directement sur le site officiel de la compagnie.</p>
           <p>Nous ne pouvons pas garantir l’enregistrement en cas de refus par la compagnie, de modification du vol, de document invalide, ou si votre demande nous parvient moins de 10&nbsp;heures avant le départ.</p>
           <p>Vos informations sont chiffrées dès leur envoi et ne servent qu’à votre enregistrement. Elles sont ensuite effacées&nbsp;: dès que c’est fait, et au plus tard 14&nbsp;jours après votre demande. Il ne reste alors qu’un dossier vide, sans donnée personnelle. <a class="link" href="confidentialite.html">Voir les détails</a></p>
+          <p>En envoyant votre demande, vous nous demandez de réaliser l’enregistrement sans attendre. Si vous êtes consommateur dans l’Union européenne, vous pouvez vous rétracter tant que l’enregistrement n’est pas fait, mais plus ensuite. Si nous ne réalisons pas l’enregistrement, vous êtes remboursé, sauf erreur dans les informations fournies. Voir les <a class="link" href="conditions-de-vente.html" target="_blank" rel="noopener">conditions de vente</a> et la <a class="link" href="remboursement.html" target="_blank" rel="noopener">politique de remboursement</a>.</p>
         </div>
 
         <div class="consent-wrap">
           <label class="consent" for="f-consent">
             <input id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
-            <span>J’accepte que FlyFast enregistre mes informations personnelles et de voyage, de façon chiffrée et pour 14&nbsp;jours au plus, uniquement pour réaliser mon enregistrement, et j’ai lu les conditions <span class="nb">ci-dessus</span>.</span>
+            <span>J’accepte que FlyFast enregistre mes informations personnelles et de voyage, de façon chiffrée et pour 14&nbsp;jours au plus, uniquement pour réaliser mon enregistrement, et j’ai lu les conditions <span class="nb">ci-dessus</span>, ainsi que les <a class="link" href="conditions-de-vente.html" target="_blank" rel="noopener">conditions de vente</a>.</span>
           </label>
           <p class="error" id="e-consent" hidden></p>
         </div>
@@ -550,7 +553,7 @@
         </details>
         <details>
           <summary>Que se passe-t-il si la compagnie refuse l’enregistrement&nbsp;?</summary>
-          <p>Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Le service ne peut garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom.</p>
+          <p>Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Nous ne pouvons pas garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom. Si nous ne parvenons pas à le réaliser, vous êtes remboursé de vos 2&nbsp;€, sauf si le refus vient d’une information inexacte ou d’un document non valide. <a class="link" href="remboursement.html">Lire la politique de remboursement</a>.</p>
         </details>
         <details>
           <summary>Comment régler les 2&nbsp;€&nbsp;?</summary>
@@ -647,6 +650,14 @@
           <li><a href="flyfast-blog/index.html">Blog</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#avis-form">Laisser un avis</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Informations légales">
+        <p class="foot-title">Informations</p>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="conditions-de-vente.html">Conditions de vente</a></li>
+          <li><a href="remboursement.html">Remboursement</a></li>
           <li><a href="confidentialite.html">Confidentialité</a></li>
         </ul>
       </nav>
@@ -1207,5 +1218,6 @@
   $('year').textContent = new Date().getFullYear();
 })();
 </script>
+<script src="flyfast-chat.js?v=1" data-base="" defer></script>
 </body>
 </html>
