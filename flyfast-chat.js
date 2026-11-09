@@ -1,3 +1,4 @@
+/* Fichier généré par _i18n/build.py à partir de _i18n/flyfast-chat.fr.js : ne pas le modifier ici. */
 /* FlyFast : bouton « Discuter ».
  *
  * Ouvre un petit panneau où le visiteur écrit sa question ; la conversation continue sur WhatsApp,
@@ -14,13 +15,80 @@
 
   var WHATSAPP_NUMBER = '201282226808';
   var MAX_LENGTH = 400;
-  var DEFAULT_TEXT = 'Bonjour FlyFast, j’ai une question.';
-  var TOPICS = [
-    { label: 'Comment ça marche ?', text: 'Bonjour FlyFast, comment fonctionne l’enregistrement de mon vol ?' },
-    { label: 'Combien ça coûte ?', text: 'Bonjour FlyFast, combien coûte votre service ?' },
-    { label: 'Mon vol part bientôt', text: 'Bonjour FlyFast, mon vol part dans moins de 10 heures. Que puis-je faire ?' },
-    { label: 'Conseils de voyage', text: 'Bonjour FlyFast, j’ai une question sur mon voyage : ' }
-  ];
+
+  // Textes du panneau, par langue. La langue est celle de la page (<html lang>) ; le français est la langue par défaut.
+  var STRINGS = {
+    fr: {
+      launch: 'Discuter',
+      title: 'Une question ?',
+      sub: 'Conseils gratuits sur l’enregistrement en ligne et le voyage. La conversation continue sur WhatsApp.',
+      close: 'Fermer la fenêtre de discussion',
+      lead: 'Choisissez un sujet ou écrivez votre question.',
+      label: 'Votre message',
+      send: 'Envoyer sur WhatsApp',
+      note1: 'Votre message s’ouvre dans WhatsApp : vous le relisez avant de l’envoyer.',
+      note2a: 'N’écrivez ici ni numéro de passeport, ni numéro de carte bancaire. Pour une demande d’enregistrement, utilisez le ',
+      note2b: 'formulaire sécurisé',
+      note2c: '.',
+      greeting: /^bonjour/i,
+      hello: 'Bonjour FlyFast, ',
+      defaultText: 'Bonjour FlyFast, j’ai une question.',
+      topics: [
+        { label: 'Comment ça marche ?', text: 'Bonjour FlyFast, comment fonctionne l’enregistrement de mon vol ?' },
+        { label: 'Combien ça coûte ?', text: 'Bonjour FlyFast, combien coûte votre service ?' },
+        { label: 'Mon vol part bientôt', text: 'Bonjour FlyFast, mon vol part dans moins de 10 heures. Que puis-je faire ?' },
+        { label: 'Conseils de voyage', text: 'Bonjour FlyFast, j’ai une question sur mon voyage : ' }
+      ]
+    },
+    en: {
+      launch: 'Chat',
+      title: 'A question?',
+      sub: 'Free advice on online check-in and travel. The conversation continues on WhatsApp.',
+      close: 'Close the chat window',
+      lead: 'Choose a topic or write your question.',
+      label: 'Your message',
+      send: 'Send on WhatsApp',
+      note1: 'Your message opens in WhatsApp: you read it again before sending it.',
+      note2a: 'Do not write a passport number or a bank card number here. For a check-in request, use the ',
+      note2b: 'secure form',
+      note2c: '.',
+      greeting: /^(hello|hi|hey|good\s+(morning|afternoon|evening))\b/i,
+      hello: 'Hello FlyFast, ',
+      defaultText: 'Hello FlyFast, I have a question.',
+      topics: [
+        { label: 'How does it work?', text: 'Hello FlyFast, how does the check-in of my flight work?' },
+        { label: 'How much does it cost?', text: 'Hello FlyFast, how much does your service cost?' },
+        { label: 'My flight leaves soon', text: 'Hello FlyFast, my flight leaves in less than 10 hours. What can I do?' },
+        { label: 'Travel advice', text: 'Hello FlyFast, I have a question about my trip: ' }
+      ]
+    },
+    es: {
+      launch: 'Chatear',
+      title: '¿Tiene una pregunta?',
+      sub: 'Consejos gratuitos sobre el check-in online y el viaje. La conversación continúa en WhatsApp.',
+      close: 'Cerrar la ventana de chat',
+      lead: 'Elija un tema o escriba su pregunta.',
+      label: 'Su mensaje',
+      send: 'Enviar por WhatsApp',
+      note1: 'Su mensaje se abre en WhatsApp: lo revisa antes de enviarlo.',
+      note2a: 'No escriba aquí ni el número de pasaporte ni el de su tarjeta bancaria. Para una solicitud de check-in, utilice el ',
+      note2b: 'formulario seguro',
+      note2c: '.',
+      greeting: /^(hola|buen[oa]s)/i,
+      hello: 'Hola FlyFast, ',
+      defaultText: 'Hola FlyFast, tengo una pregunta.',
+      topics: [
+        { label: '¿Cómo funciona?', text: 'Hola FlyFast, ¿cómo funciona el check-in de mi vuelo?' },
+        { label: '¿Cuánto cuesta?', text: 'Hola FlyFast, ¿cuánto cuesta su servicio?' },
+        { label: 'Mi vuelo sale pronto', text: 'Hola FlyFast, mi vuelo sale en menos de 10 horas. ¿Qué puedo hacer?' },
+        { label: 'Consejos de viaje', text: 'Hola FlyFast, tengo una pregunta sobre mi viaje: ' }
+      ]
+    }
+  };
+  var pageLang = String(document.documentElement.getAttribute('lang') || 'fr').slice(0, 2).toLowerCase();
+  var T = STRINGS[pageLang] || STRINGS.fr;
+  var DEFAULT_TEXT = T.defaultText;
+  var TOPICS = T.topics;
 
   var script = document.currentScript;
   var base = (script && script.getAttribute('data-base')) || '';
@@ -77,23 +145,23 @@
     root.className = 'ffc';
     root.id = 'ffc-root';
     root.innerHTML =
-      '<button class="ffc-launch" type="button" aria-expanded="false" aria-controls="ffc-panel">' + BUBBLE + '<span>Discuter</span></button>' +
+      '<button class="ffc-launch" type="button" aria-expanded="false" aria-controls="ffc-panel">' + BUBBLE + '<span>' + T.launch + '</span></button>' +
       '<section class="ffc-panel" id="ffc-panel" role="dialog" aria-labelledby="ffc-title" hidden>' +
         '<div class="ffc-stripe" aria-hidden="true"></div>' +
         '<div class="ffc-head">' +
-          '<div><h2 class="ffc-title" id="ffc-title">Une question ?</h2>' +
-          '<p class="ffc-sub">Conseils gratuits sur l’enregistrement en ligne et le voyage. La conversation continue sur WhatsApp.</p></div>' +
-          '<button class="ffc-close" type="button" aria-label="Fermer la fenêtre de discussion">' + CROSS + '</button>' +
+          '<div><h2 class="ffc-title" id="ffc-title">' + T.title + '</h2>' +
+          '<p class="ffc-sub">' + T.sub + '</p></div>' +
+          '<button class="ffc-close" type="button" aria-label="' + T.close + '">' + CROSS + '</button>' +
         '</div>' +
         '<div class="ffc-body">' +
-          '<p class="ffc-lead" id="ffc-lead">Choisissez un sujet ou écrivez votre question.</p>' +
+          '<p class="ffc-lead" id="ffc-lead">' + T.lead + '</p>' +
           '<ul class="ffc-chips" aria-labelledby="ffc-lead"></ul>' +
-          '<label class="ffc-label" for="ffc-text">Votre message</label>' +
+          '<label class="ffc-label" for="ffc-text">' + T.label + '</label>' +
           '<textarea class="ffc-text" id="ffc-text" rows="4" maxlength="' + MAX_LENGTH + '" aria-describedby="ffc-count"></textarea>' +
           '<p class="ffc-count" id="ffc-count"></p>' +
-          '<a class="ffc-send" href="#" target="_blank" rel="noopener">Envoyer sur WhatsApp</a>' +
-          '<p class="ffc-note">Votre message s’ouvre dans WhatsApp : vous le relisez avant de l’envoyer.</p>' +
-          '<p class="ffc-note">N’écrivez ici ni numéro de passeport, ni numéro de carte bancaire. Pour une demande d’enregistrement, utilisez le <a class="ffc-formlink" href="#">formulaire sécurisé</a>.</p>' +
+          '<a class="ffc-send" href="#" target="_blank" rel="noopener">' + T.send + '</a>' +
+          '<p class="ffc-note">' + T.note1 + '</p>' +
+          '<p class="ffc-note">' + T.note2a + '<a class="ffc-formlink" href="#">' + T.note2b + '</a>' + T.note2c + '</p>' +
         '</div>' +
       '</section>';
 
@@ -130,7 +198,7 @@
     function message() {
       var t = ta.value.trim();
       if (!t) { return DEFAULT_TEXT; }
-      return /^bonjour/i.test(t) ? t : 'Bonjour FlyFast, ' + t;
+      return T.greeting.test(t) ? t : T.hello + t;
     }
     function refresh() {
       send.setAttribute('href', 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message()));

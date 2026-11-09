@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!-- Page générée par _i18n/build.py à partir de la page française et de _i18n/translations.json : ne pas la modifier ici. -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlyFast | Check-in online de su vuelo</title>
+<meta name="description" content="FlyFast realiza su check-in online y le envía su tarjeta de embarque por WhatsApp. 2 € por reserva, a solicitar al menos 10 horas antes del vuelo.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0C2E4E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="FlyFast">
+<meta property="og:title" content="FlyFast | Check-in online de su vuelo">
+<meta property="og:description" content="Realizamos su check-in online y le enviamos su tarjeta de embarque por WhatsApp. 2 € por reserva.">
+<meta property="og:image" content="https://plamedi101.github.io/Mpepo-na-pete/flyfast-images/hero-plane-sunset.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!--i18n:head-->
+<link rel="canonical" href="https://plamedi101.github.io/Mpepo-na-pete/es/">
+<link rel="alternate" hreflang="fr" href="https://plamedi101.github.io/Mpepo-na-pete/">
+<link rel="alternate" hreflang="en" href="https://plamedi101.github.io/Mpepo-na-pete/en/">
+<link rel="alternate" hreflang="es" href="https://plamedi101.github.io/Mpepo-na-pete/es/">
+<link rel="alternate" hreflang="x-default" href="https://plamedi101.github.io/Mpepo-na-pete/">
+<!--/i18n:head-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233B9EE8'/%3E%3Cg transform='translate(4 4)'%3E%3Cpath transform='rotate(45 12 12)' fill='%23fff' d='M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C2E4E;
+    --navy-2:#154670;
+    --ink:#13222F;
+    --muted:#4A5B6C;
+    --sky:#3B9EE8;
+    --sky-text:#0F5A93;
+    --gold:#F0B92E;
+    --gold-hover:#F7CB55;
+    --gold-soft:#FFF6DC;
+    --red:#CE1021;
+    --mist:#F2F6FA;
+    --line:#D5DFEA;
+    --field:#8094A8;
+    --radius:6px;
+    --font-head:'Barlow Semi Condensed','Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+    --font-body:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:88px;-webkit-text-size-adjust:100%;}
+  body{margin:0;background:#fff;color:var(--ink);font:400 1.0625rem/1.6 var(--font-body);-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{margin:0;font-family:var(--font-head);color:var(--navy);line-height:1.12;}
+  h2{font-weight:600;font-size:clamp(1.875rem,3.6vw,2.625rem);letter-spacing:-0.01em;}
+  h3{font-weight:600;font-size:1.25rem;}
+  p{margin:0;}
+  ul,ol{margin:0;padding:0;list-style:none;}
+  img,svg{display:block;max-width:100%;}
+  img{height:auto;}
+  a{color:inherit;}
+  button,input,textarea{font:inherit;color:inherit;}
+
+  :focus-visible{outline:3px solid #1D6FB8;outline-offset:3px;}
+  .hero :focus-visible,.facts :focus-visible,.site-footer :focus-visible{outline-color:#FFD36B;}
+
+  .skip{position:absolute;left:16px;top:-80px;z-index:200;background:var(--navy);color:#fff;padding:12px 18px;border-radius:var(--radius);text-decoration:none;font-weight:600;}
+  .skip:focus{top:12px;}
+
+  .container{width:100%;max-width:1140px;margin:0 auto;padding-inline:24px;}
+  .band{padding:clamp(56px,8vw,96px) 0;}
+  .band-mist{background:var(--mist);}
+  .section-intro{margin-top:12px;color:var(--muted);max-width:52ch;}
+  .link{color:var(--sky-text);text-decoration:underline;text-underline-offset:3px;}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border:1.5px solid transparent;border-radius:var(--radius);font-weight:600;font-size:1rem;line-height:1.2;text-align:center;text-decoration:none;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;}
+  .btn-sm{min-height:42px;padding:0 18px;font-size:.9375rem;}
+  .btn-gold{background:var(--gold);color:var(--navy);}
+  .btn-gold:hover{background:var(--gold-hover);}
+  .btn-ghost{border-color:rgba(255,255,255,.75);color:#fff;background:transparent;}
+  .btn-ghost:hover{background:rgba(255,255,255,.14);}
+  .btn-navy{background:var(--navy);color:#fff;}
+  .btn-navy:hover{background:var(--navy-2);}
+  .btn-outline{border-color:var(--navy);color:var(--navy);background:#fff;}
+  .btn-outline:hover{background:var(--mist);}
+
+  .site-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);}
+  .site-header::before{content:"";display:block;height:4px;background:linear-gradient(90deg,var(--sky) 0 58%,var(--gold) 58% 60.5%,var(--red) 60.5% 67.5%,var(--gold) 67.5% 70%,var(--sky) 70% 100%);}
+  .bar{display:flex;align-items:center;gap:24px;min-height:68px;}
+  .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:700 1.5rem/1 var(--font-head);letter-spacing:-0.01em;color:var(--navy);}
+  .brand-mark{width:34px;height:34px;flex:none;}
+  .nav{display:flex;gap:30px;margin-left:auto;}
+  .nav a{padding:8px 0;border-bottom:2px solid transparent;font-weight:500;text-decoration:none;}
+  .nav a:hover{border-bottom-color:var(--sky);}
+  .menu-toggle{display:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--navy);cursor:pointer;}
+  .menu-toggle svg{width:22px;height:22px;}
+
+  .hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:flex-end;height:clamp(580px,46vw,700px);background:#16507F;color:#fff;}
+  .hero-media{position:absolute;inset:0;z-index:-1;overflow:hidden;}
+  .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 88%;transform-origin:60% 34%;animation:slowZoom 28s ease-in-out infinite alternate;will-change:transform;}
+  @keyframes slowZoom{from{transform:scale(1);}to{transform:scale(1.14);}}
+  .hero-shade{position:absolute;inset:0;background:
+    linear-gradient(0deg,rgba(8,30,52,.94) 0%,rgba(8,30,52,.7) 30%,rgba(8,30,52,.14) 58%,rgba(8,30,52,.22) 100%),
+    linear-gradient(90deg,rgba(8,30,52,.4) 0%,rgba(8,30,52,0) 55%);}
+  .hero-inner{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:end;padding-block:0 56px;}
+  .hero h1{color:#fff;font-weight:700;font-size:clamp(2.25rem,5.6vw,4rem);line-height:1.03;letter-spacing:-0.012em;text-wrap:balance;}
+  .hero .lead{max-width:48ch;font-size:1.0625rem;line-height:1.55;color:rgba(255,255,255,.93);}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px;}
+  .hero-actions .btn{padding:0 22px;}
+  .nb{white-space:nowrap;}
+
+  .facts{background:var(--navy);color:#C9D9E8;}
+  .facts-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+  .facts-list li{padding:22px 28px 22px 0;line-height:1.45;}
+  .facts-list li + li{padding-left:28px;border-left:1px solid rgba(255,255,255,.18);}
+  .facts-list strong{color:#fff;font-weight:600;}
+
+  .how{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,6vw,88px);align-items:start;}
+  .route{margin-top:36px;counter-reset:step;}
+  .route li{position:relative;padding:0 0 32px 68px;counter-increment:step;}
+  .route li::before{content:counter(step);position:absolute;left:0;top:0;width:44px;height:44px;border:2px solid var(--navy);border-radius:50%;background:#fff;color:var(--navy);font:600 1.25rem/40px var(--font-head);text-align:center;}
+  .route li::after{content:"";position:absolute;left:21px;top:54px;bottom:8px;border-left:2px dashed var(--sky);}
+  .route li:last-child{padding-bottom:0;}
+  .route li:last-child::after{display:none;}
+  .route h3{padding-top:9px;}
+  .route p{margin-top:4px;max-width:46ch;color:var(--muted);}
+  .photo{margin:0;overflow:hidden;border-radius:var(--radius);background:var(--mist);}
+  .photo img{width:100%;height:100%;object-fit:cover;}
+  .photo-how{aspect-ratio:3/4;}
+  .photo-how img{object-position:50% 12%;}
+  .photo-avis{aspect-ratio:508/436;}
+  .photo-avis img{width:110.8%;max-width:none;height:auto;object-fit:fill;}
+
+  .notice{display:flex;gap:16px;align-items:flex-start;margin-top:clamp(40px,6vw,64px);padding:20px 24px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft);}
+  .notice svg{flex:none;width:24px;height:24px;margin-top:2px;color:#8A5A00;}
+  .notice p{max-width:80ch;}
+
+  .split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,72px);align-items:start;}
+  .split-aside > * + *{margin-top:32px;}
+  .pay h3{margin-bottom:12px;}
+  .pay-list{border-top:1px solid var(--line);}
+  .pay-list li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);}
+  .pay-badge{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font:700 .9375rem/1 var(--font-head);}
+  .pay-badge.card{background:var(--navy);color:#fff;}
+  .pay-badge.wa{background:#25D366;color:var(--navy);}
+  .pay-name{display:block;font-weight:600;}
+  .pay-num{display:block;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
+  .pay-action{min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;color:var(--sky-text);font-weight:600;font-size:.9375rem;text-decoration:none;display:inline-flex;align-items:center;cursor:pointer;}
+  .pay-action:hover{border-color:var(--sky);}
+  .pay-note{margin-top:12px;font-size:.9375rem;color:var(--muted);}
+
+  .form{padding:clamp(20px,4vw,40px);border:1px solid var(--line);border-radius:8px;background:#fff;}
+  .form-lead{margin-bottom:24px;color:var(--muted);font-size:.9375rem;}
+  .fieldset{min-width:0;margin:0 0 32px;padding:0;border:0;}
+  .fieldset legend{width:100%;margin:0 0 20px;padding:0 0 12px;border-bottom:1px solid var(--line);font:600 1.375rem/1.2 var(--font-head);color:var(--navy);}
+  .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start;}
+  .span-2{grid-column:1 / -1;}
+  .field label{display:block;margin-bottom:6px;font-weight:600;font-size:.9375rem;}
+  .field input{display:block;width:100%;min-height:48px;padding:0 14px;border:1px solid var(--field);border-radius:var(--radius);background:#fff;font-size:1rem;line-height:1.2;}
+  .field input::placeholder{color:#5F7184;opacity:1;}
+  .field input:hover{border-color:#5E7690;}
+  .field input:focus{outline:3px solid rgba(59,158,232,.38);outline-offset:0;border-color:var(--sky-text);}
+  .field input[aria-invalid="true"]{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red);}
+  .hint{margin-top:6px;font-size:.875rem;color:var(--muted);}
+  .error{margin-top:6px;font-size:.875rem;font-weight:500;color:var(--red);}
+  .error[hidden]{display:none;}
+
+  .price{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .price-label{font-weight:500;}
+  .price-amount{font:600 1.875rem/1 var(--font-head);color:var(--navy);font-variant-numeric:tabular-nums;}
+  .terms{padding:18px 20px;border-left:4px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;background:var(--mist);font-size:.9375rem;line-height:1.6;}
+  .terms h3{margin-bottom:8px;font-size:1.125rem;}
+  .terms p + p{margin-top:8px;}
+  .consent{display:flex;gap:12px;align-items:flex-start;margin-top:24px;cursor:pointer;}
+  .consent input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--navy);}
+  .consent-wrap .error{margin-left:34px;}
+  .submit{width:100%;min-height:56px;margin-top:20px;font-size:1.0625rem;}
+  .form-status{margin-top:14px;font-size:.9375rem;font-weight:500;}
+  .form-status.is-error{color:var(--red);}
+  .form-note{margin-top:10px;font-size:.875rem;color:var(--muted);}
+  .alt{margin-top:28px;padding-top:24px;border-top:1px solid var(--line);}
+  .alt .btn{width:100%;gap:10px;}
+  .alt .btn svg{width:20px;height:20px;flex:none;}
+  .alt p{margin-top:10px;font-size:.875rem;color:var(--muted);}
+  .noscript{margin-bottom:20px;padding:14px 16px;border-radius:var(--radius);background:var(--gold-soft);}
+
+  .faq{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(32px,6vw,88px);align-items:start;}
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-list details{border-bottom:1px solid var(--line);}
+  .faq-list summary{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:22px 0;cursor:pointer;list-style:none;font:600 1.25rem/1.3 var(--font-head);color:var(--navy);}
+  .faq-list summary::-webkit-details-marker{display:none;}
+  .faq-list summary::after{content:"";flex:none;width:18px;height:18px;background:linear-gradient(var(--navy),var(--navy)) center/100% 2px no-repeat,linear-gradient(var(--navy),var(--navy)) center/2px 100% no-repeat;}
+  .faq-list details[open] summary::after{background:linear-gradient(var(--navy),var(--navy)) center/100% 2px no-repeat;}
+  .faq-list details p{max-width:62ch;padding:0 42px 24px 0;color:var(--muted);}
+
+  .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;}
+  .field label .opt{font-weight:400;color:var(--muted);}
+  .field textarea{display:block;width:100%;min-height:132px;padding:12px 14px;border:1px solid var(--field);border-radius:var(--radius);background:#fff;font-size:1rem;line-height:1.5;resize:vertical;}
+  .field textarea:hover{border-color:#5E7690;}
+  .field textarea:focus{outline:3px solid rgba(59,158,232,.38);outline-offset:0;border-color:var(--sky-text);}
+  .field textarea[aria-invalid="true"]{border-color:var(--red);box-shadow:inset 0 0 0 1px var(--red);}
+
+  .ts-box iframe{max-width:100%;margin-top:16px;}
+  .fallback{margin-top:16px;padding:16px 18px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft);font-size:.9375rem;}
+  .fallback[hidden]{display:none;}
+  .fallback p{margin-bottom:12px;}
+  .fallback .btn{width:100%;}
+  .done[hidden]{display:none;}
+  .done:focus{outline:none;}
+  .done h3{font-size:1.625rem;}
+  .done-label{margin-top:14px;color:var(--muted);}
+  .done-ref{display:inline-block;max-width:100%;margin:8px 0 20px;padding:10px 18px;border:2px solid var(--navy);border-radius:var(--radius);background:var(--mist);font:700 clamp(1.5rem,5.4vw,2rem)/1.2 var(--font-head);letter-spacing:.06em;color:var(--navy);font-variant-numeric:tabular-nums;overflow-wrap:anywhere;user-select:all;}
+  .done .btn{width:100%;}
+  .done p + .btn{margin-top:18px;}
+  .done .hint{margin:16px 0 20px;}
+
+  #avis{--star-on:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' fill='%23F0B92E' stroke='%238A5A00' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");--star-off:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' fill='%23fff' stroke='%238094A8' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");}
+  .stars{position:relative;display:inline-block;flex:none;width:calc(5 * var(--s,20px));height:var(--s,20px);background:var(--star-off) 0 0/var(--s,20px) var(--s,20px) repeat-x;}
+  .stars::before{content:"";position:absolute;left:0;top:0;bottom:0;width:calc(var(--r,0) * var(--s,20px));background:var(--star-on) 0 0/var(--s,20px) var(--s,20px) repeat-x;}
+
+  .reviews-head > * + *{margin-top:12px;}
+  .reviews-summary{display:flex;align-items:center;flex-wrap:wrap;gap:4px 12px;color:var(--muted);}
+  .reviews-summary[hidden]{display:none;}
+  .reviews-empty{max-width:52ch;color:var(--muted);}
+  .reviews-empty[hidden]{display:none;}
+  .reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:32px 28px;margin-top:36px;}
+  .reviews-grid[hidden]{display:none;}
+  .reviews-more{margin-top:32px;}
+  .reviews-more[hidden]{display:none;}
+  .review{margin:0;padding-top:16px;border-top:2px solid var(--navy);}
+  .review[hidden]{display:none;}
+  .review-head{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;min-height:24px;margin-bottom:10px;}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:2px 10px 2px 8px;border-radius:999px;background:#E1EFFB;color:var(--sky-text);font-size:.8125rem;font-weight:600;line-height:1.5;}
+  .badge::before{content:"";flex:none;width:14px;height:14px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F5A93' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/14px 14px no-repeat;}
+  .review blockquote{margin:0 0 12px;overflow-wrap:anywhere;}
+  .review figcaption{font-weight:600;}
+  .review-date{display:block;font-weight:400;font-size:.875rem;color:var(--muted);}
+  .reviews{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,6vw,88px);align-items:center;margin-top:clamp(40px,6vw,64px);}
+  .review-form > h3{margin-bottom:6px;font-size:1.5rem;}
+  .rating-field{min-width:0;margin:0;padding:0;border:0;}
+  .rating-field legend{margin:0 0 4px;padding:0;font-weight:600;font-size:.9375rem;}
+  .rating{position:relative;display:flex;align-items:center;flex-wrap:wrap;}
+  .rating label{flex:none;width:44px;height:44px;cursor:pointer;background:var(--star-off) center/34px 34px no-repeat;}
+  .rating label.on{background-image:var(--star-on);}
+  .rating input:focus-visible + label{outline:3px solid #1D6FB8;outline-offset:-3px;border-radius:var(--radius);}
+  .rating-text{margin-left:10px;font-size:.9375rem;color:var(--muted);}
+
+  .site-footer{padding:56px 0 28px;background:var(--navy);color:#C9D9E8;}
+  .foot{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,3fr) minmax(0,4fr);gap:40px;}
+  .foot .brand{color:#fff;}
+  .foot-text{margin-top:16px;max-width:36ch;font-size:.9375rem;}
+  .foot-title{margin:7px 0 14px;font:600 1.0625rem/1.2 var(--font-head);color:#fff;}
+  .foot li + li{margin-top:10px;}
+  .foot a{text-decoration:none;}
+  .foot a:hover{color:#fff;text-decoration:underline;}
+  .foot-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:.875rem;color:#9FB6CC;}
+
+  @media (min-width:1700px){
+    .hero-photo{object-position:50% 66%;}
+  }
+  @media (min-width:901px) and (min-height:640px){
+    .split-aside{position:sticky;top:96px;}
+  }
+  @media (max-width:1100px){
+    .hero{display:block;height:auto;background:var(--navy);}
+    .hero-media{position:relative;inset:auto;z-index:auto;aspect-ratio:21/9;}
+    .hero-photo{object-position:50% 45%;}
+    .hero-shade{background:linear-gradient(0deg,rgba(12,46,78,.6) 0%,rgba(12,46,78,0) 40%);}
+    .hero-inner{align-items:start;padding-block:36px 44px;}
+    .facts{border-top:1px solid rgba(255,255,255,.14);}
+  }
+  @media (max-width:900px){
+    .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;margin:0;padding:4px 24px 12px;background:#fff;border-bottom:1px solid var(--line);}
+    .nav.open{display:flex;}
+    .nav a{padding:15px 0;border-bottom:1px solid var(--line);}
+    .nav a:last-child{border-bottom:0;}
+    .bar .btn-sm{margin-left:auto;}
+    .menu-toggle{display:inline-flex;}
+    .how,.split,.faq,.reviews{grid-template-columns:minmax(0,1fr);}
+    .split{gap:32px;}
+    .split-aside{display:contents;}
+    .split-aside > * + *{margin-top:0;}
+    .split-aside > .pay{order:2;}
+    .split .form{order:1;}
+    .photo-how{aspect-ratio:4/3;}
+    .photo-how img{object-position:50% 8%;}
+    .foot{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;}
+    .foot > div:first-child{grid-column:1 / -1;}
+  }
+  @media (max-width:760px){
+    .facts-list{grid-template-columns:minmax(0,1fr);}
+    .facts-list li,.facts-list li + li{padding:16px 0;border-left:0;}
+    .facts-list li + li{border-top:1px solid rgba(255,255,255,.18);}
+    .hero-media{aspect-ratio:16/10;}
+    .hero-inner{display:block;padding-block:28px 40px;}
+    .hero .lead{margin-top:16px;max-width:60ch;}
+    .hero-actions .btn{flex:1 1 100%;}
+  }
+  @media (max-width:560px){
+    .container{padding-inline:20px;}
+    .nav{padding-inline:20px;}
+    .grid-2{grid-template-columns:minmax(0,1fr);}
+    .brand{font-size:1.375rem;}
+    .foot{grid-template-columns:minmax(0,1fr);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *,*::before,*::after{animation:none !important;transition:none !important;}
+  }
+/*i18n*/
+  .langbar{background:var(--mist);border-bottom:1px solid var(--line);font-size:.875rem;line-height:1.2;}
+  .langbar .container{display:flex;align-items:center;justify-content:flex-end;gap:2px;min-height:38px;}
+  .langbar svg{width:16px;height:16px;flex:none;margin-right:6px;color:var(--muted);}
+  .langbar a{display:inline-flex;align-items:center;min-height:38px;padding:0 9px;color:var(--muted);font-weight:500;text-decoration:none;}
+  .langbar a:hover{color:var(--navy);text-decoration:underline;text-underline-offset:3px;}
+  .langbar a[aria-current]{color:var(--navy);font-weight:600;box-shadow:inset 0 -2px 0 var(--sky);}
+  .i18n-note{margin-top:20px;max-width:68ch;padding:12px 16px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft,#FFF6DC);color:var(--ink);font-size:.9375rem;line-height:1.5;}
+  .i18n-note a{color:var(--sky-text);text-underline-offset:3px;}
+/*/i18n*/
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#contenu">Ir al contenido</a>
+
+<!--i18n:langbar-->
+<nav class="langbar" aria-label="Idioma">
+  <div class="container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9s1.3-6.4 3.9-9z"/></svg><a href="../index.html" lang="fr" hreflang="fr">Français</a><a href="../en/index.html" lang="en" hreflang="en">English</a><a href="index.html" lang="es" hreflang="es" aria-current="true">Español</a></div>
+</nav>
+<!--/i18n:langbar-->
+<header class="site-header">
+  <div class="container bar">
+    <a class="brand" href="#top" aria-label="FlyFast, volver al inicio de la página">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+      <span>FlyFast</span>
+    </a>
+    <nav class="nav" id="site-nav" aria-label="Navegación principal">
+      <a href="#comment">Cómo funciona</a>
+      <a href="#enregistrer">Hacer el check-in</a>
+      <a href="flyfast-blog/index.html">Blog</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold btn-sm" href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir el menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="contenu">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-media">
+      <img class="hero-photo" src="../flyfast-images/hero-plane-sunset.jpg" width="1600" height="900" alt="Avión de pasajeros volando sobre las nubes al atardecer" fetchpriority="high" decoding="async">
+      <div class="hero-shade"></div>
+    </div>
+    <div class="container hero-inner">
+      <h1 id="hero-title">El check-in de su vuelo, sin estrés.</h1>
+      <div class="hero-side">
+        <p class="lead">Envíenos los datos de su reserva. Nosotros hacemos el check-in online en el sitio web de la aerolínea y le enviamos su tarjeta de embarque por WhatsApp.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#enregistrer">Hacer mi check-in</a>
+          <a class="btn btn-ghost" href="#comment">Cómo funciona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="facts">
+    <ul class="container facts-list">
+      <li><strong>2&nbsp;€</strong> por reserva, sea cual sea el número de pasajeros</li>
+      <li><strong>10&nbsp;horas</strong> antes del despegue, como máximo, para enviarnos su solicitud</li>
+      <li><strong>Tarjeta de embarque</strong> enviada directamente por WhatsApp</li>
+    </ul>
+  </div>
+
+  <section class="band" id="comment" aria-labelledby="comment-title">
+    <div class="container how">
+      <div>
+        <h2 id="comment-title">Cómo funciona</h2>
+        <p class="section-intro">Un proceso sencillo, con condiciones claras.</p>
+        <ol class="route">
+          <li>
+            <h3>Usted nos envía sus datos</h3>
+            <p>Código de reserva (PNR), nombre completo, pasaporte y datos del vuelo, mediante el formulario de abajo.</p>
+          </li>
+          <li>
+            <h3>Usted paga 2&nbsp;€ por&nbsp;reserva</h3>
+            <p>Le confirmamos las condiciones de pago por WhatsApp. El&nbsp;pago con tarjeta, mediante Stripe, estará disponible&nbsp;pronto.</p>
+          </li>
+          <li>
+            <h3>Nosotros hacemos su check-in</h3>
+            <p>Nuestro equipo realiza el trámite en el sitio web oficial de su aerolínea.</p>
+          </li>
+          <li>
+            <h3>Usted recibe su tarjeta de embarque</h3>
+            <p>Directamente por WhatsApp, lista para imprimir o mostrar.</p>
+          </li>
+        </ol>
+      </div>
+      <figure class="photo photo-how">
+        <img src="../flyfast-images/checkin-2.jpg" width="445" height="900" loading="lazy" decoding="async" alt="Dos viajeros sonrientes en un aeropuerto, con la tarjeta de embarque en la mano">
+      </figure>
+    </div>
+    <div class="container">
+      <aside class="notice" aria-label="Plazo que debe respetarse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <p><strong>Importante:</strong> su solicitud debe llegarnos a más tardar <strong>10&nbsp;horas antes del despegue</strong>. Pasado ese plazo, no podemos garantizar que el check-in se haga a tiempo: en ese caso, acuda directamente al mostrador de check-in de su aerolínea en el aeropuerto.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="band band-mist" id="enregistrer" aria-labelledby="form-title">
+    <div class="container split">
+      <div class="split-aside">
+        <div>
+          <h2 id="form-title">Haga el check-in de su vuelo</h2>
+          <p class="section-intro">Rellene este formulario con precisión. Estos datos se utilizan únicamente para realizar su check-in.</p>
+        </div>
+        <div class="pay">
+          <h3>Medios de pago</h3>
+          <ul class="pay-list">
+            <li>
+              <span class="pay-badge wa" aria-hidden="true">W</span>
+              <span><span class="pay-name">WhatsApp</span><span class="pay-num">Condiciones a acordar por mensaje</span></span>
+              <a class="pay-action" href="https://wa.me/201282226808" target="_blank" rel="noopener" aria-label="Escríbanos por WhatsApp para acordar el pago">Escribir</a>
+            </li>
+            <li>
+              <span class="pay-badge card" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg></span>
+              <span><span class="pay-name">Tarjeta bancaria</span><span class="pay-num">Próximamente, con&nbsp;Stripe</span></span>
+            </li>
+          </ul>
+          <p class="pay-note">Le confirmamos las condiciones una vez recibida su solicitud.</p>
+        </div>
+      </div>
+
+      <form class="form" id="request-form" novalidate autocomplete="on">
+        <noscript><p class="noscript">Este formulario requiere JavaScript. También puede escribirnos directamente por <a class="link" href="https://wa.me/201282226808">WhatsApp</a>.</p></noscript>
+        <div id="form-fields">
+        <p class="form-lead">Todos los campos son obligatorios.</p>
+
+        <fieldset class="fieldset">
+          <legend>El pasajero</legend>
+          <div class="grid-2">
+            <div class="field span-2">
+              <label for="f-name">Nombre completo</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Ej.: GARCÍA Juan" required aria-describedby="h-name e-name">
+              <p class="hint" id="h-name">Tal como figura en el pasaporte.</p>
+              <p class="error" id="e-name" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-passport">Número de pasaporte</label>
+              <input id="f-passport" name="passport" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ej.: AB1234567" required aria-describedby="e-passport">
+              <p class="error" id="e-passport" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-nationality">Nacionalidad</label>
+              <input id="f-nationality" name="nationality" type="text" autocomplete="off" placeholder="Ej.: Española" required aria-describedby="e-nationality">
+              <p class="error" id="e-nationality" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-dob">Fecha de nacimiento</label>
+              <input id="f-dob" name="dob" type="date" autocomplete="bday" required aria-describedby="e-dob">
+              <p class="error" id="e-dob" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-contact">Número de WhatsApp</label>
+              <input id="f-contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ej.: +34 612 34 56 78" required aria-describedby="h-contact e-contact">
+              <p class="hint" id="h-contact">Para enviarle su tarjeta de embarque.</p>
+              <p class="error" id="e-contact" hidden></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="fieldset">
+          <legend>El vuelo</legend>
+          <div class="grid-2">
+            <div class="field">
+              <label for="f-airline">Aerolínea</label>
+              <input id="f-airline" name="airline" type="text" autocomplete="off" placeholder="Ej.: Ethiopian Airlines" required aria-describedby="e-airline">
+              <p class="error" id="e-airline" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-flightnum">Número de vuelo</label>
+              <input id="f-flightnum" name="flight" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ej.: ET 704" required aria-describedby="e-flightnum">
+              <p class="error" id="e-flightnum" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-pnr">Código de reserva (PNR)</label>
+              <input id="f-pnr" name="pnr" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ej.: X7YQ2P" required aria-describedby="h-pnr e-pnr">
+              <p class="hint" id="h-pnr">Código de 5 o 6 caracteres.</p>
+              <p class="error" id="e-pnr" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-ticket">Número de billete (e-ticket)</label>
+              <input id="f-ticket" name="ticket" type="text" autocomplete="off" spellcheck="false" placeholder="Ej.: 071-1234567890" required aria-describedby="h-ticket e-ticket">
+              <p class="hint" id="h-ticket">Figura en su confirmación de reserva.</p>
+              <p class="error" id="e-ticket" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label for="f-datetime">Fecha y hora del vuelo</label>
+              <input id="f-datetime" name="datetime" type="text" autocomplete="off" placeholder="Ej.: 24/08/2026 a las 14:20" required aria-describedby="h-datetime e-datetime">
+              <p class="hint" id="h-datetime">Hora local de salida.</p>
+              <p class="error" id="e-datetime" hidden></p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="price">
+          <span class="price-label">Tarifa del servicio por&nbsp;reserva</span>
+          <span class="price-amount">2,00&nbsp;€</span>
+        </div>
+
+        <div class="terms">
+          <h3>Lea esto antes de enviar</h3>
+          <p>FlyFast es un servicio de asistencia independiente, no afiliado a su aerolínea. Nuestro equipo realiza su check-in directamente en el sitio web oficial de la aerolínea.</p>
+          <p>No podemos garantizar el check-in si la aerolínea lo rechaza, si el vuelo se modifica, si algún documento no es válido o si su solicitud nos llega con menos de 10&nbsp;horas de antelación a la salida.</p>
+          <p>Sus datos se cifran desde el momento del envío y solo se usan para su check-in. Después se borran: en cuanto el check-in está hecho y, como máximo, 14&nbsp;días después de su solicitud. Solo queda un registro vacío, sin datos personales. <a class="link" href="privacidad.html">Ver los detalles</a></p>
+          <p>Al enviar su solicitud, usted nos pide que hagamos el check-in sin demora. Si es consumidor en la Unión Europea, puede desistir mientras el check-in no se haya hecho, pero no después. Si no realizamos el check-in, se le reembolsa el importe, salvo error en los datos facilitados. Consulte las <a class="link" href="condiciones-de-venta.html" target="_blank" rel="noopener">condiciones de venta</a> y la <a class="link" href="reembolso.html" target="_blank" rel="noopener">política de reembolso</a>.</p>
+        </div>
+
+        <div class="consent-wrap">
+          <label class="consent" for="f-consent">
+            <input id="f-consent" name="consent" type="checkbox" required aria-describedby="e-consent">
+            <span>Acepto que FlyFast guarde mis datos personales y de viaje, cifrados y durante 14&nbsp;días como máximo, únicamente para realizar mi check-in, y he leído las condiciones <span class="nb">anteriores</span>, así como las <a class="link" href="condiciones-de-venta.html" target="_blank" rel="noopener">condiciones de venta</a>.</span>
+          </label>
+          <p class="error" id="e-consent" hidden></p>
+        </div>
+
+        <div class="ts-box" id="ts-request"></div>
+        <button class="btn btn-gold submit" id="submit-btn" type="submit">Enviar mi solicitud</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <div class="fallback" id="form-fallback" hidden>
+          <p>También puede enviar su solicitud por WhatsApp: el mensaje ya está redactado y usted lo revisa antes de enviarlo. Sus datos pasan entonces por WhatsApp y no por nuestro servicio cifrado.</p>
+          <button class="btn btn-outline" id="fallback-btn" type="button">Enviar por WhatsApp</button>
+        </div>
+        <p class="form-note">Tras el envío, recibirá un número de solicitud. Solo tiene que enviárnoslo por WhatsApp para iniciar su check-in.</p>
+
+        <div class="alt">
+          <a class="btn btn-outline" href="https://wa.me/201282226808?text=Hola%20FlyFast%2C%20les%20env%C3%ADo%20una%20foto%20de%20mi%20pasaporte%2Fbillete%20para%20mi%20check-in%3A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.8 1.8 0 0 1-2.6-2.6l8.3-8.3"/></svg> Enviar una foto del pasaporte o del billete
+          </a>
+          <p>Útil si algún dato es difícil de copiar. Adjunte la foto directamente en la conversación de WhatsApp. Por nuestra parte, la eliminamos una vez hecho su check-in.</p>
+        </div>
+        </div>
+
+        <div class="done" id="form-done" tabindex="-1" hidden>
+          <h3 id="done-title">Solicitud registrada</h3>
+          <p class="done-label" id="done-label">Anote su número de solicitud:</p>
+          <p class="done-ref" id="done-refs"></p>
+          <p>Último paso: envíenos este número por WhatsApp. Le confirmamos el pago de los 2&nbsp;€ y después iniciamos su check-in.</p>
+          <a class="btn btn-gold" id="done-wa" href="https://wa.me/201282226808" target="_blank" rel="noopener">Avisar a FlyFast por WhatsApp</a>
+          <p class="hint">Sus datos están cifrados. Se borrarán en cuanto su check-in esté hecho y, como máximo, 14&nbsp;días después de su solicitud. Conserve este número: también le permitirá dejar una opinión con la mención <span class="nb">«Cliente&nbsp;verificado»</span>.</p>
+          <button class="btn btn-outline" id="done-another" type="button">Hacer el check-in de otro pasajero</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="band" id="faq" aria-labelledby="faq-title">
+    <div class="container faq">
+      <div>
+        <h2 id="faq-title">Preguntas frecuentes</h2>
+        <p class="section-intro">¿Tiene otra pregunta? <a class="link" href="https://wa.me/201282226808" target="_blank" rel="noopener">Escríbanos por WhatsApp</a>.</p>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>¿Qué pasa si envío mi solicitud con menos de 10&nbsp;horas de antelación al vuelo?</summary>
+          <p>No podemos garantizar que el check-in se haga a tiempo. En ese caso, acuda directamente al mostrador de check-in de su aerolínea en el aeropuerto.</p>
+        </details>
+        <details>
+          <summary>¿Este servicio está afiliado a mi aerolínea?</summary>
+          <p>No. FlyFast es un servicio de asistencia independiente. Utilizamos el sitio web oficial de su aerolínea para hacer su check-in, igual que lo haría cualquier pasajero.</p>
+        </details>
+        <details>
+          <summary>¿Están seguros mis datos (pasaporte, etc.)?</summary>
+          <p>Se cifran desde el momento del envío, se usan únicamente para hacer su check-in y después se borran: en cuanto está hecho y, como máximo, 14&nbsp;días después de su solicitud. Solo queda un registro vacío, sin datos personales. <a class="link" href="privacidad.html">Leer la página de Privacidad</a>.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si la aerolínea rechaza el check-in?</summary>
+          <p>Puede ocurrir por motivos ajenos a nuestra voluntad (documento no válido, vuelo modificado, restricción específica). No podemos garantizar el resultado del check-in, solo el trámite realizado en su nombre. Si no conseguimos realizarlo, se le reembolsan los 2&nbsp;€, salvo que el rechazo se deba a un dato inexacto o a un documento no válido. <a class="link" href="reembolso.html">Leer la política de reembolso</a>.</p>
+        </details>
+        <details>
+          <summary>¿Cómo se pagan los 2&nbsp;€?</summary>
+          <p>2&nbsp;€ por reserva, sea cual sea el número de pasajeros. De momento, le confirmamos las condiciones de pago por WhatsApp una vez recibida su solicitud. El pago con tarjeta, mediante Stripe, estará disponible próximamente.</p>
+        </details>
+        <details>
+          <summary>Somos varios en la misma reserva: ¿qué debo hacer?</summary>
+          <p>Rellene el formulario una vez por cada pasajero, con el mismo código de reserva (PNR). Solo paga 2&nbsp;€ por el conjunto de la reserva.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-mist" id="avis" aria-labelledby="avis-title">
+    <div class="container">
+      <div class="reviews-head">
+        <h2 id="avis-title">Opiniones de los viajeros</h2>
+        <div class="reviews-summary" id="reviews-summary" hidden></div>
+        <p class="reviews-empty" id="reviews-empty" hidden>Todavía no hay opiniones publicadas. ¿Ha usado FlyFast? Sea el primero en compartir su experiencia.</p>
+      </div>
+      <div class="reviews-grid" id="reviews-list" hidden></div>
+      <button class="btn btn-outline btn-sm reviews-more" id="reviews-more" type="button" aria-expanded="false" hidden></button>
+    </div>
+    <div class="container reviews">
+      <form class="form review-form" id="review-form" novalidate>
+        <h3 id="avis-form">Dejar una opinión</h3>
+        <p class="form-lead">¿Ha usado FlyFast? Cuéntenos su experiencia: su opinión se publicará en esta página.</p>
+        <div class="grid-2">
+          <div class="field">
+            <label for="r-name">Nombre</label>
+            <input id="r-name" name="name" type="text" autocomplete="given-name" maxlength="40" placeholder="Ej.: María" required aria-describedby="h-r-name e-r-name">
+            <p class="hint" id="h-r-name">Solo se mostrará su nombre de pila.</p>
+            <p class="error" id="e-r-name" hidden></p>
+          </div>
+          <fieldset class="rating-field">
+            <legend>Su valoración</legend>
+            <div class="rating">
+              <input class="sr-only" type="radio" name="rating" id="r-star-1" value="1" aria-describedby="e-r-rating"><label for="r-star-1"><span class="sr-only">1 de 5</span></label>
+              <input class="sr-only" type="radio" name="rating" id="r-star-2" value="2" aria-describedby="e-r-rating"><label for="r-star-2"><span class="sr-only">2 de 5</span></label>
+              <input class="sr-only" type="radio" name="rating" id="r-star-3" value="3" aria-describedby="e-r-rating"><label for="r-star-3"><span class="sr-only">3 de 5</span></label>
+              <input class="sr-only" type="radio" name="rating" id="r-star-4" value="4" aria-describedby="e-r-rating"><label for="r-star-4"><span class="sr-only">4 de 5</span></label>
+              <input class="sr-only" type="radio" name="rating" id="r-star-5" value="5" aria-describedby="e-r-rating"><label for="r-star-5"><span class="sr-only">5 de 5</span></label>
+              <span class="rating-text" id="rating-text"></span>
+            </div>
+            <p class="error" id="e-r-rating" hidden></p>
+          </fieldset>
+          <div class="field span-2">
+            <label for="r-text">Su opinión</label>
+            <textarea id="r-text" name="text" rows="5" maxlength="600" required aria-describedby="h-r-text e-r-text"></textarea>
+            <p class="hint" id="h-r-text"><span id="r-count">0/600</span> caracteres. Sin enlaces ni direcciones de correo electrónico.</p>
+            <p class="error" id="e-r-text" hidden></p>
+          </div>
+          <div class="field span-2">
+            <label for="r-ref">Número de solicitud <span class="opt">(opcional)</span></label>
+            <input id="r-ref" name="ref" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ej.: FF-AB12CD" aria-describedby="h-r-ref e-r-ref">
+            <p class="hint" id="h-r-ref">Permite añadir la mención <span class="nb">«Cliente&nbsp;verificado»</span> a su opinión.</p>
+            <p class="error" id="e-r-ref" hidden></p>
+          </div>
+        </div>
+        <div class="consent-wrap">
+          <label class="consent" for="r-consent">
+            <input id="r-consent" name="consent" type="checkbox" required aria-describedby="e-r-consent">
+            <span>Acepto que mi nombre de pila y mi opinión se publiquen en este sitio, tal como se explica en la página de <a class="link" href="privacidad.html">Privacidad</a>.</span>
+          </label>
+          <p class="error" id="e-r-consent" hidden></p>
+        </div>
+        <div class="ts-box" id="ts-review"></div>
+        <button class="btn btn-navy submit" id="review-submit" type="submit">Enviar mi opinión</button>
+        <p class="form-status" id="review-status" role="status" aria-live="polite"></p>
+      </form>
+      <figure class="photo photo-avis">
+        <img src="../flyfast-images/checkin-1.jpg" width="563" height="573" loading="lazy" decoding="async" alt="Dos viajeros consultando su tarjeta de embarque en un aeropuerto">
+      </figure>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top" aria-label="FlyFast, volver al inicio de la página">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg>
+          <span>FlyFast</span>
+        </a>
+        <p class="foot-text">Servicio independiente de asistencia para el check-in de vuelos, no afiliado a las aerolíneas.</p>
+      </div>
+      <nav aria-label="Enlaces del pie de página">
+        <p class="foot-title">Navegación</p>
+        <ul>
+          <li><a href="#comment">Cómo funciona</a></li>
+          <li><a href="#enregistrer">Hacer el check-in</a></li>
+          <li><a href="flyfast-blog/index.html">Blog</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#avis-form">Dejar una opinión</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Información legal">
+        <p class="foot-title">Información</p>
+        <ul>
+          <li><a href="aviso-legal.html">Aviso legal</a></li>
+          <li><a href="condiciones-de-venta.html">Condiciones de venta</a></li>
+          <li><a href="reembolso.html">Reembolsos</a></li>
+          <li><a href="privacidad.html">Privacidad</a></li>
+        </ul>
+      </nav>
+      <div>
+        <p class="foot-title">Contacto</p>
+        <ul>
+          <li><a href="https://wa.me/201282226808" target="_blank" rel="noopener">WhatsApp: +20&nbsp;128&nbsp;222&nbsp;6808</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-bottom">© <span id="year">2026</span> FlyFast. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var WHATSAPP_NUMBER = '201282226808';
+  // Adresse du service d’enregistrement et clé publique du contrôle anti-robot : renseignées à la mise en ligne.
+  var API_BASE = 'https://flyfast-api.flyfast-checkin.workers.dev';
+  var TURNSTILE_SITEKEY = '0x4AAAAAAF4-2ioMp1Q-QZbR';
+  var apiReady = API_BASE.indexOf('__') !== 0;
+
+  function $(id) { return document.getElementById(id); }
+  function make(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text !== undefined) { n.textContent = text; }
+    return n;
+  }
+
+  var toggle = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('site-nav');
+  function closeMenu() {
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir el menú');
+  }
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Cerrar el menú' : 'Abrir el menú');
+  });
+  nav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) { closeMenu(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { closeMenu(); toggle.focus(); }
+  });
+
+  /* ---------- Échanges avec le service d’enregistrement ---------- */
+
+  var FAIL_TEXT = 'No se pudo enviar. Compruebe su conexión e inténtelo de nuevo.';
+
+  // Messages renvoyés par le service d’enregistrement (rédigés en français) : affichés dans la langue de la page.
+  var SERVER_TEXT = {
+    "Le service est momentanément indisponible. Réessayez dans quelques minutes.": "El servicio no está disponible momentáneamente. Inténtelo de nuevo dentro de unos minutos.",
+    "La vérification anti-robot a échoué. Rechargez la page et réessayez.": "El control antirrobot ha fallado. Recargue la página e inténtelo de nuevo.",
+    "La vérification anti-robot est momentanément indisponible. Réessayez dans un instant.": "El control antirrobot no está disponible momentáneamente. Inténtelo de nuevo dentro de un momento.",
+    "Origine non autorisée.": "Origen no autorizado.",
+    "Trop de tentatives. Réessayez un peu plus tard.": "Demasiados intentos. Inténtelo de nuevo un poco más tarde.",
+    "Demande illisible.": "No se ha podido leer la solicitud.",
+    "Format de demande non pris en charge.": "Formato de solicitud no admitido.",
+    "Demande trop volumineuse.": "Solicitud demasiado grande.",
+    "Complétez les champs signalés pour continuer.": "Complete los campos señalados para continuar.",
+    "Indiquez votre nom complet, comme sur le passeport.": "Indique su nombre completo, tal como figura en el pasaporte.",
+    "Indiquez un numéro de passeport valide.": "Indique un número de pasaporte válido.",
+    "Indiquez votre nationalité.": "Indique su nacionalidad.",
+    "Indiquez votre date de naissance.": "Indique su fecha de nacimiento.",
+    "Indiquez un numéro WhatsApp valide, avec l’indicatif du pays.": "Indique un número de WhatsApp válido, con el prefijo del país.",
+    "Indiquez la compagnie aérienne.": "Indique la aerolínea.",
+    "Indiquez un numéro de vol valide, par exemple ET 704.": "Indique un número de vuelo válido, por ejemplo ET 704.",
+    "Indiquez la référence de réservation (PNR) : 5 à 8 caractères.": "Indique el código de reserva (PNR): de 5 a 8 caracteres.",
+    "Indiquez le numéro de billet.": "Indique el número de billete.",
+    "Indiquez la date et l’heure du vol.": "Indique la fecha y la hora del vuelo.",
+    "Cochez la case pour accepter les conditions.": "Marque la casilla para aceptar las condiciones.",
+    "Indiquez votre prénom (lettres uniquement, 40 caractères maximum).": "Indique su nombre de pila (solo letras, 40 caracteres como máximo).",
+    "Choisissez une note de 1 à 5.": "Elija una valoración de 1 a 5.",
+    "Votre avis est trop court (10 caractères minimum).": "Su opinión es demasiado corta (mínimo 10 caracteres).",
+    "Votre avis est trop long (600 caractères maximum).": "Su opinión es demasiado larga (600 caracteres como máximo).",
+    "Les liens et adresses e-mail ne sont pas acceptés dans un avis.": "No se aceptan enlaces ni direcciones de correo electrónico en una opinión.",
+    "Numéro de dossier invalide. Il ressemble à FF-AB12CD.": "Número de solicitud no válido. Tiene este aspecto: FF-AB12CD.",
+    "Cochez la case pour accepter la publication de votre prénom et de votre avis.": "Marque la casilla para aceptar la publicación de su nombre de pila y de su opinión.",
+    "Méthode non autorisée.": "Método no permitido.",
+    "Introuvable.": "No encontrado."
+  };
+  function S(message) {
+    var key = String(message || '').replace(/\s+/g, ' ').trim();
+    return Object.prototype.hasOwnProperty.call(SERVER_TEXT, key) ? SERVER_TEXT[key] : message;
+  }
+
+  function postJson(path, data) {
+    return fetch(API_BASE + path, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+      credentials: 'omit'
+    }).then(function (res) {
+      return res.json().then(
+        function (body) { return { status: res.status, body: body || {} }; },
+        function () { return { status: res.status, body: {} }; }
+      );
+    });
+  }
+
+  /* Contrôle anti-robot (Cloudflare Turnstile) : chargé seulement quand on commence à remplir un formulaire. */
+  var ts = { state: 'idle', waiting: [], widgets: {}, pending: {} };
+
+  function tsLoad() {
+    if (ts.state !== 'idle') { return; }
+    ts.state = 'loading';
+    window.ffTurnstileReady = function () {
+      ts.state = 'ready';
+      ts.waiting.splice(0).forEach(function (cb) { cb(null); });
+    };
+    var s = document.createElement('script');
+    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=ffTurnstileReady';
+    s.async = true;
+    s.defer = true;
+    s.onerror = function () {
+      if (s.parentNode) { s.parentNode.removeChild(s); }
+      ts.state = 'idle';
+      ts.waiting.splice(0).forEach(function (cb) { cb(new Error('script')); });
+    };
+    document.head.appendChild(s);
+  }
+
+  function tsWhenReady(cb) {
+    if (ts.state === 'ready') { cb(null); return; }
+    ts.waiting.push(cb);
+    tsLoad();
+  }
+
+  function tsToken(boxId, action) {
+    return new Promise(function (resolve, reject) {
+      var timer = setTimeout(function () { ts.pending[boxId] = null; reject(new Error('timeout')); }, 30000);
+      var slot = {
+        ok: function (token) { clearTimeout(timer); resolve(token); },
+        fail: function (err) { clearTimeout(timer); reject(err); }
+      };
+      function settle(kind, value) {
+        var p = ts.pending[boxId];
+        ts.pending[boxId] = null;
+        if (p) { p[kind](value); }
+      }
+      tsWhenReady(function (err) {
+        if (err) { slot.fail(err); return; }
+        try {
+          var id = ts.widgets[boxId];
+          ts.pending[boxId] = slot;
+          if (id === undefined) {
+            id = window.turnstile.render('#' + boxId, {
+              sitekey: TURNSTILE_SITEKEY,
+              action: action,
+              language: 'es',
+              appearance: 'interaction-only',
+              execution: 'execute',
+              callback: function (token) { settle('ok', token); },
+              'error-callback': function () { settle('fail', new Error('captcha')); return true; },
+              'timeout-callback': function () { settle('fail', new Error('captcha')); },
+              'expired-callback': function () {}
+            });
+            ts.widgets[boxId] = id;
+          } else {
+            window.turnstile.reset(id);
+          }
+          window.turnstile.execute(id);
+        } catch (e) {
+          ts.pending[boxId] = null;
+          slot.fail(e);
+        }
+      });
+    });
+  }
+
+  function errorBox(el) { return $('e-' + (el.id.charAt(0) === 'f' ? el.id.slice(2) : el.id)); }
+  function setError(el, message) {
+    var box = errorBox(el);
+    el.setAttribute('aria-invalid', 'true');
+    box.textContent = message;
+    box.hidden = false;
+  }
+  function clearError(el) {
+    var box = errorBox(el);
+    el.removeAttribute('aria-invalid');
+    box.textContent = '';
+    box.hidden = true;
+  }
+  function openWhatsApp(url) {
+    var opened = window.open(url, '_blank');
+    if (!opened) { window.location.href = url; }
+  }
+  function whatsAppUrl(text) {
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+  }
+
+  /* ---------- Demande d’enregistrement ---------- */
+
+  var form = $('request-form');
+  var formFields = $('form-fields');
+  var status = $('form-status');
+  var done = $('form-done');
+  var fallback = $('form-fallback');
+  var submitBtn = $('submit-btn');
+  var required = [
+    ['f-name', 'Indique su nombre completo, tal como figura en el pasaporte.'],
+    ['f-passport', 'Indique su número de pasaporte.'],
+    ['f-nationality', 'Indique su nacionalidad.'],
+    ['f-dob', 'Indique su fecha de nacimiento.'],
+    ['f-contact', 'Indique su número de WhatsApp.'],
+    ['f-airline', 'Indique la aerolínea.'],
+    ['f-flightnum', 'Indique el número de vuelo.'],
+    ['f-pnr', 'Indique el código de reserva (PNR).'],
+    ['f-ticket', 'Indique el número de billete.'],
+    ['f-datetime', 'Indique la fecha y la hora del vuelo.']
+  ];
+  var KEYS = {
+    'f-name': 'name', 'f-passport': 'passport', 'f-nationality': 'nationality', 'f-dob': 'dob', 'f-contact': 'contact',
+    'f-airline': 'airline', 'f-flightnum': 'flightnum', 'f-pnr': 'pnr', 'f-ticket': 'ticket', 'f-datetime': 'datetime'
+  };
+  var refs = [];
+  var lastValues = null;
+  var sending = false;
+
+  function setStatus(message, isError) {
+    status.textContent = message;
+    status.className = 'form-status' + (isError ? ' is-error' : '');
+  }
+  function setSending(on) {
+    sending = on;
+    submitBtn.disabled = on;
+    submitBtn.textContent = on ? 'Enviando…' : 'Enviar mi solicitud';
+  }
+
+  required.concat([['f-consent', '']]).forEach(function (item) {
+    var el = $(item[0]);
+    el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', function () {
+      var filled = el.type === 'checkbox' ? el.checked : el.value.trim() !== '';
+      if (filled && el.getAttribute('aria-invalid') === 'true') { clearError(el); }
+    });
+  });
+
+  function frenchDate(value) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+    return m ? m[3] + '/' + m[2] + '/' + m[1] : value;
+  }
+
+  // Secours : si l’envoi automatique échoue, le client peut transmettre sa demande par WhatsApp, comme avant.
+  function legacyMessage(values) {
+    return [
+      "Hola FlyFast, esta es mi solicitud de check-in:",
+      'Nombre: ' + values['f-name'],
+      'Pasaporte: ' + values['f-passport'],
+      'Nacionalidad: ' + values['f-nationality'],
+      'Fecha de nacimiento: ' + frenchDate(values['f-dob']),
+      'Aerolínea: ' + values['f-airline'],
+      'Vuelo: ' + values['f-flightnum'],
+      'PNR: ' + values['f-pnr'],
+      'Número de billete: ' + values['f-ticket'],
+      'Fecha y hora del vuelo: ' + values['f-datetime'],
+      'Mi WhatsApp: ' + values['f-contact'],
+      'Confirmo que he leído y aceptado las condiciones del servicio.'
+    ].join('\n');
+  }
+
+  function sendByWhatsApp() {
+    if (!lastValues) { return; }
+    openWhatsApp(whatsAppUrl(legacyMessage(lastValues)));
+    setStatus('WhatsApp se abre con su solicitud. Pulse Enviar en WhatsApp para transmitirla.', false);
+  }
+  $('fallback-btn').addEventListener('click', sendByWhatsApp);
+
+  function showDone(ref) {
+    refs.push(ref);
+    $('done-refs').textContent = refs.join(', ');
+    $('done-title').textContent = refs.length > 1 ? 'Solicitudes registradas' : 'Solicitud registrada';
+    $('done-label').textContent = refs.length > 1 ? 'Anote sus números de solicitud:' : 'Anote su número de solicitud:';
+    $('done-wa').href = whatsAppUrl(
+      'Hola FlyFast, he enviado mi solicitud de check-in a través del sitio web. ' +
+      (refs.length > 1 ? 'Mis números de solicitud: ' : 'Mi número de solicitud: ') + refs.join(', ')
+    );
+    required.forEach(function (item) { var el = $(item[0]); el.value = ''; clearError(el); });
+    var consent = $('f-consent');
+    consent.checked = false;
+    clearError(consent);
+    lastValues = null;
+    setStatus('', false);
+    fallback.hidden = true;
+    formFields.hidden = true;
+    done.hidden = false;
+    done.focus();
+  }
+
+  $('done-another').addEventListener('click', function () {
+    done.hidden = true;
+    formFields.hidden = false;
+    $('f-name').focus();
+  });
+
+  function showFailure(message) {
+    setStatus(message, true);
+    fallback.hidden = false;
+  }
+
+  function applyServerErrors(errors) {
+    var first = null;
+    Object.keys(KEYS).forEach(function (id) {
+      var message = errors[KEYS[id]];
+      if (!message) { return; }
+      var el = $(id);
+      setError(el, S(message));
+      if (!first) { first = el; }
+    });
+    if (errors.consent) {
+      var consent = $('f-consent');
+      setError(consent, S(errors.consent));
+      if (!first) { first = consent; }
+    }
+    setStatus('Complete los campos señalados para continuar.', true);
+    if (first) { first.focus(); }
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (sending) { return; }
+    var values = {};
+    var firstInvalid = null;
+
+    required.forEach(function (item) {
+      var el = $(item[0]);
+      values[item[0]] = el.value.trim();
+      if (!values[item[0]]) {
+        setError(el, item[1]);
+        if (!firstInvalid) { firstInvalid = el; }
+      } else {
+        clearError(el);
+      }
+    });
+
+    var consent = $('f-consent');
+    if (!consent.checked) {
+      setError(consent, 'Marque la casilla para aceptar las condiciones.');
+      if (!firstInvalid) { firstInvalid = consent; }
+    } else {
+      clearError(consent);
+    }
+
+    if (firstInvalid) {
+      setStatus('Complete los campos señalados para continuar.', true);
+      firstInvalid.focus();
+      return;
+    }
+
+    lastValues = values;
+    fallback.hidden = true;
+
+    if (!apiReady) {
+      sendByWhatsApp();
+      return;
+    }
+
+    var payload = { consent: true };
+    Object.keys(KEYS).forEach(function (id) { payload[KEYS[id]] = values[id]; });
+    setSending(true);
+    setStatus('Registrando su solicitud…', false);
+
+    tsToken('ts-request', 'request').then(function (token) {
+      payload.turnstile = token;
+      return postJson('/api/requests', payload);
+    }).then(function (res) {
+      if (res.status === 200 && res.body.ok && res.body.ref) { showDone(res.body.ref); return; }
+      if (res.status === 400 && res.body.fields) { applyServerErrors(res.body.fields); return; }
+      if (res.status === 429) { showFailure('Demasiados intentos en poco tiempo. Espere un momento y vuelva a intentarlo.'); return; }
+      showFailure(S(res.body.message) || FAIL_TEXT);
+    }).catch(function () {
+      showFailure(FAIL_TEXT);
+    }).then(function () {
+      setSending(false);
+    });
+  });
+
+  /* ---------- Avis des voyageurs ---------- */
+
+  var reviewForm = $('review-form');
+  var reviewStatus = $('review-status');
+  var reviewSubmit = $('review-submit');
+  var reviewSending = false;
+  var rName = $('r-name');
+  var rText = $('r-text');
+  var rRef = $('r-ref');
+  var rConsent = $('r-consent');
+  var ratingBox = reviewForm.querySelector('.rating');
+  var ratingInputs = reviewForm.querySelectorAll('input[name="rating"]');
+
+  function setReviewStatus(message, isError) {
+    reviewStatus.textContent = message;
+    reviewStatus.className = 'form-status' + (isError ? ' is-error' : '');
+  }
+  function chosenRating() {
+    for (var i = 0; i < ratingInputs.length; i++) {
+      if (ratingInputs[i].checked) { return parseInt(ratingInputs[i].value, 10); }
+    }
+    return 0;
+  }
+  var moreBtn = $('reviews-more');
+  var showAll = false;
+  var VISIBLE_REVIEWS = 6;
+  var starLabels = ratingBox.querySelectorAll('label');
+  function paintStars(n) {
+    Array.prototype.forEach.call(starLabels, function (label, i) { label.classList.toggle('on', i < n); });
+  }
+  function applyReviewFold() {
+    var figs = $('reviews-list').children;
+    var extra = figs.length - VISIBLE_REVIEWS;
+    for (var i = 0; i < figs.length; i++) { figs[i].hidden = !showAll && i >= VISIBLE_REVIEWS; }
+    if (extra > 0) {
+      moreBtn.hidden = false;
+      moreBtn.setAttribute('aria-expanded', showAll ? 'true' : 'false');
+      moreBtn.textContent = showAll ? 'Ver menos opiniones' : 'Ver ' + extra + (extra > 1 ? ' opiniones más' : ' opinión más');
+    } else {
+      moreBtn.hidden = true;
+    }
+  }
+  moreBtn.addEventListener('click', function () { showAll = !showAll; applyReviewFold(); });
+  function monthYear(iso) {
+    var d = new Date(iso + 'T12:00:00Z');
+    return isNaN(d.getTime()) ? '' : d.toLocaleDateString('es-ES', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  }
+
+  function renderReviews(data) {
+    var list = $('reviews-list');
+    var summary = $('reviews-summary');
+    var empty = $('reviews-empty');
+    while (list.firstChild) { list.removeChild(list.firstChild); }
+    if (!data || !data.reviews || !data.reviews.length) {
+      list.hidden = true;
+      summary.hidden = true;
+      moreBtn.hidden = true;
+      empty.hidden = false;
+      return;
+    }
+    empty.hidden = true;
+    summary.textContent = 'Nota media: ' + String(data.average).replace('.', ',') + ' de 5, según ' + data.count + (data.count > 1 ? ' opiniones' : ' opinión');
+    var avgStars = make('span', 'stars');
+    avgStars.style.setProperty('--r', String(data.average));
+    avgStars.style.setProperty('--s', '22px');
+    avgStars.setAttribute('aria-hidden', 'true');
+    summary.insertBefore(avgStars, summary.firstChild);
+    summary.hidden = false;
+    data.reviews.forEach(function (r) {
+      var fig = make('figure', 'review');
+      var head = make('div', 'review-head');
+      var stars = make('span', 'stars');
+      stars.style.setProperty('--r', String(r.rating));
+      stars.setAttribute('role', 'img');
+      stars.setAttribute('aria-label', r.rating + ' de 5');
+      head.appendChild(stars);
+      if (r.verified) { head.appendChild(make('span', 'badge', 'Cliente verificado')); }
+      var quote = make('blockquote', '', r.text);
+      var cap = make('figcaption', '', r.name);
+      var when = monthYear(r.date);
+      if (when) { cap.appendChild(make('span', 'review-date', when)); }
+      fig.appendChild(head);
+      fig.appendChild(quote);
+      fig.appendChild(cap);
+      list.appendChild(fig);
+    });
+    list.hidden = false;
+    applyReviewFold();
+  }
+
+  function loadReviews(fresh) {
+    if (!apiReady) { return; }
+    fetch(API_BASE + '/api/reviews', { credentials: 'omit', cache: fresh ? 'reload' : 'default' }).then(function (res) {
+      if (!res.ok) { throw new Error('http'); }
+      return res.json();
+    }).then(renderReviews).catch(function () { /* sans réponse du service, la liste reste simplement masquée */ });
+  }
+
+  Array.prototype.forEach.call(starLabels, function (label, i) {
+    label.addEventListener('mouseenter', function () { paintStars(i + 1); });
+  });
+  ratingBox.addEventListener('mouseleave', function () { paintStars(chosenRating()); });
+  Array.prototype.forEach.call(ratingInputs, function (input) {
+    input.addEventListener('change', function () {
+      paintStars(chosenRating());
+      $('rating-text').textContent = chosenRating() + ' de 5';
+      var box = $('e-r-rating');
+      box.textContent = '';
+      box.hidden = true;
+    });
+  });
+  rText.addEventListener('input', function () {
+    $('r-count').textContent = rText.value.length + '/600';
+  });
+  [rName, rText, rRef].forEach(function (el) {
+    el.addEventListener('input', function () {
+      if (el.getAttribute('aria-invalid') === 'true' && el.value.trim() !== '') { clearError(el); }
+    });
+  });
+  rConsent.addEventListener('change', function () {
+    if (rConsent.checked && rConsent.getAttribute('aria-invalid') === 'true') { clearError(rConsent); }
+  });
+
+  function applyReviewErrors(errors) {
+    var first = null;
+    [['name', rName], ['text', rText], ['ref', rRef], ['consent', rConsent]].forEach(function (pair) {
+      if (errors[pair[0]]) {
+        setError(pair[1], S(errors[pair[0]]));
+        if (!first) { first = pair[1]; }
+      }
+    });
+    if (errors.rating) {
+      var box = $('e-r-rating');
+      box.textContent = S(errors.rating);
+      box.hidden = false;
+      if (!first) { first = ratingInputs[0]; }
+    }
+    setReviewStatus('Complete los campos señalados para continuar.', true);
+    if (first) { first.focus(); }
+  }
+
+  reviewForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (reviewSending) { return; }
+    var name = rName.value.trim();
+    var text = rText.value.trim();
+    var ref = rRef.value.trim().toUpperCase().replace(/\s+/g, '');
+    var rating = chosenRating();
+    var first = null;
+
+    if (!name) { setError(rName, 'Indique su nombre de pila.'); first = first || rName; } else { clearError(rName); }
+    var ratingError = $('e-r-rating');
+    if (!rating) {
+      ratingError.textContent = 'Elija una valoración de 1 a 5.';
+      ratingError.hidden = false;
+      first = first || ratingInputs[0];
+    } else {
+      ratingError.textContent = '';
+      ratingError.hidden = true;
+    }
+    if (text.length < 10) { setError(rText, 'Su opinión es demasiado corta (mínimo 10 caracteres).'); first = first || rText; } else { clearError(rText); }
+    if (ref && !/^(FF-)?[A-HJ-NP-Z2-9]{6}$/.test(ref)) { setError(rRef, 'Número de solicitud no válido. Tiene este aspecto: FF-AB12CD.'); first = first || rRef; } else { clearError(rRef); }
+    if (!rConsent.checked) { setError(rConsent, 'Marque la casilla para aceptar la publicación de su nombre de pila y de su opinión.'); first = first || rConsent; } else { clearError(rConsent); }
+
+    if (first) {
+      setReviewStatus('Complete los campos señalados para continuar.', true);
+      first.focus();
+      return;
+    }
+    if (!apiReady) {
+      setReviewStatus('El envío de opiniones no está disponible momentáneamente. Puede escribirnos por WhatsApp.', true);
+      return;
+    }
+
+    reviewSending = true;
+    reviewSubmit.disabled = true;
+    reviewSubmit.textContent = 'Enviando…';
+    setReviewStatus('Enviando su opinión…', false);
+
+    tsToken('ts-review', 'review').then(function (token) {
+      return postJson('/api/reviews', { name: name, rating: rating, text: text, ref: ref, consent: true, turnstile: token });
+    }).then(function (res) {
+      if (res.status === 200 && res.body.ok) {
+        reviewForm.reset();
+        paintStars(0);
+        $('rating-text').textContent = '';
+        $('r-count').textContent = '0/600';
+        setReviewStatus(res.body.published ? '¡Gracias! Su opinión está publicada.' : '¡Gracias! Su opinión se publicará tras la revisión de nuestro equipo.', false);
+        loadReviews(true);
+        return;
+      }
+      if (res.status === 400 && res.body.fields) { applyReviewErrors(res.body.fields); return; }
+      if (res.status === 429) { setReviewStatus('Demasiados intentos en poco tiempo. Espere un momento y vuelva a intentarlo.', true); return; }
+      setReviewStatus(S(res.body.message) || FAIL_TEXT, true);
+    }).catch(function () {
+      setReviewStatus(FAIL_TEXT + ' También puede escribirnos por WhatsApp.', true);
+    }).then(function () {
+      reviewSending = false;
+      reviewSubmit.disabled = false;
+      reviewSubmit.textContent = 'Enviar mi opinión';
+    });
+  });
+
+  if (apiReady) {
+    // Le contrôle anti-robot ne se charge que lorsqu’un visiteur commence à remplir un formulaire.
+    var preload = function () { tsLoad(); };
+    form.addEventListener('focusin', preload, { once: true });
+    reviewForm.addEventListener('focusin', preload, { once: true });
+  }
+
+  loadReviews(false);
+
+  $('year').textContent = new Date().getFullYear();
+})();
+</script>
+<script src="../flyfast-chat.js?v=2" data-base="" defer></script>
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "10a100695f7446c691727c713ffb19c8"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
