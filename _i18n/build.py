@@ -27,7 +27,7 @@ from urllib.parse import unquote
 import index_js
 import patch_chat
 
-BASE_URL = 'https://plamedi101.github.io/Mpepo-na-pete/'
+BASE_URL = 'https://flyfastcheckin.com/'
 BUILD_DATE = os.environ.get('BUILD_DATE') or datetime.date.today().isoformat()   # date « lastmod » du plan du site
 LANGS = ('fr', 'en', 'es')
 LANG_NAMES = {'fr': 'Français', 'en': 'English', 'es': 'Español'}

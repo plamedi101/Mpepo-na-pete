@@ -170,7 +170,7 @@ locs = re.findall(r'<loc>(.*?)</loc>', sm)
 check('sitemap : 33 adresses distinctes', len(locs) == 33 and len(set(locs)) == 33, len(locs))
 expected = {build.abs_url(p) for _, _, p in pages}
 check('sitemap : adresses = pages du site', set(locs) == expected, set(locs) ^ expected)
-check('sitemap : chaque adresse correspond à un fichier', all(os.path.exists(os.path.join(ROOT, unquote(urlsplit(u).path[len('/Mpepo-na-pete/'):]) or 'index.html') if not u.endswith('/') else os.path.join(ROOT, unquote(urlsplit(u).path[len('/Mpepo-na-pete/'):]), 'index.html')) for u in locs))
+check('sitemap : chaque adresse correspond à un fichier', all(os.path.exists(os.path.join(ROOT, unquote(urlsplit(u).path[len('/'):]) or 'index.html') if not u.endswith('/') else os.path.join(ROOT, unquote(urlsplit(u).path[len('/'):]), 'index.html')) for u in locs))
 entries = re.findall(r'<url>(.*?)</url>', sm, re.S)
 bad = []
 for e in entries:
