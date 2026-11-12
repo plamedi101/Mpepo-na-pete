@@ -1498,5 +1498,145 @@
 "Votre vol est prêt, votre connexion aussi&nbsp;?": {
 "en": "Your flight is ready, but is your connection?",
 "es": "¿Su vuelo está listo, y su conexión también?"
+},
+"FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.": {
+"en": "FlyFast completes your online check-in and sends your boarding pass on WhatsApp. Free until mid-December, then €2 per booking.",
+"es": "FlyFast realiza su check-in online y le envía su tarjeta de embarque por WhatsApp. Gratis hasta mediados de diciembre, después 2 € por reserva."
+},
+"Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.": {
+"en": "We complete your online check-in and send your boarding pass on WhatsApp. Free until mid-December, then €2 per booking.",
+"es": "Realizamos su check-in online y le enviamos su tarjeta de embarque por WhatsApp. Gratis hasta mediados de diciembre, después 2 € por reserva."
+},
+"<strong1>Gratuit jusqu’à la mi&#8209;décembre</strong1>, dans la limite de 50&nbsp;demandes par jour": {
+"en": "<strong1>Free until mid&#8209;December</strong1>, up to 50&nbsp;requests per day",
+"es": "<strong1>Gratis hasta mediados de diciembre</strong1>, con un máximo de 50&nbsp;solicitudes al día"
+},
+"<strong1>Ensuite 2&nbsp;€</strong1> par réservation, quel que soit le nombre de passagers": {
+"en": "<strong1>Then €2</strong1> per booking, whatever the number of passengers",
+"es": "<strong1>Después, 2&nbsp;€</strong1> por reserva, sea cual sea el número de pasajeros"
+},
+"Vous ne payez rien jusqu’à la mi&#8209;décembre": {
+"en": "You pay nothing until mid&#8209;December",
+"es": "No paga nada hasta mediados de diciembre"
+},
+"Le service est gratuit, dans la limite de 50&nbsp;demandes par jour. Ensuite, 2&nbsp;€ par&nbsp;réservation, quel que soit le nombre de passagers.": {
+"en": "The service is free, up to 50&nbsp;requests per day. After that, €2 per&nbsp;booking, whatever the number of passengers.",
+"es": "El servicio es gratuito, con un máximo de 50&nbsp;solicitudes al día. Después, 2&nbsp;€ por&nbsp;reserva, sea cual sea el número de pasajeros."
+},
+"Tarif": {
+"en": "Pricing",
+"es": "Tarifa"
+},
+"0&nbsp;€": {
+"en": "€0",
+"es": "0&nbsp;€"
+},
+"Gratuit jusqu’à la mi&#8209;décembre": {
+"en": "Free until mid&#8209;December",
+"es": "Gratis hasta mediados de diciembre"
+},
+"Dans la limite de 50&nbsp;demandes par jour": {
+"en": "Up to 50&nbsp;requests per day",
+"es": "Hasta 50&nbsp;solicitudes al día"
+},
+"2&nbsp;€": {
+"en": "€2",
+"es": "2&nbsp;€"
+},
+"Ensuite, 2&nbsp;€ par réservation": {
+"en": "Then €2 per booking",
+"es": "Después, 2&nbsp;€ por reserva"
+},
+"Quel que soit le nombre de passagers": {
+"en": "Whatever the number of passengers",
+"es": "Sea cual sea el número de pasajeros"
+},
+"Une demande correspond à une réservation. Au-delà de 50&nbsp;demandes dans la journée, nous ne pouvons pas garantir le traitement des suivantes&nbsp;: vous pouvez les renvoyer le lendemain.": {
+"en": "One request corresponds to one booking. Beyond 50&nbsp;requests in a day, we cannot guarantee that the following ones will be processed: you can send them again the next day.",
+"es": "Una solicitud equivale a una reserva. Pasadas las 50&nbsp;solicitudes del día, no podemos garantizar la tramitación de las siguientes: puede volver a enviarlas al día siguiente."
+},
+"Après la période gratuite, les modalités de règlement vous sont confirmées sur WhatsApp. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible.": {
+"en": "After the free period, we confirm the payment arrangements with you on WhatsApp. Card payment, with Stripe, will be available soon.",
+"es": "Terminado el periodo gratuito, le confirmamos las condiciones de pago por WhatsApp. El pago con tarjeta, mediante Stripe, estará disponible próximamente."
+},
+"Gratuit jusqu’à la mi&#8209;décembre, puis 2&nbsp;€, quel que soit le nombre de passagers.": {
+"en": "Free until mid&#8209;December, then €2, whatever the number of passengers.",
+"es": "Gratis hasta mediados de diciembre, después 2&nbsp;€, sea cual sea el número de pasajeros."
+},
+"Gratuit": {
+"en": "Free",
+"es": "Gratis"
+},
+"Dernière étape&nbsp;: envoyez-nous ce numéro sur WhatsApp pour lancer votre enregistrement. Il est gratuit jusqu’à la mi&#8209;décembre.": {
+"en": "Last step: send us this number on WhatsApp to start your check-in. It is free until mid&#8209;December.",
+"es": "Último paso: envíenos este número por WhatsApp para iniciar su check-in. Es gratuito hasta mediados de diciembre."
+},
+"Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Nous ne pouvons pas garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom. Si nous ne parvenons pas à le réaliser, vous êtes remboursé de vos 2&nbsp;€, sauf si le refus vient d’une information inexacte ou d’un document non valide. Pendant la période gratuite, rien n’est facturé&nbsp;: il n’y a donc rien à rembourser. <a1>Lire la politique de remboursement</a1>.": {
+"en": "This can happen for reasons beyond our control (invalid document, changed flight, specific restriction). We cannot guarantee the outcome of the check-in, only the process carried out on your behalf. If we are unable to complete it, you are refunded your €2, unless the refusal is due to incorrect information or an invalid document. During the free period nothing is charged, so there is nothing to refund. <a1>Read the refund policy</a1>.",
+"es": "Puede ocurrir por motivos ajenos a nuestra voluntad (documento no válido, vuelo modificado, restricción específica). No podemos garantizar el resultado del check-in, solo el trámite realizado en su nombre. Si no conseguimos realizarlo, se le reembolsan los 2&nbsp;€, salvo que el rechazo se deba a un dato inexacto o a un documento no válido. Durante el periodo gratuito no se cobra nada, así que no hay nada que reembolsar. <a1>Leer la política de reembolso</a1>."
+},
+"Combien coûte le service&nbsp;?": {
+"en": "How much does the service cost?",
+"es": "¿Cuánto cuesta el servicio?"
+},
+"Le service est gratuit jusqu’à la mi&#8209;décembre, dans la limite de 50&nbsp;demandes par jour&nbsp;: vous ne payez rien pour le moment. Ensuite, le prix sera de 2&nbsp;€ par réservation, quel que soit le nombre de passagers. Les modalités de règlement vous seront alors confirmées sur WhatsApp&nbsp;; le paiement par carte bancaire, avec Stripe, sera bientôt disponible.": {
+"en": "The service is free until mid&#8209;December, up to 50&nbsp;requests per day: you pay nothing for now. After that, the price will be €2 per booking, whatever the number of passengers. The payment arrangements will then be confirmed to you on WhatsApp; card payment, with Stripe, will be available soon.",
+"es": "El servicio es gratuito hasta mediados de diciembre, con un máximo de 50&nbsp;solicitudes al día: de momento no paga nada. Después, el precio será de 2&nbsp;€ por reserva, sea cual sea el número de pasajeros. Entonces le confirmaremos las condiciones de pago por WhatsApp; el pago con tarjeta, mediante Stripe, estará disponible próximamente."
+},
+"Que se passe-t-il si les 50&nbsp;demandes du jour sont atteintes&nbsp;?": {
+"en": "What happens if the 50 requests for the day are reached?",
+"es": "¿Qué ocurre si se alcanzan las 50&nbsp;solicitudes del día?"
+},
+"Au-delà de 50&nbsp;demandes dans la journée, nous ne pouvons pas garantir le traitement des suivantes. Vous pouvez les renvoyer le lendemain, à condition que votre vol parte dans plus de 10&nbsp;heures. Une demande correspond à une réservation, quel que soit le nombre de passagers.": {
+"en": "Beyond 50&nbsp;requests in a day, we cannot guarantee that the following ones will be processed. You can send them again the next day, provided your flight leaves in more than 10&nbsp;hours. One request corresponds to one booking, whatever the number of passengers.",
+"es": "Pasadas las 50&nbsp;solicitudes del día, no podemos garantizar la tramitación de las siguientes. Puede volver a enviarlas al día siguiente, siempre que su vuelo salga dentro de más de 10&nbsp;horas. Una solicitud equivale a una reserva, sea cual sea el número de pasajeros."
+},
+"Remplissez le formulaire une fois pour chaque passager, avec la même référence de réservation (PNR). Le prix est de 2&nbsp;€ pour l’ensemble de la réservation (gratuit jusqu’à la mi&#8209;décembre), et la réservation ne compte que pour une demande dans le quota de 50&nbsp;par jour.": {
+"en": "Fill in the form once for each passenger, with the same booking reference (PNR). The price is €2 for the whole booking (free until mid&#8209;December), and the booking counts as only one request towards the daily limit of 50.",
+"es": "Rellene el formulario una vez por cada pasajero, con el mismo código de reserva (PNR). El precio es de 2&nbsp;€ por el conjunto de la reserva (gratis hasta mediados de diciembre), y la reserva cuenta como una sola solicitud dentro del límite de 50 al día."
+},
+"Gratuit jusqu’à la mi&#8209;décembre 2026, dans la limite de 50&nbsp;demandes par jour (une demande&nbsp;= une réservation).": {
+"en": "Free until mid&#8209;December 2026, up to 50&nbsp;requests per day (one request = one booking).",
+"es": "Gratis hasta mediados de diciembre de 2026, con un máximo de 50&nbsp;solicitudes al día (una solicitud = una reserva)."
+},
+"Ensuite, 2&nbsp;€ par réservation, quel que soit le nombre de passagers.": {
+"en": "After that, €2 per booking, whatever the number of passengers.",
+"es": "Después, 2&nbsp;€ por reserva, sea cual sea el número de pasajeros."
+},
+"<strong1>Offre de lancement.</strong1> Du lancement jusqu’à la mi&#8209;décembre 2026, le service est gratuit, dans la limite de 50&nbsp;demandes par jour. Une demande correspond à une réservation (numéro de réservation, ou PNR), quel que soit le nombre de passagers inscrits sur cette réservation. Au-delà de 50&nbsp;demandes dans la journée, nous ne pouvons pas garantir le traitement des suivantes&nbsp;; vous pouvez les renvoyer le lendemain.": {
+"en": "<strong1>Launch offer.</strong1> From launch until mid&#8209;December 2026, the service is free, up to 50&nbsp;requests per day. One request corresponds to one booking (booking reference, or PNR), whatever the number of passengers on that booking. Beyond 50&nbsp;requests in a day, we cannot guarantee that the following ones will be processed; you can send them again the next day.",
+"es": "<strong1>Oferta de lanzamiento.</strong1> Desde el lanzamiento hasta mediados de diciembre de 2026, el servicio es gratuito, con un máximo de 50&nbsp;solicitudes al día. Una solicitud equivale a una reserva (código de reserva o PNR), sea cual sea el número de pasajeros inscritos en esa reserva. Pasadas las 50&nbsp;solicitudes del día, no podemos garantizar la tramitación de las siguientes; puede volver a enviarlas al día siguiente."
+},
+"Après cette période, le prix est de 2,00&nbsp;€ par réservation, quel que soit le nombre de passagers inscrits sur cette réservation. Si vous voyagez à plusieurs sur la même réservation, vous ne payez qu’une fois. Nous n’ajoutons aucun autre frais. Le prix applicable est celui en vigueur le jour où vous envoyez votre demande.": {
+"en": "After this period, the price is €2.00 per booking, whatever the number of passengers on that booking. If several of you travel on the same booking, you pay only once. We add no other fees. The price that applies is the one in force on the day you send your request.",
+"es": "Pasado ese periodo, el precio es de 2,00&nbsp;€ por reserva, sea cual sea el número de pasajeros inscritos en esa reserva. Si viajan varios en la misma reserva, solo se paga una vez. No añadimos ningún otro cargo. El precio aplicable es el vigente el día en que envía su solicitud."
+},
+"Pendant la période gratuite, nous lançons votre enregistrement sans rien vous demander. Ensuite, nous vous confirmons d’abord les modalités de règlement des 2&nbsp;€.": {
+"en": "During the free period, we start your check-in without asking you for anything. After that, we first confirm the payment arrangements for the €2.",
+"es": "Durante el periodo gratuito, iniciamos su check-in sin pedirle nada. Después, le confirmamos primero las condiciones de pago de los 2&nbsp;€."
+},
+"Après la période gratuite, les modalités de règlement sont convenues par message sur WhatsApp. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible&nbsp;: cette page sera alors mise à jour.": {
+"en": "After the free period, payment arrangements are agreed by message on WhatsApp. Card payment, with Stripe, will be available soon: this page will then be updated.",
+"es": "Terminado el periodo gratuito, las condiciones de pago se acuerdan por mensaje en WhatsApp. El pago con tarjeta, mediante Stripe, estará disponible próximamente: esta página se actualizará entonces."
+},
+"L’enregistrement en ligne n’est possible qu’à partir de l’ouverture fixée par la compagnie. Nous le réalisons une fois ce moment arrivé et, après la période gratuite, votre règlement confirmé.": {
+"en": "Online check-in is only possible once it opens, at the time set by the airline. We carry it out once that time has come and, after the free period, your payment is confirmed.",
+"es": "El check-in online solo es posible a partir de su apertura, fijada por la aerolínea. Lo realizamos una vez llegado ese momento y, terminado el periodo gratuito, confirmado su pago."
+},
+"Si nous ne parvenons pas à réaliser votre enregistrement, vous êtes remboursé de vos 2&nbsp;€, sauf si l’échec vient d’une information inexacte ou d’un document non valide que vous avez fournis. Pendant la période gratuite, rien n’est facturé&nbsp;: il n’y a donc rien à rembourser. Les cas, le délai et la marche à suivre sont détaillés dans la <a1>politique de remboursement</a1>.": {
+"en": "If we cannot complete your check-in, you are refunded your €2, unless the failure comes from incorrect information or an invalid document that you provided. During the free period nothing is charged, so there is nothing to refund. The cases, the timeframe and the procedure are detailed in the <a1>refund policy</a1>.",
+"es": "Si no conseguimos realizar su check-in, se le reembolsan los 2&nbsp;€, salvo que el fallo se deba a un dato inexacto o a un documento no válido facilitado por usted. Durante el periodo gratuito no se cobra nada, así que no hay nada que reembolsar. Los casos, el plazo y el procedimiento se detallan en la <a1>política de reembolso</a1>."
+},
+"Dernière mise à jour&nbsp;: 12 novembre 2026.": {
+"en": "Last updated: 12 November 2026.",
+"es": "Última actualización: 12 de noviembre de 2026."
+},
+"Jusqu’à la mi&#8209;décembre 2026, le service est gratuit&nbsp;: il n’y a rien à rembourser. Ensuite, vous payez 2&nbsp;€ pour qu’un enregistrement soit réalisé&nbsp;; s’il ne l’est pas, vous êtes remboursé.": {
+"en": "Until mid&#8209;December 2026, the service is free: there is nothing to refund. After that, you pay €2 to have a check-in carried out; if it is not carried out, you are refunded.",
+"es": "Hasta mediados de diciembre de 2026, el servicio es gratuito: no hay nada que reembolsar. Después, usted paga 2&nbsp;€ para que se realice un check-in; si no se realiza, se le reembolsa el importe."
+},
+"On s’en charge, gratuit jusqu’à la mi&#8209;décembre": {
+"en": "We’ll take care of it, free until mid&#8209;December",
+"es": "Nos encargamos, gratis hasta mediados de diciembre"
 }
 }

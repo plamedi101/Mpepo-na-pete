@@ -121,6 +121,11 @@
   .langbar a[aria-current]{color:var(--navy);font-weight:600;box-shadow:inset 0 -2px 0 var(--sky);}
   .i18n-note{margin-top:20px;max-width:68ch;padding:12px 16px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft,#FFF6DC);color:var(--ink);font-size:.9375rem;line-height:1.5;}
   .i18n-note a{color:var(--sky-text);text-underline-offset:3px;}
+  .promo{background:var(--gold);color:var(--navy);font-size:.9375rem;line-height:1.45;}
+  .promo .container{padding-block:10px;}
+  .promo p{margin:0;text-align:center;text-wrap:balance;}
+  .promo strong{font-weight:700;}
+  @media (max-width:560px){.promo{font-size:.875rem;line-height:1.4;}.promo .container{padding-block:8px;}}
 /*/i18n*/
 </style>
 </head>
@@ -131,6 +136,11 @@
   <div class="container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9s1.3-6.4 3.9-9z"/></svg><a href="../conditions-de-vente.html" lang="fr" hreflang="fr">Français</a><a href="terms-of-sale.html" lang="en" hreflang="en" aria-current="true">English</a><a href="../es/condiciones-de-venta.html" lang="es" hreflang="es">Español</a></div>
 </nav>
 <!--/i18n:langbar-->
+<!--i18n:promo-->
+<aside class="promo" aria-label="Launch offer">
+  <div class="container"><p><strong>Free launch until mid&#8209;December.</strong> Up to 50 free requests per day. After that, €2 per booking, whatever the number of passengers.</p></div>
+</aside>
+<!--/i18n:promo-->
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href="index.html" aria-label="FlyFast, home">
@@ -157,7 +167,8 @@
     <aside class="summary" aria-labelledby="bref">
       <h2 id="bref">In brief</h2>
       <ul>
-        <li>€2 per booking, whatever the number of passengers.</li>
+        <li>Free until mid&#8209;December 2026, up to 50&nbsp;requests per day (one request = one booking).</li>
+        <li>After that, €2 per booking, whatever the number of passengers.</li>
         <li>We complete the online check-in for you and send you the boarding pass on WhatsApp.</li>
         <li>Your request must reach us no later than 10&nbsp;hours before take-off.</li>
         <li>We cannot guarantee that the airline will accept the check-in. If we do not carry it out, you are refunded, unless there is an error in the information provided.</li>
@@ -173,22 +184,23 @@
       <p>The service does not include booking or changing your ticket, nor visa or entry formalities for the country.</p>
 
       <h2>3. Price</h2>
-      <p>The price is €2.00 per booking (booking reference, or PNR), whatever the number of passengers on that booking. If several of you travel on the same booking, you pay only once. We add no other fees.</p>
+      <p><strong>Launch offer.</strong> From launch until mid&#8209;December 2026, the service is free, up to 50&nbsp;requests per day. One request corresponds to one booking (booking reference, or PNR), whatever the number of passengers on that booking. Beyond 50&nbsp;requests in a day, we cannot guarantee that the following ones will be processed; you can send them again the next day.</p>
+      <p>After this period, the price is €2.00 per booking, whatever the number of passengers on that booking. If several of you travel on the same booking, you pay only once. We add no other fees. The price that applies is the one in force on the day you send your request.</p>
       <p>Any fees charged by your bank or payment provider, for example for currency exchange or transfers, remain your responsibility.</p>
 
       <h2>4. Placing an order</h2>
       <ol>
         <li>You fill in the form on the site, once per passenger, with your flight and passport details.</li>
         <li>You receive a request number (for example FF-AB12CD) and send it to us on WhatsApp.</li>
-        <li>We confirm the payment arrangements for the €2, then we start your check-in.</li>
+        <li>During the free period, we start your check-in without asking you for anything. After that, we first confirm the payment arrangements for the €2.</li>
         <li>We send you your boarding pass on WhatsApp.</li>
       </ol>
       <p>Your order is confirmed by our message on WhatsApp: that message concludes the contract.</p>
-      <p>For now, payment arrangements are agreed by message on WhatsApp. Card payment, with Stripe, will be available soon: this page will then be updated.</p>
+      <p>After the free period, payment arrangements are agreed by message on WhatsApp. Card payment, with Stripe, will be available soon: this page will then be updated.</p>
 
       <h2>5. Deadline</h2>
       <p>Your request must reach us no later than 10&nbsp;hours before take-off. After that, we cannot guarantee that the check-in will be done in time: in that case, go straight to your airline’s check-in desk at the airport.</p>
-      <p>Online check-in is only possible once it opens, at the time set by the airline. We carry it out once that time has come and your payment is confirmed.</p>
+      <p>Online check-in is only possible once it opens, at the time set by the airline. We carry it out once that time has come and, after the free period, your payment is confirmed.</p>
 
       <h2>6. What we cannot guarantee</h2>
       <p>We undertake to carry out the check-in process on your behalf with care. We cannot guarantee its outcome, which depends on the airline: refusal to check in, invalid document, changed or cancelled flight, restriction specific to the airline or to your destination, airline website unavailable, request received less than 10&nbsp;hours before departure.</p>
@@ -203,7 +215,7 @@
       </ul>
 
       <h2 id="remboursement">8. Refunds</h2>
-      <p>If we cannot complete your check-in, you are refunded your €2, unless the failure comes from incorrect information or an invalid document that you provided. The cases, the timeframe and the procedure are detailed in the <a href="refunds.html">refund policy</a>.</p>
+      <p>If we cannot complete your check-in, you are refunded your €2, unless the failure comes from incorrect information or an invalid document that you provided. During the free period nothing is charged, so there is nothing to refund. The cases, the timeframe and the procedure are detailed in the <a href="refunds.html">refund policy</a>.</p>
 
       <h2 id="retractation">9. Right of withdrawal</h2>
       <p>If you are a consumer residing in the European Union, you normally have 14&nbsp;days to withdraw from a purchase made at a distance. Our service is carried out within a few hours, before your flight: by sending your request, you ask us to carry it out without waiting for the end of that period.</p>
@@ -219,7 +231,7 @@
       <h2>12. Changes to these terms</h2>
       <p>We may change these terms. The version that applies to your order is the one published on this page at the time of your request.</p>
     </div>
-    <p class="updated">Last updated: 9 November 2026.</p>
+    <p class="updated">Last updated: 12 November 2026.</p>
   </article>
 </main>
 

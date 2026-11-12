@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FlyFast | Enregistrement en ligne de votre vol</title>
-<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. 2 € par réservation, à demander au moins 10 heures avant le vol.">
+<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0C2E4E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="FlyFast">
 <meta property="og:title" content="FlyFast | Enregistrement en ligne de votre vol">
-<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. 2 € par réservation.">
+<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.">
 <meta property="og:image" content="https://flyfastcheckin.com/flyfast-images/hero-plane-sunset.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <!--i18n:head-->
@@ -107,7 +107,7 @@
   .nb{white-space:nowrap;}
 
   .facts{background:var(--navy);color:#C9D9E8;}
-  .facts-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+  .facts-list{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
   .facts-list li{padding:22px 28px 22px 0;line-height:1.45;}
   .facts-list li + li{padding-left:28px;border-left:1px solid rgba(255,255,255,.18);}
   .facts-list strong{color:#fff;font-weight:600;}
@@ -139,6 +139,7 @@
   .pay-list li{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);}
   .pay-badge{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;font:700 .9375rem/1 var(--font-head);}
   .pay-badge.card{background:var(--navy);color:#fff;}
+  .pay-badge.free{background:var(--gold);color:var(--navy);}
   .pay-badge.wa{background:#25D366;color:var(--navy);}
   .pay-name{display:block;font-weight:600;}
   .pay-num{display:block;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em;}
@@ -163,7 +164,8 @@
   .error[hidden]{display:none;}
 
   .price{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:24px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .price-label{font-weight:500;}
+  .price-label{display:block;font-weight:500;}
+  .price-sub{display:block;margin-top:4px;font-size:.9375rem;color:var(--muted);}
   .price-amount{font:600 1.875rem/1 var(--font-head);color:var(--navy);font-variant-numeric:tabular-nums;}
   .terms{padding:18px 20px;border-left:4px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;background:var(--mist);font-size:.9375rem;line-height:1.6;}
   .terms h3{margin-bottom:8px;font-size:1.125rem;}
@@ -265,6 +267,9 @@
     .hero-shade{background:linear-gradient(0deg,rgba(12,46,78,.6) 0%,rgba(12,46,78,0) 40%);}
     .hero-inner{align-items:start;padding-block:36px 44px;}
     .facts{border-top:1px solid rgba(255,255,255,.14);}
+    .facts-list{grid-template-columns:repeat(2,minmax(0,1fr));}
+    .facts-list li:nth-child(odd){padding-left:0;border-left:0;}
+    .facts-list li:nth-child(n+3){border-top:1px solid rgba(255,255,255,.18);}
   }
   @media (max-width:900px){
     .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;margin:0;padding:4px 24px 12px;background:#fff;border-bottom:1px solid var(--line);}
@@ -313,6 +318,11 @@
   .langbar a[aria-current]{color:var(--navy);font-weight:600;box-shadow:inset 0 -2px 0 var(--sky);}
   .i18n-note{margin-top:20px;max-width:68ch;padding:12px 16px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft,#FFF6DC);color:var(--ink);font-size:.9375rem;line-height:1.5;}
   .i18n-note a{color:var(--sky-text);text-underline-offset:3px;}
+  .promo{background:var(--gold);color:var(--navy);font-size:.9375rem;line-height:1.45;}
+  .promo .container{padding-block:10px;}
+  .promo p{margin:0;text-align:center;text-wrap:balance;}
+  .promo strong{font-weight:700;}
+  @media (max-width:560px){.promo{font-size:.875rem;line-height:1.4;}.promo .container{padding-block:8px;}}
 /*/i18n*/
 </style>
 </head>
@@ -324,6 +334,11 @@
   <div class="container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9s1.3-6.4 3.9-9z"/></svg><a href="index.html" lang="fr" hreflang="fr" aria-current="true">Français</a><a href="en/index.html" lang="en" hreflang="en">English</a><a href="es/index.html" lang="es" hreflang="es">Español</a></div>
 </nav>
 <!--/i18n:langbar-->
+<!--i18n:promo-->
+<aside class="promo" aria-label="Offre de lancement">
+  <div class="container"><p><strong>Lancement gratuit jusqu’à la mi&#8209;décembre.</strong> Jusqu’à 50&nbsp;demandes gratuites par jour. Ensuite, 2&nbsp;€ par réservation, quel que soit le nombre de passagers.</p></div>
+</aside>
+<!--/i18n:promo-->
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href="#top" aria-label="FlyFast, retour en haut de page">
@@ -364,7 +379,8 @@
 
   <div class="facts">
     <ul class="container facts-list">
-      <li><strong>2&nbsp;€</strong> par réservation, quel que soit le nombre de passagers</li>
+      <li><strong>Gratuit jusqu’à la mi&#8209;décembre</strong>, dans la limite de 50&nbsp;demandes par jour</li>
+      <li><strong>Ensuite 2&nbsp;€</strong> par réservation, quel que soit le nombre de passagers</li>
       <li><strong>10&nbsp;heures</strong> avant le décollage, au plus tard, pour nous envoyer votre demande</li>
       <li><strong>Carte d’embarquement</strong> envoyée directement sur WhatsApp</li>
     </ul>
@@ -381,8 +397,8 @@
             <p>Référence de réservation (PNR), nom complet, passeport et détails du vol, via le formulaire ci-dessous.</p>
           </li>
           <li>
-            <h3>Vous réglez 2&nbsp;€ par&nbsp;réservation</h3>
-            <p>Les modalités vous sont confirmées sur WhatsApp. Le&nbsp;paiement par carte bancaire, avec Stripe, sera bientôt&nbsp;disponible.</p>
+            <h3>Vous ne payez rien jusqu’à la mi&#8209;décembre</h3>
+            <p>Le service est gratuit, dans la limite de 50&nbsp;demandes par jour. Ensuite, 2&nbsp;€ par&nbsp;réservation, quel que soit le nombre de passagers.</p>
           </li>
           <li>
             <h3>Nous enregistrons votre vol</h3>
@@ -414,19 +430,19 @@
           <p class="section-intro">Remplissez ce formulaire avec précision. Ces informations servent uniquement à réaliser votre enregistrement.</p>
         </div>
         <div class="pay">
-          <h3>Moyens de paiement</h3>
+          <h3>Tarif</h3>
           <ul class="pay-list">
             <li>
-              <span class="pay-badge wa" aria-hidden="true">W</span>
-              <span><span class="pay-name">WhatsApp</span><span class="pay-num">Modalités à convenir par message</span></span>
-              <a class="pay-action" href="https://wa.me/201282226808" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp pour convenir du paiement">Écrire</a>
+              <span class="pay-badge free" aria-hidden="true">0&nbsp;€</span>
+              <span><span class="pay-name">Gratuit jusqu’à la mi&#8209;décembre</span><span class="pay-num">Dans la limite de 50&nbsp;demandes par jour</span></span>
             </li>
             <li>
-              <span class="pay-badge card" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 15h4"/></svg></span>
-              <span><span class="pay-name">Carte bancaire</span><span class="pay-num">Bientôt disponible, avec&nbsp;Stripe</span></span>
+              <span class="pay-badge card" aria-hidden="true">2&nbsp;€</span>
+              <span><span class="pay-name">Ensuite, 2&nbsp;€ par réservation</span><span class="pay-num">Quel que soit le nombre de passagers</span></span>
             </li>
           </ul>
-          <p class="pay-note">Les modalités vous sont confirmées après réception de votre demande.</p>
+          <p class="pay-note">Une demande correspond à une réservation. Au-delà de 50&nbsp;demandes dans la journée, nous ne pouvons pas garantir le traitement des suivantes&nbsp;: vous pouvez les renvoyer le lendemain.</p>
+          <p class="pay-note">Après la période gratuite, les modalités de règlement vous sont confirmées sur WhatsApp. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible.</p>
         </div>
       </div>
 
@@ -503,8 +519,11 @@
         </fieldset>
 
         <div class="price">
-          <span class="price-label">Frais du service par&nbsp;réservation</span>
-          <span class="price-amount">2,00&nbsp;€</span>
+          <div>
+            <span class="price-label">Frais du service par&nbsp;réservation</span>
+            <span class="price-sub">Gratuit jusqu’à la mi&#8209;décembre, puis 2&nbsp;€, quel que soit le nombre de passagers.</span>
+          </div>
+          <span class="price-amount">Gratuit</span>
         </div>
 
         <div class="terms">
@@ -545,7 +564,7 @@
           <h3 id="done-title">Demande enregistrée</h3>
           <p class="done-label" id="done-label">Notez votre numéro de dossier&nbsp;:</p>
           <p class="done-ref" id="done-refs"></p>
-          <p>Dernière étape&nbsp;: envoyez-nous ce numéro sur WhatsApp. Nous vous confirmons le règlement des 2&nbsp;€ puis nous lançons votre enregistrement.</p>
+          <p>Dernière étape&nbsp;: envoyez-nous ce numéro sur WhatsApp pour lancer votre enregistrement. Il est gratuit jusqu’à la mi&#8209;décembre.</p>
           <a class="btn btn-gold" id="done-wa" href="https://wa.me/201282226808" target="_blank" rel="noopener">Prévenir FlyFast sur WhatsApp</a>
           <p class="hint">Vos informations sont chiffrées. Elles seront effacées dès que votre enregistrement sera fait, et au plus tard 14&nbsp;jours après votre demande. Gardez ce numéro&nbsp;: il vous permettra aussi de laisser un avis <span class="nb">«&nbsp;Client&nbsp;vérifié&nbsp;»</span>.</p>
           <button class="btn btn-outline" id="done-another" type="button">Enregistrer un autre passager</button>
@@ -575,15 +594,19 @@
         </details>
         <details>
           <summary>Que se passe-t-il si la compagnie refuse l’enregistrement&nbsp;?</summary>
-          <p>Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Nous ne pouvons pas garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom. Si nous ne parvenons pas à le réaliser, vous êtes remboursé de vos 2&nbsp;€, sauf si le refus vient d’une information inexacte ou d’un document non valide. <a class="link" href="remboursement.html">Lire la politique de remboursement</a>.</p>
+          <p>Cela peut arriver pour des raisons indépendantes de notre volonté (document invalide, vol modifié, restriction spécifique). Nous ne pouvons pas garantir l’issue de l’enregistrement, seulement la démarche effectuée en votre nom. Si nous ne parvenons pas à le réaliser, vous êtes remboursé de vos 2&nbsp;€, sauf si le refus vient d’une information inexacte ou d’un document non valide. Pendant la période gratuite, rien n’est facturé&nbsp;: il n’y a donc rien à rembourser. <a class="link" href="remboursement.html">Lire la politique de remboursement</a>.</p>
         </details>
         <details>
-          <summary>Comment régler les 2&nbsp;€&nbsp;?</summary>
-          <p>2&nbsp;€ par réservation, quel que soit le nombre de passagers. Pour le moment, les modalités de règlement vous sont confirmées sur WhatsApp après réception de votre demande. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible.</p>
+          <summary>Combien coûte le service&nbsp;?</summary>
+          <p>Le service est gratuit jusqu’à la mi&#8209;décembre, dans la limite de 50&nbsp;demandes par jour&nbsp;: vous ne payez rien pour le moment. Ensuite, le prix sera de 2&nbsp;€ par réservation, quel que soit le nombre de passagers. Les modalités de règlement vous seront alors confirmées sur WhatsApp&nbsp;; le paiement par carte bancaire, avec Stripe, sera bientôt disponible.</p>
+        </details>
+        <details>
+          <summary>Que se passe-t-il si les 50&nbsp;demandes du jour sont atteintes&nbsp;?</summary>
+          <p>Au-delà de 50&nbsp;demandes dans la journée, nous ne pouvons pas garantir le traitement des suivantes. Vous pouvez les renvoyer le lendemain, à condition que votre vol parte dans plus de 10&nbsp;heures. Une demande correspond à une réservation, quel que soit le nombre de passagers.</p>
         </details>
         <details>
           <summary>Nous sommes plusieurs sur la même réservation&nbsp;: que dois-je faire&nbsp;?</summary>
-          <p>Remplissez le formulaire une fois pour chaque passager, avec la même référence de réservation (PNR). Vous ne réglez que 2&nbsp;€ pour l’ensemble de la réservation.</p>
+          <p>Remplissez le formulaire une fois pour chaque passager, avec la même référence de réservation (PNR). Le prix est de 2&nbsp;€ pour l’ensemble de la réservation (gratuit jusqu’à la mi&#8209;décembre), et la réservation ne compte que pour une demande dans le quota de 50&nbsp;par jour.</p>
         </details>
       </div>
     </div>

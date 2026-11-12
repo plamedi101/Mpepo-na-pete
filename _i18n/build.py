@@ -71,6 +71,27 @@ GLOBE = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
          'stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/>'
          '<path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9s1.3-6.4 3.9-9z"/></svg>')
 
+# Offre de lancement : bandeau affiché en haut de toutes les pages, dans la langue de la page.
+# À la fin de l'offre, mettre PROMO = None puis relancer build.py : le bandeau disparaît de toutes les pages.
+# (Les textes de prix des pages françaises, eux, se modifient dans les pages ; voir _i18n/README.md.)
+_NB = '&nbsp;'
+PROMO = {
+    # langue: (nom accessible du bandeau, phrase en gras, suite du texte)
+    'fr': ('Offre de lancement', 'Lancement gratuit jusqu’à la mi&#8209;décembre.',
+           f'Jusqu’à 50{_NB}demandes gratuites par jour. Ensuite, 2{_NB}€ par réservation, quel que soit le nombre de passagers.'),
+    'en': ('Launch offer', 'Free launch until mid&#8209;December.',
+           'Up to 50 free requests per day. After that, €2 per booking, whatever the number of passengers.'),
+    'es': ('Oferta de lanzamiento', 'Lanzamiento gratuito hasta mediados de diciembre.',
+           f'Hasta 50{_NB}solicitudes gratuitas al día. Después, 2{_NB}€ por reserva, sea cual sea el número de pasajeros.'),
+}
+
+CSS_PROMO = """  .promo{background:var(--gold);color:var(--navy);font-size:.9375rem;line-height:1.45;}
+  .promo .container{padding-block:10px;}
+  .promo p{margin:0;text-align:center;text-wrap:balance;}
+  .promo strong{font-weight:700;}
+  @media (max-width:560px){.promo{font-size:.875rem;line-height:1.4;}.promo .container{padding-block:8px;}}
+"""
+
 CSS_BLOCK = """/*i18n*/
   .langbar{background:var(--mist);border-bottom:1px solid var(--line);font-size:.875rem;line-height:1.2;}
   .langbar .container{display:flex;align-items:center;justify-content:flex-end;gap:2px;min-height:38px;}
@@ -96,6 +117,7 @@ def strip_i18n(src):
     """Retire de la page tout ce que ce script y a ajouté (pour pouvoir le recalculer)."""
     src = re.sub(r'<!--i18n:head-->.*?<!--/i18n:head-->\n', '', src, flags=re.S)
     src = re.sub(r'<!--i18n:langbar-->.*?<!--/i18n:langbar-->\n', '', src, flags=re.S)
+    src = re.sub(r'<!--i18n:promo-->.*?<!--/i18n:promo-->\n', '', src, flags=re.S)
     src = re.sub(r'<!--i18n:note-->.*?<!--/i18n:note-->\n?', '', src, flags=re.S)
     src = re.sub(r'/\*i18n\*/.*?/\*/i18n\*/\n', '', src, flags=re.S)
     return src
@@ -214,6 +236,25 @@ def langbar_block(fr_path, lang):
             '<!--/i18n:langbar-->\n')
 
 
+def promo_block(lang):
+    """Bandeau de l'offre de lancement (vide si PROMO est None)."""
+    if not PROMO:
+        return ''
+    label, lead, text = PROMO[lang]
+    return ('<!--i18n:promo-->\n'
+            f'<aside class="promo" aria-label="{label}">\n'
+            f'  <div class="container"><p><strong>{lead}</strong> {text}</p></div>\n'
+            '</aside>\n'
+            '<!--/i18n:promo-->\n')
+
+
+def css_block():
+    css = CSS_BLOCK
+    if PROMO:
+        css = css.replace('/*/i18n*/\n', CSS_PROMO + '/*/i18n*/\n')
+    return css
+
+
 def note_block(fr_path, lang):
     here = PATHS[fr_path][lang]
     href = relpath_to(PATHS[fr_path]['fr'], here)
@@ -227,8 +268,8 @@ def decorate(src, fr_path, lang):
     src = re.sub(r'(flyfast-chat\.js)\?v=\d+', r'\1?v=' + CHAT_VERSION, src)
     need_canonical = not re.search(r'<link[^>]+rel="canonical"', src)
     src = insert_once(src, '<link rel="icon"', head_block(fr_path, lang, need_canonical), True, 'icône')
-    src = insert_once(src, '</style>', CSS_BLOCK, True, 'styles')
-    src = insert_once(src, '<header class="site-header">', langbar_block(fr_path, lang), True, 'en-tête')
+    src = insert_once(src, '</style>', css_block(), True, 'styles')
+    src = insert_once(src, '<header class="site-header">', langbar_block(fr_path, lang) + promo_block(lang), True, 'en-tête')
     if lang != 'fr' and fr_path in LEGAL_PAGES:
         m = re.search(r'</h1>\s*(<p class="lead">.*?</p>)?', src, re.S)
         assert m, 'titre introuvable'

@@ -99,6 +99,21 @@ for fr, lg, path in pages:
             check(f'{tag} sélecteur : lien {a["lang"]} → bonne page', target == expect, (a['href'], target, expect))
         check(f'{tag} sélecteur : nom accessible', bar.get('aria-label') == build.LANGBAR_LABEL[lg], bar.get('aria-label'))
 
+    # bandeau de l'offre de lancement (build.PROMO ; None = aucun bandeau)
+    promos = soup.find_all('aside', class_='promo')
+    if build.PROMO:
+        p_label, p_lead, p_text = build.PROMO[lg]
+        flat = lambda s: re.sub(r'\s+', ' ', s).strip()  # noqa: E731
+        want_text = flat(BeautifulSoup(f'<p><strong>{p_lead}</strong> {p_text}</p>', 'lxml').get_text())
+        check(f'{tag} bandeau de lancement : un seul, entre le sélecteur de langue et l’en-tête',
+              len(promos) == 1 and h.count('<!--i18n:promo-->') == 1
+              and h.index('class="langbar"') < h.index('class="promo"') < h.index('class="site-header"'))
+        if promos:
+            check(f'{tag} bandeau : nom accessible et texte dans la langue de la page',
+                  promos[0].get('aria-label') == p_label and flat(promos[0].get_text()) == want_text, flat(promos[0].get_text()))
+    else:
+        check(f'{tag} aucun bandeau de lancement', not promos and '<!--i18n:promo-->' not in h)
+
     # script du chat et mesure d'audience
     scripts = [s for s in soup.find_all('script') if s.get('src')]
     chat = [s for s in scripts if 'flyfast-chat.js' in s['src']]

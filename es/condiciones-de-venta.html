@@ -121,6 +121,11 @@
   .langbar a[aria-current]{color:var(--navy);font-weight:600;box-shadow:inset 0 -2px 0 var(--sky);}
   .i18n-note{margin-top:20px;max-width:68ch;padding:12px 16px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft,#FFF6DC);color:var(--ink);font-size:.9375rem;line-height:1.5;}
   .i18n-note a{color:var(--sky-text);text-underline-offset:3px;}
+  .promo{background:var(--gold);color:var(--navy);font-size:.9375rem;line-height:1.45;}
+  .promo .container{padding-block:10px;}
+  .promo p{margin:0;text-align:center;text-wrap:balance;}
+  .promo strong{font-weight:700;}
+  @media (max-width:560px){.promo{font-size:.875rem;line-height:1.4;}.promo .container{padding-block:8px;}}
 /*/i18n*/
 </style>
 </head>
@@ -131,6 +136,11 @@
   <div class="container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9s1.3-6.4 3.9-9z"/></svg><a href="../conditions-de-vente.html" lang="fr" hreflang="fr">Français</a><a href="../en/terms-of-sale.html" lang="en" hreflang="en">English</a><a href="condiciones-de-venta.html" lang="es" hreflang="es" aria-current="true">Español</a></div>
 </nav>
 <!--/i18n:langbar-->
+<!--i18n:promo-->
+<aside class="promo" aria-label="Oferta de lanzamiento">
+  <div class="container"><p><strong>Lanzamiento gratuito hasta mediados de diciembre.</strong> Hasta 50&nbsp;solicitudes gratuitas al día. Después, 2&nbsp;€ por reserva, sea cual sea el número de pasajeros.</p></div>
+</aside>
+<!--/i18n:promo-->
 <header class="site-header">
   <div class="container bar">
     <a class="brand" href="index.html" aria-label="FlyFast, inicio">
@@ -157,7 +167,8 @@
     <aside class="summary" aria-labelledby="bref">
       <h2 id="bref">En resumen</h2>
       <ul>
-        <li>2&nbsp;€ por reserva, sea cual sea el número de pasajeros.</li>
+        <li>Gratis hasta mediados de diciembre de 2026, con un máximo de 50&nbsp;solicitudes al día (una solicitud = una reserva).</li>
+        <li>Después, 2&nbsp;€ por reserva, sea cual sea el número de pasajeros.</li>
         <li>Hacemos el check-in online en su lugar y le enviamos la tarjeta de embarque por WhatsApp.</li>
         <li>Su solicitud debe llegarnos como máximo 10&nbsp;horas antes del despegue.</li>
         <li>No podemos garantizar que la aerolínea acepte el check-in. Si no lo realizamos, se le reembolsa el importe, salvo error en los datos facilitados.</li>
@@ -173,22 +184,23 @@
       <p>El servicio no incluye la reserva ni la modificación de su billete, ni los trámites de visado o de entrada al país.</p>
 
       <h2>3. Precio</h2>
-      <p>El precio es de 2,00&nbsp;€ por reserva (código de reserva o PNR), sea cual sea el número de pasajeros inscritos en esa reserva. Si viajan varios en la misma reserva, solo se paga una vez. No añadimos ningún otro cargo.</p>
+      <p><strong>Oferta de lanzamiento.</strong> Desde el lanzamiento hasta mediados de diciembre de 2026, el servicio es gratuito, con un máximo de 50&nbsp;solicitudes al día. Una solicitud equivale a una reserva (código de reserva o PNR), sea cual sea el número de pasajeros inscritos en esa reserva. Pasadas las 50&nbsp;solicitudes del día, no podemos garantizar la tramitación de las siguientes; puede volver a enviarlas al día siguiente.</p>
+      <p>Pasado ese periodo, el precio es de 2,00&nbsp;€ por reserva, sea cual sea el número de pasajeros inscritos en esa reserva. Si viajan varios en la misma reserva, solo se paga una vez. No añadimos ningún otro cargo. El precio aplicable es el vigente el día en que envía su solicitud.</p>
       <p>Las comisiones que pudieran aplicar su banco o su proveedor de pago, por ejemplo de cambio de divisa o de transferencia, corren por su cuenta.</p>
 
       <h2>4. Cómo hacer el pedido</h2>
       <ol>
         <li>Usted rellena el formulario del sitio, una vez por pasajero, con los datos de su vuelo y de su pasaporte.</li>
         <li>Usted recibe un número de solicitud (por ejemplo FF-AB12CD) y nos lo envía por WhatsApp.</li>
-        <li>Le confirmamos las condiciones de pago de los 2&nbsp;€ y después iniciamos su check-in.</li>
+        <li>Durante el periodo gratuito, iniciamos su check-in sin pedirle nada. Después, le confirmamos primero las condiciones de pago de los 2&nbsp;€.</li>
         <li>Le enviamos su tarjeta de embarque por WhatsApp.</li>
       </ol>
       <p>Su pedido queda confirmado con nuestro mensaje en WhatsApp: ese mensaje es el que perfecciona el contrato.</p>
-      <p>De momento, las condiciones de pago se acuerdan por mensaje en WhatsApp. El pago con tarjeta, mediante Stripe, estará disponible próximamente: esta página se actualizará entonces.</p>
+      <p>Terminado el periodo gratuito, las condiciones de pago se acuerdan por mensaje en WhatsApp. El pago con tarjeta, mediante Stripe, estará disponible próximamente: esta página se actualizará entonces.</p>
 
       <h2>5. Plazo</h2>
       <p>Su solicitud debe llegarnos como máximo 10&nbsp;horas antes del despegue. Pasado ese plazo, no podemos garantizar que el check-in se haga a tiempo: en ese caso, acuda directamente al mostrador de check-in de su aerolínea en el aeropuerto.</p>
-      <p>El check-in online solo es posible a partir de su apertura, fijada por la aerolínea. Lo realizamos una vez llegado ese momento y confirmado su pago.</p>
+      <p>El check-in online solo es posible a partir de su apertura, fijada por la aerolínea. Lo realizamos una vez llegado ese momento y, terminado el periodo gratuito, confirmado su pago.</p>
 
       <h2>6. Lo que no podemos garantizar</h2>
       <p>Nos comprometemos a realizar con cuidado el trámite de check-in en su nombre. No podemos garantizar su resultado, que depende de la aerolínea: rechazo del check-in, documento no válido, vuelo modificado o cancelado, restricción propia de la aerolínea o de su destino, sitio web de la aerolínea no disponible, solicitud recibida con menos de 10&nbsp;horas de antelación a la salida.</p>
@@ -203,7 +215,7 @@
       </ul>
 
       <h2 id="remboursement">8. Reembolso</h2>
-      <p>Si no conseguimos realizar su check-in, se le reembolsan los 2&nbsp;€, salvo que el fallo se deba a un dato inexacto o a un documento no válido facilitado por usted. Los casos, el plazo y el procedimiento se detallan en la <a href="reembolso.html">política de reembolso</a>.</p>
+      <p>Si no conseguimos realizar su check-in, se le reembolsan los 2&nbsp;€, salvo que el fallo se deba a un dato inexacto o a un documento no válido facilitado por usted. Durante el periodo gratuito no se cobra nada, así que no hay nada que reembolsar. Los casos, el plazo y el procedimiento se detallan en la <a href="reembolso.html">política de reembolso</a>.</p>
 
       <h2 id="retractation">9. Derecho de desistimiento</h2>
       <p>Si es usted un consumidor residente en la Unión Europea, dispone en principio de 14&nbsp;días para desistir de una compra celebrada a distancia. Nuestro servicio se ejecuta en pocas horas, antes de su vuelo: al enviar su solicitud, usted nos pide que lo realicemos sin esperar al fin de ese plazo.</p>
@@ -219,7 +231,7 @@
       <h2>12. Modificación de las condiciones</h2>
       <p>Podemos modificar estas condiciones. La versión aplicable a su pedido es la publicada en esta página en el momento de su solicitud.</p>
     </div>
-    <p class="updated">Última actualización: 9 de noviembre de 2026.</p>
+    <p class="updated">Última actualización: 12 de noviembre de 2026.</p>
   </article>
 </main>
 

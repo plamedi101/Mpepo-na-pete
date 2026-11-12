@@ -47,6 +47,17 @@ correspondante à jour.
 
 Ajoutez-la dans `_SLUGS` (chemin français, chemin anglais, chemin espagnol), traduisez ses textes (étape 2) puis régénérez.
 
+## Offre de lancement (gratuit jusqu’à la mi-décembre 2026)
+
+Le bandeau doré en haut de toutes les pages est généré par `build.py` (table `PROMO`, textes fr/en/es) : pour le retirer,
+mettre `PROMO = None` puis relancer le build. Les textes de prix, eux, sont écrits dans les pages françaises (puis traduits
+dans `translations.json`) ; à la fin de l’offre, il faut les remettre au tarif de 2 € par réservation :
+`index.html` (descriptions, barre de faits, étape 2, bloc « Tarif », prix du formulaire, message de confirmation, FAQ),
+`conditions-de-vente.html` (en bref, articles 3, 4, 5 et 8), `remboursement.html` (introduction) et
+`flyfast-blog/enregistrement-en-ligne-guide-complet.html` (bouton). Les anciennes phrases et leurs traductions restent dans
+`translations.json`. « mi‑décembre » s’écrit avec un tiret insécable (`&#8209;`) pour ne pas être coupé en fin de ligne.
+Le quota de 50 demandes par jour (une demande = une réservation) est annoncé sur le site ; le formulaire ne l’applique pas.
+
 ## Choix de traduction
 
 Anglais britannique ; espagnol avec « usted ». Termes : « numéro de dossier » = *request number* / *número de solicitud* ;
