@@ -517,26 +517,61 @@ with sync_playwright() as p:
         check(f'[menu {lang}] pas de défilement horizontal', page.evaluate('document.documentElement.scrollWidth - document.documentElement.clientWidth') <= 0)
         ctx.close()
 
-    # ============================================================== 5b. affiliation Travelpayouts : règle de chargement du script externe
-    # blog = chargé une fois ; accueil (formulaires : passeport…) = jamais, sauf pour la vérification Travelpayouts (?init_marker=…) ;
-    # pages légales = jamais.
+    # ============================================================== 5b. affiliation Travelpayouts et bandeau de consentement
+    # accueil (formulaires : passeport…) = aucun bandeau, script seulement pour la vérification Travelpayouts (?init_marker=…) ;
+    # pages légales = rien ; blog = bandeau, et script Travelpayouts chargé seulement après « Accepter ».
     TP_SRC = build.TP_DRIVE_SRC
     VERIF = '?init_marker=805301&init_trs=600443&init_locale=en'
+    KEY = 'ff-consent'
+    DAY = 24 * 3600 * 1000
+    BLOG = [fr for fr in build.PATHS if fr.startswith('flyfast-blog/')]
+    FLOW = ['flyfast-blog/index.html', 'flyfast-blog/esim-voyageurs-rester-connecte.html']
+    CONSENT = {
+        'fr': dict(title='Cookies et liens partenaires', accept='Accepter', refuse='Refuser', manage='Gérer les cookies', more='En savoir plus', priv='Confidentialité'),
+        'en': dict(title='Cookies and partner links', accept='Accept', refuse='Decline', manage='Manage cookies', more='Learn more', priv='Privacy'),
+        'es': dict(title='Cookies y enlaces a socios', accept='Aceptar', refuse='Rechazar', manage='Gestionar cookies', more='Más información', priv='Privacidad'),
+    }
+    BTN_NO = '#ff-consent [data-ffk="no"]'
+    BTN_YES = '#ff-consent [data-ffk="yes"]'
+    OPENER = '.site-footer .ffk-open'
+    DRIVE_SCRIPT = [{'src': TP_SRC, 'async': True, 'cmp': '2'}]
+
+    def watch(page):
+        """Compte les appels à Travelpayouts ; garde les erreurs de console."""
+        hits, errors = [], []
+        page.on('request', lambda r: hits.append(r.url) if 'emrldco' in r.url else None)
+        page.on('pageerror', lambda e: errors.append('pageerror: ' + str(e)))
+        page.on('console', lambda m: errors.append(m.text) if m.type == 'error' and not noise(m.text) else None)
+        return hits, errors
+
+    def cstate(page):
+        return page.evaluate("""() => {
+            const b = document.getElementById('ff-consent');
+            let stored = null;
+            try { stored = JSON.parse(localStorage.getItem('ff-consent')); } catch (e) { stored = 'illisible'; }
+            return {banner: !!b, shown: !!b && !b.hidden && getComputedStyle(b).display !== 'none', stored: stored,
+                    cookie: /(^|; )am_user_session=/.test(document.cookie),
+                    scripts: [...document.head.querySelectorAll('script[src]')].filter(s => s.src.includes('emrldco'))
+                        .map(s => ({src: s.src, async: s.async, cmp: s.getAttribute('data-cmp-ab')}))};
+        }""")
+
+    def stored_is(s, value):
+        st = s['stored']
+        return isinstance(st, dict) and st.get('v') == value and isinstance(st.get('t'), (int, float))
+
+    # ---- accueil et pages légales : jamais de bandeau ; script seulement pour la vérification Travelpayouts sur l'accueil
     for lang in LANGS:
         ctx = new_context(b, viewport={'width': 1280, 'height': 900})
         for fr_path, v in build.PATHS.items():
+            if fr_path.startswith('flyfast-blog/'):
+                continue
             if fr_path == 'index.html':
                 variants = [('', 0), (VERIF, 1), ('?utm_init_marker=1', 0), ('#init_marker=805301', 0)]
-            elif fr_path.startswith('flyfast-blog/'):
-                variants = [('', 1), (VERIF, 1)]
             else:
                 variants = [('', 0), (VERIF, 0)]
             for query, expected in variants:
                 page = ctx.new_page()
-                hits, errors = [], []
-                page.on('request', lambda r, hits=hits: hits.append(r.url) if 'emrldco' in r.url else None)
-                page.on('pageerror', lambda e, errors=errors: errors.append('pageerror: ' + str(e)))
-                page.on('console', lambda m, errors=errors: errors.append(m.text) if m.type == 'error' and not noise(m.text) else None)
+                hits, errors = watch(page)
                 page.goto(BASE + v[lang] + query, wait_until='load')
                 page.wait_for_timeout(250)
                 tag = f'[affiliation {v[lang]}{query}]'
@@ -545,8 +580,272 @@ with sync_playwright() as p:
                 added = page.evaluate("[...document.head.querySelectorAll('script[src]')].map(s => ({src: s.src, async: s.async}))")
                 check(f'{tag} ' + ('script ajouté dans <head>, en asynchrone' if want else 'aucun script Travelpayouts dans la page'),
                       added == [{'src': TP_SRC, 'async': True}] * len(want), added)
+                s = cstate(page)
+                check(f'{tag} aucun bandeau de consentement, aucun choix enregistré, pas de lien « {CONSENT[lang]["manage"]} »',
+                      not s['banner'] and s['stored'] is None and page.locator(OPENER).count() == 0, s)
                 check(f'{tag} aucune erreur de console', not errors, errors)
                 page.close()
+        ctx.close()
+
+    # ---- blog, première visite : bandeau affiché, rien n'est chargé ni enregistré avant le choix
+    for lang in LANGS:
+        c = CONSENT[lang]
+        for fr_path in BLOG:
+            path = build.PATHS[fr_path][lang]
+            tag = f'[bandeau {path}]'
+            ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+            page = ctx.new_page()
+            hits, errors = watch(page)
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(250)
+            s = cstate(page)
+            check(f'{tag} première visite : bandeau affiché', s['shown'], s)
+            check(f'{tag} première visite : aucun appel à Travelpayouts, aucun script, aucun cookie, aucun choix enregistré',
+                  hits == [] and s['scripts'] == [] and not s['cookie'] and s['stored'] is None, (hits, s))
+            info = page.evaluate("""() => {
+                const b = document.getElementById('ff-consent');
+                const btn = [...b.querySelectorAll('button')].map(x => { const cs = getComputedStyle(x), r = x.getBoundingClientRect();
+                    return {text: x.textContent, key: x.dataset.ffk, w: Math.round(r.width), h: Math.round(r.height), bg: cs.backgroundColor, color: cs.color,
+                            fs: cs.fontSize, fw: cs.fontWeight, bd: cs.borderTopColor + ' ' + cs.borderTopWidth}; });
+                const a = b.querySelector('a');
+                const r = b.getBoundingClientRect();
+                const ref = id => { const e = document.getElementById(b.getAttribute(id)); return e && e.textContent; };
+                return {role: b.getAttribute('role'), title: ref('aria-labelledby'), desc: ref('aria-describedby'), btn: btn,
+                        link: a && {text: a.textContent, abs: a.href}, box: [r.left, r.top, r.right, r.bottom], vw: innerWidth, vh: innerHeight,
+                        focusOnBody: document.activeElement === document.body,
+                        hscroll: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+                        openers: [...document.querySelectorAll('.ffk-open')].map(o => ({text: o.textContent, tag: o.tagName, type: o.type, inFooter: !!o.closest('.site-footer'),
+                            after: o.parentNode.previousElementSibling && o.parentNode.previousElementSibling.textContent}))};
+            }""")
+            check(f'{tag} bandeau : boîte de dialogue nommée (titre « {c["title"]} ») et décrite', info['role'] == 'dialog' and info['title'] == c['title']
+                  and c['more'] in (info['desc'] or '') and 'Travelpayouts' in (info['desc'] or ''), (info['role'], info['title'], info['desc']))
+            btn = info['btn']
+            check(f'{tag} bandeau : deux boutons, « {c["refuse"]} » puis « {c["accept"]} »', [x['text'] for x in btn] == [c['refuse'], c['accept']]
+                  and [x['key'] for x in btn] == ['no', 'yes'], btn)
+            same = lambda k: len(btn) == 2 and btn[0][k] == btn[1][k]  # noqa: E731
+            check(f'{tag} bandeau : refuser aussi visible qu’accepter (même taille, mêmes couleurs, même police)',
+                  all(same(k) for k in ('w', 'h', 'bg', 'color', 'fs', 'fw', 'bd')), btn)
+            check(f'{tag} bandeau : lien « {c["more"]} » vers la section Liens partenaires de la page Confidentialité dans la langue',
+                  info['link'] and info['link']['text'] == c['more']
+                  and info['link']['abs'] == BASE + build.PATHS['confidentialite.html'][lang] + '#' + build.PRIVACY_ANCHOR, info['link'])
+            x0, y0, x1, y1 = info['box']
+            check(f'{tag} bandeau : entièrement dans la fenêtre, sans défilement horizontal', x0 >= 0 and y0 >= 0 and x1 <= info['vw'] and y1 <= info['vh'] and info['hscroll'] <= 0, info)
+            check(f'{tag} bandeau : ne prend pas le focus à l’affichage', info['focusOnBody'])
+            check(f'{tag} pied de page : un lien « {c["manage"]} » (bouton), juste après « {c["priv"]} »',
+                  len(info['openers']) == 1 and info['openers'][0] == {'text': c['manage'], 'tag': 'BUTTON', 'type': 'button', 'inFooter': True, 'after': c['priv']}, info['openers'])
+            check(f'{tag} aucune erreur de console', not errors, errors)
+            ctx.close()
+
+    # ---- blog : parcours complets (refuser, accepter, retirer, changer d'avis, durée du choix, stockage bloqué)
+    for lang in LANGS:
+        c = CONSENT[lang]
+        for fr_path in FLOW:
+            path = build.PATHS[fr_path][lang]
+            other = build.PATHS[[p for p in FLOW if p != fr_path][0]][lang]
+            tag = f'[bandeau {path}]'
+
+            # A. refuser : rien n'est chargé, le choix est gardé (rechargement et autre page du blog)
+            ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+            page = ctx.new_page()
+            hits, errors = watch(page)
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(200)
+            page.click(BTN_NO)
+            page.wait_for_timeout(250)
+            s = cstate(page)
+            now = page.evaluate('Date.now()')
+            check(f'{tag} refuser : bandeau fermé, choix « non » enregistré, rien chargé',
+                  not s['shown'] and stored_is(s, 'no') and abs(now - s['stored']['t']) < 60000 and hits == [] and s['scripts'] == [] and not s['cookie'], (s, hits))
+            for step, go in (('rechargement', lambda: page.reload(wait_until='load')), ('autre page du blog', lambda: page.goto(BASE + other, wait_until='load'))):
+                go()
+                page.wait_for_timeout(250)
+                s = cstate(page)
+                check(f'{tag} refuser : après {step}, pas de bandeau et toujours aucun appel à Travelpayouts',
+                      not s['banner'] and stored_is(s, 'no') and hits == [] and s['scripts'] == [], (s, hits))
+            check(f'{tag} refuser : aucune erreur de console', not errors, errors)
+            ctx.close()
+
+            # B. accepter : le script Travelpayouts est chargé (une fois par page), le choix est gardé
+            ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+            page = ctx.new_page()
+            hits, errors = watch(page)
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(200)
+            check(f'{tag} accepter : rien n’est chargé avant le clic', hits == [], hits)
+            page.click(BTN_YES)
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            check(f'{tag} accepter : bandeau fermé, choix « oui » enregistré, script Travelpayouts chargé une seule fois, en asynchrone',
+                  not s['shown'] and stored_is(s, 'yes') and hits == [TP_SRC] and s['scripts'] == DRIVE_SCRIPT, (s, hits))
+            for step, go in (('rechargement', lambda: page.reload(wait_until='load')), ('autre page du blog', lambda: page.goto(BASE + other, wait_until='load'))):
+                del hits[:]
+                go()
+                page.wait_for_timeout(300)
+                s = cstate(page)
+                check(f'{tag} accepter : après {step}, pas de bandeau et le script est chargé une seule fois',
+                      not s['banner'] and stored_is(s, 'yes') and hits == [TP_SRC] and s['scripts'] == DRIVE_SCRIPT, (s, hits))
+
+            # C. gérer les cookies : le bandeau se rouvre ; Échap le ferme sans rien changer ; refuser retire l'accord
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(250)
+            page.evaluate("document.cookie = 'am_user_session=abc123; path=/'; localStorage.setItem('YeaMoAvnmSamSLml', 'rgb(12, 46, 78)'); localStorage.setItem('autre-cle', 'rgb(1, 2, 3)')")
+            page.click(OPENER)
+            s = cstate(page)
+            first = page.evaluate("document.activeElement && document.activeElement.dataset.ffk")
+            check(f'{tag} « {c["manage"]} » : le bandeau se rouvre, le focus est sur « {c["refuse"]} »', s['shown'] and first == 'no', (s, first))
+            page.keyboard.press('Escape')
+            s = cstate(page)
+            back = page.evaluate("document.activeElement && document.activeElement.classList.contains('ffk-open')")
+            check(f'{tag} Échap ferme le bandeau rouvert sans changer le choix, le focus revient sur le lien', not s['shown'] and stored_is(s, 'yes') and back, (s, back))
+            page.click(OPENER)
+            del hits[:]
+            try:
+                with page.expect_navigation(timeout=5000):
+                    page.click(BTN_NO)
+                reloaded = True
+            except Exception:
+                reloaded = False
+            check(f'{tag} retirer l’accord : la page se recharge (un script déjà chargé ne se décharge pas)', reloaded)
+            page.wait_for_load_state('load')
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            check(f'{tag} retirer l’accord : la page se recharge sans Travelpayouts, choix « non », cookie de session effacé',
+                  hits == [] and s['scripts'] == [] and not s['cookie'] and stored_is(s, 'no') and not s['banner'], (s, hits))
+            ls = page.evaluate("[localStorage.getItem('YeaMoAvnmSamSLml'), localStorage.getItem('autre-cle')]")
+            check(f'{tag} retirer l’accord : la donnée de stockage local de Travelpayouts est effacée, les autres restent', ls == [None, 'rgb(1, 2, 3)'], ls)
+            check(f'{tag} parcours : aucune erreur de console', not errors, errors)
+            ctx.close()
+
+            # D. changer d'avis : refuser puis accepter par « Gérer les cookies » charge le script sans rechargement
+            ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+            page = ctx.new_page()
+            hits, errors = watch(page)
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(200)
+            page.click(BTN_NO)
+            page.wait_for_timeout(200)
+            page.evaluate('window.__marker = 1')
+            page.click(OPENER)
+            page.click(BTN_YES)
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            check(f'{tag} changer d’avis (refuser puis accepter) : script chargé une fois, sans rechargement de la page',
+                  not s['shown'] and stored_is(s, 'yes') and hits == [TP_SRC] and page.evaluate('window.__marker') == 1, (s, hits))
+            page.click(OPENER)
+            page.keyboard.press('Escape')
+            check(f'{tag} le bandeau rouvert n’est pas compté comme un choix (Échap : le choix « oui » reste)', stored_is(cstate(page), 'yes'))
+            ctx.close()
+
+            # E. au clavier : Tab jusqu'au bouton, Entrée
+            ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+            page = ctx.new_page()
+            hits, errors = watch(page)
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(200)
+            page.focus(BTN_YES)
+            visible_focus = page.evaluate("(() => { const cs = getComputedStyle(document.activeElement); return cs.outlineStyle !== 'none' && parseFloat(cs.outlineWidth) >= 2; })()")
+            page.keyboard.press('Enter')
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            check(f'{tag} clavier : le bouton « {c["accept"]} » a un contour de focus visible et s’active avec Entrée',
+                  visible_focus and stored_is(s, 'yes') and hits == [TP_SRC], (visible_focus, s, hits))
+            ctx.close()
+
+    # ---- blog : durée du choix (6 mois), valeurs illisibles, stockage bloqué
+    for lang in LANGS:
+        path = build.PATHS['flyfast-blog/index.html'][lang]
+        tag = f'[bandeau {path}]'
+        ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+        page = ctx.new_page()
+        hits, errors = watch(page)
+        page.goto(BASE + path, wait_until='load')
+        page.wait_for_timeout(200)
+        cases = [
+            ('« oui » vieux de 170 jours (encore valable)', {'v': 'yes', 't': -170 * DAY}, False, 1),
+            ('« oui » vieux de 190 jours (périmé)', {'v': 'yes', 't': -190 * DAY}, True, 0),
+            ('« non » vieux de 170 jours (encore valable)', {'v': 'no', 't': -170 * DAY}, False, 0),
+            ('« non » vieux de 190 jours (périmé)', {'v': 'no', 't': -190 * DAY}, True, 0),
+            ('date dans le futur (invalide)', {'v': 'yes', 't': 2 * DAY}, True, 0),
+            ('valeur inconnue (invalide)', {'v': 'peut-être', 't': -DAY}, True, 0),
+        ]
+        for label, st, want_banner, want_hits in cases:
+            page.evaluate("(st) => localStorage.setItem('ff-consent', JSON.stringify({v: st.v, t: Date.now() + st.t}))", st)
+            del hits[:]
+            page.reload(wait_until='load')
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            check(f'{tag} choix {label} : bandeau {"affiché" if want_banner else "absent"}, {want_hits} appel(s) à Travelpayouts',
+                  s['shown'] == want_banner and len(hits) == want_hits and (hits == [TP_SRC] * want_hits), (s, hits))
+        for label, raw in (('texte quelconque', 'n’importe quoi'), ('JSON sans date', '{"v":"yes"}'), ('nombre', '42')):
+            page.evaluate("(raw) => localStorage.setItem('ff-consent', raw)", raw)
+            del hits[:]
+            page.reload(wait_until='load')
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            check(f'{tag} valeur illisible ({label}) : bandeau affiché, rien chargé', s['shown'] and hits == [], (s, hits))
+        check(f'{tag} durée du choix : aucune erreur de console', not errors, errors)
+        ctx.close()
+
+        # stockage du navigateur bloqué : le bandeau reste utilisable, « Accepter » charge le script pour cette page seulement
+        ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+        ctx.add_init_script("Object.defineProperty(window, 'localStorage', {get: function () { throw new Error('stockage bloqué'); }});")
+        page = ctx.new_page()
+        hits, errors = watch(page)
+        page.goto(BASE + path, wait_until='load')
+        page.wait_for_timeout(250)
+        shown = page.evaluate("(() => { const b = document.getElementById('ff-consent'); return !!b && !b.hidden; })()")
+        check(f'{tag} stockage bloqué : bandeau affiché, rien chargé', shown and hits == [], (shown, hits))
+        page.click(BTN_YES)
+        page.wait_for_timeout(300)
+        check(f'{tag} stockage bloqué : « Accepter » charge le script une seule fois', hits == [TP_SRC], hits)
+        del hits[:]
+        page.reload(wait_until='load')
+        page.wait_for_timeout(250)
+        shown = page.evaluate("(() => { const b = document.getElementById('ff-consent'); return !!b && !b.hidden; })()")
+        check(f'{tag} stockage bloqué : après rechargement, le bandeau revient et rien n’est chargé', shown and hits == [], (shown, hits))
+        check(f'{tag} stockage bloqué : aucune erreur de page', not [e for e in errors if e.startswith('pageerror')], errors)
+        ctx.close()
+
+    # ---- blog sur mobile : le bandeau tient dans l'écran, ne crée pas de défilement horizontal, laisse le bouton de chat libre une fois fermé
+    for lang in LANGS:
+        c = CONSENT[lang]
+        path = build.PATHS['flyfast-blog/esim-voyageurs-rester-connecte.html'][lang]
+        tag = f'[bandeau mobile {path}]'
+        ctx = new_context(b, viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True, device_scale_factor=2)
+        page = ctx.new_page()
+        hits, errors = watch(page)
+        page.goto(BASE + path, wait_until='load')
+        page.wait_for_timeout(300)
+        g = page.evaluate("""() => { const r = document.getElementById('ff-consent').getBoundingClientRect();
+            return {box: [r.left, r.top, r.right, r.bottom], vw: innerWidth, vh: innerHeight, hscroll: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+                    z: +getComputedStyle(document.getElementById('ff-consent')).zIndex, lz: +getComputedStyle(document.querySelector('.ffc-launch')).zIndex}; }""")
+        x0, y0, x1, y1 = g['box']
+        check(f'{tag} bandeau dans l’écran (390 px), au-dessus du bouton de chat, sans défilement horizontal',
+              x0 >= 0 and x1 <= g['vw'] and y0 >= 0 and y1 <= g['vh'] and g['hscroll'] <= 0 and g['z'] > g['lz'], g)
+        check(f'{tag} bandeau : moins de la moitié de la hauteur de l’écran', (y1 - y0) < g['vh'] / 2, g)
+        page.screenshot(path=f'{SHOTS}/consent-mobile-{lang}.png')
+        page.tap(BTN_NO)
+        page.wait_for_timeout(250)
+        free = page.evaluate("""() => { const l = document.querySelector('.ffc-launch'); const r = l.getBoundingClientRect();
+            const e = document.elementFromPoint((r.left + r.right) / 2, (r.top + r.bottom) / 2); return !!e && (e === l || l.contains(e)); }""")
+        s = cstate(page)
+        check(f'{tag} refuser au toucher : bandeau fermé, bouton de chat accessible, rien chargé', not s['shown'] and free and hits == [] and stored_is(s, 'no'), (s, free, hits))
+        page.tap(OPENER)
+        page.wait_for_timeout(150)
+        check(f'{tag} « {c["manage"]} » au toucher : le bandeau se rouvre', cstate(page)['shown'])
+        check(f'{tag} aucune erreur de console', not errors, errors)
+        ctx.close()
+
+    # largeurs intermédiaires : le bandeau tient toujours dans la fenêtre (tablette, petit écran)
+    for width in (320, 480, 600, 760, 900):
+        ctx = new_context(b, viewport={'width': width, 'height': 800})
+        page = ctx.new_page()
+        page.goto(BASE + build.PATHS['flyfast-blog/index.html']['fr'], wait_until='load')
+        page.wait_for_timeout(250)
+        g = page.evaluate("""() => { const r = document.getElementById('ff-consent').getBoundingClientRect();
+            return {box: [r.left, r.top, r.right, r.bottom], vw: innerWidth, vh: innerHeight, hscroll: document.documentElement.scrollWidth - document.documentElement.clientWidth}; }""")
+        x0, y0, x1, y1 = g['box']
+        check(f'[bandeau {width} px] dans la fenêtre, sans défilement horizontal', x0 >= 0 and y0 >= 0 and x1 <= g['vw'] and y1 <= g['vh'] and g['hscroll'] <= 0, g)
         ctx.close()
 
     # ============================================================== 6. captures pour relecture visuelle

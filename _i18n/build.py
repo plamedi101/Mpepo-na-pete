@@ -34,6 +34,7 @@ LANG_NAMES = {'fr': 'Français', 'en': 'English', 'es': 'Español'}
 LANGBAR_LABEL = {'fr': 'Langue', 'en': 'Language', 'es': 'Idioma'}
 OG_LOCALE = {'fr': 'fr_FR', 'en': 'en_GB', 'es': 'es_ES'}
 CHAT_VERSION = '2'
+CONSENT_VERSION = '1'          # à augmenter quand flyfast-consent.js change (évite le cache du navigateur)
 
 # Pages : chemin français -> {langue: chemin dans le site}
 _SLUGS = [
@@ -96,37 +97,46 @@ CSS_PROMO = """  .promo{background:var(--gold);color:var(--navy);font-size:.9375
 # Pour le retirer de toutes les pages : TP_DRIVE_SRC = None puis relancer build.py.
 TP_DRIVE_SRC = 'https://emrldco.com/NjAwNDQz.js?t=600443'
 # Où le script est chargé :
-#  - « toujours » : les pages du blog, là où se trouveront les liens vers les partenaires ;
-#  - « vérification » : la page d'accueil, qui porte les formulaires de demande et d'avis (passeport, etc.). Travelpayouts y contrôle
-#    la connexion, mais un visiteur ordinaire ne charge jamais le script : il n'est ajouté que si l'adresse contient ?init_marker=… ;
+#  - « consentement » : les pages du blog, là où se trouveront les liens vers les partenaires. Elles ne portent que le script
+#    CONSENT_JS (écrit à la main, à la racine du site) : il affiche le bandeau et ne charge le script Travelpayouts qu'après un clic
+#    sur « Accepter ». L'adresse du script (data-drive) et celle de la section « Liens partenaires » de la page Confidentialité
+#    (data-privacy) lui sont passées par la balise ;
+#  - « vérification » : la page d'accueil, qui porte les formulaires de demande et d'avis (passeport, etc.), sans bandeau. Travelpayouts y
+#    contrôle la connexion, mais un visiteur ordinaire ne charge jamais le script : il n'est ajouté que si l'adresse contient ?init_marker=… ;
 #  - nulle part ailleurs : les pages légales n'ont aucun lien partenaire.
 TP_VERIFY_PAGES = {'index.html'}
+CONSENT_JS = 'flyfast-consent.js'
+PRIVACY_ANCHOR = 'liens-partenaires'      # identifiant de la section « Liens partenaires » de confidentialite.html
 
 
 def tp_mode(fr_path):
-    """'verify', 'always' ou None selon la page française d'origine (la règle est la même dans les trois langues)."""
+    """'verify', 'consent' ou None selon la page française d'origine (la règle est la même dans les trois langues)."""
     if not TP_DRIVE_SRC:
         return None
     if fr_path in TP_VERIFY_PAGES:
         return 'verify'
     if fr_path.startswith('flyfast-blog/'):
-        return 'always'
+        return 'consent'
     return None
 
 
-def tp_block(fr_path):
-    """Code Travelpayouts Drive, dans l'en-tête de la page (vide si la page n'en a pas besoin)."""
+def tp_block(fr_path, lang):
+    """Code Travelpayouts Drive (ou bandeau de consentement qui le charge), dans l'en-tête de la page (vide si inutile)."""
     mode = tp_mode(fr_path)
     if not mode:
         return ''
-    guard = ''
-    if mode == 'verify':
-        guard = '      if (!/[?&]init_marker=/.test(location.search)) { return; }\n'
+    if mode == 'consent':
+        here = PATHS[fr_path][lang]
+        js = relpath_to(CONSENT_JS, here)
+        privacy = relpath_to(PATHS['confidentialite.html'][lang], here) + '#' + PRIVACY_ANCHOR
+        return ('<!--i18n:tp-->\n'
+                f'<script src="{js}?v={CONSENT_VERSION}" data-drive="{TP_DRIVE_SRC}" data-privacy="{privacy}" defer></script>\n'
+                '<!--/i18n:tp-->\n')
     return ('<!--i18n:tp-->\n'
             '<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" '
             'data-no-defer="1" data-cmp-ab="2">\n'
             '  (function () {\n'
-            + guard +
+            '      if (!/[?&]init_marker=/.test(location.search)) { return; }\n'
             '      var script = document.createElement("script");\n'
             '      script.async = 1;\n'
             '      script.setAttribute("data-cmp-ab","2");\n'
@@ -315,7 +325,7 @@ def decorate(src, fr_path, lang):
     need_canonical = not re.search(r'<link[^>]+rel="canonical"', src)
     src = insert_once(src, '<link rel="icon"', head_block(fr_path, lang, need_canonical), True, 'icône')
     src = insert_once(src, '</style>', css_block(), True, 'styles')
-    src = insert_once(src, '</head>', tp_block(fr_path), True, 'affiliation')
+    src = insert_once(src, '</head>', tp_block(fr_path, lang), True, 'affiliation')
     src = insert_once(src, '<header class="site-header">', langbar_block(fr_path, lang) + promo_block(lang), True, 'en-tête')
     if lang != 'fr' and fr_path in LEGAL_PAGES:
         m = re.search(r'</h1>\s*(<p class="lead">.*?</p>)?', src, re.S)

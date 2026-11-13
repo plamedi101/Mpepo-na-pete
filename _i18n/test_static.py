@@ -126,30 +126,50 @@ for fr, lg, path in pages:
     check(f'{tag} un seul script de mesure, jeton attendu, avant </body>', h.count(BEACON) == 1 and TOKEN in h and h.index(BEACON) < h.rindex('</body>'))
 
     # affiliation Travelpayouts « Drive » (build.TP_DRIVE_SRC ; None = aucun script)
-    # règle voulue : blog = chargé ; accueil (formulaires, passeport) = seulement pour la vérification Travelpayouts ; pages légales = rien
+    # règle voulue : blog = bandeau de consentement (flyfast-consent.js) qui ne charge Drive qu'après « Accepter » ;
+    # accueil (formulaires, passeport) = seulement pour la vérification Travelpayouts (?init_marker=), sans bandeau ; pages légales = rien
     tp_src = build.TP_DRIVE_SRC
     tp = re.findall(r'<!--i18n:tp-->(.*?)<!--/i18n:tp-->', h, re.S)
+    consent_tags = [s for s in scripts if 'flyfast-consent' in s['src']]
     if not tp_src:
-        check(f'{tag} aucune affiliation Travelpayouts', not tp and '<!--i18n:tp-->' not in h and 'emrldco' not in h)
+        check(f'{tag} aucune affiliation Travelpayouts', not tp and '<!--i18n:tp-->' not in h and 'emrldco' not in h and 'flyfast-consent' not in h)
     else:
-        want_mode = 'verify' if fr == 'index.html' else 'always' if fr.startswith('flyfast-blog/') else None
+        want_mode = 'verify' if fr == 'index.html' else 'consent' if fr.startswith('flyfast-blog/') else None
         check(f'{tag} affiliation : règle de chargement attendue ({want_mode or "aucun script"})', build.tp_mode(fr) == want_mode, build.tp_mode(fr))
         if want_mode is None:
-            check(f'{tag} affiliation : aucun script Travelpayouts sur cette page', not tp and '<!--i18n:tp-->' not in h and 'emrldco' not in h)
+            check(f'{tag} affiliation : ni script Travelpayouts ni bandeau sur cette page',
+                  not tp and '<!--i18n:tp-->' not in h and 'emrldco' not in h and 'flyfast-consent' not in h)
         else:
             in_head = h.count('<!--i18n:tp-->') == 1 and h.count('<!--/i18n:tp-->') == 1 and h.index('<!--i18n:tp-->') < h.index('</head>') < h.index('<body')
             check(f'{tag} affiliation : un seul bloc Travelpayouts, dans l’en-tête', len(tp) == 1 and in_head, len(tp))
-            if tp:
+            if tp and want_mode == 'verify':
                 blk = tp[0]
                 check(f'{tag} affiliation : script attendu, ajouté une seule fois', blk.count(tp_src) == 1 and h.count(tp_src) == 1
                       and blk.count('document.head.appendChild(script)') == 1, blk)
                 check(f'{tag} affiliation : une seule adresse, en https, sur le domaine Travelpayouts', re.findall(r'https?://[^\s\'"]+', blk) == [tp_src], blk)
-                guard = 'init_marker' in blk
-                if want_mode == 'verify':
-                    check(f'{tag} affiliation : chargement limité à ?init_marker= (page à formulaires)',
-                          guard and blk.index('init_marker') < blk.index('document.createElement') < blk.index(tp_src), blk)
-                else:
-                    check(f'{tag} affiliation : chargement normal, sans condition', not guard, blk)
+                check(f'{tag} affiliation : chargement limité à ?init_marker= (page à formulaires)',
+                      'init_marker' in blk and blk.index('init_marker') < blk.index('document.createElement') < blk.index(tp_src), blk)
+                check(f'{tag} affiliation : pas de bandeau de consentement sur la page à formulaires', not consent_tags and 'flyfast-consent' not in h)
+            if tp and want_mode == 'consent':
+                blk = tp[0]
+                cs = consent_tags[0] if len(consent_tags) == 1 else None
+                check(f'{tag} bandeau : un seul script flyfast-consent.js, dans le bloc, en defer, version {build.CONSENT_VERSION}',
+                      cs is not None and cs.has_attr('defer') and cs['src'].endswith('flyfast-consent.js?v=' + build.CONSENT_VERSION) and 'flyfast-consent.js' in blk,
+                      [s['src'] for s in consent_tags])
+                if cs is not None:
+                    here_dir = os.path.dirname(os.path.join(ROOT, path))
+                    check(f'{tag} bandeau : le fichier du script existe', os.path.exists(os.path.normpath(os.path.join(here_dir, cs['src'].split('?')[0]))), cs['src'])
+                    check(f'{tag} bandeau : adresse du script Travelpayouts passée par data-drive, et nulle part ailleurs dans la page',
+                          cs.get('data-drive') == tp_src and h.count(tp_src) == 1, cs.get('data-drive'))
+                    check(f'{tag} bandeau : le bloc ne charge rien lui-même (aucun code de chargement, aucune autre adresse)',
+                          'createElement' not in blk and 'appendChild' not in blk and re.findall(r'https?://[^\s\'"]+', blk) == [tp_src], blk)
+                    dp_page, _, dp_frag = cs.get('data-privacy', '').partition('#')
+                    want_priv = build.PATHS['confidentialite.html'][lg]
+                    check(f'{tag} bandeau : data-privacy → section « Liens partenaires » de la page Confidentialité, dans la langue de la page',
+                          os.path.normpath(os.path.join(here_dir, dp_page)) == os.path.normpath(os.path.join(ROOT, want_priv)) and dp_frag == build.PRIVACY_ANCHOR,
+                          cs.get('data-privacy'))
+                    foot = [a.get('href') for a in soup.select('.site-footer a[href]')]
+                    check(f'{tag} bandeau : le pied de page a le lien Confidentialité (le lien « Gérer les cookies » s’y place)', dp_page in foot, (dp_page, foot))
             check(f'{tag} affiliation : aucun <script src> Travelpayouts écrit en dur', not [s for s in scripts if 'emrldco' in s['src'] or 'travelpayouts' in s['src']])
 
     # une seule page <h1>, ids uniques
@@ -205,6 +225,31 @@ for fr in build.PATHS:
 # cohérence des ensembles hreflang entre versions d'une même page
 for fr, sets in alternates_by_page.items():
     check(f'[{fr}] mêmes balises hreflang dans les 3 langues', sets[0] == sets[1] == sets[2])
+
+# bandeau de consentement (flyfast-consent.js, écrit à la main) : textes fr/en/es, durée du choix, et accord avec la page Confidentialité
+check('bandeau : build.CONSENT_JS = flyfast-consent.js, à la racine', build.CONSENT_JS == 'flyfast-consent.js' and os.path.exists(os.path.join(ROOT, 'flyfast-consent.js')))
+if os.path.exists(os.path.join(ROOT, build.CONSENT_JS)):
+    js = read(build.CONSENT_JS)
+    check('bandeau : le script n’écrit en dur aucune adresse http(s) et n’utilise ni eval ni document.write',
+          not re.search(r'https?://', js) and 'eval(' not in js and 'document.write' not in js)
+    days = re.search(r'MAX_AGE = (\d+) \* 24 \* 60 \* 60 \* 1000', js)
+    check('bandeau : le choix est valable 6 mois (180 à 186 jours), comme l’annonce la page Confidentialité', bool(days) and 180 <= int(days.group(1)) <= 186, days and days.group(1))
+    labels = {}
+    for m in re.finditer(r"\b(fr|en|es): \{\s*title: '(.*?)',\s*text: '(.*?)',\s*more: '(.*?)', accept: '(.*?)', refuse: '(.*?)', manage: '(.*?)'\s*\}", js, re.S):
+        labels[m.group(1)] = dict(zip(('title', 'text', 'more', 'accept', 'refuse', 'manage'), m.groups()[1:]))
+    check('bandeau : textes complets en français, anglais et espagnol', set(labels) == {'fr', 'en', 'es'} and all(all(v) for v in labels.values()), sorted(labels))
+    check('bandeau : les trois textes sont différents', len({v['text'] for v in labels.values()}) == len(labels) and len({v['title'] for v in labels.values()}) == len(labels))
+    for lg in build.LANGS:
+        priv_path = build.PATHS['confidentialite.html'][lg]
+        psoup = BeautifulSoup(read(priv_path), 'lxml')
+        anchor = psoup.find(id=build.PRIVACY_ANCHOR)
+        check(f'[{priv_path}] section « Liens partenaires » : ancre #{build.PRIVACY_ANCHOR} sur un titre h2', anchor is not None and anchor.name == 'h2'
+              and len(psoup.find_all(id=build.PRIVACY_ANCHOR)) == 1)
+        flat_priv = re.sub(r'\s+', ' ', visible_text(psoup))
+        if lg in labels:
+            check(f'[{priv_path}] la page décrit le bandeau avec son titre et le lien « {labels[lg]["manage"]} » tels qu’affichés',
+                  labels[lg]['title'] in flat_priv and labels[lg]['manage'] in flat_priv and '6 mois' in flat_priv.replace('6 months', '6 mois').replace('6 meses', '6 mois'),
+                  (labels[lg]['title'], labels[lg]['manage']))
 
 # sitemap
 sm = read('sitemap.xml')
