@@ -33,7 +33,7 @@ LANGS = ('fr', 'en', 'es')
 LANG_NAMES = {'fr': 'Français', 'en': 'English', 'es': 'Español'}
 LANGBAR_LABEL = {'fr': 'Langue', 'en': 'Language', 'es': 'Idioma'}
 OG_LOCALE = {'fr': 'fr_FR', 'en': 'en_GB', 'es': 'es_ES'}
-CHAT_VERSION = '2'
+CHAT_VERSION = '3'
 CONSENT_VERSION = '1'          # à augmenter quand flyfast-consent.js change (évite le cache du navigateur)
 
 # Pages : chemin français -> {langue: chemin dans le site}

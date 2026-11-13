@@ -20,7 +20,7 @@ BASE = sys.argv[1]
 SHOTS = os.environ.get('SHOTS', os.path.join(os.environ.get('TMPDIR', '/tmp'), 'flyfast-shots'))
 os.makedirs(SHOTS, exist_ok=True)
 API = 'https://flyfast-api.flyfast-checkin.workers.dev'
-WA_PREFIX = 'https://wa.me/201282226808?text='
+WA_PREFIX = 'https://wa.me/201508319385?text='
 NB = ' '
 LANGS = ('fr', 'en', 'es')
 

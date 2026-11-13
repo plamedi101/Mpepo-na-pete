@@ -12,7 +12,7 @@
   if (window.__ffChat) { return; }
   window.__ffChat = true;
 
-  var WHATSAPP_NUMBER = '201282226808';
+  var WHATSAPP_NUMBER = '201508319385';
   var MAX_LENGTH = 400;
   var DEFAULT_TEXT = 'Bonjour FlyFast, j’ai une question.';
   var TOPICS = [

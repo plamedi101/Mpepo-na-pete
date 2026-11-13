@@ -13,7 +13,7 @@
   if (window.__ffChat) { return; }
   window.__ffChat = true;
 
-  var WHATSAPP_NUMBER = '201282226808';
+  var WHATSAPP_NUMBER = '201508319385';
   var MAX_LENGTH = 400;
 
   // Textes du panneau, par langue. La langue est celle de la page (<html lang>) ; le français est la langue par défaut.

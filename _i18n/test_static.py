@@ -226,6 +226,17 @@ for fr in build.PATHS:
 for fr, sets in alternates_by_page.items():
     check(f'[{fr}] mêmes balises hreflang dans les 3 langues', sets[0] == sets[1] == sets[2])
 
+# numéro WhatsApp : un seul numéro dans tout le site (liens wa.me, constantes JavaScript, chat) et le numéro affiché est le même
+wa_numbers, shown_numbers = set(), set()
+for fr, lg, path in pages:
+    h = read(path)
+    wa_numbers |= set(re.findall(r'https://wa\.me/(\d+)', h)) | set(re.findall(r"WHATSAPP_NUMBER = '(\d+)'", h))
+    for m in re.finditer(r'\+(\d{2})(?:&nbsp;|\s)(\d{3})(?:&nbsp;|\s)(\d{3})(?:&nbsp;|\s)(\d{4})', h):
+        shown_numbers.add(''.join(m.groups()))
+wa_numbers |= set(re.findall(r"WHATSAPP_NUMBER = '(\d+)'", read('flyfast-chat.js')))
+check('numéro WhatsApp : un seul numéro dans les liens wa.me et le JavaScript du site', len(wa_numbers) == 1, sorted(wa_numbers))
+check('numéro WhatsApp : le numéro affiché est celui des liens', shown_numbers == wa_numbers, (sorted(shown_numbers), sorted(wa_numbers)))
+
 # bandeau de consentement (flyfast-consent.js, écrit à la main) : textes fr/en/es, durée du choix, et accord avec la page Confidentialité
 check('bandeau : build.CONSENT_JS = flyfast-consent.js, à la racine', build.CONSENT_JS == 'flyfast-consent.js' and os.path.exists(os.path.join(ROOT, 'flyfast-consent.js')))
 if os.path.exists(os.path.join(ROOT, build.CONSENT_JS)):
