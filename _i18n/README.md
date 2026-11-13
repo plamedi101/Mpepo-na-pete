@@ -70,10 +70,21 @@ dans l’en-tête des pages, entre `<!--i18n:tp-->` et `<!--/i18n:tp-->`, avec l
 | Pages légales | jamais (aucun lien partenaire) |
 
 Pour le retirer partout : `TP_DRIVE_SRC = None`, puis relancer le build. Pour le charger sur une autre page, modifier `tp_mode`
-(et le test dans `test_static.py`) ; ne jamais le charger sur une page à formulaire. La page Confidentialité (section « Liens partenaires »)
-décrit ce fonctionnement : la tenir à jour si la règle change. Le script ne convertit rien tant que le site ne contient pas de lien vers
-un partenaire Travelpayouts. Quand on en ajoute (par exemple dans l’article sur l’eSIM), indiquer près du lien que c’est un lien partenaire.
+(et le test dans `test_static.py`) ; ne jamais le charger sur une page à formulaire.
 La page `flyfast-blog/documents-visa-rdc-europe.html` n’est pas dans la construction (page orpheline) : elle ne reçoit pas le code.
+
+Ce que fait le script (constaté le 13 novembre 2026 sur le site en ligne ; il est distant et Travelpayouts peut le modifier) : il charge une
+vingtaine de morceaux de code depuis emrldco.com ; il pose un cookie de session de 30 minutes `am_user_session` (sur flyfastcheckin.com) et une
+donnée de stockage local ; il envoie à `emrldco.com/collect` un identifiant de session, l’adresse de la page, la taille de la fenêtre, la position
+de défilement, une détection de robot et de navigation privée ; il envoie à `emrldco.com/link-switch/v1/convert` la liste des liens de la page ;
+il appelle `www.travelpayouts.com/check_auth` ; il ajoute un conteneur d’aperçus (`tp-tooltip-container`). La section « Liens partenaires » de la
+page Confidentialité (fr/en/es) décrit ces points : la mettre à jour si le script ou la règle de chargement change.
+
+Réglages Drive (compte Travelpayouts, projet Flyfastcheckin, « Advanced settings ») : par défaut tout est activé (« Monetization boost :
+Maximum ») : conversion des liens vers des marques de voyage, liens sur des mots-clés et blocs de recommandations (pages en anglais
+seulement), aperçus au survol, et « Targeted Offers » (une offre s’ouvre dans un onglet en arrière-plan). Tant que le site ne contient pas de
+lien partenaire, rien n’est converti. Quand on ajoute un lien partenaire (par exemple dans l’article sur l’eSIM), indiquer près du lien que
+c’est un lien partenaire (`rel="sponsored"` et une mention visible).
 
 ## Choix de traduction
 
