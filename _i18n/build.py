@@ -51,6 +51,7 @@ _SLUGS = [
      'flyfast-blog/esim-para-viajeros-conectado-en-el-extranjero.html'),
     ('flyfast-blog/jargon-voyage-gds-pnr-eticket.html', 'flyfast-blog/travel-jargon-gds-pnr-eticket.html',
      'flyfast-blog/jerga-del-viaje-gds-pnr-eticket.html'),
+    ('partenaires.html', 'partners.html', 'socios.html'),
     ('confidentialite.html', 'privacy.html', 'privacidad.html'),
     ('mentions-legales.html', 'legal-notice.html', 'aviso-legal.html'),
     ('conditions-de-vente.html', 'terms-of-sale.html', 'condiciones-de-venta.html'),
@@ -103,7 +104,8 @@ TP_DRIVE_SRC = 'https://emrldco.com/NjAwNDQz.js?t=600443'
 #    (data-privacy) lui sont passées par la balise ;
 #  - « vérification » : la page d'accueil, qui porte les formulaires de demande et d'avis (passeport, etc.), sans bandeau. Travelpayouts y
 #    contrôle la connexion, mais un visiteur ordinaire ne charge jamais le script : il n'est ajouté que si l'adresse contient ?init_marker=… ;
-#  - nulle part ailleurs : les pages légales n'ont aucun lien partenaire.
+#  - nulle part ailleurs : la page Partenaires (partenaires.html) ne porte que des liens directs (tpk.lu), qui ne chargent rien avant
+#    le clic, donc ni script ni bandeau ; les pages légales n'ont aucun lien partenaire.
 TP_VERIFY_PAGES = {'index.html'}
 CONSENT_JS = 'flyfast-consent.js'
 PRIVACY_ANCHOR = 'liens-partenaires'      # identifiant de la section « Liens partenaires » de confidentialite.html

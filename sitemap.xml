@@ -57,6 +57,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flyfastcheckin.com/flyfast-blog/jargon-voyage-gds-pnr-eticket.html"/>
   </url>
   <url>
+    <loc>https://flyfastcheckin.com/partenaires.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://flyfastcheckin.com/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flyfastcheckin.com/en/partners.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flyfastcheckin.com/es/socios.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flyfastcheckin.com/partenaires.html"/>
+  </url>
+  <url>
     <loc>https://flyfastcheckin.com/confidentialite.html</loc>
     <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flyfastcheckin.com/confidentialite.html"/>
@@ -145,6 +153,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flyfastcheckin.com/flyfast-blog/jargon-voyage-gds-pnr-eticket.html"/>
   </url>
   <url>
+    <loc>https://flyfastcheckin.com/en/partners.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://flyfastcheckin.com/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flyfastcheckin.com/en/partners.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flyfastcheckin.com/es/socios.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flyfastcheckin.com/partenaires.html"/>
+  </url>
+  <url>
     <loc>https://flyfastcheckin.com/en/privacy.html</loc>
     <lastmod>2026-11-13</lastmod>
     <xhtml:link rel="alternate" hreflang="fr" href="https://flyfastcheckin.com/confidentialite.html"/>
@@ -231,6 +247,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://flyfastcheckin.com/en/flyfast-blog/travel-jargon-gds-pnr-eticket.html"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://flyfastcheckin.com/es/flyfast-blog/jerga-del-viaje-gds-pnr-eticket.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flyfastcheckin.com/flyfast-blog/jargon-voyage-gds-pnr-eticket.html"/>
+  </url>
+  <url>
+    <loc>https://flyfastcheckin.com/es/socios.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://flyfastcheckin.com/partenaires.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flyfastcheckin.com/en/partners.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flyfastcheckin.com/es/socios.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flyfastcheckin.com/partenaires.html"/>
   </url>
   <url>
     <loc>https://flyfastcheckin.com/es/privacidad.html</loc>

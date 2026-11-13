@@ -1698,5 +1698,389 @@
 "FlyFast, service d’assistance indépendant. <a1>WhatsApp&nbsp;: +20&nbsp;150&nbsp;831&nbsp;9385</a1>": {
 "en": "FlyFast, independent assistance service. <a1>WhatsApp: +20&nbsp;150&nbsp;831&nbsp;9385</a1>",
 "es": "FlyFast, servicio de asistencia independiente. <a1>WhatsApp: +20&nbsp;150&nbsp;831&nbsp;9385</a1>"
+},
+"Airalo": {
+"en": "Airalo",
+"es": "Airalo"
+},
+"Saily": {
+"en": "Saily",
+"es": "Saily"
+},
+"Yesim": {
+"en": "Yesim",
+"es": "Yesim"
+},
+"Drimsim": {
+"en": "Drimsim",
+"es": "Drimsim"
+},
+"GigSky": {
+"en": "GigSky",
+"es": "GigSky"
+},
+"Aviasales": {
+"en": "Aviasales",
+"es": "Aviasales"
+},
+"Kiwi.com": {
+"en": "Kiwi.com",
+"es": "Kiwi.com"
+},
+"AirHelp": {
+"en": "AirHelp",
+"es": "AirHelp"
+},
+"Compensair": {
+"en": "Compensair",
+"es": "Compensair"
+},
+"Radical Storage": {
+"en": "Radical Storage",
+"es": "Radical Storage"
+},
+"Kiwitaxi": {
+"en": "Kiwitaxi",
+"es": "Kiwitaxi"
+},
+"Welcome Pickups": {
+"en": "Welcome Pickups",
+"es": "Welcome Pickups"
+},
+"GetTransfer.com": {
+"en": "GetTransfer.com",
+"es": "GetTransfer.com"
+},
+"intui.travel": {
+"en": "intui.travel",
+"es": "intui.travel"
+},
+"Auto Europe": {
+"en": "Auto Europe",
+"es": "Auto Europe"
+},
+"Economybookings.com": {
+"en": "Economybookings.com",
+"es": "Economybookings.com"
+},
+"GetRentacar.com": {
+"en": "GetRentacar.com",
+"es": "GetRentacar.com"
+},
+"Localrent.com": {
+"en": "Localrent.com",
+"es": "Localrent.com"
+},
+"QEEQ": {
+"en": "QEEQ",
+"es": "QEEQ"
+},
+"BikesBooking.com": {
+"en": "BikesBooking.com",
+"es": "BikesBooking.com"
+},
+"Klook": {
+"en": "Klook",
+"es": "Klook"
+},
+"Tiqets": {
+"en": "Tiqets",
+"es": "Tiqets"
+},
+"Go City": {
+"en": "Go City",
+"es": "Go City"
+},
+"WeGoTrip": {
+"en": "WeGoTrip",
+"es": "WeGoTrip"
+},
+"KKday": {
+"en": "KKday",
+"es": "KKday"
+},
+"Partenaires | FlyFast": {
+"en": "Partners | FlyFast",
+"es": "Socios | FlyFast"
+},
+"Les services partenaires de FlyFast, par catégorie : eSIM, vols, transferts, location de voiture, activités. Liens partenaires, sans coût supplémentaire pour vous.": {
+"en": "FlyFast’s partner services, by category: eSIM, flights, transfers, car rental, activities. Partner links, at no extra cost to you.",
+"es": "Los servicios de socios de FlyFast, por categoría: eSIM, vuelos, traslados, alquiler de coche, actividades. Enlaces de socios, sin coste adicional para usted."
+},
+"Les services de voyage proposés par FlyFast. Chaque lien est marqué comme lien partenaire.": {
+"en": "The travel services FlyFast offers. Each link is marked as a partner link.",
+"es": "Los servicios de viaje que ofrece FlyFast. Cada enlace está marcado como enlace de socio."
+},
+"Partenaires": {
+"en": "Partners",
+"es": "Socios"
+},
+"Nos partenaires voyage": {
+"en": "Our travel partners",
+"es": "Nuestros socios de viaje"
+},
+"Avant, pendant et après un vol, d’autres services peuvent vous servir&nbsp;: internet à l’arrivée, billets, transferts, voiture de location… Voici ceux que nous proposons.": {
+"en": "Before, during and after a flight, other services can come in handy: internet on arrival, tickets, transfers, a rental car… Here are the ones we offer.",
+"es": "Antes, durante y después de un vuelo, otros servicios pueden resultarle útiles: internet a la llegada, entradas, traslados, coche de alquiler… Estos son los que ofrecemos."
+},
+"À savoir avant de cliquer": {
+"en": "Good to know before you click",
+"es": "Conviene saber antes de hacer clic"
+},
+"Ce sont des liens partenaires&nbsp;: si vous réservez ou achetez après un clic, FlyFast peut recevoir une commission, sans coût supplémentaire pour vous.": {
+"en": "These are partner links: if you book or buy after a click, FlyFast may receive a commission, at no extra cost to you.",
+"es": "Son enlaces de socios: si reserva o compra tras hacer clic, FlyFast puede recibir una comisión, sin ningún coste adicional para usted."
+},
+"Chaque lien porte la mention «&nbsp;lien partenaire&nbsp;».": {
+"en": "Each link carries the label “partner link”.",
+"es": "Cada enlace lleva la mención «enlace de socio»."
+},
+"La commande, le paiement et le service après-vente se font chez le partenaire, selon ses prix et ses conditions. FlyFast ne les contrôle pas.": {
+"en": "The order, the payment and the after-sales service are handled by the partner, at its own prices and under its own terms. FlyFast does not control them.",
+"es": "El pedido, el pago y el servicio posventa se gestionan con el socio, según sus precios y sus condiciones. FlyFast no los controla."
+},
+"Votre demande d’enregistrement FlyFast ne dépend pas de ces services, et vos informations de voyage ne leur sont jamais transmises. <a1>Ce qui se passe au clic</a1>.": {
+"en": "Your FlyFast check-in request does not depend on these services, and your travel information is never passed to them. <a1>What happens when you click</a1>.",
+"es": "Su solicitud de check-in de FlyFast no depende de estos servicios, y su información de viaje nunca se les transmite. <a1>Qué ocurre al hacer clic</a1>."
+},
+"Catégories": {
+"en": "Categories",
+"es": "Categorías"
+},
+"eSIM et SIM voyage": {
+"en": "eSIM and travel SIM",
+"es": "eSIM y SIM de viaje"
+},
+"Vols": {
+"en": "Flights",
+"es": "Vuelos"
+},
+"Indemnisation d’un vol retardé ou annulé": {
+"en": "Compensation for a delayed or cancelled flight",
+"es": "Indemnización por un vuelo retrasado o cancelado"
+},
+"Consigne à bagages": {
+"en": "Luggage storage",
+"es": "Consigna de equipaje"
+},
+"Transferts": {
+"en": "Transfers",
+"es": "Traslados"
+},
+"Location de voiture": {
+"en": "Car rental",
+"es": "Alquiler de coche"
+},
+"Location de scooter et de moto": {
+"en": "Scooter and motorbike rental",
+"es": "Alquiler de scooter y de moto"
+},
+"Activités et billets": {
+"en": "Activities and tickets",
+"es": "Actividades y entradas"
+},
+"Pour avoir internet dès l’atterrissage, sans frais d’itinérance.": {
+"en": "To have internet from the moment you land, with no roaming fees.",
+"es": "Para tener internet desde el aterrizaje, sin gastos de itinerancia."
+},
+"Vérifiez que l’offre couvre votre destination avant d’acheter.": {
+"en": "Check that the plan covers your destination before you buy.",
+"es": "Compruebe que la oferta cubre su destino antes de comprar."
+},
+"lien partenaire": {
+"en": "partner link",
+"es": "enlace de socio"
+},
+"Boutique d’eSIM de voyage&nbsp;: forfaits data par pays, par région ou pour le monde entier, à installer avant le départ.": {
+"en": "Travel eSIM shop: data plans by country, by region or worldwide, to install before you leave.",
+"es": "Tienda de eSIM de viaje: planes de datos por país, por región o para todo el mundo, para instalar antes de salir."
+},
+"eSIM de voyage lancée par Nord Security, l’entreprise derrière NordVPN&nbsp;: forfaits data par pays ou par région.": {
+"en": "Travel eSIM launched by Nord Security, the company behind NordVPN: data plans by country or by region.",
+"es": "eSIM de viaje lanzada por Nord Security, la empresa que está detrás de NordVPN: planes de datos por país o por región."
+},
+"eSIM de voyage avec des forfaits data par pays, par région ou pour plusieurs destinations.": {
+"en": "Travel eSIM with data plans by country, by region or for several destinations.",
+"es": "eSIM de viaje con planes de datos por país, por región o para varios destinos."
+},
+"Carte SIM de voyage prépayée&nbsp;: une seule carte pour plusieurs pays, avec un solde à recharger.": {
+"en": "Prepaid travel SIM card: one card for several countries, with a balance you top up.",
+"es": "Tarjeta SIM de viaje de prepago: una sola tarjeta para varios países, con un saldo que se recarga."
+},
+"eSIM de voyage&nbsp;: forfaits data pour de nombreuses destinations, à acheter et à activer en ligne.": {
+"en": "Travel eSIM: data plans for many destinations, to buy and activate online.",
+"es": "eSIM de viaje: planes de datos para numerosos destinos, para comprar y activar en línea."
+},
+"Pour comparer les prix et les horaires avant de réserver.": {
+"en": "To compare prices and times before you book.",
+"es": "Para comparar precios y horarios antes de reservar."
+},
+"Le billet est vendu par le site que vous choisissez&nbsp;: FlyFast n’intervient pas dans cette réservation.": {
+"en": "The ticket is sold by the site you choose: FlyFast plays no part in this booking.",
+"es": "El billete lo vende el sitio que usted elija: FlyFast no interviene en esa reserva."
+},
+"Moteur de recherche de vols&nbsp;: compare les offres de nombreuses compagnies et agences de voyage en ligne.": {
+"en": "Flight search engine: compares offers from many airlines and online travel agencies.",
+"es": "Buscador de vuelos: compara las ofertas de numerosas aerolíneas y agencias de viajes en línea."
+},
+"Agence de voyage en ligne qui compare les vols et peut combiner plusieurs compagnies sur un même trajet.": {
+"en": "Online travel agency that compares flights and can combine several airlines on a single trip.",
+"es": "Agencia de viajes en línea que compara vuelos y puede combinar varias aerolíneas en un mismo trayecto."
+},
+"Pour réclamer une indemnité après un vol très retardé, annulé ou surbooké.": {
+"en": "To claim compensation after a flight that was badly delayed, cancelled or overbooked.",
+"es": "Para reclamar una indemnización tras un vuelo muy retrasado, cancelado o con sobreventa."
+},
+"Vous pouvez aussi la réclamer vous-même, gratuitement, auprès de la compagnie. Ces services s’en chargent à votre place, en échange d’une commission&nbsp;: lisez leurs conditions avant de vous engager.": {
+"en": "You can also claim it yourself, free of charge, from the airline. These services do it for you in exchange for a commission: read their terms before you commit.",
+"es": "También puede reclamarla usted mismo, gratis, a la aerolínea. Estos servicios se encargan por usted a cambio de una comisión: lea sus condiciones antes de comprometerse."
+},
+"Réclamation d’indemnité pour un vol retardé, annulé ou surbooké&nbsp;: le service examine votre dossier et le suit à votre place.": {
+"en": "Compensation claims for a delayed, cancelled or overbooked flight: the service reviews your case and follows it up for you.",
+"es": "Reclamación de indemnización por un vuelo retrasado, cancelado o con sobreventa: el servicio examina su caso y lo tramita por usted."
+},
+"Vérification de votre éligibilité, puis réclamation auprès de la compagnie aérienne pour un vol retardé, annulé ou surbooké.": {
+"en": "It checks whether you are eligible, then claims from the airline for a delayed, cancelled or overbooked flight.",
+"es": "Comprueba si usted tiene derecho a indemnización y después reclama a la aerolínea por un vuelo retrasado, cancelado o con sobreventa."
+},
+"Pour poser vos valises quelques heures, entre l’hôtel et l’heure du vol.": {
+"en": "To drop your bags for a few hours, between the hotel and your flight time.",
+"es": "Para dejar sus maletas unas horas, entre el hotel y la hora del vuelo."
+},
+"Réseau de consignes à bagages chez des commerçants et dans des hôtels, réservables en ligne dans de nombreuses villes.": {
+"en": "Network of luggage storage points in shops and hotels, bookable online in many cities.",
+"es": "Red de consignas de equipaje en comercios y hoteles, que se reservan en línea en numerosas ciudades."
+},
+"Pour réserver à l’avance un chauffeur entre l’aéroport, la gare et votre hébergement.": {
+"en": "To book a driver in advance between the airport, the station and your accommodation.",
+"es": "Para reservar con antelación un conductor entre el aeropuerto, la estación y su alojamiento."
+},
+"Vérifiez le prix final et les conditions d’annulation avant de payer.": {
+"en": "Check the final price and the cancellation terms before you pay.",
+"es": "Compruebe el precio final y las condiciones de cancelación antes de pagar."
+},
+"Transferts réservés à l’avance depuis et vers les aéroports, dans de nombreux pays.": {
+"en": "Transfers booked in advance to and from airports, in many countries.",
+"es": "Traslados reservados con antelación desde y hacia los aeropuertos, en numerosos países."
+},
+"Transferts avec chauffeur depuis les aéroports et les ports, dans de nombreux pays.": {
+"en": "Transfers with a driver from airports and ports, in many countries.",
+"es": "Traslados con conductor desde aeropuertos y puertos, en numerosos países."
+},
+"Place de marché de transferts&nbsp;: vous décrivez votre trajet et des chauffeurs vous envoient leurs offres.": {
+"en": "Transfer marketplace: you describe your trip and drivers send you their offers.",
+"es": "Mercado de traslados: usted describe su trayecto y los conductores le envían sus ofertas."
+},
+"Réservation de transferts avec chauffeur, notamment entre aéroports, gares et hébergements.": {
+"en": "Booking of transfers with a driver, notably between airports, stations and accommodation.",
+"es": "Reserva de traslados con conductor, en particular entre aeropuertos, estaciones y alojamientos."
+},
+"Pour comparer les loueurs avant de réserver.": {
+"en": "To compare rental companies before you book.",
+"es": "Para comparar empresas de alquiler antes de reservar."
+},
+"Vérifiez la caution, le kilométrage, l’assurance et l’âge minimum du conducteur.": {
+"en": "Check the deposit, the mileage, the insurance and the driver’s minimum age.",
+"es": "Compruebe la fianza, el kilometraje, el seguro y la edad mínima del conductor."
+},
+"Réservation de voitures de location auprès de plusieurs loueurs.": {
+"en": "Booking of rental cars from several rental companies.",
+"es": "Reserva de coches de alquiler en varias empresas de alquiler."
+},
+"Comparateur de voitures de location, avec des offres de plusieurs loueurs.": {
+"en": "Rental car comparison site, with offers from several rental companies.",
+"es": "Comparador de coches de alquiler, con ofertas de varias empresas."
+},
+"Réservation de voitures de location dans de nombreux pays.": {
+"en": "Booking of rental cars in many countries.",
+"es": "Reserva de coches de alquiler en numerosos países."
+},
+"Place de marché de loueurs locaux&nbsp;: réservation en ligne auprès de loueurs indépendants du pays visité.": {
+"en": "Marketplace of local rental companies: online booking with independent companies in the country you visit.",
+"es": "Mercado de empresas de alquiler locales: reserva en línea con empresas independientes del país que visita."
+},
+"Location de voitures et de camping-cars.": {
+"en": "Rental of cars and motorhomes.",
+"es": "Alquiler de coches y autocaravanas."
+},
+"Pour louer un deux-roues à destination.": {
+"en": "To rent a two-wheeler at your destination.",
+"es": "Para alquilar un vehículo de dos ruedas en su destino."
+},
+"Vérifiez que votre permis vous y autorise et ce que couvre l’assurance.": {
+"en": "Check that your licence allows you to ride it and what the insurance covers.",
+"es": "Compruebe que su carné se lo permite y qué cubre el seguro."
+},
+"Réservation de motos et de scooters de location à destination.": {
+"en": "Booking of rental motorbikes and scooters at your destination.",
+"es": "Reserva de motos y scooters de alquiler en destino."
+},
+"Pour réserver à l’avance billets d’entrée, visites guidées et excursions.": {
+"en": "To book entry tickets, guided tours and excursions in advance.",
+"es": "Para reservar con antelación entradas, visitas guiadas y excursiones."
+},
+"Activités, billets d’entrée, excursions et autres services de voyage à réserver en ligne.": {
+"en": "Activities, entry tickets, excursions and other travel services to book online.",
+"es": "Actividades, entradas, excursiones y otros servicios de viaje para reservar en línea."
+},
+"Billets d’entrée pour les musées et les sites touristiques, à réserver en ligne.": {
+"en": "Entry tickets for museums and tourist sites, to book online.",
+"es": "Entradas para museos y sitios turísticos, para reservar en línea."
+},
+"Pass touristiques&nbsp;: un seul pass pour visiter plusieurs attractions d’une même ville.": {
+"en": "Tourist passes: a single pass to visit several attractions in the same city.",
+"es": "Pases turísticos: un solo pase para visitar varias atracciones de una misma ciudad."
+},
+"Excursions et visites audioguidées, à réserver en ligne.": {
+"en": "Excursions and audio-guided tours, to book online.",
+"es": "Excursiones y visitas con audioguía, para reservar en línea."
+},
+"Excursions, activités et billets d’entrée à réserver en ligne.": {
+"en": "Excursions, activities and entry tickets to book online.",
+"es": "Excursiones, actividades y entradas para reservar en línea."
+},
+"Votre voyage s’organise&nbsp;? Occupons-nous de l’enregistrement.": {
+"en": "Planning your trip? Let us take care of your check-in.",
+"es": "¿Está organizando su viaje? Nos ocupamos del check-in."
+},
+"Pourquoi le site contient-il des liens partenaires&nbsp;?": {
+"en": "Why does the site contain partner links?",
+"es": "¿Por qué el sitio contiene enlaces de socios?"
+},
+"Certains liens du site mènent vers des services de voyage (eSIM, transferts, location de voiture…). Chacun porte la mention «&nbsp;lien partenaire&nbsp;»&nbsp;: si vous achetez après un clic, FlyFast peut recevoir une commission, sans coût supplémentaire pour vous. Le service d’enregistrement n’en dépend pas. <a1>Voir nos partenaires</a1>.": {
+"en": "Some links on the site lead to travel services (eSIM, transfers, car rental…). Each one carries the label “partner link”: if you buy after a click, FlyFast may receive a commission, at no extra cost to you. The check-in service does not depend on it. <a1>See our partners</a1>.",
+"es": "Algunos enlaces del sitio llevan a servicios de viaje (eSIM, traslados, alquiler de coche…). Cada uno lleva la mención «enlace de socio»: si compra tras hacer clic, FlyFast puede recibir una comisión, sin ningún coste adicional para usted. El servicio de check-in no depende de ello. <a1>Ver nuestros socios</a1>."
+},
+"Hors liens partenaires (voir plus bas), ce site n’utilise aucun cookie publicitaire. Pour savoir combien de personnes visitent les pages, nous utilisons Cloudflare Web Analytics. Il compte les pages vues et les visiteurs et mesure la rapidité d’affichage. D’après Cloudflare, il n’utilise ni cookie ni stockage dans votre navigateur et ne suit pas les personnes d’une visite à l’autre.": {
+"en": "Apart from the partner links (see below), this site uses no advertising cookies. To know how many people visit the pages, we use Cloudflare Web Analytics. It counts page views and visitors and measures display speed. According to Cloudflare, it uses neither cookies nor storage in your browser and does not track people from one visit to the next.",
+"es": "Salvo los enlaces a socios (véase más abajo), este sitio no utiliza ninguna cookie publicitaria. Para saber cuántas personas visitan las páginas, usamos Cloudflare Web Analytics. Cuenta las páginas vistas y los visitantes y mide la rapidez de carga. Según Cloudflare, no utiliza cookies ni almacenamiento en su navegador y no sigue a las personas de una visita a otra."
+},
+"Le site contient des liens vers des services partenaires (eSIM, vols, transferts, location de voiture, activités…). Ils sont réunis sur la page <a1>Partenaires</a1> et repris dans certains articles du blog, et chacun porte la mention «&nbsp;lien partenaire&nbsp;». Si vous achetez après avoir cliqué sur l’un de ces liens, nous pouvons recevoir une commission, sans coût supplémentaire pour vous.": {
+"en": "The site contains links to partner services (eSIM, flights, transfers, car rental, activities…). They are gathered on the <a1>Partners</a1> page and repeated in some blog articles, and each one carries the label “partner link”. If you buy after clicking one of these links, we may receive a commission, at no extra cost to you.",
+"es": "El sitio contiene enlaces a servicios de socios (eSIM, vuelos, traslados, alquiler de coche, actividades…). Se reúnen en la página <a1>Socios</a1> y se repiten en algunos artículos del blog, y cada uno lleva la mención «enlace de socio». Si compra después de hacer clic en uno de estos enlaces, podemos recibir una comisión, sin ningún coste adicional para usted."
+},
+"Ces liens passent par la plateforme d’affiliation Travelpayouts. Un lien partenaire n’est qu’un lien&nbsp;: notre site n’envoie rien à Travelpayouts ni au partenaire tant que vous ne cliquez pas dessus. Au clic, votre navigateur ouvre une adresse de Travelpayouts, qui vous redirige vers le partenaire&nbsp;; Travelpayouts voit alors votre adresse IP et peut enregistrer le clic.": {
+"en": "These links go through the affiliate platform Travelpayouts. A partner link is only a link: our site sends nothing to Travelpayouts or to the partner until you click it. When you click, your browser opens a Travelpayouts address, which redirects you to the partner; Travelpayouts then sees your IP address and may record the click.",
+"es": "Estos enlaces pasan por la plataforma de afiliación Travelpayouts. Un enlace de socio es solo un enlace: nuestro sitio no envía nada a Travelpayouts ni al socio mientras usted no haga clic en él. Al hacer clic, su navegador abre una dirección de Travelpayouts, que le redirige al socio; Travelpayouts ve entonces su dirección IP y puede registrar el clic."
+},
+"Sur les pages du blog uniquement, un script de Travelpayouts peut en plus se charger, mais seulement si vous l’acceptez dans le bandeau «&nbsp;Cookies et liens partenaires&nbsp;» affiché à votre première visite. Il ne se charge ni sur la page d’accueil, où se trouvent les formulaires, ni sur la page Partenaires, ni sur les pages légales. Les informations de vos demandes et de vos avis ne sont jamais transmises à Travelpayouts ni aux partenaires.": {
+"en": "On the blog pages only, a Travelpayouts script may also load, but only if you accept it in the “Cookies and partner links” banner shown on your first visit. It does not load on the home page, where the forms are, on the Partners page, or on the legal pages. The information in your requests and reviews is never passed to Travelpayouts or to the partners.",
+"es": "Solo en las páginas del blog, un script de Travelpayouts puede además cargarse, pero únicamente si usted lo acepta en el aviso «Cookies y enlaces a socios» que aparece en su primera visita. No se carga en la página de inicio, donde están los formularios, ni en la página Socios, ni en las páginas legales. La información de sus solicitudes y de sus opiniones nunca se transmite a Travelpayouts ni a los socios."
+},
+"Nos partenaires voyage&nbsp;: eSIM, transferts, location de voiture…": {
+"en": "Our travel partners: eSIM, transfers, car rental…",
+"es": "Nuestros socios de viaje: eSIM, traslados, alquiler de coche…"
+},
+"Les services partenaires de FlyFast, classés par catégorie, avec la mention «&nbsp;lien partenaire&nbsp;» sur chaque lien.": {
+"en": "FlyFast’s partner services, sorted by category, with the label “partner link” on every link.",
+"es": "Los servicios de socios de FlyFast, clasificados por categoría, con la mención «enlace de socio» en cada enlace."
+},
+"Services partenaires": {
+"en": "Partner services",
+"es": "Servicios de socios"
+},
+"Voir tous nos partenaires": {
+"en": "See all our partners",
+"es": "Ver todos nuestros socios"
 }
 }

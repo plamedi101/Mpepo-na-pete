@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Contrôles statiques des 33 pages (fr/en/es) : langue, canonical, hreflang, sélecteur, liens, sitemap, mesure d'audience.
+"""Contrôles statiques des 36 pages (fr/en/es) : langue, canonical, hreflang, sélecteur, liens, sitemap, mesure d'audience, liens partenaires.
 Usage : python3 test_static.py <racine du site>"""
 import json
 import os
@@ -63,7 +63,7 @@ ALLOWED = {'Français', 'Español'}
 
 LANG_FILES = {lg: [(fr, v[lg]) for fr, v in build.PATHS.items()] for lg in build.LANGS}
 pages = [(fr, lg, path) for lg in build.LANGS for fr, path in LANG_FILES[lg]]
-check('33 pages attendues', len(pages) == 33 and all(os.path.exists(os.path.join(ROOT, p)) for _, _, p in pages), len(pages))
+check('36 pages attendues', len(pages) == 36 and all(os.path.exists(os.path.join(ROOT, p)) for _, _, p in pages), len(pages))
 
 alternates_by_page = {}
 for fr, lg, path in pages:
@@ -262,10 +262,155 @@ if os.path.exists(os.path.join(ROOT, build.CONSENT_JS)):
                   labels[lg]['title'] in flat_priv and labels[lg]['manage'] in flat_priv and '6 mois' in flat_priv.replace('6 months', '6 mois').replace('6 meses', '6 mois'),
                   (labels[lg]['title'], labels[lg]['manage']))
 
+# liens partenaires Travelpayouts : les 25 adresses attendues (copiées du tableau « Liens affiliés FlyFast », écrites ici à la main et non produites
+# par le même code que les pages), sur la page Partenaires et dans des encarts d'articles, toujours signalées « lien partenaire » et en rel="sponsored"
+PARTNERS = [  # (nom affiché, adresse, catégorie)
+    ('Airalo', 'https://airalo.tpk.lu/9i7gb9lL', 'esim'),
+    ('Saily', 'https://saily.tpk.lu/zQ1D2Kmj', 'esim'),
+    ('Yesim', 'https://yesim.tpk.lu/YUvsOXNi', 'esim'),
+    ('Drimsim', 'https://drimsim.tpk.lu/tLx1W3uA', 'esim'),
+    ('GigSky', 'https://gigsky.tpk.lu/UoHQdMmn', 'esim'),
+    ('Aviasales', 'https://aviasales.tpk.lu/kmpXoLyk', 'vols'),
+    ('Kiwi.com', 'https://kiwi.tpk.lu/t0yc0Rl9', 'vols'),
+    ('AirHelp', 'https://airhelp.tpk.lu/eSSgZDvB', 'indemnisation'),
+    ('Compensair', 'https://compensair.tpk.lu/F1LEvLd2', 'indemnisation'),
+    ('Radical Storage', 'https://radicalstorage.tpk.lu/F9C312c6', 'consigne'),
+    ('Kiwitaxi', 'https://kiwitaxi.tpk.lu/His9TbTt', 'transferts'),
+    ('Welcome Pickups', 'https://tpk.lu/FRE7nqR6', 'transferts'),
+    ('GetTransfer.com', 'https://gettransfer.tpk.lu/01NAKgyE', 'transferts'),
+    ('intui.travel', 'https://intui.tpk.lu/Yaqn96qv', 'transferts'),
+    ('Auto Europe', 'https://autoeurope.tpk.lu/iCy7GSOU', 'voiture'),
+    ('Economybookings.com', 'https://economybookings.tpk.lu/2zzY4K2X', 'voiture'),
+    ('GetRentacar.com', 'https://getrentacar.tpk.lu/aeaXhK3g', 'voiture'),
+    ('Localrent.com', 'https://localrent.tpk.lu/uKKZ58ty', 'voiture'),
+    ('QEEQ', 'https://qeeq.tpk.lu/ltQV4yJI', 'voiture'),
+    ('BikesBooking.com', 'https://bikesbooking.tpk.lu/UzKYOob3', 'deux-roues'),
+    ('Klook', 'https://klook.tpk.lu/se1N0mjr', 'activites'),
+    ('Tiqets', 'https://tiqets.tpk.lu/IIjrvQh8', 'activites'),
+    ('Go City', 'https://gocity.tpk.lu/RmZQRdQu', 'activites'),
+    ('WeGoTrip', 'https://wegotrip.tpk.lu/pcxYgQVB', 'activites'),
+    ('KKday', 'https://kkday.tpk.lu/sZmlkGuB', 'activites'),
+]
+CATEGORY_IDS = ['esim', 'vols', 'indemnisation', 'consigne', 'transferts', 'voiture', 'deux-roues', 'activites']
+BOXES = {  # article -> catégories de son encart « Services partenaires » (dans l'ordre)
+    'flyfast-blog/esim-voyageurs-rester-connecte.html': ['esim'],
+    'flyfast-blog/bagages-soute-cabine-regles.html': ['consigne'],
+    'flyfast-blog/enregistrement-en-ligne-guide-complet.html': ['transferts', 'indemnisation'],
+    'flyfast-blog/jargon-voyage-gds-pnr-eticket.html': ['vols'],
+    'flyfast-blog/documents-visa-voyage-europe.html': ['voiture', 'deux-roues', 'activites'],
+}
+P_TAG = {'fr': 'lien partenaire', 'en': 'partner link', 'es': 'enlace de socio'}
+P_NAME = {'fr': 'Partenaires', 'en': 'Partners', 'es': 'Socios'}
+NOTE_FR = 'Ce sont des liens partenaires&nbsp;: si vous réservez ou achetez après un clic, FlyFast peut recevoir une commission, sans coût supplémentaire pour vous.'
+TPK = re.compile(r'^https://([a-z0-9-]+\.)?tpk\.lu/')
+flat = lambda s: re.sub(r'\s+', ' ', s).strip()  # noqa: E731
+
+
+def note_text(lg):
+    return NOTE_FR if lg == 'fr' else MEMO[NOTE_FR][lg]
+
+
+def tpk_links(node):
+    return [a for a in node.find_all('a', href=True) if TPK.match(a['href'])]
+
+
+def resolve(from_page, href):
+    return os.path.normpath(os.path.join(os.path.dirname(os.path.join(ROOT, from_page)), href.split('#')[0]))
+
+
+def link_ok(a, lg):
+    """Nouvel onglet, rel sponsored + noopener, et la mention « lien partenaire » juste après le lien."""
+    nxt = a.find_next_sibling()
+    return (a.get('target') == '_blank' and {'sponsored', 'noopener'} <= set(a.get('rel') or [])
+            and nxt is not None and a.next_sibling is nxt and nxt.name == 'span' and 'p-tag' in (nxt.get('class') or [])
+            and nxt.get_text(strip=True) == P_TAG[lg])
+
+
+by_cat = {c: [(n, u) for n, u, cc in PARTNERS if cc == c] for c in CATEGORY_IDS}
+all_urls = [u for _, u, _ in PARTNERS]
+check('liens partenaires : 25 adresses attendues, toutes différentes, toutes en https sur tpk.lu',
+      len(PARTNERS) == 25 and len(set(all_urls)) == 25 and all(TPK.match(u) for u in all_urls))
+
+for fr, lg, path in pages:
+    psoup = BeautifulSoup(read(path), 'lxml')
+    tag = f'[{path}]'
+    want_n = 25 if fr == 'partenaires.html' else sum(len(by_cat[g]) for g in BOXES.get(fr, []))
+    links = tpk_links(psoup)
+    check(f'{tag} liens partenaires : {want_n} lien(s) attendu(s) sur cette page, pas un de plus', len(links) == want_n, len(links))
+    check(f'{tag} liens partenaires : aucun lien du site ne pointe vers une adresse Travelpayouts autre que tpk.lu',
+          not [a['href'] for a in psoup.find_all('a', href=True) if re.search(r'travelpayouts|emrldco|c\d+\.travelpayouts', a['href'], re.I)])
+    # pied de page : lien vers la page Partenaires dans la langue de la page
+    to_partners = os.path.normpath(os.path.join(ROOT, build.PATHS['partenaires.html'][lg]))
+    foot = [a for a in psoup.select('.site-footer a[href]') if resolve(path, a['href']) == to_partners]
+    check(f'{tag} pied de page : un lien « {P_NAME[lg]} » vers la page Partenaires de la langue',
+          len(foot) == 1 and foot[0].get_text(strip=True) == P_NAME[lg] and (foot[0].get('aria-current') == 'page') == (fr == 'partenaires.html'),
+          [(a['href'], a.get_text(strip=True), a.get('aria-current')) for a in foot])
+
+    if fr == 'partenaires.html':
+        check(f'{tag} les 25 adresses attendues, chacune une seule fois', sorted(a['href'] for a in links) == sorted(all_urls),
+              sorted(set(all_urls) ^ {a['href'] for a in links}))
+        check(f'{tag} chaque lien : nouvel onglet, rel="sponsored noopener", mention « {P_TAG[lg]} » juste après',
+              all(link_ok(a, lg) for a in links), [a['href'] for a in links if not link_ok(a, lg)])
+        want_names = {u: n for n, u, _ in PARTNERS}
+        check(f'{tag} le nom affiché est celui du partenaire', {a['href']: a.get_text(strip=True) for a in links} == want_names)
+        secs = psoup.select('section.pcat')
+        check(f'{tag} 8 catégories dans l’ordre voulu, avec leur ancre reprise par la navigation',
+              [s.get('id') for s in secs] == CATEGORY_IDS and [a.get('href') for a in psoup.select('nav.jump a')] == ['#' + c for c in CATEGORY_IDS],
+              [s.get('id') for s in secs])
+        check(f'{tag} chaque catégorie contient ses partenaires, dans l’ordre', all([a['href'] for a in tpk_links(s)] == [u for _, u in by_cat[s.get('id')]] for s in secs))
+        check(f'{tag} chaque catégorie a un titre h2 relié à sa section', all(s.get('aria-labelledby') and s.find(id=s['aria-labelledby']) is not None
+                                                                          and s.find(id=s['aria-labelledby']).name == 'h2' for s in secs))
+        summ = psoup.select('aside.summary')
+        check(f'{tag} encadré de transparence : la commission est annoncée, sans coût supplémentaire',
+              len(summ) == 1 and flat(BeautifulSoup(f'<p>{note_text(lg)}</p>', 'lxml').get_text()) in flat(summ[0].get_text(' ', strip=True)))
+        priv = [a for a in summ[0].find_all('a', href=True)] if summ else []
+        check(f'{tag} encadré de transparence : lien vers la section « Liens partenaires » de la page Confidentialité de la langue',
+              len(priv) == 1 and resolve(path, priv[0]['href']) == os.path.normpath(os.path.join(ROOT, build.PATHS['confidentialite.html'][lg]))
+              and priv[0]['href'].endswith('#' + build.PRIVACY_ANCHOR), [a['href'] for a in priv])
+        check(f'{tag} aucun encart ni script de suivi : la page ne charge rien de Travelpayouts avant le clic',
+              'emrldco' not in read(path) and 'flyfast-consent' not in read(path) and not psoup.select('aside.partners'))
+        check(f'{tag} bouton d’enregistrement en bas de page', len(psoup.select('aside.cta a.btn[href]')) == 1)
+
+    if fr in BOXES:
+        boxes = psoup.select('aside.partners')
+        check(f'{tag} encart « Services partenaires » : un seul, avant l’appel à l’action et hors du texte de l’article',
+              len(boxes) == 1 and boxes[0].find_next_sibling('aside', class_='cta') is not None and boxes[0].find_parent(class_='post-body') is None, len(boxes))
+        if len(boxes) == 1:
+            box = boxes[0]
+            want = [u for g in BOXES[fr] for _, u in by_cat[g]]
+            check(f'{tag} encart : les liens attendus ({", ".join(BOXES[fr])}), dans l’ordre', [a['href'] for a in tpk_links(box)] == want, [a['href'] for a in tpk_links(box)])
+            check(f'{tag} encart : chaque lien est signalé « {P_TAG[lg]} » et ouvert comme lien partenaire', all(link_ok(a, lg) for a in tpk_links(box)))
+            check(f'{tag} encart : la commission est annoncée avant les liens',
+                  flat(BeautifulSoup(f'<p>{note_text(lg)}</p>', 'lxml').get_text()) in flat(box.find('p', class_='note').get_text(' ', strip=True)))
+            check(f'{tag} encart : titre h2 qui nomme l’encart', box.get('aria-labelledby') == 'partners-title' and box.find(id='partners-title') is not None
+                  and box.find(id='partners-title').name == 'h2')
+            more = box.select('p.more a[href]')
+            check(f'{tag} encart : lien « voir tous nos partenaires » vers la page Partenaires de la langue',
+                  len(more) == 1 and resolve(path, more[0]['href']) == to_partners, [a['href'] for a in more])
+            check(f'{tag} encart : les groupes sont titrés (h3) et décrits',
+                  len(box.select('div.pgroup')) == len(BOXES[fr]) and all(g.find('h3') and g.find('p', class_='p-intro') for g in box.select('div.pgroup')))
+
+    if fr == 'flyfast-blog/index.html':
+        entries = psoup.select('.post-list a.post-link[href]')
+        check(f'{tag} liste du blog : une entrée mène à la page Partenaires de la langue', [a for a in entries if resolve(path, a['href']) == to_partners] != [] and len(entries) == 6,
+              [a['href'] for a in entries])
+    if fr == 'index.html':
+        faq = [d for d in psoup.select('.faq-list details') if any(resolve(path, a['href']) == to_partners for a in d.find_all('a', href=True))]
+        check(f'{tag} FAQ : une question sur les liens partenaires, avec le lien vers la page Partenaires', len(faq) == 1, len(faq))
+    if fr == 'confidentialite.html':
+        sect = psoup.find(id=build.PRIVACY_ANCHOR)
+        paras, el = [], sect.find_next_sibling() if sect else None
+        while el is not None and el.name == 'p':
+            paras.append(el)
+            el = el.find_next_sibling()
+        check(f'{tag} section « Liens partenaires » : cite la page Partenaires, Travelpayouts et le clic',
+              len(paras) >= 4 and any(resolve(path, a['href']) == to_partners for p in paras for a in p.find_all('a', href=True))
+              and 'Travelpayouts' in paras[1].get_text() and '<' not in paras[0].get_text(), len(paras))
+
 # sitemap
 sm = read('sitemap.xml')
 locs = re.findall(r'<loc>(.*?)</loc>', sm)
-check('sitemap : 33 adresses distinctes', len(locs) == 33 and len(set(locs)) == 33, len(locs))
+check('sitemap : 36 adresses distinctes', len(locs) == 36 and len(set(locs)) == 36, len(locs))
 expected = {build.abs_url(p) for _, _, p in pages}
 check('sitemap : adresses = pages du site', set(locs) == expected, set(locs) ^ expected)
 check('sitemap : chaque adresse correspond à un fichier', all(os.path.exists(os.path.join(ROOT, unquote(urlsplit(u).path[len('/'):]) or 'index.html') if not u.endswith('/') else os.path.join(ROOT, unquote(urlsplit(u).path[len('/'):]), 'index.html')) for u in locs))

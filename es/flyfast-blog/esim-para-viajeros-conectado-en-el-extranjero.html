@@ -108,6 +108,23 @@
     .brand{font-size:1.375rem;}
     .cta .btn{width:100%;}
   }
+  .partners{margin-top:48px;padding:24px 28px;border:1px solid var(--line);border-radius:8px;background:var(--mist);}
+  .partners h2{color:var(--navy);font:600 1.375rem/1.25 var(--font-head);}
+  .partners .note{margin-top:8px;max-width:62ch;color:var(--muted);font-size:.9375rem;}
+  .partners h3{margin:26px 0 0;color:var(--navy);font:600 1.125rem/1.3 var(--font-head);}
+  .partners .more{margin-top:24px;font-size:.9375rem;font-weight:600;}
+  .partners .more a{color:var(--sky-text);text-underline-offset:3px;}
+  .p-intro{margin-top:4px;max-width:62ch;color:var(--muted);font-size:.9375rem;}
+  .p-tip{margin-top:12px;max-width:64ch;padding:2px 0 2px 12px;border-left:3px solid var(--gold);font-size:.9375rem;line-height:1.5;}
+  .plist{margin-top:8px;}
+  .plist li{padding:12px 0;}
+  .plist li + li{border-top:1px solid var(--line);}
+  .plist li > div{display:flex;flex-wrap:wrap;align-items:center;gap:2px 10px;}
+  .p-name{color:var(--sky-text);font-weight:600;text-underline-offset:3px;}
+  .p-name:hover{text-decoration-thickness:2px;}
+  .p-tag{padding:1px 9px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font-size:.8125rem;font-weight:500;white-space:nowrap;}
+  .p-desc{margin-top:2px;max-width:64ch;font-size:.9375rem;line-height:1.5;}
+  @media (max-width:560px){.partners{padding:20px 18px;}}
 /*i18n*/
   .langbar{background:var(--mist);border-bottom:1px solid var(--line);font-size:.875rem;line-height:1.2;}
   .langbar .container{display:flex;align-items:center;justify-content:flex-end;gap:2px;min-height:38px;}
@@ -175,6 +192,38 @@
     <h2>Cómo elegir bien su plan</h2>
     <p>Compare el precio por gigabyte en lugar del precio total, compruebe el periodo de validez del plan (algunos caducan a los pocos días aunque no se hayan usado los datos) y dé preferencia a un proveedor que cubra bien su país de destino concreto en lugar de un plan «mundial» genérico, a menudo más caro por gigabyte.</p>
     </div>
+    <aside class="partners" aria-labelledby="partners-title">
+      <h2 id="partners-title">Servicios de socios</h2>
+      <p class="note">Son enlaces de socios: si reserva o compra tras hacer clic, FlyFast puede recibir una comisión, sin ningún coste adicional para usted.</p>
+      <div class="pgroup">
+        <h3 id="g-esim">eSIM y SIM de viaje</h3>
+        <p class="p-intro">Para tener internet desde el aterrizaje, sin gastos de itinerancia.</p>
+        <p class="p-tip">Compruebe que la oferta cubre su destino antes de comprar.</p>
+        <ul class="plist">
+          <li>
+            <div><a class="p-name" href="https://airalo.tpk.lu/9i7gb9lL" target="_blank" rel="sponsored noopener">Airalo</a><span class="p-tag">enlace de socio</span></div>
+            <p class="p-desc">Tienda de eSIM de viaje: planes de datos por país, por región o para todo el mundo, para instalar antes de salir.</p>
+          </li>
+          <li>
+            <div><a class="p-name" href="https://saily.tpk.lu/zQ1D2Kmj" target="_blank" rel="sponsored noopener">Saily</a><span class="p-tag">enlace de socio</span></div>
+            <p class="p-desc">eSIM de viaje lanzada por Nord Security, la empresa que está detrás de NordVPN: planes de datos por país o por región.</p>
+          </li>
+          <li>
+            <div><a class="p-name" href="https://yesim.tpk.lu/YUvsOXNi" target="_blank" rel="sponsored noopener">Yesim</a><span class="p-tag">enlace de socio</span></div>
+            <p class="p-desc">eSIM de viaje con planes de datos por país, por región o para varios destinos.</p>
+          </li>
+          <li>
+            <div><a class="p-name" href="https://drimsim.tpk.lu/tLx1W3uA" target="_blank" rel="sponsored noopener">Drimsim</a><span class="p-tag">enlace de socio</span></div>
+            <p class="p-desc">Tarjeta SIM de viaje de prepago: una sola tarjeta para varios países, con un saldo que se recarga.</p>
+          </li>
+          <li>
+            <div><a class="p-name" href="https://gigsky.tpk.lu/UoHQdMmn" target="_blank" rel="sponsored noopener">GigSky</a><span class="p-tag">enlace de socio</span></div>
+            <p class="p-desc">eSIM de viaje: planes de datos para numerosos destinos, para comprar y activar en línea.</p>
+          </li>
+        </ul>
+      </div>
+      <p class="more"><a href="../socios.html">Ver todos nuestros socios</a></p>
+    </aside>
     <aside class="cta" aria-label="Check-in de vuelo">
       <p class="cta-title">¿Su vuelo está listo, y su conexión también?</p>
       <a class="btn btn-gold" href="../index.html#enregistrer">Hacer mi check-in</a>
@@ -195,6 +244,7 @@
       <nav aria-label="Enlaces del pie de página">
         <ul>
           <li><a href="index.html">Blog</a></li>
+          <li><a href="../socios.html">Socios</a></li>
           <li><a href="../index.html#enregistrer">Hacer el check-in</a></li>
           <li><a href="../index.html#faq">FAQ</a></li>
           <li><a href="https://wa.me/201508319385" target="_blank" rel="noopener">WhatsApp: +20&nbsp;150&nbsp;831&nbsp;9385</a></li>

@@ -65,8 +65,9 @@ dans `build.py`. `build.py` ajoute dans l’en-tête des pages, entre `<!--i18n:
 
 | Pages | Chargement |
 | --- | --- |
-| Blog (index et articles, trois langues) | seulement après un clic sur « Accepter » dans le bandeau de consentement (`flyfast-consent.js`, voir plus bas) : c’est là que se trouveront les liens vers les partenaires |
+| Blog (index et articles, trois langues) | seulement après un clic sur « Accepter » dans le bandeau de consentement (`flyfast-consent.js`, voir plus bas). Les articles portent aussi des liens partenaires directs (encarts « Services partenaires »), qui, eux, ne dépendent pas de ce script |
 | Accueil (formulaires de demande et d’avis : passeport, etc.) | seulement si l’adresse contient `?init_marker=…`, c’est-à-dire pour la vérification de Travelpayouts (bouton « Check Drive connection », qui ouvre la page d’accueil) ; jamais pour un visiteur ordinaire, et sans bandeau |
+| Page Partenaires (`partenaires.html`) | jamais : elle ne contient que des liens directs `tpk.lu`, qui ne chargent rien avant le clic ; sans bandeau |
 | Pages légales | jamais (aucun lien partenaire), sans bandeau |
 
 Pour le retirer partout : `TP_DRIVE_SRC = None`, puis relancer le build (les pages du blog n’ont alors plus ni Drive ni bandeau ni lien
@@ -103,9 +104,33 @@ page Confidentialité (fr/en/es) décrit ces points : la mettre à jour si le sc
 
 Réglages Drive (compte Travelpayouts, projet Flyfastcheckin, « Advanced settings ») : par défaut tout est activé (« Monetization boost :
 Maximum ») : conversion des liens vers des marques de voyage, liens sur des mots-clés et blocs de recommandations (pages en anglais
-seulement), aperçus au survol, et « Targeted Offers » (une offre s’ouvre dans un onglet en arrière-plan). Tant que le site ne contient pas de
-lien partenaire, rien n’est converti. Quand on ajoute un lien partenaire (par exemple dans l’article sur l’eSIM), indiquer près du lien que
-c’est un lien partenaire (`rel="sponsored"` et une mention visible).
+seulement), aperçus au survol, et « Targeted Offers » (une offre s’ouvre dans un onglet en arrière-plan). Les liens partenaires du site
+sont déjà des liens Travelpayouts (`tpk.lu`) : Drive n’a donc rien à convertir pour eux. Tout nouveau lien partenaire suit la règle
+ci-dessous (`rel="sponsored noopener"` et mention « lien partenaire » visible juste après le lien).
+
+### Liens partenaires dans le site (page Partenaires et encarts)
+
+Les 25 liens partenaires (un lien Travelpayouts `…tpk.lu/…` par programme, Sub ID `ff-<programme>`, générés dans le compte Travelpayouts ;
+la liste, avec commissions, durées de cookie et pages de destination, est dans le tableau « Liens affiliés FlyFast ») sont placés ainsi :
+
+| Où | Quoi |
+| --- | --- |
+| `partenaires.html` (en : `partners.html`, es : `socios.html`) | les 25 liens, par catégorie : eSIM et SIM voyage, vols, indemnisation d’un vol retardé ou annulé, consigne à bagages, transferts, location de voiture, location de scooter et de moto, activités et billets ; encadré « À savoir avant de cliquer » (commission, rôle de FlyFast, lien vers la section « Liens partenaires » de Confidentialité) |
+| Articles du blog (avant l’appel à l’action) | encart « Services partenaires » : eSIM → article eSIM ; consigne → bagages ; transferts + indemnisation → guide d’enregistrement ; vols → jargon (GDS, PNR) ; voiture, deux-roues, activités → documents pour l’Europe |
+| Pied de page de toutes les pages, liste du blog, FAQ de l’accueil | lien « Partenaires » ; entrée « Partenaires » dans la liste du blog ; question « Pourquoi le site contient-il des liens partenaires ? » |
+| `confidentialite.html`, section « Liens partenaires » | liens présents sur tout le site, ce qui se passe au clic (rien n’est envoyé avant), script Drive limité au blog et soumis au bandeau |
+
+Règle pour **chaque** lien partenaire : `target="_blank" rel="sponsored noopener"`, et, juste après le lien (sans texte entre les deux),
+`<span class="p-tag">lien partenaire</span>` (traduit : *partner link* / *enlace de socio*) ; la commission est annoncée dans la même page
+(encadré de la page Partenaires, phrase d’introduction de chaque encart). Les descriptions restent factuelles : FlyFast n’a pas testé ces
+services et ne les « recommande » pas ; ne pas y promettre de prix, de délai ou de couverture.
+
+Pour ajouter, retirer ou changer un lien : modifier `partenaires.html` et, s’il y est repris, l’encart de l’article ; traduire les nouvelles
+phrases (les noms de marque sont traduits à l’identique) ; mettre à jour la liste `PARTNERS` (et `BOXES`) de `test_static.py`, qui contient
+les adresses attendues écrites à la main ; relancer build et tests. Le test statique vérifie les 25 adresses dans les trois langues, `rel`,
+`target`, la mention après chaque lien, l’annonce de la commission, l’ordre des catégories, les liens de pied de page ; le test navigateur
+(section 5c) vérifie qu’aucune requête ne part vers `tpk.lu` avant un clic, que chaque clic ouvre la bonne adresse dans un nouvel onglet sans
+lien avec la page d’origine, et que rien ne déborde à 320 et 390 px.
 
 ## Choix de traduction
 

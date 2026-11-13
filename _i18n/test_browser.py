@@ -241,6 +241,8 @@ def new_context(browser, **kw):
     ctx.route(re.compile(r'https://(fonts\.googleapis\.com|fonts\.gstatic\.com|static\.cloudflareinsights\.com)/.*'), lambda r: r.abort())
     # Travelpayouts Drive : jamais de vrai appel pendant les tests (la requête est comptée côté navigateur, puis remplacée par un script vide)
     ctx.route(re.compile(r'https://emrldco\.com/.*'), lambda r: r.fulfill(status=200, content_type='application/javascript', body='/* Travelpayouts Drive : simulé par les tests */'))
+    # liens partenaires (tpk.lu) : jamais de vrai appel pendant les tests ; un clic reçoit une petite page vide
+    ctx.route(re.compile(r'https://([a-z0-9-]+\.)?tpk\.lu/.*'), lambda r: r.fulfill(status=200, content_type='text/html', body='<!doctype html><title>Lien partenaire simulé par les tests</title>'))
     return ctx
 
 
@@ -848,14 +850,85 @@ with sync_playwright() as p:
         check(f'[bandeau {width} px] dans la fenêtre, sans défilement horizontal', x0 >= 0 and y0 >= 0 and x1 <= g['vw'] and y1 <= g['vh'] and g['hscroll'] <= 0, g)
         ctx.close()
 
+    # ============================================================== 5c. liens partenaires : rien ne part avant le clic ; un clic ouvre le bon lien dans un nouvel onglet
+    ARTICLES = [fr for fr in BLOG if fr != 'flyfast-blog/index.html']
+    CAT_FIRST = [0, 5, 7, 9, 10, 14, 19, 20]   # premier lien de chacune des 8 catégories, dans l'ordre de la page
+    for lang in LANGS:
+        for fr_path in ['partenaires.html'] + ARTICLES:
+            path = build.PATHS[fr_path][lang]
+            tag = f'[partenaires {path}]'
+            ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+            tpk_hits = []
+            ctx.on('request', lambda r, hits=tpk_hits: hits.append(r.url) if 'tpk.lu' in r.url else None)
+            page = ctx.new_page()
+            hits, errors = watch(page)
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(300)
+            page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
+            page.wait_for_timeout(300)
+            s = cstate(page)
+            is_blog = fr_path.startswith('flyfast-blog/')
+            check(f'{tag} avant tout clic : aucune requête vers tpk.lu, rien de Travelpayouts Drive' + (' (bandeau affiché, pas de choix)' if is_blog else ', aucun bandeau'),
+                  tpk_hits == [] and hits == [] and s['scripts'] == [] and not s['cookie'] and s['stored'] is None and (s['shown'] if is_blog else not s['banner']), (tpk_hits, hits, s))
+            names = page.evaluate("[...document.querySelectorAll('a.p-name')].map(a => ({href: a.href, text: a.textContent}))")
+            if fr_path == 'partenaires.html':
+                idxs = list(range(len(names))) if lang == 'fr' else CAT_FIRST
+                check(f'{tag} 25 liens partenaires visibles dans la page', len(names) == 25, len(names))
+            else:
+                idxs = [0, len(names) - 1]
+            clicked = []
+            for i in idxs:
+                link = page.locator('a.p-name').nth(i)
+                want = names[i]['href']
+                with ctx.expect_page() as pi:
+                    link.click()
+                pop = pi.value
+                pop.wait_for_load_state('load')
+                opener_null = pop.evaluate('window.opener === null')
+                clicked.append(want)
+                check(f'{tag} clic sur « {names[i]["text"]} » : nouvel onglet ouvert sur {want}, sans lien avec la page d’origine', pop.url == want and opener_null, (pop.url, opener_null))
+                pop.close()
+            check(f'{tag} après {len(idxs)} clic(s) : une requête vers tpk.lu par clic, vers l’adresse cliquée ; la page d’origine n’a pas changé ; Drive toujours non chargé',
+                  tpk_hits == clicked and page.url.endswith(path) and hits == [], (tpk_hits, clicked, page.url, hits))
+            check(f'{tag} aucune erreur de console', not errors, errors)
+            ctx.close()
+
+    # largeurs étroites : l'encart et la page Partenaires tiennent dans l'écran (noms, mentions « lien partenaire », texte)
+    for lang in LANGS:
+        for fr_path in ['partenaires.html'] + ARTICLES:
+            path = build.PATHS[fr_path][lang]
+            for width in (320, 390):
+                ctx = new_context(b, viewport={'width': width, 'height': 800})
+                page = ctx.new_page()
+                page.goto(BASE + path, wait_until='load')
+                page.wait_for_timeout(150)
+                g = page.evaluate("""() => {
+                    const out = (sel) => [...document.querySelectorAll(sel)].map(e => { const r = e.getBoundingClientRect(); return {l: Math.round(r.left), r: Math.round(r.right), w: Math.round(r.width)}; })
+                        .filter(b => b.l < 0 || b.r > innerWidth + 0.5);
+                    return {hscroll: document.documentElement.scrollWidth - document.documentElement.clientWidth, vw: innerWidth,
+                            outside: [...out('.p-name'), ...out('.p-tag'), ...out('.p-desc'), ...out('.p-tip'), ...out('.partners'), ...out('.pcat')],
+                            n: document.querySelectorAll('.p-name').length};
+                }""")
+                check(f'[partenaires {width} px {path}] aucun débordement : {g["n"]} lien(s), tout reste dans l’écran', g['hscroll'] <= 0 and g['outside'] == [] and g['n'] > 0, g)
+                ctx.close()
+
     # ============================================================== 6. captures pour relecture visuelle
     for lang in LANGS:
         ctx = new_context(b, viewport={'width': 1280, 'height': 900})
         page = ctx.new_page()
-        for name, path in (('home', build.PATHS['index.html'][lang]), ('terms', build.PATHS['conditions-de-vente.html'][lang]), ('blog', build.PATHS['flyfast-blog/index.html'][lang])):
+        for name, path in (('home', build.PATHS['index.html'][lang]), ('terms', build.PATHS['conditions-de-vente.html'][lang]), ('blog', build.PATHS['flyfast-blog/index.html'][lang]),
+                           ('partners', build.PATHS['partenaires.html'][lang]), ('esim', build.PATHS['flyfast-blog/esim-voyageurs-rester-connecte.html'][lang]),
+                           ('visa', build.PATHS['flyfast-blog/documents-visa-voyage-europe.html'][lang])):
             page.goto(BASE + path, wait_until='load')
             page.wait_for_timeout(250)
             page.screenshot(path=f'{SHOTS}/desktop-{name}-{lang}.png', full_page=(name != 'home'))
+        ctx.close()
+        ctx = new_context(b, viewport={'width': 390, 'height': 844}, is_mobile=True, has_touch=True, device_scale_factor=2)
+        page = ctx.new_page()
+        for name, path in (('partners', build.PATHS['partenaires.html'][lang]), ('esim', build.PATHS['flyfast-blog/esim-voyageurs-rester-connecte.html'][lang])):
+            page.goto(BASE + path, wait_until='load')
+            page.wait_for_timeout(250)
+            page.screenshot(path=f'{SHOTS}/mobile-{name}-{lang}.png', full_page=True)
         ctx.close()
     b.close()
 
