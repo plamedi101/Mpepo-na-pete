@@ -58,6 +58,23 @@ dans `translations.json`) ; à la fin de l’offre, il faut les remettre au tari
 `translations.json`. « mi‑décembre » s’écrit avec un tiret insécable (`&#8209;`) pour ne pas être coupé en fin de ligne.
 Le quota de 50 demandes par jour (une demande = une réservation) est annoncé sur le site ; le formulaire ne l’applique pas.
 
+## Programme d’affiliation Travelpayouts
+
+Le code « Drive » de Travelpayouts (compte Travelpayouts, projet flyfastcheckin.com, marqueur 805301) est ajouté par `build.py`
+dans l’en-tête des pages, entre `<!--i18n:tp-->` et `<!--/i18n:tp-->`, avec l’adresse `TP_DRIVE_SRC`. Il se charge ainsi, d’après `tp_mode` :
+
+| Pages | Chargement |
+| --- | --- |
+| Blog (index et articles, trois langues) | toujours : c’est là que se trouveront les liens vers les partenaires |
+| Accueil (formulaires de demande et d’avis : passeport, etc.) | seulement si l’adresse contient `?init_marker=…`, c’est-à-dire pour la vérification de Travelpayouts (bouton « Check Drive connection », qui ouvre la page d’accueil) ; jamais pour un visiteur ordinaire |
+| Pages légales | jamais (aucun lien partenaire) |
+
+Pour le retirer partout : `TP_DRIVE_SRC = None`, puis relancer le build. Pour le charger sur une autre page, modifier `tp_mode`
+(et le test dans `test_static.py`) ; ne jamais le charger sur une page à formulaire. La page Confidentialité (section « Liens partenaires »)
+décrit ce fonctionnement : la tenir à jour si la règle change. Le script ne convertit rien tant que le site ne contient pas de lien vers
+un partenaire Travelpayouts. Quand on en ajoute (par exemple dans l’article sur l’eSIM), indiquer près du lien que c’est un lien partenaire.
+La page `flyfast-blog/documents-visa-rdc-europe.html` n’est pas dans la construction (page orpheline) : elle ne reçoit pas le code.
+
 ## Choix de traduction
 
 Anglais britannique ; espagnol avec « usted ». Termes : « numéro de dossier » = *request number* / *número de solicitud* ;

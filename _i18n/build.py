@@ -92,6 +92,51 @@ CSS_PROMO = """  .promo{background:var(--gold);color:var(--navy);font-size:.9375
   @media (max-width:560px){.promo{font-size:.875rem;line-height:1.4;}.promo .container{padding-block:8px;}}
 """
 
+# Programme d'affiliation Travelpayouts : code « Drive » copié depuis le compte Travelpayouts (projet flyfastcheckin.com).
+# Pour le retirer de toutes les pages : TP_DRIVE_SRC = None puis relancer build.py.
+TP_DRIVE_SRC = 'https://emrldco.com/NjAwNDQz.js?t=600443'
+# Où le script est chargé :
+#  - « toujours » : les pages du blog, là où se trouveront les liens vers les partenaires ;
+#  - « vérification » : la page d'accueil, qui porte les formulaires de demande et d'avis (passeport, etc.). Travelpayouts y contrôle
+#    la connexion, mais un visiteur ordinaire ne charge jamais le script : il n'est ajouté que si l'adresse contient ?init_marker=… ;
+#  - nulle part ailleurs : les pages légales n'ont aucun lien partenaire.
+TP_VERIFY_PAGES = {'index.html'}
+
+
+def tp_mode(fr_path):
+    """'verify', 'always' ou None selon la page française d'origine (la règle est la même dans les trois langues)."""
+    if not TP_DRIVE_SRC:
+        return None
+    if fr_path in TP_VERIFY_PAGES:
+        return 'verify'
+    if fr_path.startswith('flyfast-blog/'):
+        return 'always'
+    return None
+
+
+def tp_block(fr_path):
+    """Code Travelpayouts Drive, dans l'en-tête de la page (vide si la page n'en a pas besoin)."""
+    mode = tp_mode(fr_path)
+    if not mode:
+        return ''
+    guard = ''
+    if mode == 'verify':
+        guard = '      if (!/[?&]init_marker=/.test(location.search)) { return; }\n'
+    return ('<!--i18n:tp-->\n'
+            '<script nowprocket data-noptimize="1" data-cfasync="false" data-wpfc-render="false" seraph-accel-crit="1" '
+            'data-no-defer="1" data-cmp-ab="2">\n'
+            '  (function () {\n'
+            + guard +
+            '      var script = document.createElement("script");\n'
+            '      script.async = 1;\n'
+            '      script.setAttribute("data-cmp-ab","2");\n'
+            f"      script.src = '{TP_DRIVE_SRC}';\n"
+            '      document.head.appendChild(script);\n'
+            '  })();\n'
+            '</script>\n'
+            '<!--/i18n:tp-->\n')
+
+
 CSS_BLOCK = """/*i18n*/
   .langbar{background:var(--mist);border-bottom:1px solid var(--line);font-size:.875rem;line-height:1.2;}
   .langbar .container{display:flex;align-items:center;justify-content:flex-end;gap:2px;min-height:38px;}
@@ -118,6 +163,7 @@ def strip_i18n(src):
     src = re.sub(r'<!--i18n:head-->.*?<!--/i18n:head-->\n', '', src, flags=re.S)
     src = re.sub(r'<!--i18n:langbar-->.*?<!--/i18n:langbar-->\n', '', src, flags=re.S)
     src = re.sub(r'<!--i18n:promo-->.*?<!--/i18n:promo-->\n', '', src, flags=re.S)
+    src = re.sub(r'<!--i18n:tp-->.*?<!--/i18n:tp-->\n', '', src, flags=re.S)
     src = re.sub(r'<!--i18n:note-->.*?<!--/i18n:note-->\n?', '', src, flags=re.S)
     src = re.sub(r'/\*i18n\*/.*?/\*/i18n\*/\n', '', src, flags=re.S)
     return src
@@ -269,6 +315,7 @@ def decorate(src, fr_path, lang):
     need_canonical = not re.search(r'<link[^>]+rel="canonical"', src)
     src = insert_once(src, '<link rel="icon"', head_block(fr_path, lang, need_canonical), True, 'icône')
     src = insert_once(src, '</style>', css_block(), True, 'styles')
+    src = insert_once(src, '</head>', tp_block(fr_path), True, 'affiliation')
     src = insert_once(src, '<header class="site-header">', langbar_block(fr_path, lang) + promo_block(lang), True, 'en-tête')
     if lang != 'fr' and fr_path in LEGAL_PAGES:
         m = re.search(r'</h1>\s*(<p class="lead">.*?</p>)?', src, re.S)

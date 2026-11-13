@@ -37,7 +37,7 @@ def wa_text(href):
 
 
 def noise(msg):
-    return any(s in msg for s in ('fonts.g', 'Failed to load resource', 'ERR_', 'challenges.cloudflare', 'flyfast-api', 'cloudflareinsights'))
+    return any(s in msg for s in ('fonts.g', 'Failed to load resource', 'ERR_', 'challenges.cloudflare', 'flyfast-api', 'cloudflareinsights', 'emrldco'))
 
 
 # --------------------------------------------------------------------------------------------------- textes attendus
@@ -239,6 +239,8 @@ def new_context(browser, **kw):
     ctx.route(API + '/**', api_route)
     ctx.route('https://challenges.cloudflare.com/turnstile/**', lambda r: r.fulfill(status=200, content_type='application/javascript', body=TURNSTILE_STUB))
     ctx.route(re.compile(r'https://(fonts\.googleapis\.com|fonts\.gstatic\.com|static\.cloudflareinsights\.com)/.*'), lambda r: r.abort())
+    # Travelpayouts Drive : jamais de vrai appel pendant les tests (la requête est comptée côté navigateur, puis remplacée par un script vide)
+    ctx.route(re.compile(r'https://emrldco\.com/.*'), lambda r: r.fulfill(status=200, content_type='application/javascript', body='/* Travelpayouts Drive : simulé par les tests */'))
     return ctx
 
 
@@ -513,6 +515,38 @@ with sync_playwright() as p:
         page.evaluate('window.scrollTo(0, 0)')
         page.screenshot(path=f'{SHOTS}/mobile-top-{lang}.png')
         check(f'[menu {lang}] pas de défilement horizontal', page.evaluate('document.documentElement.scrollWidth - document.documentElement.clientWidth') <= 0)
+        ctx.close()
+
+    # ============================================================== 5b. affiliation Travelpayouts : règle de chargement du script externe
+    # blog = chargé une fois ; accueil (formulaires : passeport…) = jamais, sauf pour la vérification Travelpayouts (?init_marker=…) ;
+    # pages légales = jamais.
+    TP_SRC = build.TP_DRIVE_SRC
+    VERIF = '?init_marker=805301&init_trs=600443&init_locale=en'
+    for lang in LANGS:
+        ctx = new_context(b, viewport={'width': 1280, 'height': 900})
+        for fr_path, v in build.PATHS.items():
+            if fr_path == 'index.html':
+                variants = [('', 0), (VERIF, 1), ('?utm_init_marker=1', 0), ('#init_marker=805301', 0)]
+            elif fr_path.startswith('flyfast-blog/'):
+                variants = [('', 1), (VERIF, 1)]
+            else:
+                variants = [('', 0), (VERIF, 0)]
+            for query, expected in variants:
+                page = ctx.new_page()
+                hits, errors = [], []
+                page.on('request', lambda r, hits=hits: hits.append(r.url) if 'emrldco' in r.url else None)
+                page.on('pageerror', lambda e, errors=errors: errors.append('pageerror: ' + str(e)))
+                page.on('console', lambda m, errors=errors: errors.append(m.text) if m.type == 'error' and not noise(m.text) else None)
+                page.goto(BASE + v[lang] + query, wait_until='load')
+                page.wait_for_timeout(250)
+                tag = f'[affiliation {v[lang]}{query}]'
+                want = [TP_SRC] * expected if TP_SRC else []
+                check(f'{tag} {len(want)} appel(s) à Travelpayouts', hits == want, hits)
+                added = page.evaluate("[...document.head.querySelectorAll('script[src]')].map(s => ({src: s.src, async: s.async}))")
+                check(f'{tag} ' + ('script ajouté dans <head>, en asynchrone' if want else 'aucun script Travelpayouts dans la page'),
+                      added == [{'src': TP_SRC, 'async': True}] * len(want), added)
+                check(f'{tag} aucune erreur de console', not errors, errors)
+                page.close()
         ctx.close()
 
     # ============================================================== 6. captures pour relecture visuelle

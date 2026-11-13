@@ -1638,5 +1638,25 @@
 "On s’en charge, gratuit jusqu’à la mi&#8209;décembre": {
 "en": "We’ll take care of it, free until mid&#8209;December",
 "es": "Nos encargamos, gratis hasta mediados de diciembre"
+},
+"Hors liens partenaires du blog (voir plus bas), ce site n’utilise aucun cookie publicitaire. Pour savoir combien de personnes visitent les pages, nous utilisons Cloudflare Web Analytics. Il compte les pages vues et les visiteurs et mesure la rapidité d’affichage. D’après Cloudflare, il n’utilise ni cookie ni stockage dans votre navigateur et ne suit pas les personnes d’une visite à l’autre.": {
+"en": "Apart from the partner links on the blog (see below), this site uses no advertising cookies. To know how many people visit the pages, we use Cloudflare Web Analytics. It counts page views and visitors and measures display speed. According to Cloudflare, it uses neither cookies nor storage in your browser and does not track people from one visit to the next.",
+"es": "Salvo los enlaces a socios del blog (véase más abajo), este sitio no utiliza ninguna cookie publicitaria. Para saber cuántas personas visitan las páginas, usamos Cloudflare Web Analytics. Cuenta las páginas vistas y los visitantes y mide la rapidez de carga. Según Cloudflare, no utiliza cookies ni almacenamiento en su navegador y no sigue a las personas de una visita a otra."
+},
+"Liens partenaires": {
+"en": "Partner links",
+"es": "Enlaces a socios"
+},
+"Le blog peut contenir des liens vers des services partenaires, par exemple une assurance voyage. Si vous achetez après avoir cliqué sur l’un de ces liens, nous pouvons recevoir une commission, sans coût supplémentaire pour vous.": {
+"en": "The blog may contain links to partner services, for example travel insurance. If you buy after clicking one of these links, we may receive a commission, at no extra cost to you.",
+"es": "El blog puede contener enlaces a servicios de socios, por ejemplo un seguro de viaje. Si compra después de hacer clic en uno de estos enlaces, podemos recibir una comisión, sin ningún coste adicional para usted."
+},
+"Ces liens passent par la plateforme d’affiliation Travelpayouts. Son script se charge sur les pages du blog, mais ni sur la page d’accueil, où se trouvent les formulaires, ni sur les pages légales. Comme tout service chargé depuis une page, Travelpayouts peut voir des données de connexion, comme votre adresse IP, et, avec ses partenaires, utiliser des cookies ou le stockage de votre navigateur, selon ses propres règles, pour attribuer un achat à notre site. Les informations de vos demandes et de vos avis ne lui sont jamais transmises.": {
+"en": "These links go through the affiliate platform Travelpayouts. Its script loads on the blog pages, but not on the home page, where the forms are, or on the legal pages. Like any service loaded from a page, Travelpayouts may see connection data, such as your IP address, and, with its partners, use cookies or your browser’s storage, under its own rules, to credit a purchase to our site. The information in your requests and reviews is never passed to it.",
+"es": "Estos enlaces pasan por la plataforma de afiliación Travelpayouts. Su script se carga en las páginas del blog, pero no en la página de inicio, donde están los formularios, ni en las páginas legales. Como cualquier servicio cargado desde una página, Travelpayouts puede ver datos de conexión, como su dirección IP, y, junto con sus socios, utilizar cookies o el almacenamiento de su navegador, según sus propias normas, para atribuir una compra a nuestro sitio. La información de sus solicitudes y de sus opiniones nunca se le transmite."
+},
+"Dernière mise à jour&nbsp;: 13 novembre 2026.": {
+"en": "Last updated: 13 November 2026.",
+"es": "Última actualización: 13 de noviembre de 2026."
 }
 }

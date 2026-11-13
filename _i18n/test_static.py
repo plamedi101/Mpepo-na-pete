@@ -125,6 +125,33 @@ for fr, lg, path in pages:
         check(f'{tag} data-base identique au français', chat[0].get('data-base') == fr_base, (chat[0].get('data-base'), fr_base))
     check(f'{tag} un seul script de mesure, jeton attendu, avant </body>', h.count(BEACON) == 1 and TOKEN in h and h.index(BEACON) < h.rindex('</body>'))
 
+    # affiliation Travelpayouts « Drive » (build.TP_DRIVE_SRC ; None = aucun script)
+    # règle voulue : blog = chargé ; accueil (formulaires, passeport) = seulement pour la vérification Travelpayouts ; pages légales = rien
+    tp_src = build.TP_DRIVE_SRC
+    tp = re.findall(r'<!--i18n:tp-->(.*?)<!--/i18n:tp-->', h, re.S)
+    if not tp_src:
+        check(f'{tag} aucune affiliation Travelpayouts', not tp and '<!--i18n:tp-->' not in h and 'emrldco' not in h)
+    else:
+        want_mode = 'verify' if fr == 'index.html' else 'always' if fr.startswith('flyfast-blog/') else None
+        check(f'{tag} affiliation : règle de chargement attendue ({want_mode or "aucun script"})', build.tp_mode(fr) == want_mode, build.tp_mode(fr))
+        if want_mode is None:
+            check(f'{tag} affiliation : aucun script Travelpayouts sur cette page', not tp and '<!--i18n:tp-->' not in h and 'emrldco' not in h)
+        else:
+            in_head = h.count('<!--i18n:tp-->') == 1 and h.count('<!--/i18n:tp-->') == 1 and h.index('<!--i18n:tp-->') < h.index('</head>') < h.index('<body')
+            check(f'{tag} affiliation : un seul bloc Travelpayouts, dans l’en-tête', len(tp) == 1 and in_head, len(tp))
+            if tp:
+                blk = tp[0]
+                check(f'{tag} affiliation : script attendu, ajouté une seule fois', blk.count(tp_src) == 1 and h.count(tp_src) == 1
+                      and blk.count('document.head.appendChild(script)') == 1, blk)
+                check(f'{tag} affiliation : une seule adresse, en https, sur le domaine Travelpayouts', re.findall(r'https?://[^\s\'"]+', blk) == [tp_src], blk)
+                guard = 'init_marker' in blk
+                if want_mode == 'verify':
+                    check(f'{tag} affiliation : chargement limité à ?init_marker= (page à formulaires)',
+                          guard and blk.index('init_marker') < blk.index('document.createElement') < blk.index(tp_src), blk)
+                else:
+                    check(f'{tag} affiliation : chargement normal, sans condition', not guard, blk)
+            check(f'{tag} affiliation : aucun <script src> Travelpayouts écrit en dur', not [s for s in scripts if 'emrldco' in s['src'] or 'travelpayouts' in s['src']])
+
     # une seule page <h1>, ids uniques
     ids = [e.get('id') for e in soup.find_all(id=True)]
     check(f'{tag} ids uniques', len(ids) == len(set(ids)), [i for i in ids if ids.count(i) > 1])
