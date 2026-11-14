@@ -697,6 +697,138 @@ with sync_playwright() as p:
         page.locator('#request-form').screenshot(path=f'{SHOTS}/quota-mobile-{lang}.png')
         ctx.close()
 
+    # ============================================================== 4c. aperçu en direct (carte qui se remplit) et talon de confirmation
+    PASS = {
+        'fr': dict(title='Aperçu en direct', tag='Aperçu', labels=['Passager', 'Vol', 'Réservation', 'Compagnie', 'Date et heure'],
+                   left9='Encore 9 champs à remplir', left1='Encore 1 champ à remplir', full='Tous les champs sont remplis', stamp='Reçue'),
+        'en': dict(title='Live preview', tag='Preview', labels=['Passenger', 'Flight', 'Booking', 'Airline', 'Date and time'],
+                   left9='9 fields left to fill in', left1='1 field left to fill in', full='All fields are filled in', stamp='Received'),
+        'es': dict(title='Vista previa en directo', tag='Vista previa', labels=['Pasajero', 'Vuelo', 'Reserva', 'Aerolínea', 'Fecha y hora'],
+                   left9='Faltan 9 campos por rellenar', left1='Falta 1 campo por rellenar', full='Todos los campos están completos', stamp='Recibida'),
+    }
+    PASS_IDS = ['f-name', 'f-flightnum', 'f-pnr', 'f-airline', 'f-datetime']   # dans l'ordre d'affichage sur la carte
+    PASS_STATE = """() => { const one = (id) => { const w = document.getElementById(id), t = w.querySelector('.pass');
+            return { shown: w.offsetParent !== null, hidden: w.getAttribute('aria-hidden'), title: w.querySelector('.pass-title').textContent, tag: w.querySelector('.ticket-tag').textContent,
+                     labels: [...w.querySelectorAll('.t-label')].map(e => e.textContent), cells: [...w.querySelectorAll('[data-pass]')].map(e => [e.dataset.pass, e.textContent]),
+                     progress: w.querySelector('.t-progress').textContent, complete: t.classList.contains('is-complete'), p: t.style.getPropertyValue('--p'), text: w.textContent }; };
+        return { side: one('pass-side'), inline: one('pass-inline'), done: document.querySelector('.split').classList.contains('is-done') }; }"""
+    OUTSIDE = """(sels) => { const out = [];
+        for (const sel of sels) for (const el of document.querySelectorAll(sel)) { if (el.offsetParent === null) continue; const r = el.getBoundingClientRect();
+            if (r.left < -0.5 || r.right > innerWidth + 0.5) out.push([sel, Math.round(r.left), Math.round(r.right)]); }
+        return { out, scroll: document.documentElement.scrollWidth - document.documentElement.clientWidth }; }"""
+    STUB_STATE = """() => { const s = document.getElementById('done-ticket'), r = s.getBoundingClientRect(), d = new Date(), h = document.querySelector('.site-header').getBoundingClientRect();
+        const plane = s.querySelector('.takeoff-plane').getBoundingClientRect(), track = s.querySelector('.takeoff-track').getBoundingClientRect();
+        return { play: s.classList.contains('play'), wait: s.classList.contains('wait'), opacity: getComputedStyle(s).opacity, top: Math.round(r.top), bottom: Math.round(r.bottom), vh: innerHeight,
+                 header: Math.round(h.bottom), word: s.querySelector('.stamp-word').textContent, date: document.getElementById('stamp-date').textContent,
+                 today: [('0' + d.getDate()).slice(-2), ('0' + (d.getMonth() + 1)).slice(-2), d.getFullYear()].join('/'), refs: document.getElementById('done-refs').textContent,
+                 focus: document.activeElement.id, planeAtEnd: plane.left + plane.width / 2 > track.left + track.width * 0.9,
+                 running: document.getAnimations().filter(a => a.playState === 'running' && a.effect && a.effect.target && s.contains(a.effect.target)).length, stampHidden: s.querySelector('.stamp').getAttribute('aria-hidden') }; }"""
+    private = [FIELD_VALUES['f-passport'], FIELD_VALUES['f-contact'], FIELD_VALUES['f-nationality'], '1990', FIELD_VALUES['f-ticket']]
+    for lang in LANGS:
+        px = PASS[lang]
+        tag = f'[aperçu en direct {lang}]'
+        M.clear()
+        ctx, page, errors = open_home(b, lang, viewport={'width': 1280, 'height': 900})
+        wait_quota_calls(page, 1)
+
+        # --- ordinateur : carte vide à côté du formulaire
+        st = page.evaluate(PASS_STATE)
+        check(f'{tag} ordinateur : la carte est à côté du formulaire, son double (petit écran) est masqué', st['side']['shown'] and not st['inline']['shown'], (st['side']['shown'], st['inline']['shown']))
+        check(f'{tag} la carte est une illustration : ignorée des lecteurs d’écran', st['side']['hidden'] == 'true' and st['inline']['hidden'] == 'true')
+        check(f'{tag} titre, mention « {px["tag"]} » et libellés dans la langue', all(st[k]['title'] == px['title'] and st[k]['tag'] == px['tag'] and st[k]['labels'] == px['labels'] for k in ('side', 'inline')),
+              (st['side']['title'], st['side']['tag'], st['side']['labels']))
+        check(f'{tag} carte vide : aucune valeur, compteur « {px["left9"]} »', all(all(v == '' for _, v in st[k]['cells']) and st[k]['progress'] == px['left9'] and not st[k]['complete'] and st[k]['p'] == '0' for k in ('side', 'inline')), st['side'])
+
+        # --- saisie : les cinq informations du vol apparaissent, rien d'autre
+        for k, v in FIELD_VALUES.items():
+            page.fill('#' + k, v)
+        st = page.evaluate(PASS_STATE)
+        want = [[i, FIELD_VALUES[i]] for i in PASS_IDS]
+        check(f'{tag} saisie : nom, vol, réservation, compagnie et date repris sur la carte (et sur son double)', st['side']['cells'] == want and st['inline']['cells'] == want, st['side']['cells'])
+        leaked = [v for v in private if v in st['side']['text'] or v in st['inline']['text']]
+        check(f'{tag} ni passeport, ni nationalité, ni date de naissance, ni téléphone, ni billet sur la carte', not leaked, leaked)
+        check(f'{tag} tous les champs remplis : « {px["full"]} », carte complète', all(st[k]['progress'] == px['full'] and st[k]['complete'] and st[k]['p'] == '1' for k in ('side', 'inline')), (st['side']['progress'], st['side']['p']))
+        check(f'{tag} textes de la carte sans mot français', not french_residue(st['side']['text'].replace(FIELD_VALUES['f-nationality'], ''), lang), french_residue(st['side']['text'], lang))
+        check(f'{tag} la saisie n’envoie rien au service', not M.get('posts'), M.get('posts'))
+        page.wait_for_timeout(1600)
+        page.locator('#pass-side').screenshot(path=f'{SHOTS}/pass-{lang}.png')
+        page.fill('#f-pnr', '')
+        st = page.evaluate(PASS_STATE)
+        check(f'{tag} un champ vidé : « {px["left1"]} », la valeur disparaît de la carte', st['side']['progress'] == px['left1'] and not st['side']['complete'] and dict(st['side']['cells'])['f-pnr'] == '', (st['side']['progress'], st['side']['cells']))
+        page.fill('#f-pnr', FIELD_VALUES['f-pnr'])
+
+        # --- envoi : talon tamponné, avion, numéro de dossier
+        page.check('#f-consent')
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-done').hidden")
+        page.wait_for_function("document.getElementById('done-ticket').classList.contains('play')")
+        st, stub = page.evaluate(PASS_STATE), page.evaluate(STUB_STATE)
+        check(f'{tag} envoi : la carte laisse la place au talon de confirmation', st['done'] and not st['side']['shown'] and not st['inline']['shown'] and stub['play'] and not stub['wait'], (st['done'], stub))
+        check(f'{tag} talon : numéro de dossier, tampon « {px["stamp"]} » daté du jour', stub['refs'] == 'FF-AB12CD' and stub['word'] == px['stamp'] and stub['date'] == stub['today'] and re.fullmatch(r'\d{2}/\d{2}/\d{4}', stub['date']) is not None, stub)
+        page.wait_for_timeout(2700)
+        stub = page.evaluate(STUB_STATE)
+        check(f'{tag} talon : visible à l’écran sous l’en-tête, focus sur la confirmation, tampon décoratif', stub['top'] >= stub['header'] - 1 and stub['top'] < stub['vh'] * 0.5 and stub['focus'] == 'form-done' and stub['stampHidden'] == 'true', stub)
+        check(f'{tag} talon : animation terminée, avion arrivé au bout de sa trajectoire', stub['opacity'] == '1' and stub['planeAtEnd'] and stub['running'] == 0, stub)
+        check(f'{tag} talon : textes sans mot français', not french_residue(page.evaluate("document.getElementById('done-ticket').textContent"), lang))
+        page.locator('#done-ticket').screenshot(path=f'{SHOTS}/stub-{lang}.png')
+
+        # --- autre passager : la carte revient, vide ; puis le talon rejoue
+        page.click('#done-another')
+        st = page.evaluate(PASS_STATE)
+        check(f'{tag} autre passager : la carte revient, vide', not st['done'] and st['side']['shown'] and all(v == '' for _, v in st['side']['cells']) and st['side']['progress'] == px['left9'], st['side'])
+        fill_all(page)
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-done').hidden")
+        page.wait_for_function("document.getElementById('done-ticket').classList.contains('play')")
+        stub = page.evaluate(STUB_STATE)
+        check(f'{tag} deuxième demande : le talon rejoue avec les deux numéros', stub['play'] and not stub['wait'] and 'FF-AB12CD' in stub['refs'] and 'FF-ZZ99YY' in stub['refs'], stub)
+        check(f'{tag} aucune erreur de console', not errors, errors)
+        ctx.close()
+
+        # --- petit écran : la carte est dans le formulaire, juste avant le prix ; rien ne déborde à 320 px
+        for width in (375, 320):
+            M.clear()
+            ctx, page, errors = open_home(b, lang, viewport={'width': width, 'height': 740}, is_mobile=True, has_touch=True, device_scale_factor=1)
+            fill_all(page)
+            st = page.evaluate(PASS_STATE)
+            placed = page.evaluate("""() => { const slot = document.getElementById('pass-slot'), form = document.getElementById('request-form');
+                return form.contains(slot) && !!(slot.compareDocumentPosition(form.querySelector('.price')) & Node.DOCUMENT_POSITION_FOLLOWING)
+                    && !!(document.getElementById('f-datetime').compareDocumentPosition(slot) & Node.DOCUMENT_POSITION_FOLLOWING); }""")
+            check(f'{tag} {width} px : la carte s’affiche dans le formulaire, après les champs du vol et avant le prix', st['inline']['shown'] and not st['side']['shown'] and placed and st['inline']['cells'] == want, (st['inline']['shown'], st['side']['shown'], placed))
+            page.evaluate("document.getElementById('pass-inline').scrollIntoView({block: 'center'})")
+            page.wait_for_timeout(1600)
+            over = page.evaluate(OUTSIDE, ['#pass-inline', '#pass-inline .pass', '#pass-inline .t-val', '#pass-inline .t-label', '#pass-inline .ticket-tag', '#pass-inline .t-progress', '#pass-inline .pass-note'])
+            check(f'{tag} {width} px : la carte ne déborde pas', not over['out'] and over['scroll'] <= 0, over)
+            if width == 375:
+                page.locator('#pass-inline').screenshot(path=f'{SHOTS}/pass-mobile-{lang}.png')
+            page.click('#submit-btn')
+            page.wait_for_function("!document.getElementById('form-done').hidden")
+            page.wait_for_function("document.getElementById('done-ticket').classList.contains('play')")
+            page.wait_for_timeout(2700)
+            stub = page.evaluate(STUB_STATE)
+            over = page.evaluate(OUTSIDE, ['#done-ticket', '#done-ticket .stamp', '#done-refs', '#done-title', '#done-label', '#done-ticket .takeoff-plane', '#done-ticket .takeoff-trail'])
+            check(f'{tag} {width} px : talon visible sous l’en-tête, entier, sans débordement', stub['top'] >= stub['header'] - 1 and stub['top'] < stub['vh'] * 0.5 and stub['opacity'] == '1' and stub['planeAtEnd'] and not over['out'] and over['scroll'] <= 0, (stub, over))
+            if width == 375:
+                page.locator('#done-ticket').screenshot(path=f'{SHOTS}/stub-mobile-{lang}.png')
+            check(f'{tag} {width} px : aucune erreur de console', not errors, errors)
+            ctx.close()
+
+    # --- animations coupées sur l'appareil : tout est en place tout de suite, rien ne bouge
+    M.clear()
+    ctx, page, errors = open_home(b, 'fr', viewport={'width': 1280, 'height': 900}, reduced_motion='reduce')
+    fill_all(page)
+    page.wait_for_timeout(150)
+    moving = page.evaluate("document.getAnimations().filter(a => a.playState === 'running').length")
+    st = page.evaluate(PASS_STATE)
+    check('[aperçu en direct, animations coupées] la carte se remplit sans animation', moving == 0 and st['side']['cells'] == [[i, FIELD_VALUES[i]] for i in PASS_IDS] and st['side']['complete'], (moving, st['side']['cells']))
+    page.click('#submit-btn')
+    page.wait_for_function("!document.getElementById('form-done').hidden")
+    page.wait_for_function("document.getElementById('done-ticket').classList.contains('play')")
+    stub = page.evaluate(STUB_STATE)
+    check('[aperçu en direct, animations coupées] le talon est affiché tout de suite, tampon et avion en place', stub['opacity'] == '1' and stub['running'] == 0 and stub['planeAtEnd'] and stub['refs'] == 'FF-AB12CD', stub)
+    check('[aperçu en direct, animations coupées] aucune erreur de console', not errors, errors)
+    ctx.close()
+
     # ============================================================== 5. menu mobile : libellés dans la langue
     for lang in LANGS:
         e = X[lang]

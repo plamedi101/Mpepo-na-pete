@@ -188,6 +188,11 @@ CODE = [
      "'Too many attempts in a short time. Please wait a moment, then try again.'",
      "'Demasiados intentos en poco tiempo. Espere un momento y vuelva a intentarlo.'", 2),
 
+    # aperçu en direct (carte qui se remplit pendant la saisie) : nombre de champs obligatoires restants
+    ("var text = left ? 'Encore ' + left + (left > 1 ? ' champs à remplir' : ' champ à remplir') : 'Tous les champs sont remplis';",
+     "var text = left ? left + (left > 1 ? ' fields left to fill in' : ' field left to fill in') : 'All fields are filled in';",
+     "var text = left ? (left > 1 ? 'Faltan ' : 'Falta ') + left + (left > 1 ? ' campos por rellenar' : ' campo por rellenar') : 'Todos los campos están completos';", 1),
+
     # limite du jour (offre de lancement) : moment de réouverture à l'heure de l'appareil, puis messages
     ("return 'le ' + when.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' }) + ' à ' + when.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });",
      "return 'on ' + when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) + ' at ' + when.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });",

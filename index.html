@@ -216,6 +216,78 @@
   .done p + .btn{margin-top:18px;}
   .done .hint{margin:16px 0 20px;}
 
+  /* Aperçu en direct (carte qui se remplit pendant la saisie) et talon de confirmation */
+  .pass-title{margin-bottom:14px;font:600 1.25rem/1.12 var(--font-head);color:var(--navy);}
+  .pass-note{margin-top:16px;font-size:.875rem;color:var(--muted);}
+  .form .pass-wrap{display:none;margin:0 0 32px;}
+  .split.is-done .pass-zone,.split.is-done .pass-wrap{display:none;}
+  .ticket{--ticket-bg:var(--mist);--bars:repeating-linear-gradient(90deg,currentColor 0 2px,transparent 2px 5px,currentColor 5px 6px,transparent 6px 8px,currentColor 8px 11px,transparent 11px 13px,currentColor 13px 14px,transparent 14px 18px,currentColor 18px 20px,transparent 20px 22px,currentColor 22px 26px,transparent 26px 28px,currentColor 28px 29px,transparent 29px 32px,currentColor 32px 34px,transparent 34px 37px);position:relative;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--navy);box-shadow:0 1px 2px rgba(12,46,78,.06),0 24px 34px -24px rgba(12,46,78,.55);}
+  .form .ticket{--ticket-bg:#fff;background:var(--mist);}
+  .ticket-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;margin:-1px -1px 0;padding:8px 18px;border-radius:14px 14px 0 0;background:var(--navy);color:#fff;}
+  .ticket-brand{display:inline-flex;align-items:center;gap:8px;font:700 1.125rem/1 var(--font-head);letter-spacing:-0.01em;}
+  .ticket-mark{flex:none;width:22px;height:22px;}
+  .ticket-tag{padding:3px 11px;border-radius:999px;background:var(--gold);color:var(--navy);font-size:.8125rem;font-weight:600;line-height:1.35;}
+  .ticket-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;padding:18px 18px 16px;}
+  .t-cell{min-width:0;}
+  .t-wide{grid-column:1 / -1;}
+  .t-label{display:block;font-size:.8125rem;line-height:1.3;color:var(--muted);}
+  .t-val{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;min-height:1.3em;margin-top:2px;overflow:hidden;font:600 1.125rem/1.3 var(--font-head);letter-spacing:.01em;text-transform:uppercase;overflow-wrap:anywhere;}
+  .t-val:empty::before{content:"";display:block;width:68%;height:.5em;margin-top:.4em;border-radius:99px;background:var(--line);}
+  .t-name{font-size:1.375rem;}
+  .t-flight{display:block;font-weight:700;font-size:clamp(1.125rem,5.4vw,1.75rem);line-height:1.15;letter-spacing:.02em;text-overflow:ellipsis;white-space:nowrap;}
+  .ticket-foot{position:relative;padding:14px 18px 16px;border-top:2px dashed var(--line);}
+  .ticket-foot::before,.ticket-foot::after{content:"";position:absolute;top:-11px;width:20px;height:20px;border:1px solid var(--line);border-radius:50%;background:var(--ticket-bg);}
+  .ticket-foot::before{left:-11px;clip-path:inset(0 0 0 9px);}
+  .ticket-foot::after{right:-11px;clip-path:inset(0 9px 0 0);}
+  .t-bars{display:block;position:relative;height:30px;background:var(--bars);color:var(--line);}
+  .t-bars-ink{position:absolute;top:0;bottom:0;left:0;width:calc(var(--p,0) * 100%);background:var(--bars);color:var(--navy);transition:width .45s cubic-bezier(.2,.7,.2,1);}
+  .t-progress{display:block;margin-top:8px;font-size:.875rem;line-height:1.3;color:var(--muted);}
+  .pass.is-complete .t-progress{color:var(--sky-text);font-weight:600;}
+  .pass::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(105deg,rgba(240,185,46,0) 42%,rgba(240,185,46,.42) 50%,rgba(240,185,46,0) 58%) 130% 0/260% 100% no-repeat;opacity:0;pointer-events:none;}
+  .pass.is-complete::after{animation:sheen 1s ease-out;}
+  @keyframes sheen{from{background-position:130% 0;opacity:1;}to{background-position:-30% 0;opacity:1;}}
+  .ticket .t-val.is-new{animation:ink .7s ease-out;}
+  @keyframes ink{from{color:var(--sky);}}
+  .pass.is-printing .t-val:not(:empty){animation:print .5s steps(14,end) backwards;}
+  .pass.is-printing .t-cell:nth-child(2) .t-val{animation-delay:.15s;}
+  .pass.is-printing .t-cell:nth-child(3) .t-val{animation-delay:.3s;}
+  .pass.is-printing .t-cell:nth-child(4) .t-val{animation-delay:.45s;}
+  .pass.is-printing .t-cell:nth-child(5) .t-val{animation-delay:.6s;}
+  @keyframes print{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 0 0 0);}}
+
+  .ticket-done{margin-bottom:22px;}
+  .ticket-done.wait{opacity:0;}
+  .ticket-done .ticket-body{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px 16px;}
+  .ticket-done h3{font-size:1.5rem;}
+  .ticket-done .done-label{margin-top:8px;}
+  .ticket-done .done-ref{display:block;margin:2px 0 0;padding:0;border:0;border-radius:0;background:none;font-size:clamp(1.75rem,7vw,2.25rem);}
+  .stamp{flex:none;display:grid;justify-items:center;gap:4px;padding:9px 13px 8px;border:3px double currentColor;border-radius:8px;color:var(--sky-text);font-family:var(--font-head);line-height:1;text-align:center;text-transform:uppercase;opacity:.9;transform:rotate(-10deg);}
+  .stamp-word{font-weight:700;font-size:1.125rem;letter-spacing:.09em;}
+  .stamp-date{font-weight:600;font-size:.75rem;letter-spacing:.05em;font-variant-numeric:tabular-nums;}
+  .takeoff{padding:16px 32px 18px 28px;}
+  .takeoff-track{position:relative;aspect-ratio:100/14;}
+  .takeoff-trail{position:absolute;inset:0;width:100%;height:100%;overflow:visible;color:var(--sky);}
+  .takeoff-plane{position:absolute;left:100%;top:7.1%;width:26px;height:26px;margin:-13px 0 0 -13px;color:var(--navy);transform:rotate(-10.7deg);}
+  .ticket-done.play{animation:ticket-in .4s cubic-bezier(.2,.8,.2,1) backwards,thump .22s ease-out .98s;}
+  .play .done-ref{animation:print .55s steps(10,end) .3s backwards;}
+  .play .stamp{animation:stamp .34s cubic-bezier(.3,1.5,.5,1) .8s backwards;}
+  .play .takeoff-plane{animation:takeoff 1.25s 1s backwards;}
+  .play .takeoff-trail{animation:trail 1.25s 1s backwards;}
+  @keyframes ticket-in{from{opacity:0;transform:translateY(16px) scale(.97);}}
+  @keyframes thump{40%{transform:translateY(2px) scale(.995);}}
+  @keyframes stamp{from{opacity:0;transform:rotate(-26deg) scale(2.3);}}
+  @keyframes takeoff{
+    0%{left:0;top:96.4%;transform:rotate(0deg);animation-timing-function:cubic-bezier(.5,0,.9,.6);}
+    40%{left:34%;top:96.4%;transform:rotate(0deg);animation-timing-function:cubic-bezier(.2,.5,.3,1);}
+    54%{transform:rotate(-10.7deg);}
+    100%{left:100%;top:7.1%;transform:rotate(-10.7deg);}
+  }
+  @keyframes trail{
+    0%{clip-path:inset(-12px 100% -12px 0);animation-timing-function:cubic-bezier(.5,0,.9,.6);}
+    40%{clip-path:inset(-12px 66% -12px 0);animation-timing-function:cubic-bezier(.2,.5,.3,1);}
+    100%{clip-path:inset(-12px 0 -12px 0);}
+  }
+
   #avis{--star-on:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' fill='%23F0B92E' stroke='%238A5A00' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");--star-off:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z' fill='%23fff' stroke='%238094A8' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E");}
   .stars{position:relative;display:inline-block;flex:none;width:calc(5 * var(--s,20px));height:var(--s,20px);background:var(--star-off) 0 0/var(--s,20px) var(--s,20px) repeat-x;}
   .stars::before{content:"";position:absolute;left:0;top:0;bottom:0;width:calc(var(--r,0) * var(--s,20px));background:var(--star-on) 0 0/var(--s,20px) var(--s,20px) repeat-x;}
@@ -260,8 +332,15 @@
   @media (min-width:1700px){
     .hero-photo{object-position:50% 66%;}
   }
+  @media (min-width:901px){
+    .split-aside .pass{transform:rotate(-1.6deg);transform-origin:50% 40%;transition:transform .5s cubic-bezier(.2,.8,.2,1);}
+    .split-aside .pass.is-complete{transform:none;}
+  }
   @media (min-width:901px) and (min-height:640px){
-    .split-aside{position:sticky;top:96px;}
+    /* la colonne prend toute la hauteur du formulaire : l’aperçu la suit pendant la saisie */
+    .split-aside{align-self:stretch;display:flex;flex-direction:column;}
+    .pass-zone{flex:1 0 auto;}
+    .pass-zone > .pass-wrap{position:sticky;top:96px;}
   }
   @media (max-width:1100px){
     .hero{display:block;height:auto;background:var(--navy);}
@@ -287,6 +366,8 @@
     .split-aside > * + *{margin-top:0;}
     .split-aside > .pay{order:2;}
     .split .form{order:1;}
+    .split-aside > .pass-zone{display:none;}
+    .form .pass-wrap{display:block;}
     .photo-how{aspect-ratio:4/3;}
     .photo-how img{object-position:50% 8%;}
     .foot{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 40px;}
@@ -305,6 +386,9 @@
     .container{padding-inline:20px;}
     .nav{padding-inline:20px;}
     .grid-2{grid-template-columns:minmax(0,1fr);}
+    .ticket-done .ticket-body{grid-template-columns:minmax(0,1fr);}
+    .stamp{justify-self:end;margin:-2px 2px 0 0;}
+    .takeoff{padding:14px 26px 16px 22px;}
     .brand{font-size:1.375rem;}
     .foot{grid-template-columns:minmax(0,1fr);}
   }
@@ -444,6 +528,29 @@
           <h2 id="form-title">Enregistrer votre vol</h2>
           <p class="section-intro">Remplissez ce formulaire avec précision. Ces informations servent uniquement à réaliser votre enregistrement.</p>
         </div>
+        <div class="pass-zone">
+          <div class="pass-wrap" id="pass-side" aria-hidden="true">
+            <p class="pass-title">Aperçu en direct</p>
+            <div class="ticket pass">
+              <div class="ticket-head">
+                <span class="ticket-brand"><svg class="ticket-mark" viewBox="0 0 32 32" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg><span>FlyFast</span></span>
+                <span class="ticket-tag">Aperçu</span>
+              </div>
+              <div class="ticket-body">
+                <div class="t-cell t-wide"><span class="t-label">Passager</span><span class="t-val t-name" data-pass="f-name"></span></div>
+                <div class="t-cell"><span class="t-label">Vol</span><span class="t-val t-flight" data-pass="f-flightnum"></span></div>
+                <div class="t-cell"><span class="t-label">Réservation</span><span class="t-val t-flight" data-pass="f-pnr"></span></div>
+                <div class="t-cell"><span class="t-label">Compagnie</span><span class="t-val" data-pass="f-airline"></span></div>
+                <div class="t-cell"><span class="t-label">Date et heure</span><span class="t-val" data-pass="f-datetime"></span></div>
+              </div>
+              <div class="ticket-foot">
+                <span class="t-bars"><span class="t-bars-ink"></span></span>
+                <span class="t-progress"></span>
+              </div>
+            </div>
+            <p class="pass-note">Aperçu de ce que vous saisissez. Votre vraie carte d’embarquement est émise par la compagnie&nbsp;: nous vous l’envoyons sur WhatsApp une fois l’enregistrement fait.</p>
+          </div>
+        </div>
         <div class="pay">
           <h3>Tarif</h3>
           <ul class="pay-list">
@@ -538,6 +645,8 @@
           </div>
         </fieldset>
 
+        <div id="pass-slot"></div>
+
         <div class="price">
           <div>
             <span class="price-label">Frais du service par&nbsp;réservation</span>
@@ -581,9 +690,25 @@
         </div>
 
         <div class="done" id="form-done" tabindex="-1" hidden>
-          <h3 id="done-title">Demande enregistrée</h3>
-          <p class="done-label" id="done-label">Notez votre numéro de dossier&nbsp;:</p>
-          <p class="done-ref" id="done-refs"></p>
+          <div class="ticket ticket-done" id="done-ticket">
+            <div class="ticket-head" aria-hidden="true">
+              <span class="ticket-brand"><svg class="ticket-mark" viewBox="0 0 32 32" focusable="false"><rect width="32" height="32" rx="7" fill="#3B9EE8"/><g transform="translate(4 4)"><path transform="rotate(45 12 12)" fill="#fff" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></g></svg><span>FlyFast</span></span>
+            </div>
+            <div class="ticket-body">
+              <div>
+                <h3 id="done-title">Demande enregistrée</h3>
+                <p class="done-label" id="done-label">Notez votre numéro de dossier&nbsp;:</p>
+                <p class="done-ref" id="done-refs"></p>
+              </div>
+              <span class="stamp" aria-hidden="true"><span class="stamp-word">Reçue</span><span class="stamp-date" id="stamp-date"></span></span>
+            </div>
+            <div class="ticket-foot takeoff" aria-hidden="true">
+              <div class="takeoff-track">
+                <svg class="takeoff-trail" viewBox="0 0 100 14" preserveAspectRatio="none" focusable="false"><path d="M0 13.5H34L100 1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 7" vector-effect="non-scaling-stroke"/></svg>
+                <svg class="takeoff-plane" viewBox="0 0 24 24" focusable="false"><path transform="rotate(90 12 12)" fill="currentColor" d="M12 2c.9 0 1.6.9 1.6 2v5.2l8.4 5v2.3l-8.4-2.6v4.4l2.2 1.7V22L12 21l-3.8 1v-1.9l2.2-1.7v-4.4L2 16.5v-2.3l8.4-5V4c0-1.1.7-2 1.6-2z"/></svg>
+              </div>
+            </div>
+          </div>
           <p>Dernière étape&nbsp;: envoyez-nous ce numéro sur WhatsApp pour lancer votre enregistrement. Il est gratuit jusqu’à la mi&#8209;décembre.</p>
           <a class="btn btn-gold" id="done-wa" href="https://wa.me/201508319385" target="_blank" rel="noopener">Prévenir FlyFast sur WhatsApp</a>
           <p class="hint">Vos informations sont chiffrées. Elles seront effacées dès que votre enregistrement sera fait, et au plus tard 14&nbsp;jours après votre demande. Gardez ce numéro&nbsp;: il vous permettra aussi de laisser un avis <span class="nb">«&nbsp;Client&nbsp;vérifié&nbsp;»</span>.</p>
@@ -942,6 +1067,68 @@
     });
   });
 
+  /* ---------- Aperçu en direct : la carte se remplit pendant la saisie ---------- */
+
+  // Seules ces informations sont reprises sur la carte : ni passeport, ni date de naissance, ni téléphone.
+  var PASS_FIELDS = ['f-name', 'f-flightnum', 'f-datetime', 'f-airline', 'f-pnr'];
+  var passes = [];
+  (function () {
+    var side = $('pass-side');
+    var slot = $('pass-slot');
+    if (!side || !slot) { return; }
+    // Deuxième exemplaire, placé dans le formulaire : c’est lui qui s’affiche sur petit écran.
+    var inline = side.cloneNode(true);
+    inline.id = 'pass-inline';
+    slot.appendChild(inline);
+    passes = [side, inline];
+    passes.forEach(function (wrap) {
+      wrap.addEventListener('animationend', function (e) {
+        if (e.animationName === 'ink') { e.target.classList.remove('is-new'); }
+      });
+    });
+    if ('IntersectionObserver' in window) {
+      // Quand la carte arrive à l’écran, ce qui est déjà saisi s’y imprime une fois.
+      var seen = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) { return; }
+          var ticket = entry.target;
+          seen.unobserve(ticket);
+          ticket.classList.add('is-printing');
+          setTimeout(function () {
+            ticket.classList.remove('is-printing');
+            Array.prototype.forEach.call(ticket.querySelectorAll('.is-new'), function (cell) { cell.classList.remove('is-new'); });
+          }, 1400);
+        });
+      }, { threshold: 0.4 });
+      passes.forEach(function (wrap) { seen.observe(wrap.querySelector('.pass')); });
+    }
+  })();
+
+  function updatePass() {
+    if (!passes.length) { return; }
+    var left = 0;
+    required.forEach(function (item) { if (!$(item[0]).value.trim()) { left += 1; } });
+    var text = left ? 'Encore ' + left + (left > 1 ? ' champs à remplir' : ' champ à remplir') : 'Tous les champs sont remplis';
+    passes.forEach(function (wrap) {
+      var ticket = wrap.querySelector('.pass');
+      PASS_FIELDS.forEach(function (id) {
+        var cell = wrap.querySelector('[data-pass="' + id + '"]');
+        var value = $(id).value.trim();
+        if (cell.textContent === value) { return; }
+        if (!cell.textContent && value) { cell.classList.add('is-new'); }
+        cell.textContent = value;
+      });
+      ticket.style.setProperty('--p', String((required.length - left) / required.length));
+      ticket.classList.toggle('is-complete', left === 0);
+      wrap.querySelector('.t-progress').textContent = text;
+    });
+  }
+  form.addEventListener('input', updatePass);
+  form.addEventListener('change', updatePass);
+  // Champs déjà remplis au retour sur la page ou par le navigateur.
+  window.addEventListener('pageshow', updatePass);
+  updatePass();
+
   function frenchDate(value) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
     return m ? m[3] + '/' + m[2] + '/' + m[1] : value;
@@ -990,14 +1177,44 @@
     setStatus('', false);
     fallback.hidden = true;
     formFields.hidden = true;
+    // Les champs sont vidés : l’aperçu l’est aussi, et il s’efface pendant que la confirmation est affichée.
+    updatePass();
+    form.parentNode.classList.add('is-done');
+    var today = new Date();
+    $('stamp-date').textContent = ('0' + today.getDate()).slice(-2) + '/' + ('0' + (today.getMonth() + 1)).slice(-2) + '/' + today.getFullYear();
     done.hidden = false;
-    done.focus();
+    playStub();
+    try { done.focus({ preventScroll: true }); } catch (err) { done.focus(); }
+    $('done-ticket').scrollIntoView({ block: 'start' });
     // Une demande vient d’être acceptée : l’état de la limite du jour est relu.
     checkQuota();
   }
 
+  // Le talon arrive, le numéro s’imprime, le tampon tombe, l’avion décolle : rejoué à chaque demande,
+  // et seulement une fois le talon visible (la page remonte d’abord jusqu’à lui).
+  function playStub() {
+    var stub = $('done-ticket');
+    var started = false;
+    function start() {
+      if (started) { return; }
+      started = true;
+      stub.classList.remove('wait');
+      void stub.offsetWidth;
+      stub.classList.add('play');
+    }
+    stub.classList.remove('play');
+    if (!('IntersectionObserver' in window)) { start(); return; }
+    stub.classList.add('wait');
+    var seen = new IntersectionObserver(function (entries) {
+      if (entries.some(function (entry) { return entry.isIntersecting; })) { seen.disconnect(); start(); }
+    }, { threshold: 0.6 });
+    seen.observe(stub);
+    setTimeout(function () { seen.disconnect(); start(); }, 2500);
+  }
+
   $('done-another').addEventListener('click', function () {
     done.hidden = true;
+    form.parentNode.classList.remove('is-done');
     formFields.hidden = false;
     $('f-name').focus();
   });

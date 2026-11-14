@@ -2126,5 +2126,41 @@
 "Numéro d’e-ticket indiqué sur votre confirmation de réservation, si la compagnie en fournit un. Sinon, laissez ce champ vide&nbsp;: c’est souvent le cas avec les compagnies low cost.": {
 "en": "E-ticket number shown on your booking confirmation, if the airline provides one. If not, leave this field empty: this is often the case with low-cost airlines.",
 "es": "Número de e-ticket que figura en su confirmación de reserva, si la aerolínea facilita uno. Si no, deje este campo vacío: suele ocurrir con las aerolíneas de bajo coste."
+},
+"Aperçu en direct": {
+"en": "Live preview",
+"es": "Vista previa en directo"
+},
+"Aperçu": {
+"en": "Preview",
+"es": "Vista previa"
+},
+"Passager": {
+"en": "Passenger",
+"es": "Pasajero"
+},
+"Vol": {
+"en": "Flight",
+"es": "Vuelo"
+},
+"Date et heure": {
+"en": "Date and time",
+"es": "Fecha y hora"
+},
+"Compagnie": {
+"en": "Airline",
+"es": "Aerolínea"
+},
+"Réservation": {
+"en": "Booking",
+"es": "Reserva"
+},
+"Aperçu de ce que vous saisissez. Votre vraie carte d’embarquement est émise par la compagnie&nbsp;: nous vous l’envoyons sur WhatsApp une fois l’enregistrement fait.": {
+"en": "A preview of what you type. Your real boarding pass is issued by the airline: we send it to you on WhatsApp once check-in is done.",
+"es": "Vista previa de lo que usted escribe. Su tarjeta de embarque real la emite la aerolínea: se la enviamos por WhatsApp una vez hecho el check-in."
+},
+"Reçue": {
+"en": "Received",
+"es": "Recibida"
 }
 }

@@ -27,7 +27,8 @@ Ce dossier commence par un tiret bas : GitHub Pages ne le publie pas.
    Pour fixer la date du plan du site : `BUILD_DATE=2026-11-09 python3 _i18n/build.py .`
 4. Vérifiez : `python3 _i18n/test_static.py .` (structure, liens, langues, plan du site), puis, le site étant servi en local
    (`python3 -m http.server 8766` dans le dossier du site), `python3 _i18n/test_browser.py http://127.0.0.1:8766/`
-   (navigateur : formulaire, numéro de billet facultatif, limite du jour, avis, chat, mobile, dans les trois langues ; nécessite Playwright).
+   (navigateur : formulaire, numéro de billet facultatif, limite du jour, aperçu en direct et talon de confirmation, avis, chat,
+   mobile, dans les trois langues ; nécessite Playwright).
 
 ## Où se trouvent les textes
 
@@ -82,6 +83,28 @@ dans la table `SERVER`.
 
 Le numéro de billet est facultatif (beaucoup de compagnies low cost n’en fournissent pas) : le formulaire l’envoie vide, le Worker
 l’accepte vide et l’espace administrateur affiche alors « non fourni ».
+
+## Aperçu en direct et talon de confirmation (page d’accueil)
+
+Deux effets visuels accompagnent le formulaire d’enregistrement. Tout est dans `index.html` (styles `.ticket`, `.pass`, `.stamp`,
+`.takeoff` ; script « Aperçu en direct ») : aucune bibliothèque, aucune image, aucun appel réseau.
+
+- **Aperçu en direct** (`#pass-side`) : une carte se remplit pendant la saisie. Elle ne reprend que cinq informations (table
+  `PASS_FIELDS` du script) : nom, numéro de vol, référence de réservation, compagnie, date et heure. Jamais le passeport, la
+  nationalité, la date de naissance, le téléphone ni le numéro de billet. Sur ordinateur, elle suit le visiteur à côté du
+  formulaire ; jusqu’à 900 px de large, c’est son double (`#pass-inline`, créé par le script) qui s’affiche dans le formulaire,
+  juste avant le prix. Les barres du bas sont décoratives (ce n’est pas un code-barres) et se remplissent avec le nombre de
+  champs obligatoires renseignés.
+- **Ce n’est pas une carte d’embarquement** : la carte porte la mention « Aperçu », sans logo de compagnie, et la phrase placée
+  dessous le rappelle (la vraie carte est émise par la compagnie). Ne retirez ni la mention ni cette phrase. La carte est
+  masquée aux lecteurs d’écran (`aria-hidden`), qui lisent déjà les champs.
+- **Talon de confirmation** (`#done-ticket`) : quand le service accepte la demande, la confirmation prend la forme d’un talon
+  avec le numéro de dossier, un tampon daté du jour et un avion qui décolle. Les textes et boutons de la confirmation sont
+  inchangés ; le tampon et l’avion sont décoratifs.
+- **Animations** : elles sont toutes coupées quand l’appareil du visiteur le demande (`prefers-reduced-motion`) ; la carte et
+  le talon s’affichent alors directement dans leur état final.
+- **Textes** : libellés de la carte et tampon dans `translations.json` ; compteur « Encore n champs à remplir » dans
+  `index_js.py` (table `CODE`).
 
 ## Programme d’affiliation Travelpayouts
 
