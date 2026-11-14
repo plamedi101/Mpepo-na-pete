@@ -175,11 +175,12 @@
 
     <div class="post-body">
       <h2>Ce que nous recueillons</h2>
-      <p>Pour une demande d’enregistrement&nbsp;: votre nom complet, votre numéro de passeport, votre nationalité, votre date de naissance et votre numéro WhatsApp, ainsi que la compagnie, le numéro de vol, la référence de réservation (PNR), le numéro de billet si vous l’indiquez, et la date et l’heure du vol. Nous y ajoutons un numéro de dossier, par exemple FF-AB12CD, que vous voyez à l’écran après l’envoi.</p>
+      <p>Pour une demande d’enregistrement&nbsp;: votre nom complet, votre numéro de passeport, votre nationalité, votre date de naissance, votre adresse e-mail et, si vous le souhaitez, votre numéro WhatsApp, ainsi que la compagnie, le numéro de vol, la référence de réservation (PNR), le numéro de billet si vous l’indiquez, et la date et l’heure du vol. Nous y ajoutons un numéro de dossier, par exemple FF-AB12CD, que vous voyez à l’écran après l’envoi.</p>
+      <p>Si vous le souhaitez, vous pouvez aussi nous envoyer une photo de votre passeport ou de votre billet depuis le site. Nous la recevons réduite et chiffrée, dans notre espace d’administration.</p>
       <p>Pour un avis&nbsp;: votre prénom, votre note, le texte de votre avis et, si vous le souhaitez, votre numéro de dossier.</p>
 
       <h2>Comment c’est protégé</h2>
-      <p>Les informations de votre demande sont chiffrées (AES-256) avant d’être enregistrées. La clé de déchiffrement est conservée séparément de la base de données. Nous seuls pouvons lire une demande, depuis un espace d’administration protégé par un code secret. Les échanges avec le site sont chiffrés (HTTPS).</p>
+      <p>Les informations de votre demande et vos photos sont chiffrées (AES-256) avant d’être enregistrées. La clé de déchiffrement est conservée séparément de la base de données. Nous seuls pouvons lire une demande, depuis un espace d’administration protégé par un code secret. Les échanges avec le site sont chiffrés (HTTPS).</p>
       <p>La base de données est hébergée chez Cloudflare, dans l’Union européenne. Le service qui reçoit votre demande s’exécute sur le réseau de Cloudflare, au plus près de vous.</p>
 
       <h2>Combien de temps nous les gardons</h2>
@@ -188,13 +189,13 @@
         <div><dt>Dossier vide</dt><dd>Après l’effacement, il reste une ligne sans donnée personnelle&nbsp;: numéro de dossier, date et statut. Elle permet de vérifier les avis des clients et disparaît au bout de 12&nbsp;mois.</dd></div>
         <div><dt>Sauvegardes techniques</dt><dd>Cloudflare garde pendant 7&nbsp;jours un historique de la base. Il ne contient que la version chiffrée de vos informations.</dd></div>
         <div><dt>Votre avis</dt><dd>Il reste affiché sur le site, avec votre prénom, jusqu’à ce que vous demandiez son retrait.</dd></div>
-        <div><dt>Photos envoyées sur WhatsApp</dt><dd>Si vous nous envoyez une photo (passeport, billet), nous la supprimons de notre côté une fois votre enregistrement effectué.</dd></div>
+        <div><dt>Photos</dt><dd>Les photos envoyées depuis le site sont effacées en même temps que votre demande&nbsp;: dès que l’enregistrement est fait ou annulé, et au plus tard 14&nbsp;jours après votre demande. Si vous nous écrivez une photo par WhatsApp ou par e-mail, nous la supprimons de notre côté une fois votre enregistrement effectué.</dd></div>
         <div><dt>Contrôle anti-abus</dt><dd>Pour limiter les envois répétés, nous gardons une empreinte non réversible de votre adresse IP, pas l’adresse elle-même, pendant 3&nbsp;jours au plus. Pendant l’offre de lancement, pour ne compter chaque réservation qu’une fois dans la limite de 50&nbsp;demandes par jour, nous gardons de la même façon une empreinte non réversible de votre référence de réservation, pendant 3&nbsp;jours au plus.</dd></div>
       </dl>
 
       <h2>Qui y a accès</h2>
       <p>Pour réaliser votre enregistrement, nous saisissons vos informations sur le site officiel de votre compagnie aérienne. Nous ne les vendons pas et ne les utilisons pour rien d’autre.</p>
-      <p>Nous faisons appel à des prestataires techniques&nbsp;: GitHub héberge les pages du site, Cloudflare fait fonctionner le formulaire, la base de données, le contrôle anti-robot et la mesure d’audience, Google fournit les polices de caractères, et WhatsApp transmet nos messages. Chacun peut voir des données de connexion, comme votre adresse IP, selon ses propres règles.</p>
+      <p>Nous faisons appel à des prestataires techniques&nbsp;: GitHub héberge les pages du site, Cloudflare fait fonctionner le formulaire, la base de données, le contrôle anti-robot et la mesure d’audience, Google fournit les polices de caractères, et WhatsApp et Gmail (Google) transmettent nos messages. Si vous choisissez de recevoir votre carte d’embarquement par e-mail, nous vous l’envoyons à l’adresse indiquée depuis flyfastcheckin@gmail.com. Chacun peut voir des données de connexion, comme votre adresse IP, selon ses propres règles.</p>
       <p>Si vous réglez les 2&nbsp;€ avec PayPal, c’est PayPal qui reçoit vos données de paiement, selon ses propres règles&nbsp;: nous ne voyons jamais votre numéro de carte.</p>
 
       <p>À chaque nouvelle demande ou nouvel avis, nous recevons un e-mail. Il contient seulement le numéro de dossier (ou le numéro de l’avis), jamais d’information de voyage. Il est envoyé par le service Resend.</p>
@@ -215,7 +216,7 @@
       <p>Votre choix, accepter ou refuser, est gardé 6&nbsp;mois dans le stockage local de votre navigateur, puis le bandeau réapparaît. Vous pouvez le changer à tout moment avec le lien «&nbsp;Gérer les cookies&nbsp;» en bas des pages du blog. Si vous refusez ou retirez votre accord, le script n’est pas chargé et son cookie de session est effacé de votre navigateur. Le reste du site fonctionne de la même façon.</p>
 
       <h2>Vos droits</h2>
-      <p>Vous pouvez nous demander à tout moment de consulter, corriger ou effacer vos informations, y compris avant la fin des 14&nbsp;jours, ou de retirer votre avis. Écrivez-nous sur WhatsApp en indiquant votre numéro de dossier. Vous pouvez aussi vous adresser à l’autorité de protection des données de votre pays.</p>
+      <p>Vous pouvez nous demander à tout moment de consulter, corriger ou effacer vos informations, y compris avant la fin des 14&nbsp;jours, ou de retirer votre avis. Écrivez-nous par e-mail à flyfastcheckin@gmail.com ou sur WhatsApp en indiquant votre numéro de dossier. Vous pouvez aussi vous adresser à l’autorité de protection des données de votre pays.</p>
 
       <h2>Nous contacter</h2>
       <p>FlyFast, service d’assistance indépendant. <a class="link" href="https://wa.me/201508319385" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;150&nbsp;831&nbsp;9385</a></p>
@@ -241,6 +242,7 @@
           <li><a href="index.html#enregistrer">Enregistrer un vol</a></li>
           <li><a href="index.html#faq">FAQ</a></li>
           <li><a href="https://wa.me/201508319385" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;150&nbsp;831&nbsp;9385</a></li>
+          <li><a href="mailto:flyfastcheckin@gmail.com">flyfastcheckin@gmail.com</a></li>
         </ul>
       </nav>
       <nav aria-label="Informations légales">

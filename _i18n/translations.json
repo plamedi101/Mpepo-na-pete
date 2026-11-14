@@ -2206,5 +2206,181 @@
 "<strong1>Offre de lancement.</strong1> Du lancement jusqu’à la mi&#8209;décembre 2026, le service est gratuit, dans la limite de 50&nbsp;demandes par jour. Une demande correspond à une réservation (numéro de réservation, ou PNR), quel que soit le nombre de passagers inscrits sur cette réservation. Une fois les 50&nbsp;demandes du jour atteintes, le formulaire n’accepte plus de nouvelle réservation jusqu’au lendemain&nbsp;: le compteur repart de zéro chaque jour à minuit, heure du Caire (Égypte). Les autres passagers d’une réservation déjà acceptée ce jour-là restent acceptés. Vous pouvez renvoyer votre demande le lendemain ou, pour vous enregistrer sans attendre, régler 2&nbsp;€ avec <a1>PayPal</a1>, puis nous écrire sur <a2>WhatsApp</a2> avec la capture de votre paiement&nbsp;: nous vous indiquons alors la suite.": {
 "en": "<strong1>Launch offer.</strong1> From launch until mid&#8209;December 2026, the service is free, up to 50&nbsp;requests per day. One request corresponds to one booking (booking reference, or PNR), whatever the number of passengers on that booking. Once the day’s 50&nbsp;requests have been reached, the form accepts no new bookings until the next day: the counter starts again from zero every day at midnight, Cairo time (Egypt). The other passengers of a booking already accepted that day are still accepted. You can send your request again the next day or, to check in without waiting, pay €2 with <a1>PayPal</a1>, then write to us on <a2>WhatsApp</a2> with a screenshot of your payment: we will then tell you what happens next.",
 "es": "<strong1>Oferta de lanzamiento.</strong1> Desde el lanzamiento hasta mediados de diciembre de 2026, el servicio es gratuito, con un máximo de 50&nbsp;solicitudes al día. Una solicitud equivale a una reserva (código de reserva o PNR), sea cual sea el número de pasajeros inscritos en esa reserva. Una vez alcanzadas las 50&nbsp;solicitudes del día, el formulario no acepta nuevas reservas hasta el día siguiente: el contador vuelve a cero cada día a medianoche, hora de El Cairo (Egipto). Los demás pasajeros de una reserva ya aceptada ese día siguen siendo aceptados. Puede volver a enviar su solicitud al día siguiente o, para hacer el check-in sin esperar, pagar 2&nbsp;€ con <a1>PayPal</a1> y escribirnos después por <a2>WhatsApp</a2> con la captura de pantalla de su pago: le indicaremos entonces los pasos a seguir."
+},
+"FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement par e-mail ou sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.": {
+"en": "FlyFast completes your online check-in and sends your boarding pass by e-mail or on WhatsApp. Free until mid-December, then €2 per booking.",
+"es": "FlyFast realiza su check-in online y le envía su tarjeta de embarque por correo electrónico o por WhatsApp. Gratis hasta mediados de diciembre, después 2 € por reserva."
+},
+"Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement par e-mail ou sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.": {
+"en": "We complete your online check-in and send your boarding pass by e-mail or on WhatsApp. Free until mid-December, then €2 per booking.",
+"es": "Realizamos su check-in online y le enviamos su tarjeta de embarque por correo electrónico o por WhatsApp. Gratis hasta mediados de diciembre, después 2 € por reserva."
+},
+"Transmettez les informations de votre réservation. Nous effectuons l’enregistrement en ligne sur le site de la compagnie et vous envoyons votre carte d’embarquement par e-mail ou sur WhatsApp.": {
+"en": "Send us your booking details. We complete the online check-in on the airline’s website and send your boarding pass to you by e-mail or on WhatsApp.",
+"es": "Envíenos los datos de su reserva. Nosotros hacemos el check-in online en el sitio web de la aerolínea y le enviamos su tarjeta de embarque por correo electrónico o por WhatsApp."
+},
+"<strong1>Carte d’embarquement</strong1> envoyée par e-mail ou sur WhatsApp": {
+"en": "<strong1>Boarding pass</strong1> sent by e-mail or on WhatsApp",
+"es": "<strong1>Tarjeta de embarque</strong1> enviada por correo electrónico o por WhatsApp"
+},
+"Par e-mail ou sur WhatsApp, prête à imprimer ou à présenter.": {
+"en": "By e-mail or on WhatsApp, ready to print or show.",
+"es": "Por correo electrónico o por WhatsApp, lista para imprimir o mostrar."
+},
+"Aperçu de ce que vous saisissez. Votre vraie carte d’embarquement est émise par la compagnie&nbsp;: nous vous l’envoyons par e-mail ou sur WhatsApp une fois l’enregistrement fait.": {
+"en": "A preview of what you type. Your real boarding pass is issued by the airline: we send it to you by e-mail or on WhatsApp once check-in is done.",
+"es": "Vista previa de lo que usted escribe. Su tarjeta de embarque real la emite la aerolínea: se la enviamos por correo electrónico o por WhatsApp una vez hecho el check-in."
+},
+"Ce formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement sur <a1>WhatsApp</a1> ou par e-mail à <a2>flyfastcheckin@gmail.com</a2>.": {
+"en": "This form requires JavaScript. You can also write to us directly on <a1>WhatsApp</a1> or by e-mail at <a2>flyfastcheckin@gmail.com</a2>.",
+"es": "Este formulario requiere JavaScript. También puede escribirnos directamente por <a1>WhatsApp</a1> o por correo electrónico a <a2>flyfastcheckin@gmail.com</a2>."
+},
+"Tous les champs sont obligatoires, sauf le numéro de billet et le numéro WhatsApp.": {
+"en": "All fields are required, except the ticket number and the WhatsApp number.",
+"es": "Todos los campos son obligatorios, excepto el número de billete y el número de WhatsApp."
+},
+"Adresse e-mail": {
+"en": "E-mail address",
+"es": "Dirección de correo electrónico"
+},
+"Pour vous envoyer la carte d’embarquement et vous répondre.": {
+"en": "To send you your boarding pass and reply to you.",
+"es": "Para enviarle su tarjeta de embarque y responderle."
+},
+"Recevoir ma carte d’embarquement par": {
+"en": "Receive my boarding pass by",
+"es": "Recibir mi tarjeta de embarque por"
+},
+"E-mail": {
+"en": "E-mail",
+"es": "Correo electrónico"
+},
+"E-mail et WhatsApp": {
+"en": "E-mail and WhatsApp",
+"es": "Correo electrónico y WhatsApp"
+},
+"Numéro WhatsApp <span1>(facultatif)</span1>": {
+"en": "WhatsApp number <span1>(optional)</span1>",
+"es": "Número de WhatsApp <span1>(opcional)</span1>"
+},
+"Obligatoire seulement si vous choisissez WhatsApp.": {
+"en": "Required only if you choose WhatsApp.",
+"es": "Obligatorio solo si elige WhatsApp."
+},
+"Vos informations, y compris votre adresse e-mail et les photos éventuelles, sont chiffrées dès leur envoi et ne servent qu’à votre enregistrement et à l’envoi de votre carte d’embarquement. Elles sont ensuite effacées&nbsp;: dès que c’est fait, et au plus tard 14&nbsp;jours après votre demande. Il ne reste alors qu’un dossier vide, sans donnée personnelle. <a1>Voir les détails</a1>": {
+"en": "Your information, including your e-mail address and any photos, is encrypted as soon as it is sent and is used only for your check-in and for sending you your boarding pass. It is then erased: as soon as the check-in is done, and at the latest 14&nbsp;days after your request. Only an empty record remains, with no personal data. <a1>See the details</a1>",
+"es": "Sus datos, incluidos su dirección de correo electrónico y las fotos, si las hay, se cifran desde el momento del envío y solo se usan para su check-in y para enviarle su tarjeta de embarque. Después se borran: en cuanto el check-in está hecho y, como máximo, 14&nbsp;días después de su solicitud. Solo queda un registro vacío, sin datos personales. <a1>Ver los detalles</a1>"
+},
+"Après l’envoi, vous recevez un numéro de dossier. Il suffit de nous le transmettre, sur WhatsApp ou par e-mail, pour lancer votre enregistrement.": {
+"en": "After sending, you receive a request number. Just send it to us, on WhatsApp or by e-mail, to start your check-in.",
+"es": "Tras el envío, recibirá un número de solicitud. Solo tiene que enviárnoslo, por WhatsApp o por correo electrónico, para iniciar su check-in."
+},
+"Dernière étape&nbsp;: envoyez-nous ce numéro pour lancer votre enregistrement, sur WhatsApp ou par e-mail. Il est gratuit jusqu’à la mi&#8209;décembre.": {
+"en": "Last step: send us this number to start your check-in, on WhatsApp or by e-mail. It is free until mid&#8209;December.",
+"es": "Último paso: envíenos este número para iniciar su check-in, por WhatsApp o por correo electrónico. Es gratuito hasta mediados de diciembre."
+},
+"Prévenir FlyFast par e-mail": {
+"en": "Notify FlyFast by e-mail",
+"es": "Avisar a FlyFast por correo electrónico"
+},
+"Une photo de votre passeport ou de votre billet peut nous aider&nbsp;: vous pouvez nous l’envoyer juste en dessous, directement sur le site.": {
+"en": "A photo of your passport or ticket can help us: you can send it just below, directly on the site.",
+"es": "Una foto de su pasaporte o de su billete puede ayudarnos: puede enviárnosla justo debajo, directamente en el sitio."
+},
+"Envoyer une photo du passeport ou du billet <span1>(facultatif)</span1>": {
+"en": "Send a photo of your passport or ticket <span1>(optional)</span1>",
+"es": "Enviar una foto del pasaporte o del billete <span1>(opcional)</span1>"
+},
+"Utile si une information est difficile à recopier. Envoyez d’abord votre demande ci-dessus&nbsp;: vous recevez un numéro de dossier. La photo arrive directement dans notre espace sécurisé, sans passer par WhatsApp, et nous la supprimons une fois votre enregistrement effectué.": {
+"en": "Useful if some information is hard to copy. First send your request above: you receive a request number. The photo goes straight to our secure area, without going through WhatsApp, and we delete it once your check-in is done.",
+"es": "Útil si algún dato es difícil de copiar. Envíe primero su solicitud más arriba: recibirá un número de solicitud. La foto llega directamente a nuestro espacio seguro, sin pasar por WhatsApp, y la eliminamos una vez hecho su check-in."
+},
+"Numéro de dossier": {
+"en": "Request number",
+"es": "Número de solicitud"
+},
+"Photos <span1>(3 au maximum)</span1>": {
+"en": "Photos <span1>(3 at most)</span1>",
+"es": "Fotos <span1>(3 como máximo)</span1>"
+},
+"Passeport, billet ou confirmation de réservation. Les photos sont réduites automatiquement avant l’envoi.": {
+"en": "Passport, ticket or booking confirmation. Photos are automatically reduced before sending.",
+"es": "Pasaporte, billete o confirmación de reserva. Las fotos se reducen automáticamente antes del envío."
+},
+"Envoyer les photos": {
+"en": "Send the photos",
+"es": "Enviar las fotos"
+},
+"flyfastcheckin@gmail.com": {
+"en": "flyfastcheckin@gmail.com",
+"es": "flyfastcheckin@gmail.com"
+},
+"Nous effectuons l’enregistrement en ligne à votre place et vous envoyons la carte d’embarquement par e-mail ou sur WhatsApp, selon votre choix.": {
+"en": "We complete the online check-in for you and send you the boarding pass by e-mail or on WhatsApp, as you choose.",
+"es": "Hacemos el check-in online en su lugar y le enviamos la tarjeta de embarque por correo electrónico o por WhatsApp, según su elección."
+},
+"Le service est proposé par FlyFast, service d’assistance indépendant à l’enregistrement de vol, non affilié aux compagnies aériennes. Nos coordonnées sont indiquées dans les <a1>mentions légales</a1>. Pour nous joindre, écrivez-nous sur WhatsApp au <a2>+20&nbsp;150&nbsp;831&nbsp;9385</a2> ou par e-mail à <a3>flyfastcheckin@gmail.com</a3>.": {
+"en": "The service is provided by FlyFast, an independent flight check-in assistance service not affiliated with airlines. Our contact details are given in the <a1>legal notice</a1>. To reach us, write to us on WhatsApp at <a2>+20&nbsp;150&nbsp;831&nbsp;9385</a2> or by e-mail at <a3>flyfastcheckin@gmail.com</a3>.",
+"es": "El servicio lo ofrece FlyFast, un servicio independiente de asistencia para el check-in de vuelos, no afiliado a las aerolíneas. Nuestros datos de contacto figuran en el <a1>aviso legal</a1>. Para contactarnos, escríbanos por WhatsApp al <a2>+20&nbsp;150&nbsp;831&nbsp;9385</a2> o por correo electrónico a <a3>flyfastcheckin@gmail.com</a3>."
+},
+"À votre demande et en votre nom, nous effectuons votre enregistrement en ligne sur le site officiel de votre compagnie aérienne, avec les informations que vous nous transmettez. Nous vous envoyons ensuite votre carte d’embarquement par e-mail ou sur WhatsApp, selon le mode de réception choisi dans le formulaire.": {
+"en": "At your request and on your behalf, we complete your online check-in on your airline’s official website, using the information you send us. We then send you your boarding pass by e-mail or on WhatsApp, according to the delivery method you chose in the form.",
+"es": "A petición suya y en su nombre, hacemos su check-in online en el sitio web oficial de su aerolínea, con los datos que usted nos facilita. Después le enviamos su tarjeta de embarque por correo electrónico o por WhatsApp, según el modo de recepción que haya elegido en el formulario."
+},
+"Vous recevez un numéro de dossier (par exemple FF-AB12CD) et vous nous l’envoyez sur WhatsApp ou par e-mail.": {
+"en": "You receive a request number (for example FF-AB12CD) and send it to us on WhatsApp or by e-mail.",
+"es": "Usted recibe un número de solicitud (por ejemplo FF-AB12CD) y nos lo envía por WhatsApp o por correo electrónico."
+},
+"Nous vous envoyons votre carte d’embarquement par e-mail ou sur WhatsApp, selon votre choix.": {
+"en": "We send you your boarding pass by e-mail or on WhatsApp, as you choose.",
+"es": "Le enviamos su tarjeta de embarque por correo electrónico o por WhatsApp, según su elección."
+},
+"Votre commande est confirmée par notre message, sur WhatsApp ou par e-mail&nbsp;: c’est lui qui conclut le contrat.": {
+"en": "Your order is confirmed by our message, on WhatsApp or by e-mail: that message concludes the contract.",
+"es": "Su pedido queda confirmado con nuestro mensaje, por WhatsApp o por correo electrónico: ese mensaje es el que perfecciona el contrato."
+},
+"Vous pouvez vous rétracter tant que votre enregistrement n’est pas réalisé, en nous écrivant sur WhatsApp ou par e-mail avec votre numéro de dossier. Nous vous remboursons alors, déduction faite, le cas échéant, de la part du service déjà exécutée.": {
+"en": "You can withdraw as long as your check-in has not been carried out, by writing to us on WhatsApp or by e-mail with your request number. We then refund you, minus, where applicable, the part of the service already performed.",
+"es": "Puede desistir mientras su check-in no se haya realizado, escribiéndonos por WhatsApp o por correo electrónico con su número de solicitud. Le reembolsamos entonces el importe, deducida, en su caso, la parte del servicio ya prestada."
+},
+"Pour toute réclamation, écrivez-nous d’abord sur WhatsApp ou par e-mail en indiquant votre numéro de dossier&nbsp;: nous cherchons avec vous une solution à l’amiable. Ces conditions n’enlèvent pas à un consommateur la protection que lui accordent les règles impératives de son pays de résidence.": {
+"en": "For any complaint, first write to us on WhatsApp or by e-mail, giving your request number: we will look for an amicable solution with you. These terms do not remove from a consumer the protection given by the mandatory rules of their country of residence.",
+"es": "Para cualquier reclamación, escríbanos primero por WhatsApp o por correo electrónico indicando su número de solicitud: buscaremos con usted una solución amistosa. Estas condiciones no privan al consumidor de la protección que le otorgan las normas imperativas de su país de residencia."
+},
+"Pour une demande d’enregistrement&nbsp;: votre nom complet, votre numéro de passeport, votre nationalité, votre date de naissance, votre adresse e-mail et, si vous le souhaitez, votre numéro WhatsApp, ainsi que la compagnie, le numéro de vol, la référence de réservation (PNR), le numéro de billet si vous l’indiquez, et la date et l’heure du vol. Nous y ajoutons un numéro de dossier, par exemple FF-AB12CD, que vous voyez à l’écran après l’envoi.": {
+"en": "For a check-in request: your full name, passport number, nationality, date of birth, e-mail address and, if you wish, WhatsApp number, as well as the airline, flight number, booking reference (PNR), ticket number if you provide it, and the date and time of the flight. We add a request number, for example FF-AB12CD, which you see on screen after sending.",
+"es": "Para una solicitud de check-in: su nombre completo, número de pasaporte, nacionalidad, fecha de nacimiento, dirección de correo electrónico y, si lo desea, número de WhatsApp, así como la aerolínea, el número de vuelo, el código de reserva (PNR), el número de billete si lo indica y la fecha y hora del vuelo. Añadimos un número de solicitud, por ejemplo FF-AB12CD, que usted ve en pantalla tras el envío."
+},
+"Si vous le souhaitez, vous pouvez aussi nous envoyer une photo de votre passeport ou de votre billet depuis le site. Nous la recevons réduite et chiffrée, dans notre espace d’administration.": {
+"en": "If you wish, you can also send us a photo of your passport or ticket from the site. We receive it reduced and encrypted, in our administration area.",
+"es": "Si lo desea, también puede enviarnos desde el sitio una foto de su pasaporte o de su billete. La recibimos reducida y cifrada, en nuestro espacio de administración."
+},
+"Les informations de votre demande et vos photos sont chiffrées (AES-256) avant d’être enregistrées. La clé de déchiffrement est conservée séparément de la base de données. Nous seuls pouvons lire une demande, depuis un espace d’administration protégé par un code secret. Les échanges avec le site sont chiffrés (HTTPS).": {
+"en": "The information in your request and your photos are encrypted (AES-256) before they are stored. The decryption key is kept separately from the database. Only we can read a request, from an administration area protected by a secret code. Exchanges with the site are encrypted (HTTPS).",
+"es": "Los datos de su solicitud y sus fotos se cifran (AES-256) antes de guardarse. La clave de descifrado se conserva por separado de la base de datos. Solo nosotros podemos leer una solicitud, desde un espacio de administración protegido por un código secreto. Los intercambios con el sitio están cifrados (HTTPS)."
+},
+"Photos": {
+"en": "Photos",
+"es": "Fotos"
+},
+"Les photos envoyées depuis le site sont effacées en même temps que votre demande&nbsp;: dès que l’enregistrement est fait ou annulé, et au plus tard 14&nbsp;jours après votre demande. Si vous nous écrivez une photo par WhatsApp ou par e-mail, nous la supprimons de notre côté une fois votre enregistrement effectué.": {
+"en": "Photos sent from the site are erased at the same time as your request: as soon as the check-in is done or cancelled, and at the latest 14&nbsp;days after your request. If you send us a photo by WhatsApp or by e-mail, we delete it on our side once your check-in is done.",
+"es": "Las fotos enviadas desde el sitio se borran al mismo tiempo que su solicitud: en cuanto el check-in está hecho o cancelado y, como máximo, 14&nbsp;días después de su solicitud. Si nos envía una foto por WhatsApp o por correo electrónico, la eliminamos por nuestra parte una vez hecho su check-in."
+},
+"Nous faisons appel à des prestataires techniques&nbsp;: GitHub héberge les pages du site, Cloudflare fait fonctionner le formulaire, la base de données, le contrôle anti-robot et la mesure d’audience, Google fournit les polices de caractères, et WhatsApp et Gmail (Google) transmettent nos messages. Si vous choisissez de recevoir votre carte d’embarquement par e-mail, nous vous l’envoyons à l’adresse indiquée depuis flyfastcheckin@gmail.com. Chacun peut voir des données de connexion, comme votre adresse IP, selon ses propres règles.": {
+"en": "We use technical service providers: GitHub hosts the pages of the site, Cloudflare runs the form, the database, the anti-robot check and the audience measurement, Google supplies the fonts, and WhatsApp and Gmail (Google) carry our messages. If you choose to receive your boarding pass by e-mail, we send it to the address you gave from flyfastcheckin@gmail.com. Each of them may see connection data, such as your IP address, under its own rules.",
+"es": "Recurrimos a proveedores técnicos: GitHub aloja las páginas del sitio, Cloudflare hace funcionar el formulario, la base de datos, el control antirrobot y la medición de audiencia, Google suministra las fuentes tipográficas, y WhatsApp y Gmail (Google) transmiten nuestros mensajes. Si elige recibir su tarjeta de embarque por correo electrónico, se la enviamos a la dirección indicada desde flyfastcheckin@gmail.com. Cada uno puede ver datos de conexión, como su dirección IP, según sus propias normas."
+},
+"Vous pouvez nous demander à tout moment de consulter, corriger ou effacer vos informations, y compris avant la fin des 14&nbsp;jours, ou de retirer votre avis. Écrivez-nous par e-mail à flyfastcheckin@gmail.com ou sur WhatsApp en indiquant votre numéro de dossier. Vous pouvez aussi vous adresser à l’autorité de protection des données de votre pays.": {
+"en": "You can ask us at any time to access, correct or erase your information, including before the end of the 14&nbsp;days, or to remove your review. Write to us by e-mail at flyfastcheckin@gmail.com or on WhatsApp, giving your request number. You can also contact the data protection authority of your country.",
+"es": "Puede pedirnos en cualquier momento que le facilitemos el acceso a sus datos, los corrijamos o los borremos, incluso antes de que terminen los 14&nbsp;días, o que retiremos su opinión. Escríbanos por correo electrónico a flyfastcheckin@gmail.com o por WhatsApp indicando su número de solicitud. También puede dirigirse a la autoridad de protección de datos de su país."
+},
+"Écrivez-nous sur WhatsApp au <a1>+20&nbsp;150&nbsp;831&nbsp;9385</a1> ou par e-mail à <a2>flyfastcheckin@gmail.com</a2>, en indiquant votre numéro de dossier (par exemple FF-AB12CD) et la raison de votre demande. Si elle est fondée, nous vous remboursons au plus tard 14&nbsp;jours après votre demande.": {
+"en": "Write to us on WhatsApp at <a1>+20&nbsp;150&nbsp;831&nbsp;9385</a1> or by e-mail at <a2>flyfastcheckin@gmail.com</a2>, giving your request number (for example FF-AB12CD) and the reason for your request. If it is justified, we refund you no later than 14&nbsp;days after your request.",
+"es": "Escríbanos por WhatsApp al <a1>+20&nbsp;150&nbsp;831&nbsp;9385</a1> o por correo electrónico a <a2>flyfastcheckin@gmail.com</a2>, indicando su número de solicitud (por ejemplo FF-AB12CD) y el motivo de su petición. Si está justificada, le reembolsamos el importe como máximo 14&nbsp;días después de su solicitud."
+},
+"Ex. : jean@example.com": {
+"en": "E.g. john@example.com",
+"es": "Ej.: juan@example.com"
 }
 }

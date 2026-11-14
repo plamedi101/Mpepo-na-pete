@@ -43,11 +43,11 @@ def noise(msg):
 
 
 # --------------------------------------------------------------------------------------------------- textes attendus
-REQUIRED_IDS = ['name', 'passport', 'nationality', 'dob', 'contact', 'airline', 'flightnum', 'pnr', 'datetime']  # le numéro de billet est facultatif
+REQUIRED_IDS = ['name', 'passport', 'nationality', 'dob', 'email', 'airline', 'flightnum', 'pnr', 'datetime']  # le numéro de billet est facultatif
 X = {
     'fr': dict(
         required=['Indiquez votre nom complet, comme sur le passeport.', 'Indiquez votre numéro de passeport.', 'Indiquez votre nationalité.',
-                  'Indiquez votre date de naissance.', 'Indiquez votre numéro WhatsApp.', 'Indiquez la compagnie aérienne.',
+                  'Indiquez votre date de naissance.', 'Indiquez votre adresse e-mail.', 'Indiquez la compagnie aérienne.',
                   'Indiquez le numéro de vol.', 'Indiquez la référence de réservation (PNR).', 'Indiquez la date et l’heure du vol.'],
         consent='Cochez la case pour accepter les conditions.', incomplete='Complétez les champs signalés pour continuer.',
         saving='Enregistrement de votre demande…', sending='Envoi en cours…', send='Envoyer ma demande',
@@ -63,7 +63,7 @@ X = {
         wa_opens='WhatsApp s’ouvre avec votre demande. Appuyez sur Envoyer dans WhatsApp pour la transmettre.',
         legacy=["Bonjour FlyFast, voici ma demande d'enregistrement :", 'Nom : NGOY KALENGA Jean', 'Passeport : OP1234567', 'Nationalité : Française',
                 'Date de naissance : 17/05/1990', 'Compagnie : Ethiopian Airlines', 'Vol : ET 704', 'PNR : X7YQ2P', 'Numéro de billet : 071-1234567890',
-                'Date/heure du vol : 24/12/2026 14:20', 'Mon WhatsApp : +33 6 12 34 56 78', 'Je confirme avoir lu et accepté les conditions du service.'],
+                'Date/heure du vol : 24/12/2026 14:20', 'E-mail : jean.ngoy@example.com', 'Mon WhatsApp : +33 6 12 34 56 78', 'Je confirme avoir lu et accepté les conditions du service.'],
         summary='Note moyenne' + NB + ': 4,7 sur 5, d’après 8 avis', badge='Client vérifié', date='octobre 2026', star5='5 sur 5',
         more='Voir les 2 autres avis', less='Réduire la liste', more1='Voir les 1 autre avis',
         r_name='Indiquez votre prénom.', r_rating='Choisissez une note de 1 à 5.', r_short='Votre avis est trop court (10 caractères minimum).',
@@ -82,7 +82,7 @@ X = {
     ),
     'en': dict(
         required=['Enter your full name, as on your passport.', 'Enter your passport number.', 'Enter your nationality.', 'Enter your date of birth.',
-                  'Enter your WhatsApp number.', 'Enter the airline.', 'Enter the flight number.', 'Enter the booking reference (PNR).',
+                  'Enter your e-mail address.', 'Enter the airline.', 'Enter the flight number.', 'Enter the booking reference (PNR).',
                   'Enter the date and time of the flight.'],
         consent='Tick the box to accept the terms.', incomplete='Complete the highlighted fields to continue.',
         saving='Saving your request…', sending='Sending…', send='Send my request',
@@ -98,7 +98,7 @@ X = {
         wa_opens='WhatsApp opens with your request. Tap Send in WhatsApp to transmit it.',
         legacy=['Hello FlyFast, here is my check-in request:', 'Name: NGOY KALENGA Jean', 'Passport: OP1234567', 'Nationality: Française',
                 'Date of birth: 17/05/1990', 'Airline: Ethiopian Airlines', 'Flight: ET 704', 'PNR: X7YQ2P', 'Ticket number: 071-1234567890',
-                'Flight date/time: 24/12/2026 14:20', 'My WhatsApp: +33 6 12 34 56 78', 'I confirm that I have read and accepted the terms of service.'],
+                'Flight date/time: 24/12/2026 14:20', 'E-mail: jean.ngoy@example.com', 'My WhatsApp: +33 6 12 34 56 78', 'I confirm that I have read and accepted the terms of service.'],
         summary='Average rating: 4.7 out of 5, based on 8 reviews', badge='Verified customer', date='October 2026', star5='5 out of 5',
         more='Show 2 more reviews', less='Show fewer reviews', more1='Show 1 more review',
         r_name='Enter your first name.', r_rating='Choose a rating from 1 to 5.', r_short='Your review is too short (10 characters minimum).',
@@ -116,7 +116,7 @@ X = {
     ),
     'es': dict(
         required=['Indique su nombre completo, tal como figura en el pasaporte.', 'Indique su número de pasaporte.', 'Indique su nacionalidad.',
-                  'Indique su fecha de nacimiento.', 'Indique su número de WhatsApp.', 'Indique la aerolínea.', 'Indique el número de vuelo.',
+                  'Indique su fecha de nacimiento.', 'Indique su dirección de correo electrónico.', 'Indique la aerolínea.', 'Indique el número de vuelo.',
                   'Indique el código de reserva (PNR).', 'Indique la fecha y la hora del vuelo.'],
         consent='Marque la casilla para aceptar las condiciones.', incomplete='Complete los campos señalados para continuar.',
         saving='Registrando su solicitud…', sending='Enviando…', send='Enviar mi solicitud',
@@ -132,7 +132,7 @@ X = {
         wa_opens='WhatsApp se abre con su solicitud. Pulse Enviar en WhatsApp para transmitirla.',
         legacy=['Hola FlyFast, esta es mi solicitud de check-in:', 'Nombre: NGOY KALENGA Jean', 'Pasaporte: OP1234567', 'Nacionalidad: Française',
                 'Fecha de nacimiento: 17/05/1990', 'Aerolínea: Ethiopian Airlines', 'Vuelo: ET 704', 'PNR: X7YQ2P', 'Número de billete: 071-1234567890',
-                'Fecha y hora del vuelo: 24/12/2026 14:20', 'Mi WhatsApp: +33 6 12 34 56 78', 'Confirmo que he leído y aceptado las condiciones del servicio.'],
+                'Fecha y hora del vuelo: 24/12/2026 14:20', 'Correo electrónico: jean.ngoy@example.com', 'Mi WhatsApp: +33 6 12 34 56 78', 'Confirmo que he leído y aceptado las condiciones del servicio.'],
         summary='Nota media: 4,7 de 5, según 8 opiniones', badge='Cliente verificado', date='octubre de 2026', star5='5 de 5',
         more='Ver 2 opiniones más', less='Ver menos opiniones', more1='Ver 1 opinión más',
         r_name='Indique su nombre de pila.', r_rating='Elija una valoración de 1 a 5.', r_short='Su opinión es demasiado corta (mínimo 10 caracteres).',
@@ -152,26 +152,26 @@ X = {
 }
 FIELD_VALUES = {
     'f-name': 'NGOY KALENGA Jean', 'f-passport': 'OP1234567', 'f-nationality': 'Française', 'f-dob': '1990-05-17',
-    'f-contact': '+33 6 12 34 56 78', 'f-airline': 'Ethiopian Airlines', 'f-flightnum': 'ET 704', 'f-pnr': 'X7YQ2P',
+    'f-email': 'jean.ngoy@example.com', 'f-contact': '+33 6 12 34 56 78', 'f-airline': 'Ethiopian Airlines', 'f-flightnum': 'ET 704', 'f-pnr': 'X7YQ2P',
     'f-ticket': '071-1234567890', 'f-datetime': '24/12/2026 14:20',
 }
 
 # numéro de billet facultatif et limite du jour (offre de lancement)
 RESET = int(datetime.datetime(2026, 11, 20, 22, 0, tzinfo=datetime.timezone.utc).timestamp())  # minuit au Caire : 23:00 à Paris, 17:00 à New York
 Q = {
-    'fr': dict(tag='(facultatif)', lead='Tous les champs sont obligatoires, sauf le numéro de billet.',
+    'fr': dict(tag='(facultatif)', lead='Tous les champs sont obligatoires, sauf le numéro de billet et le numéro WhatsApp.',
                no_ticket='Numéro de billet : non fourni', srv_ticket='Vérifiez le numéro de billet, ou laissez ce champ vide.',
                title='Limite du jour atteinte.',
                when='Le formulaire acceptera de nouvelles réservations le 20 novembre à 23:00 (heure de votre appareil).',
                tomorrow='Le formulaire acceptera de nouvelles réservations demain.',
                refused='La limite quotidienne de demandes gratuites est atteinte' + NB + ': votre demande n’a pas été enregistrée. '),
-    'en': dict(tag='(optional)', lead='All fields are required, except the ticket number.',
+    'en': dict(tag='(optional)', lead='All fields are required, except the ticket number and the WhatsApp number.',
                no_ticket='Ticket number: not provided', srv_ticket='Check the ticket number, or leave this field empty.',
                title='Daily limit reached.',
                when='The form will accept new bookings again on 20 November at 23:00 (your device’s time).',
                tomorrow='The form will accept new bookings again tomorrow.',
                refused='The daily limit of free requests has been reached: your request was not recorded. '),
-    'es': dict(tag='(opcional)', lead='Todos los campos son obligatorios, excepto el número de billete.',
+    'es': dict(tag='(opcional)', lead='Todos los campos son obligatorios, excepto el número de billete y el número de WhatsApp.',
                no_ticket='Número de billete: no facilitado', srv_ticket='Compruebe el número de billete o deje este campo vacío.',
                title='Límite del día alcanzado.',
                when='El formulario volverá a aceptar nuevas reservas el 20 de noviembre a las 23:00 (hora de su dispositivo).',
@@ -242,6 +242,19 @@ def api_route(route, request):
             return send(500, {'ok': False, 'error': 'x', 'message': 'Message inattendu du service.'})
         if mode == 'nomessage':
             return send(500, {})
+    if path == '/api/photos':
+        mode = M.get('photos', 'ok')
+        M.setdefault('photo_posts', []).append(request.post_data)
+        if mode == 'abort':
+            return route.abort()
+        if mode == 'ok':
+            return send(200, {'ok': True, 'count': len(json.loads(request.post_data).get('photos', []))})
+        if mode == 'ref':
+            return send(400, {'ok': False, 'error': 'ref', 'message': 'Numéro de dossier ou référence de réservation incorrect.'})
+        if mode == '429':
+            return send(429, {'ok': False, 'error': 'rate', 'message': 'Trop de tentatives. Réessayez un peu plus tard.'})
+        if mode == 'max':
+            return send(400, {'ok': False, 'error': 'photo_max', 'message': 'Trois photos au maximum par dossier.'})
     if path == '/api/reviews' and request.method == 'POST':
         mode = M.get('review', 'published')
         if mode == 'abort':
@@ -697,6 +710,173 @@ with sync_playwright() as p:
         page.locator('#request-form').screenshot(path=f'{SHOTS}/quota-mobile-{lang}.png')
         ctx.close()
 
+    # ============================================================== 4d. e-mail, mode de réception, photos envoyées depuis le site
+    import base64, io, random
+    from PIL import Image
+    D = {
+        'fr': dict(email_req='Indiquez votre adresse e-mail.', email_bad='Indiquez une adresse e-mail valide.', wa_req='Indiquez votre numéro WhatsApp.',
+                   p_ref='Indiquez votre numéro de dossier.', p_pnr='Indiquez la référence de réservation (PNR).', p_none='Ajoutez au moins une photo.',
+                   p_max='Trois photos au maximum par dossier.', ok1='Photo reçue. Merci' + NB + ': nous vous écrivons dès que votre enregistrement est fait.',
+                   ok2='Photos reçues. Merci' + NB + ': nous vous écrivons dès que votre enregistrement est fait.',
+                   srv_ref='Numéro de dossier ou référence de réservation incorrect.', subject='Dossier FF-AB12CD', labels=['E-mail', 'WhatsApp', 'E-mail et WhatsApp'],
+                   unreadable='Une photo n’a pas pu être lue. Choisissez une image au format JPEG ou PNG.', incomplete='Complétez les champs signalés pour continuer.',
+                   r429='Trop de tentatives en peu de temps. Patientez un moment, puis réessayez.', btn_mail='Prévenir FlyFast par e-mail', btn_photos='Envoyer les photos'),
+        'en': dict(email_req='Enter your e-mail address.', email_bad='Enter a valid e-mail address.', wa_req='Enter your WhatsApp number.',
+                   p_ref='Enter your request number.', p_pnr='Enter the booking reference (PNR).', p_none='Add at least one photo.',
+                   p_max='Three photos at most per request.', ok1='Photo received. Thank you: we will write to you as soon as your check-in is done.',
+                   ok2='Photos received. Thank you: we will write to you as soon as your check-in is done.',
+                   srv_ref='Incorrect request number or booking reference.', subject='Request FF-AB12CD', labels=['E-mail', 'WhatsApp', 'E-mail and WhatsApp'],
+                   unreadable='A photo could not be read. Choose an image in JPEG or PNG format.', incomplete='Complete the highlighted fields to continue.',
+                   r429='Too many attempts in a short time. Please wait a moment, then try again.', btn_mail='Notify FlyFast by e-mail', btn_photos='Send the photos'),
+        'es': dict(email_req='Indique su dirección de correo electrónico.', email_bad='Indique una dirección de correo electrónico válida.', wa_req='Indique su número de WhatsApp.',
+                   p_ref='Indique su número de solicitud.', p_pnr='Indique el código de reserva (PNR).', p_none='Añada al menos una foto.',
+                   p_max='Tres fotos como máximo por solicitud.', ok1='Foto recibida. Gracias: le escribiremos en cuanto se haya hecho su check-in.',
+                   ok2='Fotos recibidas. Gracias: le escribiremos en cuanto se haya hecho su check-in.',
+                   srv_ref='Número de solicitud o código de reserva incorrecto.', subject='Solicitud FF-AB12CD', labels=['Correo electrónico', 'WhatsApp', 'Correo electrónico y WhatsApp'],
+                   unreadable='No se ha podido leer una foto. Elija una imagen en formato JPEG o PNG.', incomplete='Complete los campos señalados para continuar.',
+                   r429='Demasiados intentos en poco tiempo. Espere un momento y vuelva a intentarlo.', btn_mail='Avisar a FlyFast por correo electrónico', btn_photos='Enviar las fotos'),
+    }
+    rnd = random.Random(7)
+    big = Image.frombytes('RGB', (2400, 1800), bytes(rnd.getrandbits(8) for _ in range(2400 * 1800 * 3)))   # bruit : très lourd en JPEG
+    big_png = io.BytesIO(); big.save(big_png, 'PNG')
+    small = Image.new('RGB', (300, 200), (30, 120, 200))
+    small_png = io.BytesIO(); small.save(small_png, 'PNG')
+    FILES = {
+        'big': {'name': 'passeport.png', 'mimeType': 'image/png', 'buffer': big_png.getvalue()},
+        'small': {'name': 'billet.png', 'mimeType': 'image/png', 'buffer': small_png.getvalue()},
+        'bad': {'name': 'cassee.jpg', 'mimeType': 'image/jpeg', 'buffer': b'ceci n est pas une image'},
+    }
+    for lang in LANGS:
+        d, e = D[lang], X[lang]
+        tag = f'[e-mail et photos {lang}]'
+        M.clear()
+        ctx, page, errors = open_home(b, lang, viewport={'width': 1280, 'height': 900})
+
+        # --- choix de réception
+        radios = page.evaluate("[...document.querySelectorAll('input[name=delivery]')].map(r => [r.value, r.checked, r.closest('label').textContent.trim()])")
+        check(f'{tag} trois modes de réception, e-mail choisi par défaut', [r[0] for r in radios] == ['email', 'whatsapp', 'both'] and [r[1] for r in radios] == [True, False, False]
+              and [r[2] for r in radios] == d['labels'], radios)
+        check(f'{tag} champ e-mail : type, saisie automatique, obligatoire', page.evaluate("(() => { const e = document.getElementById('f-email'); return [e.type, e.autocomplete, e.required]; })()") == ['email', 'email', True])
+        check(f'{tag} numéro WhatsApp : facultatif par défaut', page.evaluate("document.getElementById('f-contact').required") is False)
+
+        # --- formulaire vide : e-mail demandé, pas le numéro WhatsApp
+        page.click('#submit-btn')
+        got = texts_ids(page, ['e-email', 'e-contact', 'e-delivery'])
+        check(f'{tag} formulaire vide : e-mail demandé, WhatsApp non exigé', got == [d['email_req'], None, None], got)
+        # --- e-mail mal formé
+        fill_all(page)
+        page.fill('#f-email', 'pas-un-email')
+        page.click('#submit-btn')
+        check(f'{tag} e-mail mal formé : message dans la langue', texts_ids(page, ['e-email'])[0] == d['email_bad'] and page.evaluate('document.activeElement.id') == 'f-email', texts_ids(page, ['e-email']))
+        check(f'{tag} e-mail mal formé : rien n’est envoyé', M.get('posts', []) == [], M.get('posts'))
+        page.fill('#f-email', FIELD_VALUES['f-email'])
+        check(f'{tag} e-mail corrigé : l’erreur disparaît', texts_ids(page, ['e-email'])[0] is None)
+
+        # --- WhatsApp choisi : le numéro devient obligatoire
+        page.check('#f-delivery-whatsapp')
+        page.fill('#f-contact', '')
+        page.click('#submit-btn')
+        got = texts_ids(page, ['e-contact', 'e-email'])
+        check(f'{tag} WhatsApp choisi sans numéro : numéro exigé', got == [d['wa_req'], None] and page.evaluate('document.activeElement.id') == 'f-contact' and M.get('posts', []) == [], got)
+        page.check('#f-delivery-email')
+        check(f'{tag} retour à « e-mail » : l’exigence du numéro disparaît', texts_ids(page, ['e-contact'])[0] is None)
+        page.check('#f-delivery-both')
+        page.click('#submit-btn')
+        check(f'{tag} « les deux » sans numéro : numéro exigé', texts_ids(page, ['e-contact'])[0] == d['wa_req'] and M.get('posts', []) == [])
+
+        # --- envoi : e-mail seul, sans numéro WhatsApp
+        page.check('#f-delivery-email')
+        page.fill('#f-contact', '')
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-done').hidden")
+        sent = json.loads(M['posts'][-1][1])
+        check(f'{tag} envoi par e-mail : e-mail et mode transmis, WhatsApp vide', sent.get('delivery') == 'email' and sent.get('email') == FIELD_VALUES['f-email'] and sent.get('contact') == '', sent)
+        # --- confirmation : e-mail de secours et photos préremplies
+        mail = page.get_attribute('#done-mail', 'href')
+        head, _, rest = mail.partition('?')
+        q = urllib.parse.parse_qs(rest, keep_blank_values=True)
+        check(f'{tag} confirmation : lien e-mail vers FlyFast, objet et message dans la langue',
+              head == 'mailto:flyfastcheckin@gmail.com' and q.get('subject') == [d['subject']] and q.get('body') == [e['done_wa']], mail)
+        check(f'{tag} confirmation : bouton e-mail à côté du bouton WhatsApp', page.inner_text('#done-mail') == d['btn_mail'] and page.get_attribute('#done-wa', 'href').startswith(WA_PREFIX))
+        check(f'{tag} confirmation : numéro de dossier et référence déjà dans le bloc photos', page.input_value('#p-ref') == 'FF-AB12CD' and page.input_value('#p-pnr') == FIELD_VALUES['f-pnr'])
+        check(f'{tag} le bloc photos reste visible après la confirmation', page.is_visible('#photo-box') and page.is_visible('#p-send'))
+        check(f'{tag} formulaire réinitialisé : e-mail choisi, champs vides', page.evaluate("document.getElementById('f-delivery-email').checked && document.getElementById('f-email').value === '' && document.getElementById('f-contact').value === ''"))
+
+        # --- envoi avec WhatsApp + e-mail
+        page.click('#done-another')
+        fill_all(page)
+        page.check('#f-delivery-both')
+        page.click('#submit-btn')
+        page.wait_for_function("document.getElementById('done-refs').textContent.includes(', ')")
+        sent = json.loads(M['posts'][-1][1])
+        check(f'{tag} envoi « les deux » : mode, e-mail et numéro transmis', sent.get('delivery') == 'both' and sent.get('email') == FIELD_VALUES['f-email'] and sent.get('contact') == FIELD_VALUES['f-contact'], sent)
+        check(f'{tag} deux dossiers : le bloc photos reprend le dernier', page.input_value('#p-ref') == 'FF-ZZ99YY')
+
+        # --- photos : contrôles avant envoi
+        page.fill('#p-ref', '')
+        page.fill('#p-pnr', '')
+        page.click('#p-send')
+        got = texts_ids(page, ['e-p-ref', 'e-p-pnr', 'e-p-files'])
+        check(f'{tag} photos : dossier, PNR et photo manquants signalés', got == [d['p_ref'], d['p_pnr'], d['p_none']] and page.inner_text('#p-status') == d['incomplete'] and 'photo_posts' not in M, got)
+        page.fill('#p-ref', 'FF-AB12CD')
+        page.fill('#p-pnr', 'X7YQ2P')
+        page.set_input_files('#p-files', [FILES['small']] * 4)
+        page.click('#p-send')
+        check(f'{tag} photos : quatre photos refusées avant envoi', texts_ids(page, ['e-p-files'])[0] == d['p_max'] and 'photo_posts' not in M, texts_ids(page, ['e-p-files']))
+        page.set_input_files('#p-files', [FILES['bad']])
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent !== '' && document.getElementById('p-send').disabled === false")
+        check(f'{tag} photos : fichier illisible, message dans la langue, rien envoyé', page.inner_text('#p-status') == d['unreadable'] and 'photo_posts' not in M, page.inner_text('#p-status'))
+
+        # --- photos : envoi réussi (grande image bruitée + petite image)
+        page.set_input_files('#p-files', [FILES['big'], FILES['small']])
+        check(f'{tag} photos : liste des fichiers choisis', page.inner_text('#p-list') == 'passeport.png\nbillet.png', page.inner_text('#p-list'))
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent.startsWith(" + json.dumps(d['ok2'][:6]) + ")", timeout=60000)
+        body = json.loads(M['photo_posts'][-1])
+        raw = [base64.b64decode(x) for x in body['photos']]
+        dims = [Image.open(io.BytesIO(r)).size for r in raw]
+        check(f'{tag} photos : dossier, PNR et deux images JPEG envoyés', body['ref'] == 'FF-AB12CD' and body['pnr'] == 'X7YQ2P' and len(raw) == 2 and set(body) == {'ref', 'pnr', 'photos'}, [list(body), len(raw)])
+        check(f'{tag} photos : JPEG valides de moins de 700 Ko, côté le plus long ≤ 1600 px', all(r[:3] == b'\xff\xd8\xff' and len(r) <= 700 * 1024 for r in raw) and all(max(w, h) <= 1600 for w, h in dims), [(len(r), dm) for r, dm in zip(raw, dims)])
+        check(f'{tag} photos : la petite image garde sa taille', dims[1] == (300, 200), dims)
+        check(f'{tag} photos : confirmation dans la langue, sélection vidée', page.inner_text('#p-status') == d['ok2'] and page.evaluate("document.getElementById('p-files').files.length") == 0 and page.inner_text('#p-list') == '', page.inner_text('#p-status'))
+        page.set_input_files('#p-files', [FILES['small']])
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent === " + json.dumps(d['ok1']))
+        check(f'{tag} photos : une seule photo, confirmation au singulier', page.inner_text('#p-status') == d['ok1'])
+
+        # --- photos : réponses du service
+        M['photos'] = 'ref'
+        page.set_input_files('#p-files', [FILES['small']])
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent === " + json.dumps(d['srv_ref']))
+        check(f'{tag} photos : dossier refusé par le service, message dans la langue sur le champ', texts_ids(page, ['e-p-ref'])[0] == d['srv_ref'] and page.get_attribute('#p-ref', 'aria-invalid') == 'true', texts_ids(page, ['e-p-ref']))
+        M['photos'] = 'max'
+        page.fill('#p-ref', 'FF-AB12CD')
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent === " + json.dumps(d['p_max']))
+        M['photos'] = '429'
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent === " + json.dumps(d['r429']))
+        check(f'{tag} photos : trop de tentatives, message dans la langue', page.inner_text('#p-status') == d['r429'])
+        M['photos'] = 'abort'
+        page.click('#p-send')
+        page.wait_for_function("document.getElementById('p-status').textContent === " + json.dumps(e['fail']))
+        check(f'{tag} photos : échec réseau, message générique, bouton réactivé', page.evaluate("!document.getElementById('p-send').disabled") and page.inner_text('#p-send') == d['btn_photos'])
+        # Entrée dans un champ du bloc photos n'envoie pas la demande
+        n_before = len(M.get('posts', []))
+        page.focus('#p-ref')
+        page.keyboard.press('Enter')
+        page.wait_for_timeout(200)
+        check(f'{tag} photos : Entrée n’envoie pas le formulaire de demande', len(M.get('posts', [])) == n_before and page.evaluate("document.getElementById('form-fields').hidden") is True)
+
+        # --- plus de photo par WhatsApp ; l’e-mail figure parmi les contacts
+        wa_links = page.evaluate("[...document.querySelectorAll('a[href*=\"wa.me\"]')].map(a => decodeURIComponent(a.href))")
+        check(f'{tag} aucun lien WhatsApp ne demande d’envoyer une photo', not any(re.search(r'photo|foto|passport|pasaporte', h, re.I) for h in wa_links), wa_links)
+        check(f'{tag} le pied de page indique l’e-mail', page.evaluate("[...document.querySelectorAll('footer a[href^=\"mailto:\"]')].map(a => a.getAttribute('href'))") == ['mailto:flyfastcheckin@gmail.com'])
+        check(f'{tag} aucune erreur de console', not errors, errors)
+        ctx.close()
+
     # ============================================================== 4c. aperçu en direct (carte qui se remplit) et talon de confirmation
     PASS = {
         'fr': dict(title='Aperçu en direct', tag='Aperçu', labels=['Passager', 'Vol', 'Réservation', 'Compagnie', 'Date et heure'],
@@ -723,7 +903,7 @@ with sync_playwright() as p:
                  today: [('0' + d.getDate()).slice(-2), ('0' + (d.getMonth() + 1)).slice(-2), d.getFullYear()].join('/'), refs: document.getElementById('done-refs').textContent,
                  focus: document.activeElement.id, planeAtEnd: plane.left + plane.width / 2 > track.left + track.width * 0.9,
                  running: document.getAnimations().filter(a => a.playState === 'running' && a.effect && a.effect.target && s.contains(a.effect.target)).length, stampHidden: s.querySelector('.stamp').getAttribute('aria-hidden') }; }"""
-    private = [FIELD_VALUES['f-passport'], FIELD_VALUES['f-contact'], FIELD_VALUES['f-nationality'], '1990', FIELD_VALUES['f-ticket']]
+    private = [FIELD_VALUES['f-passport'], FIELD_VALUES['f-contact'], FIELD_VALUES['f-email'], FIELD_VALUES['f-nationality'], '1990', FIELD_VALUES['f-ticket']]
     for lang in LANGS:
         px = PASS[lang]
         tag = f'[aperçu en direct {lang}]'

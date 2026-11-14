@@ -189,3 +189,10 @@ lien avec la page d’origine, et que rien ne déborde à 320 et 390 px.
 Anglais britannique ; espagnol avec « usted ». Termes : « numéro de dossier » = *request number* / *número de solicitud* ;
 « enregistrement en ligne » = *online check-in* / *check-in online* ; « carte d'embarquement » = *boarding pass* / *tarjeta de embarque*.
 Les pages légales traduites portent une note indiquant que la version française fait foi.
+
+## E-mail, mode de réception et photos (branche `email-photos`, non publiée)
+
+- Le formulaire demande une adresse e-mail (obligatoire) et le mode de réception de la carte : e-mail (par défaut), WhatsApp ou les deux. Le numéro WhatsApp n'est exigé que pour WhatsApp ou « les deux ». Le Worker accepte aussi l'ancienne page (sans e-mail ni mode : WhatsApp par défaut).
+- La carte est envoyée à la main depuis flyfastcheckin@gmail.com (aucun envoi automatique). L'adresse figure aussi comme contact alternatif (confirmation, pied de page, pages légales).
+- Photos du passeport ou du billet : bloc d'envoi sous le formulaire (`#photo-box`), réduites dans le navigateur (JPEG ≤ 700 Ko, 1600 px), envoyées à `POST /api/photos` (dossier + PNR, 3 photos max), chiffrées, visibles dans la page admin, effacées avec le dossier.
+- Déployer le Worker (`exec_content.js`, hors dépôt) AVANT de publier le site.

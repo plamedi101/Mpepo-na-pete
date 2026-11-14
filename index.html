@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FlyFast | Enregistrement en ligne de votre vol</title>
-<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.">
+<meta name="description" content="FlyFast effectue votre enregistrement en ligne et vous envoie votre carte d’embarquement par e-mail ou sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#0C2E4E">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="FlyFast">
 <meta property="og:title" content="FlyFast | Enregistrement en ligne de votre vol">
-<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.">
+<meta property="og:description" content="Nous effectuons votre enregistrement en ligne et vous envoyons votre carte d’embarquement par e-mail ou sur WhatsApp. Gratuit jusqu’à la mi-décembre, puis 2 € par réservation.">
 <meta property="og:image" content="https://flyfastcheckin.com/flyfast-images/hero-plane-sunset.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <!--i18n:head-->
@@ -197,6 +197,21 @@
 
   .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;}
   .field label .opt{font-weight:400;color:var(--muted);}
+  .field .lbl{display:block;margin-bottom:6px;font-weight:600;font-size:.9375rem;}
+  .choices{display:grid;gap:10px;}
+  .field .choice{display:flex;gap:12px;align-items:center;min-height:48px;padding:10px 14px;border:1px solid var(--field);border-radius:var(--radius);background:#fff;font-weight:500;cursor:pointer;}
+  .field .choice:hover{border-color:#5E7690;}
+  .field .choice input{flex:none;width:20px;height:20px;min-height:0;margin:0;padding:0;accent-color:var(--navy);}
+  .field .choice:has(input:checked){border-color:var(--navy);background:var(--mist);}
+  .field .choice:has(input:focus-visible){outline:3px solid rgba(59,158,232,.38);outline-offset:0;}
+  .field input[type=file]{padding:10px 14px;height:auto;}
+  .photo-box h3{font:600 1.125rem/1.25 var(--font-head);color:var(--navy);}
+  .photo-box .grid-2{margin-top:16px;}
+  .photo-list{margin:12px 0 0;padding:0;list-style:none;font-size:.875rem;color:var(--muted);}
+  .photo-list li{overflow-wrap:anywhere;}
+  .photo-box .btn{margin-top:16px;}
+  .photo-box .form-status{margin-top:10px;}
+  .done .btn + .btn{margin-top:12px;}
   .field textarea{display:block;width:100%;min-height:132px;padding:12px 14px;border:1px solid var(--field);border-radius:var(--radius);background:#fff;font-size:1rem;line-height:1.5;resize:vertical;}
   .field textarea:hover{border-color:#5E7690;}
   .field textarea:focus{outline:3px solid rgba(59,158,232,.38);outline-offset:0;border-color:var(--sky-text);}
@@ -467,7 +482,7 @@
     <div class="container hero-inner">
       <h1 id="hero-title">Votre vol, enregistré sans stress.</h1>
       <div class="hero-side">
-        <p class="lead">Transmettez les informations de votre réservation. Nous effectuons l’enregistrement en ligne sur le site de la compagnie et vous envoyons votre carte d’embarquement sur WhatsApp.</p>
+        <p class="lead">Transmettez les informations de votre réservation. Nous effectuons l’enregistrement en ligne sur le site de la compagnie et vous envoyons votre carte d’embarquement par e-mail ou sur WhatsApp.</p>
         <div class="hero-actions">
           <a class="btn btn-gold" href="#enregistrer">Enregistrer mon vol</a>
           <a class="btn btn-ghost" href="#comment">Comment ça marche</a>
@@ -481,7 +496,7 @@
       <li><strong>Gratuit jusqu’à la mi&#8209;décembre</strong>, dans la limite de 50&nbsp;demandes par jour</li>
       <li><strong>Ensuite 2&nbsp;€</strong> par réservation, quel que soit le nombre de passagers</li>
       <li><strong>10&nbsp;heures</strong> avant le décollage, au plus tard, pour nous envoyer votre demande</li>
-      <li><strong>Carte d’embarquement</strong> envoyée directement sur WhatsApp</li>
+      <li><strong>Carte d’embarquement</strong> envoyée par e-mail ou sur WhatsApp</li>
     </ul>
   </div>
 
@@ -505,7 +520,7 @@
           </li>
           <li>
             <h3>Vous recevez votre carte d’embarquement</h3>
-            <p>Directement sur WhatsApp, prête à imprimer ou à présenter.</p>
+            <p>Par e-mail ou sur WhatsApp, prête à imprimer ou à présenter.</p>
           </li>
         </ol>
       </div>
@@ -548,7 +563,7 @@
                 <span class="t-progress"></span>
               </div>
             </div>
-            <p class="pass-note">Aperçu de ce que vous saisissez. Votre vraie carte d’embarquement est émise par la compagnie&nbsp;: nous vous l’envoyons sur WhatsApp une fois l’enregistrement fait.</p>
+            <p class="pass-note">Aperçu de ce que vous saisissez. Votre vraie carte d’embarquement est émise par la compagnie&nbsp;: nous vous l’envoyons par e-mail ou sur WhatsApp une fois l’enregistrement fait.</p>
           </div>
         </div>
         <div class="pay">
@@ -569,7 +584,7 @@
       </div>
 
       <form class="form" id="request-form" novalidate autocomplete="on">
-        <noscript><p class="noscript">Ce formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement sur <a class="link" href="https://wa.me/201508319385">WhatsApp</a>.</p></noscript>
+        <noscript><p class="noscript">Ce formulaire nécessite JavaScript. Vous pouvez aussi nous écrire directement sur <a class="link" href="https://wa.me/201508319385">WhatsApp</a> ou par e-mail à <a class="link" href="mailto:flyfastcheckin@gmail.com">flyfastcheckin@gmail.com</a>.</p></noscript>
         <div id="form-fields">
         <div class="quota" id="form-quota" hidden>
           <p><strong>Limite du jour atteinte.</strong> Les 50&nbsp;demandes gratuites d’aujourd’hui sont déjà prises.</p>
@@ -577,7 +592,7 @@
           <p>Vous préférez vous enregistrer sans attendre&nbsp;? Vous pouvez régler 2&nbsp;€ avec <a class="link" href="https://www.paypal.com/ncp/payment/6WC724E3D793W" target="_blank" rel="noopener">PayPal</a>, puis nous écrire sur <a class="link" href="https://wa.me/201508319385" target="_blank" rel="noopener">WhatsApp</a> avec la capture de votre paiement&nbsp;: nous vous expliquons la suite.</p>
           <p>Si une demande a déjà été envoyée aujourd’hui pour votre réservation, vous pouvez encore ajouter ses autres passagers.</p>
         </div>
-        <p class="form-lead">Tous les champs sont obligatoires, sauf le numéro de billet.</p>
+        <p class="form-lead">Tous les champs sont obligatoires, sauf le numéro de billet et le numéro WhatsApp.</p>
 
         <fieldset class="fieldset">
           <legend>Le passager</legend>
@@ -604,9 +619,24 @@
               <p class="error" id="e-dob" hidden></p>
             </div>
             <div class="field">
-              <label for="f-contact">Numéro WhatsApp</label>
-              <input id="f-contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. : +33 6 12 34 56 78" required aria-describedby="h-contact e-contact">
-              <p class="hint" id="h-contact">Pour vous envoyer la carte d’embarquement.</p>
+              <label for="f-email">Adresse e-mail</label>
+              <input id="f-email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="Ex. : jean@example.com" required aria-describedby="h-email e-email">
+              <p class="hint" id="h-email">Pour vous envoyer la carte d’embarquement et vous répondre.</p>
+              <p class="error" id="e-email" hidden></p>
+            </div>
+            <div class="field span-2" role="radiogroup" aria-labelledby="l-delivery" aria-describedby="e-delivery">
+              <span class="lbl" id="l-delivery">Recevoir ma carte d’embarquement par</span>
+              <div class="choices">
+                <label class="choice" for="f-delivery-email"><input id="f-delivery-email" name="delivery" type="radio" value="email" checked><span>E-mail</span></label>
+                <label class="choice" for="f-delivery-whatsapp"><input id="f-delivery-whatsapp" name="delivery" type="radio" value="whatsapp"><span>WhatsApp</span></label>
+                <label class="choice" for="f-delivery-both"><input id="f-delivery-both" name="delivery" type="radio" value="both"><span>E-mail et WhatsApp</span></label>
+              </div>
+              <p class="error" id="e-delivery" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label for="f-contact">Numéro WhatsApp <span class="opt">(facultatif)</span></label>
+              <input id="f-contact" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. : +33 6 12 34 56 78" aria-describedby="h-contact e-contact">
+              <p class="hint" id="h-contact">Obligatoire seulement si vous choisissez WhatsApp.</p>
               <p class="error" id="e-contact" hidden></p>
             </div>
           </div>
@@ -660,7 +690,7 @@
           <h3>À lire avant d’envoyer</h3>
           <p>FlyFast est un service d’assistance indépendant, non affilié à votre compagnie aérienne. Notre équipe effectue votre enregistrement directement sur le site officiel de la compagnie.</p>
           <p>Nous ne pouvons pas garantir l’enregistrement en cas de refus par la compagnie, de modification du vol, de document invalide, ou si votre demande nous parvient moins de 10&nbsp;heures avant le départ.</p>
-          <p>Vos informations sont chiffrées dès leur envoi et ne servent qu’à votre enregistrement. Elles sont ensuite effacées&nbsp;: dès que c’est fait, et au plus tard 14&nbsp;jours après votre demande. Il ne reste alors qu’un dossier vide, sans donnée personnelle. <a class="link" href="confidentialite.html">Voir les détails</a></p>
+          <p>Vos informations, y compris votre adresse e-mail et les photos éventuelles, sont chiffrées dès leur envoi et ne servent qu’à votre enregistrement et à l’envoi de votre carte d’embarquement. Elles sont ensuite effacées&nbsp;: dès que c’est fait, et au plus tard 14&nbsp;jours après votre demande. Il ne reste alors qu’un dossier vide, sans donnée personnelle. <a class="link" href="confidentialite.html">Voir les détails</a></p>
           <p>En envoyant votre demande, vous nous demandez de réaliser l’enregistrement sans attendre. Si vous êtes consommateur dans l’Union européenne, vous pouvez vous rétracter tant que l’enregistrement n’est pas fait, mais plus ensuite. Si nous ne réalisons pas l’enregistrement, vous êtes remboursé, sauf erreur dans les informations fournies. Voir les <a class="link" href="conditions-de-vente.html" target="_blank" rel="noopener">conditions de vente</a> et la <a class="link" href="remboursement.html" target="_blank" rel="noopener">politique de remboursement</a>.</p>
         </div>
 
@@ -679,15 +709,8 @@
           <p>Vous pouvez aussi transmettre votre demande par WhatsApp&nbsp;: le message est déjà rédigé et vous le relisez avant de l’envoyer. Vos informations passent alors par WhatsApp, et non par notre service chiffré.</p>
           <button class="btn btn-outline" id="fallback-btn" type="button">Envoyer par WhatsApp</button>
         </div>
-        <p class="form-note">Après l’envoi, vous recevez un numéro de dossier. Il suffit de nous le transmettre sur WhatsApp pour lancer votre enregistrement.</p>
+        <p class="form-note">Après l’envoi, vous recevez un numéro de dossier. Il suffit de nous le transmettre, sur WhatsApp ou par e-mail, pour lancer votre enregistrement.</p>
 
-        <div class="alt">
-          <a class="btn btn-outline" href="https://wa.me/201508319385?text=Bonjour%20FlyFast%2C%20je%20vous%20envoie%20une%20photo%20de%20mon%20passeport%2Fbillet%20pour%20mon%20enregistrement%20%3A" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.8 1.8 0 0 1-2.6-2.6l8.3-8.3"/></svg>
-            Envoyer une photo du passeport ou du billet
-          </a>
-          <p>Utile si une information est difficile à recopier. Joignez la photo directement dans la conversation WhatsApp. De notre côté, nous la supprimons une fois votre enregistrement effectué.</p>
-        </div>
         </div>
 
         <div class="done" id="form-done" tabindex="-1" hidden>
@@ -710,10 +733,38 @@
               </div>
             </div>
           </div>
-          <p>Dernière étape&nbsp;: envoyez-nous ce numéro sur WhatsApp pour lancer votre enregistrement. Il est gratuit jusqu’à la mi&#8209;décembre.</p>
+          <p>Dernière étape&nbsp;: envoyez-nous ce numéro pour lancer votre enregistrement, sur WhatsApp ou par e-mail. Il est gratuit jusqu’à la mi&#8209;décembre.</p>
           <a class="btn btn-gold" id="done-wa" href="https://wa.me/201508319385" target="_blank" rel="noopener">Prévenir FlyFast sur WhatsApp</a>
+          <a class="btn btn-outline" id="done-mail" href="mailto:flyfastcheckin@gmail.com">Prévenir FlyFast par e-mail</a>
           <p class="hint">Vos informations sont chiffrées. Elles seront effacées dès que votre enregistrement sera fait, et au plus tard 14&nbsp;jours après votre demande. Gardez ce numéro&nbsp;: il vous permettra aussi de laisser un avis <span class="nb">«&nbsp;Client&nbsp;vérifié&nbsp;»</span>.</p>
+          <p class="hint">Une photo de votre passeport ou de votre billet peut nous aider&nbsp;: vous pouvez nous l’envoyer juste en dessous, directement sur le site.</p>
           <button class="btn btn-outline" id="done-another" type="button">Enregistrer un autre passager</button>
+        </div>
+
+        <div class="alt photo-box" id="photo-box">
+          <h3>Envoyer une photo du passeport ou du billet <span class="opt">(facultatif)</span></h3>
+          <p>Utile si une information est difficile à recopier. Envoyez d’abord votre demande ci-dessus&nbsp;: vous recevez un numéro de dossier. La photo arrive directement dans notre espace sécurisé, sans passer par WhatsApp, et nous la supprimons une fois votre enregistrement effectué.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="p-ref">Numéro de dossier</label>
+              <input id="p-ref" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex. : FF-AB12CD" aria-describedby="e-p-ref">
+              <p class="error" id="e-p-ref" hidden></p>
+            </div>
+            <div class="field">
+              <label for="p-pnr">Référence de réservation (PNR)</label>
+              <input id="p-pnr" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="Ex. : X7YQ2P" aria-describedby="e-p-pnr">
+              <p class="error" id="e-p-pnr" hidden></p>
+            </div>
+            <div class="field span-2">
+              <label for="p-files">Photos <span class="opt">(3 au maximum)</span></label>
+              <input id="p-files" type="file" accept="image/*" multiple aria-describedby="h-p-files e-p-files">
+              <p class="hint" id="h-p-files">Passeport, billet ou confirmation de réservation. Les photos sont réduites automatiquement avant l’envoi.</p>
+              <p class="error" id="e-p-files" hidden></p>
+            </div>
+          </div>
+          <ul class="photo-list" id="p-list"></ul>
+          <button class="btn btn-outline" id="p-send" type="button">Envoyer les photos</button>
+          <p class="form-status" id="p-status" role="status" aria-live="polite"></p>
         </div>
       </form>
     </div>
@@ -861,6 +912,7 @@
         <p class="foot-title">Contact</p>
         <ul>
           <li><a href="https://wa.me/201508319385" target="_blank" rel="noopener">WhatsApp&nbsp;: +20&nbsp;150&nbsp;831&nbsp;9385</a></li>
+          <li><a href="mailto:flyfastcheckin@gmail.com">flyfastcheckin@gmail.com</a></li>
         </ul>
       </div>
     </div>
@@ -873,6 +925,7 @@
   'use strict';
 
   var WHATSAPP_NUMBER = '201508319385';
+  var CONTACT_EMAIL = 'flyfastcheckin@gmail.com';
   // Adresse du service d’enregistrement et clé publique du contrôle anti-robot : renseignées à la mise en ligne.
   var API_BASE = 'https://flyfast-api.flyfast-checkin.workers.dev';
   var TURNSTILE_SITEKEY = '0x4AAAAAAF4-2ioMp1Q-QZbR';
@@ -1027,7 +1080,7 @@
     ['f-passport', 'Indiquez votre numéro de passeport.'],
     ['f-nationality', 'Indiquez votre nationalité.'],
     ['f-dob', 'Indiquez votre date de naissance.'],
-    ['f-contact', 'Indiquez votre numéro WhatsApp.'],
+    ['f-email', 'Indiquez votre adresse e-mail.'],
     ['f-airline', 'Indiquez la compagnie aérienne.'],
     ['f-flightnum', 'Indiquez le numéro de vol.'],
     ['f-pnr', 'Indiquez la référence de réservation (PNR).'],
@@ -1035,8 +1088,18 @@
   ];
   // Champs facultatifs : envoyés tels quels, même vides (les compagnies low cost fournissent rarement un numéro de billet).
   var optional = ['f-ticket'];
+  // Numéro WhatsApp : obligatoire seulement si le client choisit de recevoir sa carte sur WhatsApp.
+  var CONTACT_MESSAGE = 'Indiquez votre numéro WhatsApp.';
+  function delivery() {
+    var checked = form.querySelector('input[name="delivery"]:checked');
+    return checked ? checked.value : 'email';
+  }
+  function needsContact() { return delivery() !== 'email'; }
+  function activeRequired() {
+    return needsContact() ? required.concat([['f-contact', CONTACT_MESSAGE]]) : required;
+  }
   var KEYS = {
-    'f-name': 'name', 'f-passport': 'passport', 'f-nationality': 'nationality', 'f-dob': 'dob', 'f-contact': 'contact',
+    'f-name': 'name', 'f-passport': 'passport', 'f-nationality': 'nationality', 'f-dob': 'dob', 'f-email': 'email', 'f-contact': 'contact',
     'f-airline': 'airline', 'f-flightnum': 'flightnum', 'f-pnr': 'pnr', 'f-ticket': 'ticket', 'f-datetime': 'datetime'
   };
   var refs = [];
@@ -1053,11 +1116,20 @@
     submitBtn.textContent = on ? 'Envoi en cours…' : 'Envoyer ma demande';
   }
 
-  required.concat([['f-consent', '']]).forEach(function (item) {
+  required.concat([['f-contact', ''], ['f-consent', '']]).forEach(function (item) {
     var el = $(item[0]);
     el.addEventListener(el.type === 'checkbox' ? 'change' : 'input', function () {
       var filled = el.type === 'checkbox' ? el.checked : el.value.trim() !== '';
       if (filled && el.getAttribute('aria-invalid') === 'true') { clearError(el); }
+    });
+  });
+  Array.prototype.forEach.call(form.querySelectorAll('input[name="delivery"]'), function (radio) {
+    radio.addEventListener('change', function () {
+      var el = $('f-contact');
+      $('e-delivery').hidden = true;
+      $('e-delivery').textContent = '';
+      // Le numéro n’est plus exigé : l’erreur éventuelle disparaît.
+      if (!needsContact() && el.getAttribute('aria-invalid') === 'true') { clearError(el); }
     });
   });
   optional.forEach(function (id) {
@@ -1108,7 +1180,8 @@
   function updatePass() {
     if (!passes.length) { return; }
     var left = 0;
-    required.forEach(function (item) { if (!$(item[0]).value.trim()) { left += 1; } });
+    var active = activeRequired();
+    active.forEach(function (item) { if (!$(item[0]).value.trim()) { left += 1; } });
     var text = left ? 'Encore ' + left + (left > 1 ? ' champs à remplir' : ' champ à remplir') : 'Tous les champs sont remplis';
     passes.forEach(function (wrap) {
       var ticket = wrap.querySelector('.pass');
@@ -1119,7 +1192,7 @@
         if (!cell.textContent && value) { cell.classList.add('is-new'); }
         cell.textContent = value;
       });
-      ticket.style.setProperty('--p', String((required.length - left) / required.length));
+      ticket.style.setProperty('--p', String((active.length - left) / active.length));
       ticket.classList.toggle('is-complete', left === 0);
       wrap.querySelector('.t-progress').textContent = text;
     });
@@ -1148,7 +1221,8 @@
       'PNR : ' + values['f-pnr'],
       'Numéro de billet : ' + (values['f-ticket'] || 'non fourni'),
       'Date/heure du vol : ' + values['f-datetime'],
-      'Mon WhatsApp : ' + values['f-contact'],
+      'E-mail : ' + values['f-email'],
+      'Mon WhatsApp : ' + (values['f-contact'] || 'non fourni'),
       'Je confirme avoir lu et accepté les conditions du service.'
     ].join('\n');
   }
@@ -1165,11 +1239,14 @@
     $('done-refs').textContent = refs.join(', ');
     $('done-title').textContent = refs.length > 1 ? 'Demandes enregistrées' : 'Demande enregistrée';
     $('done-label').textContent = refs.length > 1 ? 'Notez vos numéros de dossier :' : 'Notez votre numéro de dossier :';
-    $('done-wa').href = whatsAppUrl(
-      'Bonjour FlyFast, j’ai envoyé ma demande d’enregistrement sur le site. ' +
-      (refs.length > 1 ? 'Mes numéros de dossier : ' : 'Mon numéro de dossier : ') + refs.join(', ')
-    );
-    required.forEach(function (item) { var el = $(item[0]); el.value = ''; clearError(el); });
+    var notice = 'Bonjour FlyFast, j’ai envoyé ma demande d’enregistrement sur le site. ' +
+      (refs.length > 1 ? 'Mes numéros de dossier : ' : 'Mon numéro de dossier : ') + refs.join(', ');
+    $('done-wa').href = whatsAppUrl(notice);
+    $('done-mail').href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent('Dossier ' + refs.join(', ')) + '&body=' + encodeURIComponent(notice);
+    // Les photos se rattachent au dernier dossier : numéro et référence de réservation sont déjà remplis.
+    prefillPhotos(ref, lastValues ? lastValues['f-pnr'] : '');
+    required.concat([['f-contact', '']]).forEach(function (item) { var el = $(item[0]); el.value = ''; clearError(el); });
+    $('f-delivery-email').checked = true;
     optional.forEach(function (id) { var el = $(id); el.value = ''; clearError(el); });
     var consent = $('f-consent');
     consent.checked = false;
@@ -1234,6 +1311,12 @@
       setError(el, message);
       if (!first) { first = el; }
     });
+    if (errors.delivery) {
+      var box = $('e-delivery');
+      box.textContent = errors.delivery;
+      box.hidden = false;
+      if (!first) { first = $('f-delivery-email'); }
+    }
     if (errors.consent) {
       var consent = $('f-consent');
       setError(consent, errors.consent);
@@ -1249,7 +1332,7 @@
     var values = {};
     var firstInvalid = null;
 
-    required.forEach(function (item) {
+    activeRequired().forEach(function (item) {
       var el = $(item[0]);
       values[item[0]] = el.value.trim();
       if (!values[item[0]]) {
@@ -1264,6 +1347,16 @@
       values[id] = el.value.trim();
       clearError(el);
     });
+    if (values['f-email'] && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(values['f-email'])) {
+      var emailEl = $('f-email');
+      setError(emailEl, 'Indiquez une adresse e-mail valide.');
+      if (!firstInvalid) { firstInvalid = emailEl; }
+    }
+    if (!needsContact()) {
+      var contactEl = $('f-contact');
+      values['f-contact'] = contactEl.value.trim();
+      clearError(contactEl);
+    }
 
     var consent = $('f-consent');
     if (!consent.checked) {
@@ -1287,7 +1380,7 @@
       return;
     }
 
-    var payload = { consent: true };
+    var payload = { consent: true, delivery: delivery() };
     Object.keys(KEYS).forEach(function (id) { payload[KEYS[id]] = values[id]; });
     setSending(true);
     setStatus('Enregistrement de votre demande…', false);
@@ -1305,6 +1398,118 @@
       showFailure(FAIL_TEXT);
     }).then(function () {
       setSending(false);
+    });
+  });
+
+  /* ---------- Photos du passeport ou du billet ---------- */
+
+  var PHOTO_MAX = 3;
+  var PHOTO_BYTES = 700 * 1024;
+  var photoInputs = { ref: $('p-ref'), pnr: $('p-pnr'), files: $('p-files') };
+  var photoStatus = $('p-status');
+  var photoSend = $('p-send');
+  var photoSending = false;
+
+  function setPhotoStatus(message, isError) {
+    photoStatus.textContent = message;
+    photoStatus.className = 'form-status' + (isError ? ' is-error' : '');
+  }
+  function prefillPhotos(ref, pnr) {
+    photoInputs.ref.value = ref || '';
+    photoInputs.pnr.value = pnr || '';
+    clearError(photoInputs.ref);
+    clearError(photoInputs.pnr);
+    clearError(photoInputs.files);
+    setPhotoStatus('', false);
+  }
+  function listPhotos() {
+    var list = $('p-list');
+    while (list.firstChild) { list.removeChild(list.firstChild); }
+    Array.prototype.forEach.call(photoInputs.files.files || [], function (file) {
+      list.appendChild(make('li', '', file.name));
+    });
+  }
+  photoInputs.files.addEventListener('change', function () {
+    clearError(photoInputs.files);
+    setPhotoStatus('', false);
+    listPhotos();
+  });
+  [photoInputs.ref, photoInputs.pnr].forEach(function (el) {
+    el.addEventListener('input', function () { if (el.getAttribute('aria-invalid') === 'true') { clearError(el); } });
+    // Entrée ne doit pas envoyer le formulaire de demande.
+    el.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); photoSend.click(); } });
+  });
+
+  // Réduit la photo (côté le plus long : 1600 px) et la convertit en JPEG de moins de 700 Ko.
+  function shrinkPhoto(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('read')); };
+      img.onload = function () {
+        URL.revokeObjectURL(url);
+        var width = img.naturalWidth;
+        var height = img.naturalHeight;
+        if (!width || !height) { reject(new Error('read')); return; }
+        var side = 1600;
+        var quality = 0.85;
+        for (var attempt = 0; attempt < 10; attempt += 1) {
+          var scale = Math.min(1, side / Math.max(width, height));
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(width * scale));
+          canvas.height = Math.max(1, Math.round(height * scale));
+          var ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#fff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          var data = canvas.toDataURL('image/jpeg', quality);
+          var comma = data.indexOf(',');
+          var b64 = comma < 0 ? '' : data.slice(comma + 1);
+          if (!b64) { reject(new Error('read')); return; }
+          var bytes = Math.floor(b64.length * 3 / 4);
+          if (bytes <= PHOTO_BYTES) { resolve(b64); return; }
+          if (quality > 0.55) { quality -= 0.1; } else { side = Math.round(side * 0.8); }
+        }
+        reject(new Error('big'));
+      };
+      img.src = url;
+    });
+  }
+
+  photoSend.addEventListener('click', function () {
+    if (photoSending) { return; }
+    var ref = photoInputs.ref.value.trim();
+    var pnr = photoInputs.pnr.value.trim();
+    var files = Array.prototype.slice.call(photoInputs.files.files || []);
+    var bad = null;
+    if (!ref) { setError(photoInputs.ref, 'Indiquez votre numéro de dossier.'); bad = bad || photoInputs.ref; } else { clearError(photoInputs.ref); }
+    if (!pnr) { setError(photoInputs.pnr, 'Indiquez la référence de réservation (PNR).'); bad = bad || photoInputs.pnr; } else { clearError(photoInputs.pnr); }
+    if (!files.length) { setError(photoInputs.files, 'Ajoutez au moins une photo.'); bad = bad || photoInputs.files; }
+    else if (files.length > PHOTO_MAX) { setError(photoInputs.files, 'Trois photos au maximum par dossier.'); bad = bad || photoInputs.files; }
+    else { clearError(photoInputs.files); }
+    if (bad) { setPhotoStatus('Complétez les champs signalés pour continuer.', true); bad.focus(); return; }
+    if (!apiReady) { setPhotoStatus('L’envoi de photos est momentanément indisponible.', true); return; }
+
+    photoSending = true;
+    photoSend.disabled = true;
+    setPhotoStatus('Envoi des photos…', false);
+    Promise.all(files.map(shrinkPhoto)).then(function (list) {
+      return postJson('/api/photos', { ref: ref, pnr: pnr, photos: list });
+    }).then(function (res) {
+      if (res.status === 200 && res.body.ok) {
+        photoInputs.files.value = '';
+        listPhotos();
+        setPhotoStatus(res.body.count > 1 ? 'Photos reçues. Merci : nous vous écrivons dès que votre enregistrement est fait.' : 'Photo reçue. Merci : nous vous écrivons dès que votre enregistrement est fait.', false);
+        return;
+      }
+      if (res.status === 429) { setPhotoStatus('Trop de tentatives en peu de temps. Patientez un moment, puis réessayez.', true); return; }
+      if (res.body.error === 'ref') { setError(photoInputs.ref, res.body.message); photoInputs.ref.focus(); }
+      setPhotoStatus(res.body.message || FAIL_TEXT, true);
+    }).catch(function (err) {
+      setPhotoStatus(err && err.message === 'read' ? 'Une photo n’a pas pu être lue. Choisissez une image au format JPEG ou PNG.' : (err && err.message === 'big' ? 'Une photo est trop lourde. Choisissez une image plus légère.' : FAIL_TEXT), true);
+    }).then(function () {
+      photoSending = false;
+      photoSend.disabled = false;
     });
   });
 
