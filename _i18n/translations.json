@@ -2162,5 +2162,25 @@
 "Reçue": {
 "en": "Received",
 "es": "Recibida"
+},
+"Après la période gratuite, vous pourrez régler les 2&nbsp;€ avec <a1>PayPal</a1>, avec ou sans compte PayPal. Pour le moment, vous n’avez rien à payer. Une fois le paiement fait, envoyez-nous la capture d’écran sur WhatsApp avec votre numéro de dossier. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible.": {
+"en": "After the free period, you will be able to pay the €2 with <a1>PayPal</a1>, with or without a PayPal account. For now, you have nothing to pay. Once you have paid, send us the screenshot on WhatsApp with your request number. Card payment, with Stripe, will be available soon.",
+"es": "Pasado el periodo gratuito, podrá pagar los 2&nbsp;€ con <a1>PayPal</a1>, con o sin cuenta de PayPal. Por ahora no tiene que pagar nada. Una vez hecho el pago, envíenos la captura de pantalla por WhatsApp con su número de solicitud. El pago con tarjeta, con Stripe, estará disponible próximamente."
+},
+"Le service est gratuit jusqu’à la mi&#8209;décembre, dans la limite de 50&nbsp;demandes par jour&nbsp;: vous ne payez rien pour le moment. Ensuite, le prix sera de 2&nbsp;€ par réservation, quel que soit le nombre de passagers. Vous pourrez alors régler avec <a1>PayPal</a1>, avec ou sans compte PayPal&nbsp;; le paiement par carte bancaire, avec Stripe, sera bientôt disponible.": {
+"en": "The service is free until mid&#8209;December, up to 50&nbsp;requests per day: you pay nothing for now. After that, the price will be €2 per booking, whatever the number of passengers. You will then be able to pay with <a1>PayPal</a1>, with or without a PayPal account; card payment, with Stripe, will be available soon.",
+"es": "El servicio es gratuito hasta mediados de diciembre, con un máximo de 50&nbsp;solicitudes al día: por ahora no paga nada. Después, el precio será de 2&nbsp;€ por reserva, sea cual sea el número de pasajeros. Podrá entonces pagar con <a1>PayPal</a1>, con o sin cuenta de PayPal; el pago con tarjeta, con Stripe, estará disponible próximamente."
+},
+"Pendant la période gratuite, nous lançons votre enregistrement sans rien vous demander. Ensuite, vous réglez d’abord les 2&nbsp;€ avec PayPal (voir ci-dessous), et nous lançons l’enregistrement dès que nous voyons votre paiement.": {
+"en": "During the free period, we start your check-in without asking you for anything. After that, you first pay the €2 with PayPal (see below), and we start the check-in as soon as we see your payment.",
+"es": "Durante el periodo gratuito, iniciamos su check-in sin pedirle nada. Después, usted paga primero los 2&nbsp;€ con PayPal (véase más abajo) y nosotros iniciamos el check-in en cuanto vemos su pago."
+},
+"Après la période gratuite, vous réglez les 2&nbsp;€ avec <a1>PayPal</a1>, avec ou sans compte PayPal, puis vous nous envoyez sur WhatsApp la capture d’écran de votre paiement avec votre numéro de dossier. Le paiement par carte bancaire, avec Stripe, sera bientôt disponible&nbsp;: cette page sera alors mise à jour.": {
+"en": "After the free period, you pay the €2 with <a1>PayPal</a1>, with or without a PayPal account, then send us the screenshot of your payment on WhatsApp with your request number. Card payment, with Stripe, will be available soon: this page will then be updated.",
+"es": "Pasado el periodo gratuito, usted paga los 2&nbsp;€ con <a1>PayPal</a1>, con o sin cuenta de PayPal, y después nos envía por WhatsApp la captura de pantalla de su pago con su número de solicitud. El pago con tarjeta, con Stripe, estará disponible próximamente: esta página se actualizará entonces."
+},
+"Si vous réglez les 2&nbsp;€ avec PayPal, c’est PayPal qui reçoit vos données de paiement, selon ses propres règles&nbsp;: nous ne voyons jamais votre numéro de carte.": {
+"en": "If you pay the €2 with PayPal, PayPal receives your payment details, under its own rules: we never see your card number.",
+"es": "Si paga los 2&nbsp;€ con PayPal, es PayPal quien recibe sus datos de pago, según sus propias normas: nosotros nunca vemos el número de su tarjeta."
 }
 }
