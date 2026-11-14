@@ -73,6 +73,10 @@ Le service d’enregistrement (Worker Cloudflare `flyfast-api`) applique lui-mê
   l’appareil du visiteur, et revérifie tout seul à cette heure-là. Quand le service refuse un envoi, le message apparaît sous le
   bouton, sans bouton de secours WhatsApp (la limite ne doit pas pouvoir être contournée) ;
 - l’espace administrateur (`/admin` du Worker) affiche le compteur du jour.
+- une fois la limite atteinte, l’avis du formulaire (`#form-quota`, aussi affiché quand le service refuse un envoi), le bloc « Tarif »,
+  la FAQ et l’article 3 des conditions de vente proposent de régler 2 € avec le lien de paiement PayPal (montant fixe de 2,00 €), puis
+  d’écrire sur WhatsApp avec la capture du paiement : la suite est gérée à la main, le formulaire, lui, refuse toujours la 51e réservation.
+  Le lien PayPal ne transporte pas le numéro de dossier : le rapprochement paiement / demande se fait dans le compte PayPal.
 
 Le nombre vient de la variable `FREE_DAILY_LIMIT` du Worker (50 si elle est absente). **À la fin de l’offre de lancement**, créer
 cette variable avec la valeur `0` dans Cloudflare (Workers, `flyfast-api`, Réglages, Variables) : la limite est alors désactivée.
