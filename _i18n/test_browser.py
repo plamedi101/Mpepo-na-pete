@@ -4,10 +4,12 @@
 Le service d'enregistrement (Worker Cloudflare) et Turnstile sont simulés : aucun envoi réel.
 Usage : python3 test_browser.py <url de base, ex. http://127.0.0.1:8766/>
 """
+import datetime
 import json
 import os
 import re
 import sys
+import time
 import urllib.parse
 
 from playwright.sync_api import sync_playwright
@@ -41,13 +43,12 @@ def noise(msg):
 
 
 # --------------------------------------------------------------------------------------------------- textes attendus
-REQUIRED_IDS = ['name', 'passport', 'nationality', 'dob', 'contact', 'airline', 'flightnum', 'pnr', 'ticket', 'datetime']
+REQUIRED_IDS = ['name', 'passport', 'nationality', 'dob', 'contact', 'airline', 'flightnum', 'pnr', 'datetime']  # le numéro de billet est facultatif
 X = {
     'fr': dict(
         required=['Indiquez votre nom complet, comme sur le passeport.', 'Indiquez votre numéro de passeport.', 'Indiquez votre nationalité.',
                   'Indiquez votre date de naissance.', 'Indiquez votre numéro WhatsApp.', 'Indiquez la compagnie aérienne.',
-                  'Indiquez le numéro de vol.', 'Indiquez la référence de réservation (PNR).', 'Indiquez le numéro de billet.',
-                  'Indiquez la date et l’heure du vol.'],
+                  'Indiquez le numéro de vol.', 'Indiquez la référence de réservation (PNR).', 'Indiquez la date et l’heure du vol.'],
         consent='Cochez la case pour accepter les conditions.', incomplete='Complétez les champs signalés pour continuer.',
         saving='Enregistrement de votre demande…', sending='Envoi en cours…', send='Envoyer ma demande',
         done_title='Demande enregistrée', done_title_pl='Demandes enregistrées',
@@ -82,7 +83,7 @@ X = {
     'en': dict(
         required=['Enter your full name, as on your passport.', 'Enter your passport number.', 'Enter your nationality.', 'Enter your date of birth.',
                   'Enter your WhatsApp number.', 'Enter the airline.', 'Enter the flight number.', 'Enter the booking reference (PNR).',
-                  'Enter the ticket number.', 'Enter the date and time of the flight.'],
+                  'Enter the date and time of the flight.'],
         consent='Tick the box to accept the terms.', incomplete='Complete the highlighted fields to continue.',
         saving='Saving your request…', sending='Sending…', send='Send my request',
         done_title='Request recorded', done_title_pl='Requests recorded',
@@ -116,7 +117,7 @@ X = {
     'es': dict(
         required=['Indique su nombre completo, tal como figura en el pasaporte.', 'Indique su número de pasaporte.', 'Indique su nacionalidad.',
                   'Indique su fecha de nacimiento.', 'Indique su número de WhatsApp.', 'Indique la aerolínea.', 'Indique el número de vuelo.',
-                  'Indique el código de reserva (PNR).', 'Indique el número de billete.', 'Indique la fecha y la hora del vuelo.'],
+                  'Indique el código de reserva (PNR).', 'Indique la fecha y la hora del vuelo.'],
         consent='Marque la casilla para aceptar las condiciones.', incomplete='Complete los campos señalados para continuar.',
         saving='Registrando su solicitud…', sending='Enviando…', send='Enviar mi solicitud',
         done_title='Solicitud registrada', done_title_pl='Solicitudes registradas',
@@ -155,6 +156,29 @@ FIELD_VALUES = {
     'f-ticket': '071-1234567890', 'f-datetime': '24/12/2026 14:20',
 }
 
+# numéro de billet facultatif et limite du jour (offre de lancement)
+RESET = int(datetime.datetime(2026, 11, 20, 22, 0, tzinfo=datetime.timezone.utc).timestamp())  # minuit au Caire : 23:00 à Paris, 17:00 à New York
+Q = {
+    'fr': dict(tag='(facultatif)', lead='Tous les champs sont obligatoires, sauf le numéro de billet.',
+               no_ticket='Numéro de billet : non fourni', srv_ticket='Vérifiez le numéro de billet, ou laissez ce champ vide.',
+               title='Limite du jour atteinte.',
+               when='Le formulaire acceptera de nouvelles réservations le 20 novembre à 23:00 (heure de votre appareil).',
+               tomorrow='Le formulaire acceptera de nouvelles réservations demain.',
+               refused='La limite quotidienne de demandes gratuites est atteinte' + NB + ': votre demande n’a pas été enregistrée. '),
+    'en': dict(tag='(optional)', lead='All fields are required, except the ticket number.',
+               no_ticket='Ticket number: not provided', srv_ticket='Check the ticket number, or leave this field empty.',
+               title='Daily limit reached.',
+               when='The form will accept new bookings again on 20 November at 23:00 (your device’s time).',
+               tomorrow='The form will accept new bookings again tomorrow.',
+               refused='The daily limit of free requests has been reached: your request was not recorded. '),
+    'es': dict(tag='(opcional)', lead='Todos los campos son obligatorios, excepto el número de billete.',
+               no_ticket='Número de billete: no facilitado', srv_ticket='Compruebe el número de billete o deje este campo vacío.',
+               title='Límite del día alcanzado.',
+               when='El formulario volverá a aceptar nuevas reservas el 20 de noviembre a las 23:00 (hora de su dispositivo).',
+               tomorrow='El formulario volverá a aceptar nuevas reservas mañana.',
+               refused='Se ha alcanzado el límite diario de solicitudes gratuitas: su solicitud no se ha registrado. '),
+}
+
 # --------------------------------------------------------------------------------------------------- service simulé
 M = {}
 
@@ -177,6 +201,18 @@ def api_route(route, request):
 
     if path == '/api/reviews' and request.method == 'GET':
         return send(200, reviews_payload(M.get('n_reviews', 8)))
+    if path == '/api/quota' and request.method == 'GET':
+        M['quota_calls'] = M.get('quota_calls', 0) + 1
+        mode = M.get('quota', 'open')
+        if mode == 'abort':
+            return route.abort()
+        if mode == '500':
+            return send(500, {'ok': False, 'error': 'server', 'message': 'Le service est momentanément indisponible. Réessayez dans quelques minutes.'})
+        if mode == 'off':
+            return send(200, {'ok': True, 'limit': 0, 'full': False})
+        if mode == 'full_nodate':
+            return send(200, {'ok': True, 'limit': 50, 'full': True})
+        return send(200, {'ok': True, 'limit': 50, 'full': mode == 'full', 'resets_at': M.get('resets_at', RESET)})
     if path == '/api/requests':
         mode = M.get('request', 'ok')
         M.setdefault('posts', []).append(('requests', request.post_data))
@@ -192,6 +228,12 @@ def api_route(route, request):
                 'consent': 'Cochez la case pour accepter les conditions.'}})
         if mode == '429':
             return send(429, {'ok': False, 'error': 'rate', 'message': 'Trop de tentatives. Réessayez un peu plus tard.'})
+        if mode == 'quota':
+            return send(429, {'ok': False, 'error': 'quota', 'message': 'La limite quotidienne de demandes gratuites est atteinte. Votre demande n’a pas été enregistrée.',
+                              'limit': 50, 'resets_at': M.get('resets_at', RESET)})
+        if mode == 'ticket':
+            return send(400, {'ok': False, 'error': 'invalid', 'message': 'Complétez les champs signalés pour continuer.',
+                              'fields': {'ticket': 'Vérifiez le numéro de billet, ou laissez ce champ vide.'}})
         if mode == '500':
             return send(500, {'ok': False, 'error': 'server', 'message': 'Le service est momentanément indisponible. Réessayez dans quelques minutes.'})
         if mode == 'captcha':
@@ -266,6 +308,16 @@ def fill_all(page):
     for k, v in FIELD_VALUES.items():
         page.fill('#' + k, v)
     page.check('#f-consent')
+
+
+def wait_quota_calls(page, n):
+    """Attend que la page ait interrogé n fois l'état de la limite du jour (service simulé), puis qu'elle ait traité la réponse."""
+    for _ in range(120):
+        if M.get('quota_calls', 0) >= n:
+            break
+        page.wait_for_timeout(50)
+    page.wait_for_timeout(120)
+    return M.get('quota_calls', 0) >= n
 
 
 def wait_idle(page):
@@ -393,9 +445,10 @@ with sync_playwright() as p:
 
         # --- envoi vide : 11 erreurs dans la langue
         page.click('#submit-btn')
-        vals = texts_ids(page, ['e-' + i for i in REQUIRED_IDS] + ['e-consent'])
-        check(f'{tag} 10 messages de champ obligatoire', vals[:10] == e['required'], vals[:10])
-        check(f'{tag} message de consentement', vals[10] == e['consent'], vals[10])
+        vals = texts_ids(page, ['e-' + i for i in REQUIRED_IDS] + ['e-consent', 'e-ticket'])
+        check(f'{tag} 9 messages de champ obligatoire', len(e['required']) == 9 and vals[:9] == e['required'], vals[:9])
+        check(f'{tag} message de consentement', vals[9] == e['consent'], vals[9])
+        check(f'{tag} numéro de billet vide : aucune erreur (champ facultatif)', vals[10] is None, vals[10])
         check(f'{tag} statut « complétez les champs »', page.inner_text('#form-status') == e['incomplete'], page.inner_text('#form-status'))
         check(f'{tag} focus sur le premier champ', page.evaluate('document.activeElement.id') == 'f-name')
 
@@ -502,6 +555,146 @@ with sync_playwright() as p:
         page.wait_for_function("document.getElementById('review-status').textContent === " + json.dumps(e['r_pub']))
         check(f'{tag} avis : merci (publié)', page.inner_text('#review-status') == e['r_pub'])
         check(f'{tag} aucune erreur de console pendant les parcours', not errors, errors)
+        ctx.close()
+
+    # ============================================================== 4b. numéro de billet facultatif, limite du jour
+    QUOTA_HIDDEN = "document.getElementById('form-quota').hidden"
+    QUOTA_SHOWN = "!document.getElementById('form-quota').hidden"
+    for lang in LANGS:
+        e, qx = X[lang], Q[lang]
+        tag = f'[billet et limite {lang}]'
+        M.clear()
+        ctx, page, errors = open_home(b, lang, viewport={'width': 1280, 'height': 900}, timezone_id='Europe/Paris')
+
+        # --- numéro de billet présenté comme facultatif
+        check(f'{tag} la page interroge l’état de la limite dès le chargement', wait_quota_calls(page, 1), M.get('quota_calls'))
+        check(f'{tag} limite non atteinte : aucun avis affiché', page.evaluate(QUOTA_HIDDEN) is True)
+        check(f'{tag} champ billet : mention « {qx["tag"]} » dans le libellé', page.inner_text('label[for="f-ticket"] .opt') == qx['tag'], page.inner_text('label[for="f-ticket"]'))
+        n_required = page.evaluate("document.querySelectorAll('#request-form [required]').length")
+        check(f'{tag} champ billet : non obligatoire (9 champs et la case de consentement le restent)', page.evaluate("document.getElementById('f-ticket').required") is False and n_required == 10, n_required)
+        check(f'{tag} consigne du formulaire', page.inner_text('.form-lead') == qx['lead'], page.inner_text('.form-lead'))
+        # la mention ne doit pas faire passer le libellé sur deux lignes : les deux champs voisins restent alignés
+        tops = {}
+        for width in (768, 600, 1280):
+            page.set_viewport_size({'width': width, 'height': 900})
+            tops[width] = page.evaluate("""() => { const r = (id) => document.getElementById(id).getBoundingClientRect();
+                const h = (id) => document.querySelector('label[for="' + id + '"]').getBoundingClientRect().height;
+                return { side: r('f-ticket').left > r('f-pnr').right - 1, dTop: Math.round((r('f-ticket').top - r('f-pnr').top) * 10) / 10, same: h('f-ticket') === h('f-pnr') }; }""")
+        check(f'{tag} champ billet : aligné avec la référence de réservation (1280, 768 et 600 px)',
+              all(t['side'] and t['dTop'] == 0 and t['same'] for t in tops.values()), tops)
+
+        # --- envoi sans numéro de billet
+        fill_all(page)
+        page.fill('#f-ticket', '')
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-done').hidden")
+        sent = json.loads(M['posts'][-1][1])
+        check(f'{tag} sans numéro de billet : demande acceptée, champ vide transmis au service', sent.get('ticket') == '' and sent.get('pnr') == 'X7YQ2P' and page.inner_text('#done-refs') == 'FF-AB12CD', sent)
+        check(f'{tag} après une demande acceptée, l’état de la limite est relu', wait_quota_calls(page, 2), M.get('quota_calls'))
+        page.click('#done-another')
+
+        # --- secours WhatsApp sans numéro de billet
+        fill_all(page)
+        page.fill('#f-ticket', '   ')
+        M['request'] = 'abort'
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-fallback').hidden")
+        page.evaluate("window.__opened = []")
+        page.click('#fallback-btn')
+        opened = page.evaluate('window.__opened')
+        lines = wa_text(opened[0]).split('\n') if opened else []
+        expected = [qx['no_ticket'] if i == 8 else line for i, line in enumerate(e['legacy'])]
+        check(f'{tag} secours WhatsApp sans numéro de billet : « {qx["no_ticket"]} »', lines == expected, lines)
+
+        # --- numéro de billet refusé par le service : message traduit, retiré dès que le champ est modifié
+        page.fill('#f-ticket', '12-34')
+        M['request'] = 'ticket'
+        page.click('#submit-btn')
+        page.wait_for_function("document.getElementById('submit-btn').disabled === false && !document.getElementById('e-ticket').hidden")
+        check(f'{tag} numéro de billet refusé par le service : message dans la langue, champ mis en avant', texts_ids(page, ['e-ticket'])[0] == qx['srv_ticket'] and page.evaluate('document.activeElement.id') == 'f-ticket', texts_ids(page, ['e-ticket']))
+        page.fill('#f-ticket', '')
+        check(f'{tag} numéro de billet vidé : l’erreur disparaît', texts_ids(page, ['e-ticket'])[0] is None and page.get_attribute('#f-ticket', 'aria-invalid') is None, texts_ids(page, ['e-ticket']))
+
+        # --- limite du jour atteinte au moment de l'envoi
+        M['request'] = 'quota'
+        page.click('#submit-btn')
+        page.wait_for_function(QUOTA_SHOWN + " && document.getElementById('submit-btn').disabled === false")
+        st = page.inner_text('#form-status')
+        check(f'{tag} limite atteinte à l’envoi : message dans la langue, réouverture à l’heure de l’appareil (Paris)', st == qx['refused'] + qx['when'], st)
+        check(f'{tag} limite atteinte à l’envoi : message présenté comme une erreur', 'is-error' in (page.get_attribute('#form-status', 'class') or ''))
+        check(f'{tag} limite atteinte à l’envoi : pas de secours WhatsApp (la limite ne se contourne pas)', page.evaluate("document.getElementById('form-fallback').hidden") is True)
+        check(f'{tag} limite atteinte à l’envoi : avis en tête du formulaire', page.inner_text('#form-quota strong') == qx['title'] and page.inner_text('#quota-when') == qx['when'], page.inner_text('#form-quota'))
+        check(f'{tag} limite atteinte à l’envoi : la saisie est conservée', page.input_value('#f-name') == FIELD_VALUES['f-name'] and page.input_value('#f-pnr') == FIELD_VALUES['f-pnr']
+              and page.evaluate("!document.getElementById('form-fields').hidden") is True)
+        residue = french_residue(page.inner_text('#form-quota') + ' ' + st, lang)
+        check(f'{tag} limite atteinte : textes sans reste de français', not residue, residue)
+        page.locator('#request-form').screenshot(path=f'{SHOTS}/quota-{lang}.png')
+
+        # --- réouverture : le service accepte de nouveau, l'avis et le message disparaissent
+        M['request'] = 'ok'
+        M['quota'] = 'open'
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-done').hidden")
+        page.click('#done-another')
+        page.wait_for_function(QUOTA_HIDDEN)
+        check(f'{tag} après réouverture : demande acceptée, avis retiré, plus de message d’erreur', page.evaluate(QUOTA_HIDDEN) is True and page.inner_text('#form-status') == '', page.inner_text('#form-status'))
+        check(f'{tag} aucune erreur de console (numéro de billet, limite à l’envoi)', not errors, errors)
+        ctx.close()
+
+        # --- limite déjà atteinte à l'arrivée sur la page (appareil réglé sur un autre fuseau)
+        M.clear()
+        M['quota'] = 'full'
+        ctx, page, errors = open_home(b, lang, viewport={'width': 1280, 'height': 900}, timezone_id='America/New_York')
+        page.wait_for_function(QUOTA_SHOWN)
+        when_ny = qx['when'].replace('23:00', '17:00')
+        check(f'{tag} limite atteinte à l’arrivée : avis affiché, réouverture convertie à l’heure de l’appareil (New York)', page.inner_text('#form-quota strong') == qx['title'] and page.inner_text('#quota-when') == when_ny, page.inner_text('#form-quota'))
+        check(f'{tag} limite atteinte à l’arrivée : le formulaire reste utilisable (passagers d’une réservation déjà acceptée)', page.evaluate("!document.getElementById('form-fields').hidden && !document.getElementById('submit-btn').disabled") is True)
+        fill_all(page)
+        page.click('#submit-btn')
+        page.wait_for_function("!document.getElementById('form-done').hidden")
+        page.click('#done-another')
+        check(f'{tag} limite atteinte : après une demande acceptée pour une réservation déjà comptée, l’avis reste affiché', wait_quota_calls(page, 2) and page.evaluate(QUOTA_HIDDEN) is False, M.get('quota_calls'))
+
+        # --- la page revérifie d'elle-même à l'heure de la réouverture
+        M.clear()
+        M['quota'] = 'full'
+        M['resets_at'] = int(time.time()) + 2
+        page.reload(wait_until='load')
+        page.wait_for_function(QUOTA_SHOWN)
+        M['quota'] = 'open'
+        try:
+            page.wait_for_function(QUOTA_HIDDEN, timeout=15000)
+            reopened = True
+        except Exception:
+            reopened = False
+        check(f'{tag} à l’heure de la réouverture, la page revérifie et retire l’avis sans rechargement', reopened and M.get('quota_calls', 0) >= 2, M.get('quota_calls'))
+
+        # --- réponses particulières du service
+        M.clear()
+        M['quota'] = 'full_nodate'
+        page.reload(wait_until='load')
+        page.wait_for_function(QUOTA_SHOWN)
+        check(f'{tag} heure de réouverture inconnue : « {qx["tomorrow"]} »', page.inner_text('#quota-when') == qx['tomorrow'], page.inner_text('#quota-when'))
+        for mode in ('500', 'abort', 'off'):
+            M.clear()
+            M['quota'] = mode
+            page.reload(wait_until='load')
+            asked = wait_quota_calls(page, 1)
+            check(f'{tag} état de la limite « {mode} » : aucun avis, formulaire utilisable', asked and page.evaluate(QUOTA_HIDDEN) is True and page.evaluate("!document.getElementById('submit-btn').disabled") is True, M.get('quota_calls'))
+        check(f'{tag} aucune erreur de console (limite à l’arrivée)', not errors, errors)
+        ctx.close()
+
+        # --- petit écran : l'avis et la mention « facultatif » tiennent dans 320 px
+        M.clear()
+        M['quota'] = 'full'
+        ctx, page, errors = open_home(b, lang, viewport={'width': 320, 'height': 700}, is_mobile=True, has_touch=True, device_scale_factor=1, timezone_id='Europe/Paris')
+        page.wait_for_function(QUOTA_SHOWN)
+        over = page.evaluate("""() => { const out = [];
+            for (const sel of ['#form-quota', '#form-quota p', 'label[for="f-ticket"]', 'label[for="f-ticket"] .opt', '#h-ticket', '#f-ticket'])
+                for (const el of document.querySelectorAll(sel)) { const r = el.getBoundingClientRect(); if (r.left < -0.5 || r.right > innerWidth + 0.5) out.push([sel, Math.round(r.left), Math.round(r.right)]); }
+            return { out, scroll: document.documentElement.scrollWidth - document.documentElement.clientWidth }; }""")
+        check(f'{tag} 320 px : l’avis de limite et le champ billet ne débordent pas', not over['out'] and over['scroll'] <= 0, over)
+        page.locator('#request-form').screenshot(path=f'{SHOTS}/quota-mobile-{lang}.png')
         ctx.close()
 
     # ============================================================== 5. menu mobile : libellés dans la langue

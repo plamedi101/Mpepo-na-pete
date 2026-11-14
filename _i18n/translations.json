@@ -2082,5 +2082,49 @@
 "Voir tous nos partenaires": {
 "en": "See all our partners",
 "es": "Ver todos nuestros socios"
+},
+"Une demande correspond à une réservation. Une fois les 50&nbsp;demandes du jour atteintes, le formulaire n’accepte plus de nouvelle réservation jusqu’au lendemain.": {
+"en": "One request corresponds to one booking. Once the day’s 50&nbsp;requests have been reached, the form accepts no new bookings until the next day.",
+"es": "Una solicitud equivale a una reserva. Una vez alcanzadas las 50&nbsp;solicitudes del día, el formulario no acepta nuevas reservas hasta el día siguiente."
+},
+"<strong1>Limite du jour atteinte.</strong1> Les 50&nbsp;demandes gratuites d’aujourd’hui sont déjà prises.": {
+"en": "<strong1>Daily limit reached.</strong1> Today’s 50&nbsp;free requests have already been taken.",
+"es": "<strong1>Límite del día alcanzado.</strong1> Las 50&nbsp;solicitudes gratuitas de hoy ya se han agotado."
+},
+"Si une demande a déjà été envoyée aujourd’hui pour votre réservation, vous pouvez encore ajouter ses autres passagers.": {
+"en": "If a request has already been sent today for your booking, you can still add its other passengers.",
+"es": "Si hoy ya se ha enviado una solicitud para su reserva, todavía puede añadir a los demás pasajeros."
+},
+"Tous les champs sont obligatoires, sauf le numéro de billet.": {
+"en": "All fields are required, except the ticket number.",
+"es": "Todos los campos son obligatorios, excepto el número de billete."
+},
+"Le formulaire n’accepte plus de nouvelle réservation pour la journée, et il vous indique quand il rouvre&nbsp;: le compteur repart de zéro chaque jour à minuit, heure du Caire. Vous pouvez alors renvoyer votre demande, à condition que votre vol parte dans plus de 10&nbsp;heures. Une demande correspond à une réservation, quel que soit le nombre de passagers&nbsp;: si une demande a déjà été acceptée ce jour-là pour votre réservation, vous pouvez encore ajouter ses autres passagers.": {
+"en": "The form accepts no new bookings for the rest of the day, and it tells you when it reopens: the counter starts again from zero every day at midnight, Cairo time. You can then send your request again, provided your flight leaves in more than 10&nbsp;hours. One request corresponds to one booking, whatever the number of passengers: if a request has already been accepted that day for your booking, you can still add its other passengers.",
+"es": "El formulario deja de aceptar nuevas reservas durante el resto del día y le indica cuándo vuelve a abrirse: el contador vuelve a cero cada día a medianoche, hora de El Cairo. Entonces puede volver a enviar su solicitud, siempre que su vuelo salga dentro de más de 10&nbsp;horas. Una solicitud equivale a una reserva, sea cual sea el número de pasajeros: si ese día ya se ha aceptado una solicitud para su reserva, todavía puede añadir a los demás pasajeros."
+},
+"<strong1>Offre de lancement.</strong1> Du lancement jusqu’à la mi&#8209;décembre 2026, le service est gratuit, dans la limite de 50&nbsp;demandes par jour. Une demande correspond à une réservation (numéro de réservation, ou PNR), quel que soit le nombre de passagers inscrits sur cette réservation. Une fois les 50&nbsp;demandes du jour atteintes, le formulaire n’accepte plus de nouvelle réservation jusqu’au lendemain&nbsp;: le compteur repart de zéro chaque jour à minuit, heure du Caire (Égypte). Les autres passagers d’une réservation déjà acceptée ce jour-là restent acceptés. Vous pouvez renvoyer votre demande le lendemain.": {
+"en": "<strong1>Launch offer.</strong1> From launch until mid&#8209;December 2026, the service is free, up to 50&nbsp;requests per day. One request corresponds to one booking (booking reference, or PNR), whatever the number of passengers on that booking. Once the day’s 50&nbsp;requests have been reached, the form accepts no new bookings until the next day: the counter starts again from zero every day at midnight, Cairo time (Egypt). The other passengers of a booking already accepted that day are still accepted. You can send your request again the next day.",
+"es": "<strong1>Oferta de lanzamiento.</strong1> Desde el lanzamiento hasta mediados de diciembre de 2026, el servicio es gratuito, con un máximo de 50&nbsp;solicitudes al día. Una solicitud equivale a una reserva (código de reserva o PNR), sea cual sea el número de pasajeros inscritos en esa reserva. Una vez alcanzadas las 50&nbsp;solicitudes del día, el formulario no acepta nuevas reservas hasta el día siguiente: el contador vuelve a cero cada día a medianoche, hora de El Cairo (Egipto). Los demás pasajeros de una reserva ya aceptada ese día siguen siendo aceptados. Puede volver a enviar su solicitud al día siguiente."
+},
+"Dernière mise à jour&nbsp;: 14 novembre 2026.": {
+"en": "Last updated: 14 November 2026.",
+"es": "Última actualización: 14 de noviembre de 2026."
+},
+"Pour une demande d’enregistrement&nbsp;: votre nom complet, votre numéro de passeport, votre nationalité, votre date de naissance et votre numéro WhatsApp, ainsi que la compagnie, le numéro de vol, la référence de réservation (PNR), le numéro de billet si vous l’indiquez, et la date et l’heure du vol. Nous y ajoutons un numéro de dossier, par exemple FF-AB12CD, que vous voyez à l’écran après l’envoi.": {
+"en": "For a check-in request: your full name, passport number, nationality, date of birth and WhatsApp number, as well as the airline, flight number, booking reference (PNR), ticket number if you provide it, and the date and time of the flight. We add a request number, for example FF-AB12CD, which you see on screen after sending.",
+"es": "Para una solicitud de check-in: su nombre completo, número de pasaporte, nacionalidad, fecha de nacimiento y número de WhatsApp, así como la aerolínea, el número de vuelo, el código de reserva (PNR), el número de billete si lo indica y la fecha y hora del vuelo. Añadimos un número de solicitud, por ejemplo FF-AB12CD, que usted ve en pantalla tras el envío."
+},
+"Pour limiter les envois répétés, nous gardons une empreinte non réversible de votre adresse IP, pas l’adresse elle-même, pendant 3&nbsp;jours au plus. Pendant l’offre de lancement, pour ne compter chaque réservation qu’une fois dans la limite de 50&nbsp;demandes par jour, nous gardons de la même façon une empreinte non réversible de votre référence de réservation, pendant 3&nbsp;jours au plus.": {
+"en": "To limit repeated submissions, we keep a non-reversible fingerprint of your IP address, not the address itself, for 3&nbsp;days at most. During the launch offer, so that each booking is counted only once towards the limit of 50&nbsp;requests per day, we keep in the same way a non-reversible fingerprint of your booking reference, for 3&nbsp;days at most.",
+"es": "Para limitar los envíos repetidos, conservamos una huella no reversible de su dirección IP, no la dirección en sí, durante 3&nbsp;días como máximo. Durante la oferta de lanzamiento, para contar cada reserva una sola vez dentro del límite de 50&nbsp;solicitudes al día, conservamos del mismo modo una huella no reversible de su código de reserva, durante 3&nbsp;días como máximo."
+},
+"Numéro de billet <span1>(facultatif)</span1>": {
+"en": "Ticket number <span1>(optional)</span1>",
+"es": "Número de billete <span1>(opcional)</span1>"
+},
+"Numéro d’e-ticket indiqué sur votre confirmation de réservation, si la compagnie en fournit un. Sinon, laissez ce champ vide&nbsp;: c’est souvent le cas avec les compagnies low cost.": {
+"en": "E-ticket number shown on your booking confirmation, if the airline provides one. If not, leave this field empty: this is often the case with low-cost airlines.",
+"es": "Número de e-ticket que figura en su confirmación de reserva, si la aerolínea facilita uno. Si no, deje este campo vacío: suele ocurrir con las aerolíneas de bajo coste."
 }
 }

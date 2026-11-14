@@ -150,6 +150,9 @@
 
   .form{padding:clamp(20px,4vw,40px);border:1px solid var(--line);border-radius:8px;background:#fff;}
   .form-lead{margin-bottom:24px;color:var(--muted);font-size:.9375rem;}
+  .quota{margin-bottom:24px;padding:16px 18px;border-left:4px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;background:var(--gold-soft);font-size:.9375rem;}
+  .quota[hidden]{display:none;}
+  .quota p + p{margin-top:8px;}
   .fieldset{min-width:0;margin:0 0 32px;padding:0;border:0;}
   .fieldset legend{width:100%;margin:0 0 20px;padding:0 0 12px;border-bottom:1px solid var(--line);font:600 1.375rem/1.2 var(--font-head);color:var(--navy);}
   .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start;}
@@ -454,7 +457,7 @@
               <span><span class="pay-name">Then €2 per booking</span><span class="pay-num">Whatever the number of passengers</span></span>
             </li>
           </ul>
-          <p class="pay-note">One request corresponds to one booking. Beyond 50&nbsp;requests in a day, we cannot guarantee that the following ones will be processed: you can send them again the next day.</p>
+          <p class="pay-note">One request corresponds to one booking. Once the day’s 50&nbsp;requests have been reached, the form accepts no new bookings until the next day.</p>
           <p class="pay-note">After the free period, we confirm the payment arrangements with you on WhatsApp. Card payment, with Stripe, will be available soon.</p>
         </div>
       </div>
@@ -462,7 +465,12 @@
       <form class="form" id="request-form" novalidate autocomplete="on">
         <noscript><p class="noscript">This form requires JavaScript. You can also write to us directly on <a class="link" href="https://wa.me/201508319385">WhatsApp</a>.</p></noscript>
         <div id="form-fields">
-        <p class="form-lead">All fields are required.</p>
+        <div class="quota" id="form-quota" hidden>
+          <p><strong>Daily limit reached.</strong> Today’s 50&nbsp;free requests have already been taken.</p>
+          <p id="quota-when"></p>
+          <p>If a request has already been sent today for your booking, you can still add its other passengers.</p>
+        </div>
+        <p class="form-lead">All fields are required, except the ticket number.</p>
 
         <fieldset class="fieldset">
           <legend>The passenger</legend>
@@ -517,9 +525,9 @@
               <p class="error" id="e-pnr" hidden></p>
             </div>
             <div class="field">
-              <label for="f-ticket">Ticket number (e-ticket)</label>
-              <input id="f-ticket" name="ticket" type="text" autocomplete="off" spellcheck="false" placeholder="e.g. 071-1234567890" required aria-describedby="h-ticket e-ticket">
-              <p class="hint" id="h-ticket">Shown on your booking confirmation.</p>
+              <label for="f-ticket">Ticket number <span class="opt">(optional)</span></label>
+              <input id="f-ticket" name="ticket" type="text" autocomplete="off" spellcheck="false" placeholder="e.g. 071-1234567890" aria-describedby="h-ticket e-ticket">
+              <p class="hint" id="h-ticket">E-ticket number shown on your booking confirmation, if the airline provides one. If not, leave this field empty: this is often the case with low-cost airlines.</p>
               <p class="error" id="e-ticket" hidden></p>
             </div>
             <div class="field span-2">
@@ -614,7 +622,7 @@
         </details>
         <details>
           <summary>What happens if the 50 requests for the day are reached?</summary>
-          <p>Beyond 50&nbsp;requests in a day, we cannot guarantee that the following ones will be processed. You can send them again the next day, provided your flight leaves in more than 10&nbsp;hours. One request corresponds to one booking, whatever the number of passengers.</p>
+          <p>The form accepts no new bookings for the rest of the day, and it tells you when it reopens: the counter starts again from zero every day at midnight, Cairo time. You can then send your request again, provided your flight leaves in more than 10&nbsp;hours. One request corresponds to one booking, whatever the number of passengers: if a request has already been accepted that day for your booking, you can still add its other passengers.</p>
         </details>
         <details>
           <summary>There are several of us on the same booking: what should I do?</summary>
@@ -794,8 +802,9 @@
     "Indiquez la compagnie aérienne.": "Enter the airline.",
     "Indiquez un numéro de vol valide, par exemple ET 704.": "Enter a valid flight number, for example ET 704.",
     "Indiquez la référence de réservation (PNR) : 5 à 8 caractères.": "Enter the booking reference (PNR): 5 to 8 characters.",
-    "Indiquez le numéro de billet.": "Enter the ticket number.",
+    "Vérifiez le numéro de billet, ou laissez ce champ vide.": "Check the ticket number, or leave this field empty.",
     "Indiquez la date et l’heure du vol.": "Enter the date and time of the flight.",
+    "La limite quotidienne de demandes gratuites est atteinte. Votre demande n’a pas été enregistrée.": "The daily limit of free requests has been reached. Your request was not recorded.",
     "Cochez la case pour accepter les conditions.": "Tick the box to accept the terms.",
     "Indiquez votre prénom (lettres uniquement, 40 caractères maximum).": "Enter your first name (letters only, 40 characters maximum).",
     "Choisissez une note de 1 à 5.": "Choose a rating from 1 to 5.",
@@ -934,9 +943,10 @@
     ['f-airline', 'Enter the airline.'],
     ['f-flightnum', 'Enter the flight number.'],
     ['f-pnr', 'Enter the booking reference (PNR).'],
-    ['f-ticket', 'Enter the ticket number.'],
     ['f-datetime', 'Enter the date and time of the flight.']
   ];
+  // Champs facultatifs : envoyés tels quels, même vides (les compagnies low cost fournissent rarement un numéro de billet).
+  var optional = ['f-ticket'];
   var KEYS = {
     'f-name': 'name', 'f-passport': 'passport', 'f-nationality': 'nationality', 'f-dob': 'dob', 'f-contact': 'contact',
     'f-airline': 'airline', 'f-flightnum': 'flightnum', 'f-pnr': 'pnr', 'f-ticket': 'ticket', 'f-datetime': 'datetime'
@@ -962,6 +972,13 @@
       if (filled && el.getAttribute('aria-invalid') === 'true') { clearError(el); }
     });
   });
+  optional.forEach(function (id) {
+    var el = $(id);
+    // Une erreur signalée par le service sur un champ facultatif disparaît dès que le visiteur le modifie ou le vide.
+    el.addEventListener('input', function () {
+      if (el.getAttribute('aria-invalid') === 'true') { clearError(el); }
+    });
+  });
 
   function frenchDate(value) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
@@ -979,7 +996,7 @@
       'Airline: ' + values['f-airline'],
       'Flight: ' + values['f-flightnum'],
       'PNR: ' + values['f-pnr'],
-      'Ticket number: ' + values['f-ticket'],
+      'Ticket number: ' + (values['f-ticket'] || 'not provided'),
       'Flight date/time: ' + values['f-datetime'],
       'My WhatsApp: ' + values['f-contact'],
       'I confirm that I have read and accepted the terms of service.'
@@ -1003,6 +1020,7 @@
       (refs.length > 1 ? 'My request numbers: ' : 'My request number: ') + refs.join(', ')
     );
     required.forEach(function (item) { var el = $(item[0]); el.value = ''; clearError(el); });
+    optional.forEach(function (id) { var el = $(id); el.value = ''; clearError(el); });
     var consent = $('f-consent');
     consent.checked = false;
     clearError(consent);
@@ -1012,6 +1030,8 @@
     formFields.hidden = true;
     done.hidden = false;
     done.focus();
+    // Une demande vient d’être acceptée : l’état de la limite du jour est relu.
+    checkQuota();
   }
 
   $('done-another').addEventListener('click', function () {
@@ -1059,6 +1079,11 @@
         clearError(el);
       }
     });
+    optional.forEach(function (id) {
+      var el = $(id);
+      values[id] = el.value.trim();
+      clearError(el);
+    });
 
     var consent = $('f-consent');
     if (!consent.checked) {
@@ -1093,6 +1118,7 @@
     }).then(function (res) {
       if (res.status === 200 && res.body.ok && res.body.ref) { showDone(res.body.ref); return; }
       if (res.status === 400 && res.body.fields) { applyServerErrors(res.body.fields); return; }
+      if (res.body.error === 'quota') { refuseForQuota(res.body.resets_at); return; }
       if (res.status === 429) { showFailure('Too many attempts in a short time. Please wait a moment, then try again.'); return; }
       showFailure(S(res.body.message) || FAIL_TEXT);
     }).catch(function () {
@@ -1101,6 +1127,54 @@
       setSending(false);
     });
   });
+
+  /* ---------- Limite du jour (offre de lancement) ---------- */
+
+  var quotaBox = $('form-quota');
+  var quotaTimer = null;
+  var quotaStatusText = '';
+
+  // Moment où le formulaire rouvre, à l’heure de l’appareil du visiteur.
+  function reopening(resetsAt) {
+    var when = new Date(resetsAt * 1000);
+    return 'on ' + when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) + ' at ' + when.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  }
+  function reopeningText(resetsAt) {
+    return resetsAt
+      ? 'The form will accept new bookings again ' + reopening(resetsAt) + ' (your device’s time).'
+      : 'The form will accept new bookings again tomorrow.';
+  }
+  function showQuota(resetsAt) {
+    var known = typeof resetsAt === 'number' && isFinite(resetsAt) && resetsAt > 0 ? resetsAt : 0;
+    $('quota-when').textContent = reopeningText(known);
+    quotaBox.hidden = false;
+    clearTimeout(quotaTimer);
+    // À l’heure de la réouverture, la page revérifie d’elle-même.
+    if (known) { quotaTimer = setTimeout(checkQuota, Math.min(Math.max(known * 1000 - Date.now(), 0) + 2000, 2147483647)); }
+    return known;
+  }
+  function hideQuota() {
+    clearTimeout(quotaTimer);
+    quotaBox.hidden = true;
+    if (quotaStatusText && status.textContent === quotaStatusText) { setStatus('', false); }
+    quotaStatusText = '';
+  }
+  function checkQuota() {
+    if (!apiReady) { return; }
+    fetch(API_BASE + '/api/quota', { credentials: 'omit', cache: 'no-store' }).then(function (res) {
+      if (!res.ok) { throw new Error('http'); }
+      return res.json();
+    }).then(function (state) {
+      if (state && state.full === true) { showQuota(state.resets_at); } else { hideQuota(); }
+    }).catch(function () { /* sans réponse du service, rien ne s’affiche : la limite reste appliquée à l’envoi */ });
+  }
+  // Le service a refusé la demande parce que la limite du jour est atteinte : rien n’a été enregistré.
+  function refuseForQuota(resetsAt) {
+    var known = showQuota(resetsAt);
+    fallback.hidden = true;
+    quotaStatusText = 'The daily limit of free requests has been reached: your request was not recorded. ' + reopeningText(known);
+    setStatus(quotaStatusText, true);
+  }
 
   /* ---------- Avis des voyageurs ---------- */
 
@@ -1313,6 +1387,7 @@
   }
 
   loadReviews(false);
+  checkQuota();
 
   $('year').textContent = new Date().getFullYear();
 })();

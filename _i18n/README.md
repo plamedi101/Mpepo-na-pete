@@ -27,7 +27,7 @@ Ce dossier commence par un tiret bas : GitHub Pages ne le publie pas.
    Pour fixer la date du plan du site : `BUILD_DATE=2026-11-09 python3 _i18n/build.py .`
 4. Vérifiez : `python3 _i18n/test_static.py .` (structure, liens, langues, plan du site), puis, le site étant servi en local
    (`python3 -m http.server 8766` dans le dossier du site), `python3 _i18n/test_browser.py http://127.0.0.1:8766/`
-   (navigateur : formulaire, avis, chat, mobile, dans les trois langues ; nécessite Playwright).
+   (navigateur : formulaire, numéro de billet facultatif, limite du jour, avis, chat, mobile, dans les trois langues ; nécessite Playwright).
 
 ## Où se trouvent les textes
 
@@ -56,7 +56,32 @@ dans `translations.json`) ; à la fin de l’offre, il faut les remettre au tari
 `conditions-de-vente.html` (en bref, articles 3, 4, 5 et 8), `remboursement.html` (introduction) et
 `flyfast-blog/enregistrement-en-ligne-guide-complet.html` (bouton). Les anciennes phrases et leurs traductions restent dans
 `translations.json`. « mi‑décembre » s’écrit avec un tiret insécable (`&#8209;`) pour ne pas être coupé en fin de ligne.
-Le quota de 50 demandes par jour (une demande = une réservation) est annoncé sur le site ; le formulaire ne l’applique pas.
+
+### Limite de 50 demandes par jour
+
+Le service d’enregistrement (Worker Cloudflare `flyfast-api`) applique lui-même la limite annoncée sur le site :
+
+- il compte les **réservations** (une réservation = un PNR, quel que soit le nombre de passagers) acceptées dans la journée ; la
+  journée va de minuit à minuit, heure du Caire (variable `QUOTA_TZ` du Worker, `Africa/Cairo` par défaut) ;
+- à partir de la 51e réservation du jour, il refuse la demande (réponse 429, code `quota`, avec l’heure de remise à zéro `resets_at`) ;
+  les autres passagers d’une réservation déjà acceptée ce jour-là restent acceptés ;
+- pour ne compter une réservation qu’une fois, il garde une empreinte non réversible du PNR (table `quota`), effacée au bout de
+  deux jours ; la page Confidentialité le dit (ligne « Contrôle anti-abus ») ;
+- `GET /api/quota` dit au site si la limite est atteinte (`{ ok, limit, full, resets_at }`) : `index.html` l’interroge au chargement,
+  affiche l’avis « Limite du jour atteinte » en tête du formulaire (bloc `#form-quota`) avec l’heure de réouverture à l’heure de
+  l’appareil du visiteur, et revérifie tout seul à cette heure-là. Quand le service refuse un envoi, le message apparaît sous le
+  bouton, sans bouton de secours WhatsApp (la limite ne doit pas pouvoir être contournée) ;
+- l’espace administrateur (`/admin` du Worker) affiche le compteur du jour.
+
+Le nombre vient de la variable `FREE_DAILY_LIMIT` du Worker (50 si elle est absente). **À la fin de l’offre de lancement**, créer
+cette variable avec la valeur `0` dans Cloudflare (Workers, `flyfast-api`, Réglages, Variables) : la limite est alors désactivée.
+Retirer aussi du site les textes qui parlent des 50 demandes : bloc « Tarif » et avis `#form-quota` du formulaire, FAQ, barre de
+faits, étape 2, `conditions-de-vente.html` (en bref et article sur l’offre de lancement) et la phrase ajoutée à la ligne « Contrôle
+anti-abus » de `confidentialite.html`. Les textes JavaScript de l’avis sont dans `index_js.py` (table `CODE`), le message du Worker
+dans la table `SERVER`.
+
+Le numéro de billet est facultatif (beaucoup de compagnies low cost n’en fournissent pas) : le formulaire l’envoie vide, le Worker
+l’accepte vide et l’espace administrateur affiche alors « non fourni ».
 
 ## Programme d’affiliation Travelpayouts
 
