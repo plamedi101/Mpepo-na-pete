@@ -22,6 +22,13 @@ TOKEN = '10a100695f7446c691727c713ffb19c8'
 ok = ko = 0
 
 
+
+def npath(*parts):
+    """Chemin normalisé ; un lien vers un dossier (« ../en/ ») désigne la page index.html de ce dossier."""
+    t = os.path.normpath(os.path.join(*parts))
+    return os.path.join(t, 'index.html') if os.path.isdir(t) else t
+
+
 def check(name, cond, detail=''):
     global ok, ko
     if cond:
@@ -94,7 +101,7 @@ for fr, lg, path in pages:
         cur = [a.get('lang') for a in links if a.get('aria-current')]
         check(f'{tag} sélecteur : langue courante marquée', cur == [lg], cur)
         for a in links:
-            target = os.path.normpath(os.path.join(os.path.dirname(os.path.join(ROOT, path)), a['href']))
+            target = npath(os.path.dirname(os.path.join(ROOT, path)), a['href'])
             expect = os.path.normpath(os.path.join(ROOT, build.PATHS[fr][a['lang']]))
             check(f'{tag} sélecteur : lien {a["lang"]} → bonne page', target == expect, (a['href'], target, expect))
         check(f'{tag} sélecteur : nom accessible', bar.get('aria-label') == build.LANGBAR_LABEL[lg], bar.get('aria-label'))
@@ -183,7 +190,7 @@ for fr, lg, path in pages:
     check(f'{tag} note de traduction {"présente" if expect_note else "absente"}', len(notes) == (1 if expect_note else 0), len(notes))
     if expect_note and notes:
         link = notes[0].find('a')
-        target = os.path.normpath(os.path.join(os.path.dirname(os.path.join(ROOT, path)), link['href']))
+        target = npath(os.path.dirname(os.path.join(ROOT, path)), link['href'])
         check(f'{tag} note : lien vers l’original français', target == os.path.normpath(os.path.join(ROOT, fr)) and link.get('hreflang') == 'fr', link['href'])
         check(f'{tag} note : texte attendu', build.NOTE_TEXT[lg] in notes[0].get_text(' ', strip=True))
 
@@ -315,7 +322,7 @@ def tpk_links(node):
 
 
 def resolve(from_page, href):
-    return os.path.normpath(os.path.join(os.path.dirname(os.path.join(ROOT, from_page)), href.split('#')[0]))
+    return npath(os.path.dirname(os.path.join(ROOT, from_page)), href.split('#')[0])
 
 
 def link_ok(a, lg):

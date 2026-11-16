@@ -107,7 +107,7 @@
     var formLink = root.querySelector('.ffc-formlink');
 
     var onPageForm = !!document.getElementById('enregistrer');
-    formLink.setAttribute('href', onPageForm ? '#enregistrer' : base + 'index.html#enregistrer');
+    formLink.setAttribute('href', onPageForm ? '#enregistrer' : (base || './') + '#enregistrer');
 
     TOPICS.forEach(function (t) {
       var li = document.createElement('li');

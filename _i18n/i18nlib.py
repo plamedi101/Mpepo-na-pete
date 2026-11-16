@@ -313,10 +313,24 @@ def expand_fragment(tr, holders, start_tag_fn):
 
 # ---------------------------------------------------------------- liens relatifs entre langues
 
+def dirify(href):
+    """Adresse « propre » d'une page d'accueil de dossier : 'index.html' -> './', '../en/index.html' -> '../en/'.
+
+    Les liens vers index.html et vers le dossier affichent la même page : Google les voit comme deux adresses
+    (« Autre page avec balise canonique correcte »). Les liens du site pointent donc toujours vers le dossier."""
+    m = re.match(r'^([^?#]*)(\?[^#]*)?(#.*)?$', href)
+    path, query, frag = m.group(1), m.group(2) or '', m.group(3) or ''
+    if path == 'index.html':
+        path = './'
+    elif path.endswith('/index.html'):
+        path = path[:-len('index.html')]
+    return path + query + frag
+
+
 def relpath_to(target, from_file):
     d = posixpath.dirname(from_file) or '.'
     r = posixpath.relpath(target, d)
-    return r
+    return dirify(r)
 
 
 def rewrite_url(value, fr_file, new_file, page_map):
@@ -332,8 +346,8 @@ def rewrite_url(value, fr_file, new_file, page_map):
     if path == '':
         return value
     target = posixpath.normpath(posixpath.join(posixpath.dirname(fr_file), path))
-    if path.endswith('/'):
-        target = target.rstrip('/') + '/'
+    if path.endswith('/') or path in ('.', '..'):
+        target = (target.rstrip('/') + '/index.html') if target not in ('.', '') else 'index.html'
     target = page_map.get(target, target)
     return relpath_to(target, new_file) + query + frag
 

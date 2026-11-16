@@ -395,7 +395,7 @@ with sync_playwright() as p:
                 page.click(f'.langbar a[lang="{target}"]')
                 page.wait_for_load_state('load')
                 loc = urllib.parse.urlsplit(page.url).path
-                check(f'sélecteur : {fr_path} {start}→{target}', loc.endswith('/' + build.PATHS[fr_path][target]) and page.evaluate('document.documentElement.lang') == target, loc)
+                check(f'sélecteur : {fr_path} {start}→{target}', loc.endswith('/' + re.sub(r'index\.html$', '', build.PATHS[fr_path][target])) and page.evaluate('document.documentElement.lang') == target, loc)
                 page.close()
     ctx.close()
 
@@ -434,7 +434,7 @@ with sync_playwright() as p:
         page.wait_for_timeout(150)
         page.click('.ffc-launch')
         check(f'{tag} blog : lien du formulaire vers la page d’accueil de la même langue',
-              page.get_attribute('.ffc-formlink', 'href') == '../index.html#enregistrer', page.get_attribute('.ffc-formlink', 'href'))
+              page.get_attribute('.ffc-formlink', 'href') == '../#enregistrer', page.get_attribute('.ffc-formlink', 'href'))
         ctx.close()
 
     # ============================================================== 4. page d'accueil : formulaires, messages, avis
